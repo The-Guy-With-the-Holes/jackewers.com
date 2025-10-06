@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Am I Old Yet? - Test your slang knowledge and find out if you're still hip or totally out of touch!">
+    <title>Am I Old Yet? - Slang Generator</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    
+    <!-- Preconnect to external resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --danger-color: #ef4444;
+            --text-primary: #1f2937;
+            --text-secondary: #6b7280;
+            --bg-primary: #ffffff;
+            --bg-secondary: #f9fafb;
+            --border-color: rgba(0, 0, 0, 0.1);
+            --shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        [data-theme="dark"] {
+            --text-primary: #f9fafb;
+            --text-secondary: #d1d5db;
+            --bg-primary: #1f2937;
+            --bg-secondary: #111827;
+            --border-color: rgba(255, 255, 255, 0.1);
+            --shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background: var(--bg-primary);
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .header {
+            background: var(--primary-gradient);
+            color: white;
+            text-align: center;
+            padding: 3rem 2rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+            animation: float 20s linear infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            100% { transform: translate(-20px, -20px) rotate(360deg); }
+        }
+
+        .header h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        .main-content {
+            padding: 3rem 2rem;
+        }
+
+        .input-section {
+            margin-bottom: 2rem;
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+
+        .input-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .slang-input {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            font-size: 1.1rem;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        .slang-input:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .analyze-btn {
+            width: 100%;
+            padding: 1.2rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            background: var(--primary-gradient);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .analyze-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .analyze-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .analyze-btn:hover::before {
+            left: 100%;
+        }
+
+        .analyze-btn:active {
+            transform: translateY(0);
+        }
+
+        .results {
+            display: none;
+            margin-top: 2rem;
+            padding: 2rem;
+            background: var(--bg-secondary);
+            border-radius: 15px;
+            border: 2px solid var(--border-color);
+        }
+
+        .results.show {
+            display: block;
+            animation: slideUp 0.5s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .age-meter {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .age-meter h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .emoji-scale {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 1rem 0;
+            padding: 1rem;
+            background: var(--bg-primary);
+            border-radius: 12px;
+            position: relative;
+        }
+
+        .emoji {
+            font-size: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .emoji.active {
+            transform: scale(1.5);
+            filter: drop-shadow(0 0 10px rgba(102, 126, 234, 0.5));
+        }
+
+        .meter-pointer {
+            position: absolute;
+            top: -10px;
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-bottom: 15px solid #667eea;
+            transition: all 0.5s ease;
+        }
+
+        .diagnosis {
+            background: var(--bg-primary);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border-left: 4px solid #667eea;
+            margin-bottom: 1.5rem;
+        }
+
+        .diagnosis h4 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .diagnosis p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .slang-breakdown {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .slang-category {
+            background: var(--bg-primary);
+            padding: 1rem;
+            border-radius: 12px;
+            border: 2px solid var(--border-color);
+        }
+
+        .category-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .category-current {
+            border-left-color: var(--success-color);
+        }
+
+        .category-outdated {
+            border-left-color: var(--danger-color);
+        }
+
+        .category-unknown {
+            border-left-color: var(--warning-color);
+        }
+
+        .slang-list {
+            list-style: none;
+        }
+
+        .slang-list li {
+            padding: 0.3rem 0;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .share-section {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 2px solid var(--border-color);
+        }
+
+        .share-btn {
+            background: transparent;
+            border: 2px solid #667eea;
+            color: #667eea;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            margin: 0 0.5rem;
+        }
+
+        .share-btn:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .examples {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: var(--bg-primary);
+            border-radius: 12px;
+            border: 2px solid var(--border-color);
+        }
+
+        .examples h4 {
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .example-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .example-tag {
+            background: #667eea;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .example-tag:hover {
+            background: #5a67d8;
+            transform: translateY(-1px);
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 2rem 1rem 1.5rem;
+            }
+
+            .main-content {
+                padding: 2rem 1rem;
+            }
+
+            .slang-breakdown {
+                grid-template-columns: 1fr;
+            }
+
+            .emoji-scale {
+                padding: 0.5rem;
+            }
+
+            .emoji {
+                font-size: 1.5rem;
+            }
+
+            .share-btn {
+                display: block;
+                width: 100%;
+                margin: 0.5rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Am I Old Yet? 👴</h1>
+            <p>Test your slang knowledge and discover your generational status!</p>
+        </div>
+
+        <div class="main-content">
+            <div class="input-section">
+                <div class="input-group">
+                    <label for="slang-input">Enter your favorite slang words or phrases:</label>
+                    <textarea 
+                        id="slang-input" 
+                        class="slang-input" 
+                        placeholder="e.g., no cap, slay, periodt, bet, fam..."
+                        rows="3"
+                    ></textarea>
+                </div>
+                <button class="analyze-btn" onclick="analyzeSlang()">
+                    Analyze My Slang Game 🔍
+                </button>
+                
+                <div class="examples">
+                    <h4>Need inspiration? Try these:</h4>
+                    <div class="example-tags">
+                        <span class="example-tag" onclick="addExample(this)">no cap</span>
+                        <span class="example-tag" onclick="addExample(this)">periodt</span>
+                        <span class="example-tag" onclick="addExample(this)">slay</span>
+                        <span class="example-tag" onclick="addExample(this)">bet</span>
+                        <span class="example-tag" onclick="addExample(this)">fam</span>
+                        <span class="example-tag" onclick="addExample(this)">groovy</span>
+                        <span class="example-tag" onclick="addExample(this)">tubular</span>
+                        <span class="example-tag" onclick="addExample(this)">wicked</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="results" class="results">
+                <div class="age-meter">
+                    <h3>Your Generational Status</h3>
+                    <div class="emoji-scale">
+                        <span class="emoji" data-age="0">👶</span>
+                        <span class="emoji" data-age="25">😎</span>
+                        <span class="emoji" data-age="50">🤔</span>
+                        <span class="emoji" data-age="75">👴</span>
+                        <span class="emoji" data-age="100">🦴</span>
+                        <div class="meter-pointer" id="meter-pointer"></div>
+                    </div>
+                </div>
+
+                <div class="diagnosis" id="diagnosis">
+                    <!-- Diagnosis will be inserted here -->
+                </div>
+
+                <div class="slang-breakdown" id="slang-breakdown">
+                    <!-- Breakdown will be inserted here -->
+                </div>
+
+                <div class="share-section">
+                    <button class="share-btn" onclick="shareResult()">Share My Diagnosis 📱</button>
+                    <button class="share-btn" onclick="resetTest()">Test Again 🔄</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

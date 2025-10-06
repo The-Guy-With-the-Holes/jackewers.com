@@ -56,6 +56,18 @@ Priority	Description	When to Use
   5	Critical (Highest Priority)	Use for critical errors or issues that require immediate attention (e.g., "Database connection failed", "Unhandled exception occurred").
 
 */
+function dQ(selector) { return document.querySelector(selector); }
+function createElement(tag, attributes = {}) {
+  const element = document.createElement(tag);
+  for (const key in attributes) {
+      if (key === 'innerHTML' || key === 'innerText' || key === 'className') {
+          element[key] = attributes[key];
+      } else {
+          element.setAttribute(key, attributes[key]);
+      }
+  }
+  return element;
+}
 function debug(message, level, category) {
   // Global debugging variables
   const debuggingPriority = 3; // Example priority threshold
@@ -108,17 +120,6 @@ function calculateDaysLeft(dateAdded, daysToComplete) {
   return daysLeft < 0 ? 0 : daysLeft;
 }
 //Date 
-const weekDay = ['Sun', 'Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat'];
-const CheckAge = function (DOB) {
-  let today = new Date();
-  let birthDate = new Date(DOB);
-  let age = today.getFullYear() - birthDate.getFullYear();
-  let monthDif = today.getMonth() - birthDate.getMonth();
-  if (monthDif < 0 || (monthDif === 0 && today.getDate() < birthDate.getDate())) {
-      age--; // Over declared age adjusted here 
-  }
-  return age;
-}
 
 function getDatearr() {
   let today = new Date();
@@ -126,14 +127,7 @@ function getDatearr() {
   return currentDay;
 }
 
-let timeDif = function (time) {
-  let today = new Date();
-  let iTime = time.split(':');
-  let curTime = toString(today.getHours(), ":" + today.getMinutes() + ":", today.getSeconds());
 
-  if (time > curTime) { return "Not >24hrs"; }
-  else { return "<24hrs" + (time - curTime); }
-}
 
 function DateDif(date) {
   date.split('/'); let time = date[0] + date[1];
@@ -148,10 +142,7 @@ function DateDif(date) {
   return "Y/M/D:" + DIfference;
 }
 
-let daysUntil = function (date) { 
-  const today = new Date();
-  let diff = date - today; return Math.floor(diff / (1000 * 60 * 60 * 24));
-}    
+
 
 function dateCountdown(dateAdded, daysToComplete) {
   const currentDate = new Date();
@@ -165,21 +156,9 @@ function dateCountdown(dateAdded, daysToComplete) {
  * 2. Page Manipulation Functions
  * ================================ */
 //Select elements
-const dQ = function(e){return document.querySelector(e);}
 
 //Edit Element display
 const ToggleElementDisplay = function (element, DisplayType, enforce) { let x = element||document.querySelector(element); if (enforce === true || x.style.display == "none") { x.style.display = DisplayType; } else x.style.display = "none"; }
-const CToggle_Ele = function (arr) { for (e in arr) { let a = arr[e]; ToggleElementDisplay(a[0], a[1], a[2] ?? null) } }
-
-// Styles and elements
-const createElement = function (element, properties) {
-  let el = document.createElement(element);
-  for (var prop in properties) { el[prop] = properties[prop]; }
-  return el;
-}
-
-let tNode = function (t) { return document.createTextNode(t); }
-let BR = function () { return createElement('br'); }
 
 function setAttributes(el, attrs) {
   for (var key in attrs) { el.setAttribute(key, attrs[key]); }
@@ -230,17 +209,6 @@ function toggleFullScreen() {
   }
 }
 
-/**
- * 2.5 reloadPage
- * Function to reload the page.
- */
-const reloadPage = function () { window.location.reload(true); return false; }
-
-/**
- * 2.6 importURL
- * Function to import a script from a URL.
- */
-let importURL = function(url){document.head+=`<script type="text/javascript" src="${url}"></script>`;}
 
 /**
  * 2.7 isLocalhost
@@ -376,41 +344,6 @@ function escapeHtml(html) {
 }
 
 /* ================================
- * 5. Cookie Functions
- * ================================ */
-
-/**
- * 5.1 setCookie
- * Function to set a cookie.
- */
-const setCookie = function(name, val, exdays = 365) {
-  const d = new Date();
-  d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-  let expires = "expires=" + d.toUTCString();
-  document.cookie = `${name}=${val};${expires};path=/`;
-}
-
-/**
- * 5.2 getCookie
- * Function to get a cookie by name.
- */
-const getCookie = function(name) {
-  let n = name + '=';
-  let decodedCookie = decodeURIComponent(document.cookie);
-  let ca = decodedCookie.split(';');
-  for (let i = 0; i < ca.length; i++) {
-    let c = ca[i];
-    while (c.charAt(0) == ' ') {
-      c = c.substring(1);
-    }
-    if (c.indexOf(n) == 0) {
-      return c.substring(n.length, c.length);
-    }
-  }
-  return "";
-}
-
-/* ================================
  * 6. HTML Loading Function
  * ================================ */
 
@@ -419,20 +352,22 @@ const getCookie = function(name) {
  * Function to load HTML content.
  */
 // Page maninpulation
-function loadHTML(e, t) {
+function loadHTML(e, t, prepend = false) {
   return new Promise((n, o) => {
     const i = new XMLHttpRequest();
     i.open("GET", t, !0),
       (i.onreadystatechange = function () {
         4 === i.readyState &&
           (200 === i.status
-            ? ((document.querySelector(e).innerHTML = i.responseText), n())
+            ? (prepend 
+                ? (document.querySelector(e).insertAdjacentHTML('afterbegin', i.responseText))
+                : (document.querySelector(e).innerHTML = i.responseText), 
+               n())
             : o(`Failed to load HTML from ${t}`));
       }),
       i.send();
   });
 }
-
 /* ================================
   * 7. Numerical Functions
   * ================================ */
@@ -483,3 +418,168 @@ function createHexchain(chainlength,hexlength=8) {
   return hexchain;
 }
 
+
+
+const stickyNav = false;
+let navAttachAttempts = 0;
+
+function toggleVerticalNav(type) {
+  if (!type) { return console.error('toggleVerticalNav needs a type(open/close)'); }
+  type = type.toLowerCase();
+  let navBar = document.querySelector('#Vertical_NavWrapper');
+  let navSwitch = document.querySelector('#Vertical_NavSwitch');
+  console.log(`toggling nav :${type}`);
+//   if (nav) {
+    if (navBar.style.display === 'none' || navBar.style.display === '') {
+        navBar.style.display = 'block';
+        navSwitch.innerHTML="⚞";
+        setTimeout(() => {
+            navBar.classList.add('show');
+        }, 10); // Small delay to ensure the display property is applied before the transition
+    } else {
+        navSwitch.innerHTML="☰";
+        navBar.classList.remove('show');
+        setTimeout(() => {
+            navBar.style.display = 'none';
+        }, 500); // Match the transition duration
+    }
+}
+
+
+function toggleVnavExpansion(ele){      
+  const expandedSection = event.target.querySelector('.expandable-content');
+  expandedSection.classList.toggle('hidden');
+
+  return console.log('click is expanded');
+
+}
+
+
+function attachNavListener() {
+    
+    if (stickyNav) {
+        // Horizontal Nav
+        if (window === window.top && document.querySelector('nav') !== null) {
+            console.log('Nav listener attached');
+            // If timeout is set, end the function
+            window.addEventListener('scroll', function () {
+                let header = document.querySelector('header');
+                console.log('scrolling');
+                let nav = document.querySelector('nav');
+                if (this.scrollY > header.clientHeight - header.clientHeight / 2) { nav.classList.add('sticky_nav'); }
+                else { nav.classList.remove('sticky_nav'); }
+            });
+        } 
+    }
+    else { console.log('Sticky Nav is disabled'); }
+
+  
+  // Trigger functions inside the Vertical Nav
+  let vNav = document.querySelector('#Vertical_NavWrapper');
+
+  vNav.addEventListener('click', (event) => {
+    const isVNavOpen = vNav.style.display !== 'none';
+    const clickIsInWrapper = event.target.id === 'Vertical_NavWrapper';
+    const clickIsExpandedItem = event.target.closest('.Nav_Expanded');
+
+    if ( clickIsInWrapper && isVNavOpen){
+      return toggleVerticalNav('close');
+    }
+    // Expand nav
+    if (clickIsExpandedItem){
+      toggleVnavExpansion(event.target);
+    }
+
+  })
+  
+}
+
+
+function getPagePath() {
+    const url = new URL(document.URL);
+    return url.pathname; // Returns everything after the domain, e.g., "/folder/page" or "/page"
+}
+
+function setCurrentNavigationPage(page=getPagePath()){
+  const navigatablePages = document.querySelectorAll('.NavListitem:not(.Nav_Switch)');
+  navigatablePages.forEach((pageLink) => {
+    if (pageLink.getAttribute('href') === page || (page === "/" || page === "/index.html") && pageLink.getAttribute('href') === "/index.html") {
+      pageLink.classList.add('selected');
+      pageLink.href="#"
+      console.log(`Current page set to: ${page}`);
+    } else {
+      pageLink.classList.remove('selected');
+    }
+  })
+}
+
+
+
+const headerComponent = '/shared/assets/components/header.html';
+const navComponent = '/shared/assets/components/modern-navbar.html';
+const footerComponent = '/shared/assets/components/footer.html';
+
+// Attach the listener to the nav (open/close vertical nav)
+document.addEventListener('DOMContentLoaded', 
+  initialiseSettings = () => {
+    if (!Settings) return console.warn('No settings to make')
+
+    
+    if (Settings.createHeader){
+      fetch(headerComponent)
+        .then(response => response.text())
+        .then(html => {
+            const headerElements = document.querySelectorAll('header[data-render="component"]');
+            if (!headerElements.length) {
+              const header = createElement('header',{id:'header', 'data-render':'component',innerHTML:html});
+              document.body.prepend(header);
+            }
+            
+            headerElements.forEach(header => {
+                header.innerHTML = html;
+            });
+        })
+        .catch(error => console.error('Error loading header:', error));
+    }
+    if(Settings.createNav){
+      fetch(navComponent + '?v=' + Date.now())
+        .then(response => response.text())
+        .then(html => {
+            domHasNav = document.getElementById('nav');
+            if(!domHasNav){ 
+              navigation = createElement('div',{id:'nav'});
+              //inset after the header ( or prepend to the body if no header)
+              if(dQ('header'))dQ('header').insertAdjacentElement('afterend',navigation);
+              else dQ('body').prepend(navigation);
+            }
+            document.getElementById('nav').innerHTML = html;
+            // Re-initialize ModernNavigation after nav is loaded
+            if (window.modernNav) {
+                window.modernNav.setupEventListeners();
+                window.modernNav.setActiveNavItem();
+            } else if (window.ModernNavigation) {
+                window.modernNav = new window.ModernNavigation();
+            }
+        })
+        .catch(error => console.error('Error loading navigation:', error));
+    }
+    if(Settings.createFooter){
+      fetch(footerComponent)
+      .then(response => response.text())
+      .then(html => {
+          if (document.querySelector('footer')){ document.querySelector('footer').innerHTML = html; }
+          else{
+              const footer = createElement('footer',{id:'footer', 'data-render':'component',innerHTML:html});
+              document.body.append(footer);
+          }
+      })
+      .catch(error => console.error('Error loading footer:', error));
+    } 
+
+    if(Settings.returnButton){
+      loadHTML('body','/components/returnButton.html', true).then(() => {
+        console.log('ccc')
+      })
+    }
+
+});

@@ -1,0 +1,111 @@
+
+/* BACKGROUND */
+/* =========================
+   CONFIG
+========================= */
+:root{
+  --bg-0:#03060b;          /* darkest */
+  --bg-1:#07101c;          /* deep blue */
+  --bg-2:#0a1b2e;          /* center glow base */
+  --neon:#34e0ff;          /* glyph color */
+  --neon-2:#07b3ff;        /* outer glow */
+  --columns: 26;           /* how many columns (desktop) */
+  --speed-min: 8s;         /* fastest column */
+  --speed-max: 18s;        /* slowest column */
+  --font-size: clamp(12px, 2.1vmin, 20px);
+  --trail-strength: .30;   /* 0–.6 | strength of the blur trail */
+}
+
+/* Reset-ish */
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  background:
+    radial-gradient(120vw 120vh at 50% 55%, rgba(30,90,160,.26), transparent 60%),
+    radial-gradient(80vw 60vh at 60% 30%, rgba(30,120,200,.16), transparent 55%),
+    linear-gradient(#0000,#0004),
+    var(--bg-1);
+  background-color:var(--bg-0);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  overflow:hidden;
+}
+
+/* subtle vignette + scanlines */
+.vignette, .scan{
+  position:fixed; inset:0; pointer-events:none;
+}
+.vignette{
+  background:
+    radial-gradient(120vw 120vh at 50% 50%, #0000 60%, rgba(0,0,0,.45) 100%);
+  mix-blend-mode:multiply;
+}
+.scan{
+  background-image: linear-gradient(rgba(255,255,255,.03), rgba(0,0,0,0) 2px);
+  background-size: 100% 3px;
+  animation: scanMove 6s linear infinite;
+  opacity:.25;
+}
+@keyframes scanMove{
+  from{background-position-y:0} to{background-position-y:3px}
+}
+
+/* =========================
+   GLYPH WALL
+========================= */
+.wall{
+  position:fixed; inset:0; overflow:hidden;
+  display:block;
+  z-index: -10;
+}
+.col{
+  position:absolute;
+  top:-120vh; /* start above */
+  height:100%;
+  width: max(1.1rem, 2.2vmin);
+  will-change: transform;
+  filter: drop-shadow(0 0 6px var(--neon))
+          drop-shadow(0 0 18px var(--neon-2));
+  /* soft trail behind text (blurred duplicate) */
+}
+.col::before{
+  content:attr(data-stream);
+  position:absolute; inset:0;
+  color:var(--neon);
+  opacity:var(--trail-strength);
+  filter: blur(6px);
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  white-space: pre;
+  letter-spacing: .02em;
+  line-height: 1.12;
+  font-size: var(--font-size);
+}
+.stream{
+  position:absolute; inset:0;
+  color:var(--neon);
+  text-shadow:
+    0 0 6px var(--neon),
+    0 0 18px var(--neon-2),
+    0 0 36px color-mix(in oklab, var(--neon) 40%, black);
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  white-space: pre;
+  letter-spacing:.02em;
+  line-height:1.12;
+  font-size: var(--font-size);
+}
+col::before,.stream{
+  display:block;
+  height:100%;
+}
+/* each column gets an animation injected inline via style attr */
+@keyframes descend {
+  from { transform: translate3d(var(--dx,0), -120vh, 0); }
+  to   { transform: translate3d(var(--dx,0), 120vh, 0); }
+}
+
+/* mobile: fewer columns */
+@media (max-width: 700px){
+  :root{ --columns: 14; --font-size: clamp(11px, 3vmin, 18px); }
+}

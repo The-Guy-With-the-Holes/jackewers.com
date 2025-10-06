@@ -14,9 +14,9 @@ let appendTool = function(name,img,func){ if ( !img || !name){ console.error('ca
 
 function appendToolbar(){
       let ToolBar = createElement('div',{id:'Tools'}); 
-      let span = createElement('span',{id:'Tools-Extended',classList:'HiddenTools'});
+      let span = createElement('span',{id:'Tools-Extended',className:'HiddenTools'});
       
-      let i = createElement('img',{src:requestRoot('BusinessCard')+'i/Templates/Tools.png',id:'Tools-Switch',classList:'tool-icons',});
+      let i = createElement('img',{src:requestRoot('BusinessCard')+'i/Templates/Tools.png',id:'Tools-Switch',className:'tool-icons'});
       i.setAttribute('onclick',"switchTools('open')");
       
       ToolBar.append(i,span);

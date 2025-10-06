@@ -31,8 +31,7 @@ Allow:*.js$
 Allow:*.ico
 
 ### Directories ###
-Allow: /i/icons/₿/*
-Disallow: /i/*
+Disallow: /shared/assets/images/*
 Disallow: /JS
 Disallow: /css
 Disallow: /Certfificates
@@ -40,4 +39,4 @@ Disallow: /Certfificates
 ### Files ###
 Disallow:
 
-## Copyright Jackewers.com 2023
+## Copyright Jackewers.com 2025

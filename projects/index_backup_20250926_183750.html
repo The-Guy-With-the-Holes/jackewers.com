@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects Index</title>
+    <link rel="preload" href="/shared/assets/styles/vars.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="/shared/assets/styles/nav_and_socials.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="/styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="/shared/assets/styles/styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+ <style>
+        *{ margin:0; padding:0; }
+        body{ min-height:100dvh;}
+        h1 {
+            text-align: center;
+            font-size: var(--font-XXL);
+            background-color: #fafafa55;
+            padding: 1%;
+            border: 4px double #000;
+        }
+
+        h1 p {
+            font-size: var(--font-M);
+        }
+    </style>
+</head>
+<!-- 
+ 
+Overview:
+    (Project Title)
+    (User:name,category,views,likes,comments,save as pdf)    
+    (Image Blocks) 
+    (Full user block)
+    (Project Description)
+
+Project:
+    Supplies:
+        (Supplies Title)
+        (Supplies List)
+Steps:
+    step(1..)
+        (Step Title)
+        (Step Image(optional))
+        (Step Description)
+-->
+
+
+<body>
+
+    <header>
+        <h1>Projects:
+        <p>Explore development projects</p>        
+        </h1>
+    </header>
+ 
+
+
+    <script>
+        const Settings = {
+            createNav: true,
+            createFooter: true,
+        
+        }
+
+    </script>
+    <script src="/KeyFunctions.js" type="text/javascript"></script>
+    <script src="/JS/Image_slider.js" defer></script>
+    <script src="/JS/nav.js" defer> </script>
+    <script src="/JS/projects.js" defer></script>
+</body>
+
+</html>

@@ -1,0 +1,554 @@
+/*******************************************************/
+/* Index: */
+/* 
+    1. General
+      1.1 Darkmode Changes
+    2. Screen
+    3. Header
+    4. Nav
+    5. Main (Slider, About, Projects)
+    6. Footer
+    7. Special Styles
+    8. Projects
+    9. Debugging
+*/
+
+/*******************************************************/
+/* General */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+::-webkit-scrollbar,
+iframe::-webkit-scrollbar {
+  width: 0;
+  display: none;
+}
+
+html {
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
+body {
+  background-blend-mode: overlay;
+  margin: 0;
+  padding: 0 0.5rem;
+
+  font-family: Rubik, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+
+   /* Layer 1: normal hexagons */
+   background-size: 20vw 17vw, 20vw 17vw; /* 5 hexagons horizontally, scales vertically */
+   background-position: 0 0, 10vw 8.5vw;   /* 2nd layer offset by half hex width and height */
+   background-blend-mode: overlay;
+   background-repeat: repeat, repeat;
+}
+
+/* Theme-specific body styles are now set via CSS variables in vars.css */
+body {
+  color: var(--font-main);
+  background-image: var(--bg-main);
+}
+
+
+button,
+a {
+  cursor: pointer;
+} /* Clickable content */
+
+h1,
+h3,
+h4 {
+  /* Spectral Font for important */
+  font-family: "Spectral SC", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Add some space between the body content (but not these elements) */
+body > *:not(#debugging_area,nav,.fullscreen-modal,.sidebar-navigation,.main-navigation) { 
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width:min(800px,95vw);
+  margin: 0 auto;
+  margin-top: var(--body-content-seperator-L);
+
+  /* border-top: 1vmin groove gray;
+  border-bottom: 1vmin groove gray; */
+}
+
+body > *:not(header,nav,#Vertical_Navbar,.fullscreen-modal,.sidebar-navigation,.main-navigation) { 
+  background: var(--bg-content);
+}
+
+/* Override the above styles for desktop layout */
+@media (min-width: 1024px) {
+
+  body > header[data-render="component"],
+  body > .main-content,
+  body > footer {
+    border-radius: 0;
+    box-shadow: none;
+    margin-left: calc(var(--sidebar-width) + ((100vw - var(--sidebar-width)) - 800px) / 2) !important;
+    border-top: none;
+    border-bottom: none;
+    background: transparent;
+  }
+}
+
+dialog {
+  display: block;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  /* align center of screen */
+  /* position: fixed; */
+  top: 50%;
+  left: 25%;
+}
+
+nav,
+footer {
+  background-color: #fafafaaa;
+  border-top: 1vmin groove gray;
+  border-bottom: 1vmin groove gray;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+}
+ 
+
+/*******************************************************/
+/* Screen  *Follows Page Layout* */
+
+/*
+    Header: * Use 100vw for small devices
+    
+    Nav: * Use 100vw for small devices
+         * Only show the 'menu' button to switch between vertical and horizontal nav on small devices
+
+    Main: * Use 100vw for small devices
+          * Positioned to the side on large devices    
+    
+    Slider: * Use 100vw for small devices
+            * Show clickable image previews on large devices 
+            * Remove prev/next buttons on large devices
+
+    Projects: * Use 100vw for small devices
+              * Positioned to the side on large devices
+              * Show more projects per line on large devices
+    (Handled by the projects JS class)
+
+    Footer: 
+ */
+
+/* Extra Small Phones */
+@media screen and (max-width: 600px) {
+
+  /* hide if screen <600px */
+  .NavListitem:not(.Vertical_NavBar .NavListitem, .expandable-content .NavListitem, .Nav_Switch)
+   {
+    display: none;
+    padding: 0;
+  }
+
+}
+
+/* Potrait Tablets and Large phones*/
+@media (min-width: 600px) {  
+
+  .NavListitem { display: block; }
+
+  .Nav_Switch,
+  #main_image_container > span > i {
+    display: none;
+    margin: 0;
+  }
+
+  /* IMAGE CONTAINER*/
+  .image-flex-slider {
+    display: flex;
+  }
+
+  #main_image_container {
+    font-size: 1.2em;
+    -webkit-text-stroke: 0.01em #fafafaff;
+    /* background-color: #000000f5; */
+    max-width: 350px; /* Portrait container for mobile photos */
+    margin: 0 auto;
+  }
+
+  #slider_img_main {
+    width: auto; /* Allow aspect ratio to control width */
+    height: auto;
+    max-width: 100%;
+    max-height: 70vh;
+    aspect-ratio: 9 / 16; /* Portrait mobile photos */
+    object-fit: cover;
+  }
+}
+
+/* Desktop and horizontal tablets */
+@media screen and (min-width: 1024px) {
+  #main_image_container {
+    /* max-height:80dvh; */
+    vertical-align: middle;
+    max-width: 350px; /* Keep portrait container on desktop */
+  }
+
+  .flex-slider-item {
+    width: 45px;
+    height: 80px; /* Portrait thumbnails on desktop */
+  }
+}
+
+/* hr:not(#hr1){margin: 1%;} */
+
+.rainbow_text {
+  display: inline-block;
+  background: linear-gradient(
+    to right,
+    pink,
+    violet,
+    purple,
+    indigo,
+    blue,
+    aqua,
+    lightseagreen,
+    seagreen,
+    green,
+    darkgreen,
+    yellow,
+    gold,
+    orange,
+    crimson,
+    red
+  );
+  background-clip: text;
+  color: transparent;
+}
+
+.slider_selected {
+  border: 4px solid gold;
+}
+
+.debugging_area {
+  margin-top: 0;
+}
+
+/*******************************************************/
+/* Header */
+/* Style the background image separately */
+
+/*******************************************************/
+/* Main */
+
+main > * {
+  padding: var(--padding-scale-xs-noH);
+}
+
+#main-about {
+  font-size: 4.8vw;
+}
+
+
+#openDialog {
+  position: absolute;
+  right: 3%;
+  height: calc(var(--font-L) + 5px); /* Set a fixed height */
+  width: calc(var(--font-L) + 5px); /* Set a fixed width to make it a square */
+  font-size: var(--font-L);
+  font-weight: bold;
+  border: 2px solid red;
+  border-radius: 50%; /* Make it round */
+  color: red;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 0; /* Remove padding */
+  margin: 3% 0% 1% 0%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffffaf; /* Optional: Set a background color */
+}
+
+/* About */
+#main-about {
+  position: relative;
+  margin-bottom: 2vh;
+  font-size: var(--font-M);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 10px wavy #000000;
+}
+
+#about-text_first-line {
+  font-size: var(--font-ML);
+  padding: 2% 2% 0% 2%;
+  margin: 0 auto;
+  /* border-bottom: min(0.4vh,10px) double #0a0a0a55; */
+  z-index: 10;
+}
+#about-text_main {
+  padding: 4%;
+  z-index: 3;
+}
+.main_svg {
+  position: absolute;
+  /* right: 0; */
+  top: 0;
+  height: 100%;
+  width: auto;
+  fill: #00000011;
+}
+/*******************************************************/
+/***** PROJECTS ******/
+#about-projects {
+  padding: 1vh 0;
+  margin-bottom: 2dvh;
+}
+h4 {
+  text-align: center;
+  font-size: var(--font-ML);
+  font-weight: bold;
+  margin-bottom: 1vh;
+}
+
+h5 {
+  text-align: center;
+  font-size: large;
+  font-weight: 500;
+  padding: 1vh min(0.4vh, 2vw);
+}
+
+.project-button {
+  cursor: pointer;
+  font-size: larger;
+  margin: 1%;
+  padding: 0.5%;
+}
+
+.project_refs > li {
+  text-align: left;
+  margin: 1%;
+  padding: 1%;
+  font-size: var(--font-ML);
+}
+
+/*******************************************************/
+/* Footer */
+
+footer > p {
+  font-family: "Spectral SC", serif;
+  font-size: small;
+  padding: 2% 4%;
+}
+.Horizontal_Socials {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 0;
+}
+
+.balls:hover {
+  opacity: 1;
+  transform: scale(1.25);
+}
+
+.balls {
+  opacity: 0.85;
+  background-color: white;
+  max-height: 9vh;
+  height: 10vmin;
+  max-width: 9vh;
+  width: 10vmin;
+  border: 0.5vmin double gold;
+  border-radius: 50%;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+}
+
+.Rotern:hover {
+  animation-name: Ball-Background;
+  animation-duration: 1s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+#foot_note {
+  /* position:absolute; */
+  font-size: min(2.5vw, 1.8vh);
+  background-color: #fafafa55;
+  padding: 2%;
+  width: 100%;
+}
+
+#foot_note p {
+  display: block;
+  width: fit-content;
+  text-align: center;
+  margin: 0 auto;
+  padding: 1%;
+}
+/* Powered By*/
+#foot_note a > * {
+  vertical-align: middle;
+  display: inline;
+  text-decoration: inherit;
+  color: #000;
+}
+
+#foot_note img {
+  max-width: 4vw;
+}
+
+/* *SPECIAL STYLES* */
+/*Rainbow wave .*/
+@keyframes wave {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  25% {
+    transform: translateY(-10px);
+  }
+  50% {
+    transform: translateY(0);
+  }
+  75% {
+    transform: translateY(10px);
+  }
+  99.99% {
+    -webkit-text-stroke: 1.9px gold;
+  }
+}
+
+.rainbow-wave-text {
+  cursor: pointer; /*Let user know this element is interactive*/
+  display: inline;
+  font-size: 0.6em;
+  font-family: Arial, sans-serif;
+  white-space: nowrap; /* Prevent line break after each letter */
+  overflow: hidden; /* Hide overflow caused by white-space: nowrap */
+  display: inline-block;
+  position: relative;
+}
+
+.rainbow-wave-text .RT {
+  display: inline-block;
+  animation: wave 1s 5;
+  animation-delay: calc(
+    0.1s * var(--index)
+  ); /* Adjust delay based on letter index */
+  white-space: nowrap; /* Prevent line break after each letter */
+  overflow: hidden; /* Hide overflow caused by white-space: nowrap  */
+  position: relative;
+  z-index: 1;
+}
+
+.rainbow-wave-text .RT::before {
+  content: attr(data-letter);
+  /* font-size:var(--font-L); */
+  display: block;
+  overflow: hidden;
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+/* .rainbow-wave-text span:nth-child(1), 
+  .rainbow-wave-text span:nth-child(6)
+  {--index: 0;}
+
+  .rainbow-wave-text span:nth-child(2),
+  .rainbow-wave-text span:nth-child(7) 
+   {--index: 1;}
+
+  .rainbow-wave-text span:nth-child(3),
+  .rainbow-wave-text span:nth-child(8) 
+   {--index: 2;}
+
+  .rainbow-wave-text span:nth-child(4),
+  .rainbow-wave-text span:nth-child(9) 
+   {--index: 3;}
+
+  .rainbow-wave-text span:nth-child(5),
+  .rainbow-wave-text span:nth-child(10) 
+   {--index: 4;}
+    */
+
+.rainbow-wave-text span:nth-child(1) {
+  --index: 0;
+}
+.rainbow-wave-text span:nth-child(2) {
+  --index: 1;
+}
+.rainbow-wave-text span:nth-child(3) {
+  --index: 2;
+}
+.rainbow-wave-text span:nth-child(4) {
+  --index: 3;
+}
+.rainbow-wave-text span:nth-child(5) {
+  --index: 4;
+}
+.rainbow-wave-text span:nth-child(6) {
+  --index: 5;
+}
+.rainbow-wave-text span:nth-child(7) {
+  --index: 6;
+}
+.rainbow-wave-text span:nth-child(8) {
+  --index: 7;
+}
+.rainbow-wave-text span:nth-child(9) {
+  --index: 8;
+}
+.rainbow-wave-text span:nth-child(10) {
+  --index: 9;
+}
+.rainbow-wave-text span:nth-child(11) {
+  --index: 10;
+}
+.rainbow-wave-text span:nth-child(12) {
+  --index: 11;
+}
+.rainbow-wave-text span:nth-child(13) {
+  --index: 12;
+}
+
+/* 
+  #iframeDialog{
+    width:100vw;
+    height:200vh;
+    margin:0 auto;
+    margin-top: 5%;
+    text-align:center;
+    display:flex;
+    justify-content: center;
+    align-items:center;
+    flex-wrap: wrap;
+  }
+  #iframeDialog::backdrop{
+    background-color:white;
+    opacity:0.9;
+  }
+  #iframeTitle{width:100%;}
+  #iframeTitle::first-line{
+    font-size: 2.4em;
+  }
+
+  #close_iframe_dialog{
+    position:absolute; right:0; top:0;
+    -webkit-text-stroke: .01em red;
+}
+#iframeDialog button {
+    font-size: 1.8em;
+    margin:1%; padding:.3em;
+}
+#dialog_iframe{
+    height:100%;
+    vertical-align: middle;
+} */

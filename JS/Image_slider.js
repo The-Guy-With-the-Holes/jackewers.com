@@ -2,19 +2,31 @@ class ImageSlider {
     constructor(settings) {
         // Default settings
         this.defaultSettings = {
-            images: [],  // the array of image URLs (expandable to include captions, etc.)
-            containerId: '#slider-container', // the id of the container where the slider will be appended
+            images: [],
+            
+            // the array of image URLs (expandable to include captions, etc.)
+            
+
+            // The below variables handle appending
+            containerId:null, // the id of the container where the slider will be appended
+            insertLocation: null,
+            insertAfter: null,
+
             expandable: false, // Clicking an image goes to fullscreen
             premadeMainContainer:false, // Premake the main container to save on bandwith
 
-            slide_Index: getCookie('lastSlideIndex')||0, // position of the current slide
-            last_Slide_Index: getCookie('lastSlideIndex')||0, // position of the last slide
+            slide_Index: (typeof getCookie !== 'undefined' ? getCookie('lastSlideIndex') : null) || 0, // position of the current slide
+            last_Slide_Index: (typeof getCookie !== 'undefined' ? getCookie('lastSlideIndex') : null) || 0, // position of the last slide
             TotalIndexMoves: 0, // total number of times the slide has been moved (left or right)
             expandViewkeycount: 0, // number of times the slider has been expanded (fullscreen)
             viewTime:[],
             lastKey: 'none',
 
             // User settings
+            imagesBeforeOverflow:{
+                mobile: 8,
+                desktop: 5,
+            },
             imageCount:true,        // show the image count (top right)
             SliderArrows: false,    // prev / next arrows
             sliderDots: false,      // dots for each slide
@@ -35,10 +47,9 @@ class ImageSlider {
     }
 
     initSlider() {
-        const container = dQ(`${this.settings.containerId}`);
+        const container = dQ(`#${this.settings.containerId}`);
         if (!container) { throw new Error(`Container with id ${this.settings.containerId} not found`);}
 
-        // Build the slider component
         this.buildSlider(container);
 
         this.settings.expandable && this.createFullscreenModal(container);
@@ -46,8 +57,10 @@ class ImageSlider {
         this.settings.sliderDots && this.addDots(container);
         // Attach event listeners
         this.attachEventListeners(container);
-        // Load the first slide
-        this.updateSelectedSlide(this.settings.lastSlideIndex);
+        // Load the first slide after a short delay to ensure DOM is ready
+        setTimeout(() => {
+            this.updateSelectedSlide(this.settings.slide_Index);
+        }, 100);
         
     }
 
@@ -62,9 +75,20 @@ class ImageSlider {
             imgContainer.appendChild(imgElement);
             imageSliderContainer.appendChild(imgContainer);
         });
-        container.appendChild(imageSliderContainer)
-        
+        container.append(imageSliderContainer);
+    }
 
+    createfolderSwapper(){
+        const folderContainer = createElement('div', { className: 'folder-container' });
+        this.settings.imageSets.forEach((folderName, index) => {
+            const folderButton = createElement('button', {
+                className: 'folder-button',
+                innerText: folderName,
+                onclick: () => this.switchToFolder(index)
+            });
+            folderContainer.appendChild(folderButton);
+        });
+        return folderContainer;
     }
 
     createFullscreenModal(container) {
@@ -171,30 +195,73 @@ class ImageSlider {
     }
 
     updateSlideIndex(n = this.settings.slide_Index){
+        // Validate inputs
+        if (!this.settings.images || this.settings.images.length === 0) {
+            console.warn('No images available for slider');
+            return;
+        }
+        
         // Update last slide index
         this.settings.last_Slide_Index = this.settings.slide_Index;
         // Update slider & catch out of index
-        if (n >= this.settings.images.length) { this.settings.slide_Index = 0; } 
-        else if (n < 0) { this.settings.slide_Index = this.settings.images - 1; } 
-        else if (n != this.settings.slide_Index){ this.settings.slide_Index = n;  }
+        if (n >= this.settings.images.length) { 
+            this.settings.slide_Index = 0; 
+        } 
+        else if (n < 0) { 
+            this.settings.slide_Index = this.settings.images.length - 1; 
+        } 
+        else if (n != this.settings.slide_Index){ 
+            this.settings.slide_Index = n;  
+        }
     }
      
     updateSelectedSlide(n=this.settings.slide_Index){
         const slides = document.getElementsByClassName("slider_image_slide");
         
-        slides[this.settings.slide_Index].parentElement.className='flex-slider-item'; 
+        // Check if slides exist and the current slide index is valid
+        if (!slides || slides.length === 0) {
+            console.warn('No slides found in DOM yet');
+            return;
+        }
+        
+        if (this.settings.slide_Index < 0 || this.settings.slide_Index >= slides.length) {
+            console.warn(`Invalid slide index: ${this.settings.slide_Index}`);
+            return;
+        }
+        
+        // Check if the current slide element exists and has a parent
+        const currentSlide = slides[this.settings.slide_Index];
+        if (!currentSlide || !currentSlide.parentElement) {
+            console.warn(`Slide at index ${this.settings.slide_Index} not found or has no parent`);
+            return;
+        }
+        
+        currentSlide.parentElement.className='flex-slider-item'; 
         
         console.log(`Current Index: ${this.settings.slide_Index} | Last Index: ${this.settings.last_Slide_Index} | 
             Total Moves: ${this.settings.TotalIndexMoves}
         removing class from ${this.settings.slide_Index} and adding class to ${n}    
-        currentclass name: ${slides[this.settings.slide_Index].parentElement.className}
+        currentclass name: ${currentSlide.parentElement.className}
         `);
 
         this.updateSlideIndex(n);
     
+        // Validate new slide index
+        if (n < 0 || n >= slides.length) {
+            console.warn(`Invalid new slide index: ${n}`);
+            return;
+        }
+        
+        // Check if the new slide exists
+        const newSlide = slides[n];
+        if (!newSlide || !newSlide.parentElement) {
+            console.warn(`New slide at index ${n} not found or has no parent`);
+            return;
+        }
+    
         // Clear previous selection 
         // Set selected slide
-        slides[n].parentElement.className+= " slider_selected";
+        newSlide.parentElement.className += " slider_selected";
  
         // Update the fullscreen image src to match the selected slide
         if (this.settings.expandable) {
@@ -211,8 +278,10 @@ class ImageSlider {
           
         // Update main image
         const main_image = document.getElementById('slider_img_main');
-        main_image.src = this.settings.images[this.settings.slide_Index];
-        main_image.alt = this.settings.images[this.settings.slide_Index];
+        if (main_image && this.settings.images[this.settings.slide_Index]) {
+            main_image.src = this.settings.images[this.settings.slide_Index];
+            main_image.alt = `Slide ${this.settings.slide_Index + 1} of ${this.settings.images.length}`;
+        }
     }
 
 

@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore Jack Ewers' software development projects - from web applications to hardware integrations, 3D printing designs, and automation tools.">
+    <title>Projects Portfolio | Jack Ewers - Software Developer</title>
+    <meta name="author" content="Jack Ewers">
+    <meta name="keywords" content="Jack Ewers, Projects, Software Development, Web Development, 3D Printing, Hardware Projects, Portfolio, Programming">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#00aabb">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://jackewers.com/projects/">
+    <meta property="og:title" content="Projects Portfolio | Jack Ewers - Software Developer">
+    <meta property="og:description" content="Explore Jack Ewers' software development projects - from web applications to hardware integrations, 3D printing designs, and automation tools.">
+    <meta property="og:image" content="/i/branding/banner-img-light.webp">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    
+    <!-- Preconnect to external resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Critical CSS -->
+    <link rel="stylesheet" href="/shared/assets/styles/vars.css">
+    <link rel="stylesheet" href="/shared/assets/styles/styles.css">
+    
+    <!-- Non-critical CSS - loaded asynchronously -->
+    <link rel="preload" href="/shared/assets/styles/nav_and_socials.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="/shared/assets/styles/projects.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+    <noscript>
+        <link rel="stylesheet" href="/shared/assets/styles/nav_and_socials.css">
+        <link rel="stylesheet" href="/shared/assets/styles/projects.css">
+    </noscript>
+
+    <!-- Structured data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": "Projects Portfolio",
+        "description": "A collection of software development projects by Jack Ewers",
+        "creator": {
+            "@type": "Person",
+            "name": "Jack Ewers",
+            "url": "https://jackewers.com"
+        },
+        "url": "https://jackewers.com/projects/",
+        "mainEntity": {
+            "@type": "ItemList",
+            "name": "Software Development Projects"
+        }
+    }
+    </script>
+</head>
+
+<body>
+    <!-- Skip to main content for accessibility -->
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <!-- HEADER -->
+    <header data-render="component" role="banner"></header>
+    
+    <!-- NAVIGATION -->
+    <nav id="Horizontal_NavBar" class="Horizontal_NavBar" data-render="component" role="navigation" aria-label="Main navigation"></nav>
+
+    <!-- MAIN CONTENT -->
+    <main id="main-content" class="projects-main">
+        <!-- Hero Section -->
+        <section class="projects-hero" role="banner">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <h1 class="hero-title">
+                        My Projects Portfolio
+                    </h1>
+                    <p class="hero-subtitle">
+                        Exploring the intersection of creativity, technology, and problem-solving
+                    </p>
+                    <p class="hero-description">
+                        From web applications to hardware integrations, each project represents 
+                        a journey of learning, building, and pushing boundaries to see what's possible.
+                    </p>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number" id="total-projects">12+</span>
+                        <span class="stat-label">Projects</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">5+</span>
+                        <span class="stat-label">Technologies</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">∞</span>
+                        <span class="stat-label">Possibilities</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Filter & Search Section -->
+        <section class="filter-section" role="region" aria-label="Project filters">
+            <div class="filter-container">
+                <div class="search-container">
+                    <input type="text" 
+                           id="project-search" 
+                           placeholder="Search projects..." 
+                           aria-label="Search projects"
+                           class="search-input">
+                    <button class="search-clear" 
+                            id="search-clear" 
+                            aria-label="Clear search"
+                            style="display: none;">
+                        ✕
+                    </button>
+                </div>
+                
+                <div class="filter-buttons" role="group" aria-label="Project categories">
+                    <button class="filter-btn active" data-category="all">
+                        <span class="filter-icon">🌟</span>
+                        All Projects
+                    </button>
+                    <button class="filter-btn" data-category="web">
+                        <span class="filter-icon">🌐</span>
+                        Web Development
+                    </button>
+                    <button class="filter-btn" data-category="hardware">
+                        <span class="filter-icon">⚡</span>
+                        Hardware
+                    </button>
+                    <button class="filter-btn" data-category="tools">
+                        <span class="filter-icon">🛠️</span>
+                        Tools & Utilities
+                    </button>
+                    <button class="filter-btn" data-category="creative">
+                        <span class="filter-icon">🎨</span>
+                        Creative
+                    </button>
+                    <button class="filter-btn" data-category="games">
+                        <span class="filter-icon">🎮</span>
+                        Games
+                    </button>
+                </div>
+
+                <div class="view-toggles" role="group" aria-label="View options">
+                    <button class="view-toggle active" 
+                            data-view="grid" 
+                            aria-label="Grid view"
+                            title="Grid view">
+                        ⊞
+                    </button>
+                    <button class="view-toggle" 
+                            data-view="list" 
+                            aria-label="List view"
+                            title="List view">
+                        ☰
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Grid -->
+        <section class="projects-section" role="region" aria-label="Projects showcase">
+            <div class="projects-container">
+                <div id="projects-grid" class="projects-grid" role="list">
+                    <!-- Featured Project -->
+                    <article class="project-card featured" data-category="web tools" role="listitem">
+                        <div class="project-image">
+                            <img src="/i/branding/banner-img-light.webp" 
+                                 alt="JackEwers.com - Personal Portfolio Website"
+                                 loading="lazy">
+                            <div class="project-overlay">
+                                <div class="project-badges">
+                                    <span class="project-badge featured-badge">Featured</span>
+                                    <span class="project-badge">Web</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">
+                                <a href="/index.html">Personal Portfolio Website</a>
+                            </h3>
+                            <p class="project-description">
+                                A modern, accessible personal portfolio featuring image carousel with camera integration, 
+                                dark mode support, and responsive design. Built with vanilla JavaScript and modern CSS.
+                            </p>
+                            <div class="project-tech">
+                                <span class="tech-tag">HTML/CSS</span>
+                                <span class="tech-tag">JavaScript</span>
+                                <span class="tech-tag">Responsive Design</span>
+                                <span class="tech-tag">Accessibility</span>
+                            </div>
+                            <div class="project-actions">
+                                <a href="/index.html" class="project-link primary">View Live</a>
+                                <a href="https://github.com/The-Guy-With-the-Holes/BusinessCard" class="project-link secondary">View Code</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Regular Projects -->
+                    <article class="project-card" data-category="creative web" role="listitem">
+                        <div class="project-image">
+                            <img src="/projects/be-my-valentine/main.jpg" 
+                                 alt="Be My Valentine - Interactive Valentine's Card"
+                                 loading="lazy">
+                            <div class="project-overlay">
+                                <div class="project-badges">
+                                    <span class="project-badge">Creative</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">
+                                <a href="/projects/be-my-valentine/index.html">Be My Valentine</a>
+                            </h3>
+                            <p class="project-description">
+                                A cute and interactive Valentine's Day card featuring animations, 
+                                personalized messages, and delightful surprises for someone special.
+                            </p>
+                            <div class="project-tech">
+                                <span class="tech-tag">CSS Animations</span>
+                                <span class="tech-tag">JavaScript</span>
+                                <span class="tech-tag">Interactive Design</span>
+                            </div>
+                            <div class="project-actions">
+                                <a href="/projects/be-my-valentine/index.html" class="project-link primary">Try It</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="project-card" data-category="tools hardware" role="listitem">
+                        <div class="project-image">
+                            <img src="/projects/P.W.M/pi-pico.jpg" 
+                                 alt="P.W.M - Password Manager Project"
+                                 loading="lazy">
+                            <div class="project-overlay">
+                                <div class="project-badges">
+                                    <span class="project-badge">Hardware</span>
+                                    <span class="project-badge">Security</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">
+                                <a href="/projects/P.W.M/index.html">P.W.M - Password Manager</a>
+                            </h3>
+                            <p class="project-description">
+                                A hardware-based password manager using Raspberry Pi Pico for secure, 
+                                offline password storage and generation.
+                            </p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Raspberry Pi</span>
+                                <span class="tech-tag">Python</span>
+                                <span class="tech-tag">Hardware Security</span>
+                            </div>
+                            <div class="project-actions">
+                                <a href="/projects/P.W.M/index.html" class="project-link primary">Learn More</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="project-card" data-category="hardware tools" role="listitem">
+                        <div class="project-image">
+                            <img src="/projects/S.P.I.N/stepper-motor.jpg" 
+                                 alt="S.P.I.N - 360° Photography Platform"
+                                 loading="lazy">
+                            <div class="project-overlay">
+                                <div class="project-badges">
+                                    <span class="project-badge">Hardware</span>
+                                    <span class="project-badge">Photography</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">
+                                <a href="/projects/S.P.I.N/index.html">S.P.I.N - 360° Imaging</a>
+                            </h3>
+                            <p class="project-description">
+                                A motorized rotating platform for capturing 360-degree product photography 
+                                using stepper motors and precision control.
+                            </p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Stepper Motors</span>
+                                <span class="tech-tag">Arduino</span>
+                                <span class="tech-tag">3D Printing</span>
+                            </div>
+                            <div class="project-actions">
+                                <a href="/projects/S.P.I.N/index.html" class="project-link primary">Explore</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="project-card" data-category="hardware tools" role="listitem">
+                        <div class="project-image">
+                            <img src="/projects/doorbell/arcade_button.jpg" 
+                                 alt="WASAP - Python Powered Doorbell"
+                                 loading="lazy">
+                            <div class="project-overlay">
+                                <div class="project-badges">
+                                    <span class="project-badge">IoT</span>
+                                    <span class="project-badge">Python</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">
+                                <a href="/projects/doorbell/index.html">WASAP - Smart Doorbell</a>
+                            </h3>
+                            <p class="project-description">
+                                A Python-powered smart doorbell system with notifications, 
+                                arcade-style button interface, and customizable alerts.
+                            </p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Python</span>
+                                <span class="tech-tag">IoT</span>
+                                <span class="tech-tag">Hardware Integration</span>
+                            </div>
+                            <div class="project-actions">
+                                <a href="/projects/doorbell/index.html" class="project-link primary">Details</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="project-card" data-category="web tools" role="listitem">
+                        <div class="project-image">
+                            <img src="/projects/router/router-management.jpg" 
+                                 alt="Router Management Dashboard"
+                                 loading="lazy">
+                            <div class="project-overlay">
+                                <div class="project-badges">
+                                    <span class="project-badge">Web App</span>
+                                    <span class="project-badge">Networking</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">
+                                <a href="http://www.bloodweb.net:3000/Guest_network_3_control.html">Router Management</a>
+                            </h3>
+                            <p class="project-description">
+                                A web-based router management interface for network configuration, 
+                                guest network control, and system monitoring.
+                            </p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Web Interface</span>
+                                <span class="tech-tag">Network Admin</span>
+                                <span class="tech-tag">System Control</span>
+                            </div>
+                            <div class="project-actions">
+                                <a href="http://www.bloodweb.net:3000/Guest_network_3_control.html" class="project-link primary">Access</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="project-card" data-category="tools" role="listitem">
+                        <div class="project-image">
+                            <img src="/projects/scripts/script.png" 
+                                 alt="Development Scripts Collection"
+                                 loading="lazy">
+                            <div class="project-overlay">
+                                <div class="project-badges">
+                                    <span class="project-badge">Scripts</span>
+                                    <span class="project-badge">Automation</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">
+                                <a href="/projects/scripts/index.html">Development Scripts</a>
+                            </h3>
+                            <p class="project-description">
+                                A collection of useful development scripts and utilities ranging 
+                                from bash automation to Python tools for everyday tasks.
+                            </p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Python</span>
+                                <span class="tech-tag">Bash</span>
+                                <span class="tech-tag">Automation</span>
+                            </div>
+                            <div class="project-actions">
+                                <a href="/projects/scripts/index.html" class="project-link primary">Browse Scripts</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="project-card" data-category="web tools" role="listitem">
+                        <div class="project-image">
+                            <img src="/i/branding/buildables.png" 
+                                 alt="Measurement Converter Tool"
+                                 loading="lazy">
+                            <div class="project-overlay">
+                                <div class="project-badges">
+                                    <span class="project-badge">Utility</span>
+                                    <span class="project-badge">Web App</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">
+                                <a href="https://bloodweb.net/converter">Measurement Converter</a>
+                            </h3>
+                            <p class="project-description">
+                                A comprehensive measurement conversion tool supporting multiple 
+                                units, real-time calculations, and user-friendly interface.
+                            </p>
+                            <div class="project-tech">
+                                <span class="tech-tag">JavaScript</span>
+                                <span class="tech-tag">Responsive UI</span>
+                                <span class="tech-tag">Utility Tool</span>
+                            </div>
+                            <div class="project-actions">
+                                <a href="https://bloodweb.net/converter" class="project-link primary">Use Tool</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="project-card" data-category="games creative" role="listitem">
+                        <div class="project-image">
+                            <img src="/i/branding/BloodW.png" 
+                                 alt="Poo Games Collection"
+                                 loading="lazy">
+                            <div class="project-overlay">
+                                <div class="project-badges">
+                                    <span class="project-badge">Games</span>
+                                    <span class="project-badge">Fun</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">
+                                <a href="/poo_games/index.html">Poo Games Collection</a>
+                            </h3>
+                            <p class="project-description">
+                                A collection of silly, fun games including Poo Snake, Poo Frogger, 
+                                and Tic-Tac-Toe with a humorous twist.
+                            </p>
+                            <div class="project-tech">
+                                <span class="tech-tag">JavaScript Games</span>
+                                <span class="tech-tag">Canvas API</span>
+                                <span class="tech-tag">Game Logic</span>
+                            </div>
+                            <div class="project-actions">
+                                <a href="/poo_games/index.html" class="project-link primary">Play Games</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="project-card" data-category="web" role="listitem">
+                        <div class="project-image">
+                            <img src="/projects/100-days-of-code/images/banner.png" 
+                                 alt="100 Days of Code Challenge"
+                                 loading="lazy">
+                            <div class="project-overlay">
+                                <div class="project-badges">
+                                    <span class="project-badge">Challenge</span>
+                                    <span class="project-badge">Learning</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">
+                                <a href="/projects/100-days-of-code/index.html">100 Days of Engineering</a>
+                            </h3>
+                            <p class="project-description">
+                                A personal challenge to create something new every day for 100 days. 
+                                Documenting the journey of continuous learning and building.
+                            </p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Daily Projects</span>
+                                <span class="tech-tag">Learning Journey</span>
+                                <span class="tech-tag">Documentation</span>
+                            </div>
+                            <div class="project-actions">
+                                <a href="/projects/100-days-of-code/index.html" class="project-link primary">View Progress</a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- No Results Message -->
+                <div id="no-results" class="no-results" style="display: none;">
+                    <div class="no-results-icon">🔍</div>
+                    <h3>No projects found</h3>
+                    <p>Try adjusting your search terms or filters to find what you're looking for.</p>
+                    <button class="reset-filters" onclick="resetFilters()">Reset All Filters</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section class="cta-section">
+            <div class="cta-container">
+                <h2 class="cta-title">Interested in Collaborating?</h2>
+                <p class="cta-description">
+                    I'm always excited to work on new projects and explore innovative solutions. 
+                    Let's build something amazing together!
+                </p>
+                <div class="cta-actions">
+                    <a href="/about.html#connect" class="cta-button primary">
+                        <span class="button-icon">💬</span>
+                        Get In Touch
+                    </a>
+                    <a href="https://github.com/The-Guy-With-the-Holes" class="cta-button secondary">
+                        <span class="button-icon">💻</span>
+                        View GitHub
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer id="footer" role="contentinfo"></footer>
+
+    <!-- Enhanced JavaScript -->
+    <script type="text/javascript">
+        // Global Settings Configuration
+        const Settings = {
+            createHeader: true,
+            createNav: true,
+            createFooter: true,
+            darkMode: true,
+        };
+
+        // Project filtering and search functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('project-search');
+            const searchClear = document.getElementById('search-clear');
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const viewToggles = document.querySelectorAll('.view-toggle');
+            const projectsGrid = document.getElementById('projects-grid');
+            const projects = document.querySelectorAll('.project-card');
+            const noResults = document.getElementById('no-results');
+
+            let currentFilter = 'all';
+            let currentView = 'grid';
+
+            // Search functionality
+            searchInput.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                searchClear.style.display = searchTerm ? 'block' : 'none';
+                filterProjects();
+            });
+
+            searchClear.addEventListener('click', function() {
+                searchInput.value = '';
+                this.style.display = 'none';
+                filterProjects();
+                searchInput.focus();
+            });
+
+            // Filter functionality
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    currentFilter = this.dataset.category;
+                    filterProjects();
+                });
+            });
+
+            // View toggle functionality
+            viewToggles.forEach(toggle => {
+                toggle.addEventListener('click', function() {
+                    viewToggles.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    currentView = this.dataset.view;
+                    projectsGrid.className = `projects-grid ${currentView}-view`;
+                });
+            });
+
+            // Filter projects based on search and category
+            function filterProjects() {
+                const searchTerm = searchInput.value.toLowerCase();
+                let visibleCount = 0;
+
+                projects.forEach(project => {
+                    const title = project.querySelector('.project-title').textContent.toLowerCase();
+                    const description = project.querySelector('.project-description').textContent.toLowerCase();
+                    const categories = project.dataset.category.toLowerCase();
+                    const techTags = Array.from(project.querySelectorAll('.tech-tag'))
+                        .map(tag => tag.textContent.toLowerCase()).join(' ');
+
+                    const matchesSearch = !searchTerm || 
+                        title.includes(searchTerm) || 
+                        description.includes(searchTerm) || 
+                        techTags.includes(searchTerm);
+
+                    const matchesFilter = currentFilter === 'all' || 
+                        categories.includes(currentFilter);
+
+                    if (matchesSearch && matchesFilter) {
+                        project.style.display = '';
+                        project.classList.add('fade-in');
+                        visibleCount++;
+                    } else {
+                        project.style.display = 'none';
+                        project.classList.remove('fade-in');
+                    }
+                });
+
+                // Show/hide no results message
+                noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+                
+                // Update project count
+                updateProjectCount(visibleCount);
+            }
+
+            // Update project count in stats
+            function updateProjectCount(count) {
+                const totalProjectsEl = document.getElementById('total-projects');
+                if (totalProjectsEl) {
+                    totalProjectsEl.textContent = `${count}+`;
+                }
+            }
+
+            // Reset all filters
+            window.resetFilters = function() {
+                searchInput.value = '';
+                searchClear.style.display = 'none';
+                currentFilter = 'all';
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                filterButtons[0].classList.add('active');
+                filterProjects();
+            };
+
+            // Intersection Observer for animations
+            if ('IntersectionObserver' in window) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('animate-in');
+                        }
+                    });
+                }, { threshold: 0.1 });
+
+                projects.forEach(project => observer.observe(project));
+            }
+
+            // Keyboard shortcuts
+            document.addEventListener('keydown', function(e) {
+                if (e.ctrlKey || e.metaKey) {
+                    switch(e.key) {
+                        case 'k':
+                            e.preventDefault();
+                            searchInput.focus();
+                            break;
+                        case '/':
+                            e.preventDefault();
+                            searchInput.focus();
+                            break;
+                    }
+                }
+                
+                if (e.key === 'Escape' && document.activeElement === searchInput) {
+                    searchInput.blur();
+                }
+            });
+
+            // Add keyboard shortcut hint
+            searchInput.placeholder = 'Search projects... (Ctrl+K)';
+        });
+    </script>
+
+    <!-- Load Scripts -->
+    <script src="https://bloodweb.net/KeyFunctions.js"></script>
+    <script src="/KeyFunctions.js" type="text/javascript"></script>
+</body>
+</html>

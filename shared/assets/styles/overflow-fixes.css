@@ -1,0 +1,258 @@
+/* ===== HORIZONTAL OVERFLOW FIXES ===== */
+
+/* Prevent horizontal overflow on all elements */
+* {
+    box-sizing: border-box;
+}
+
+/* Ensure body and html don't exceed viewport */
+html, body {
+    overflow-x: hidden;
+    max-width: 100vw;
+    width: 100%;
+}
+
+/* Fix layout container overflow */
+.layout-container {
+    max-width: 100vw;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+/* Prevent navigation from causing overflow */
+.main-navigation {
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
+}
+
+.nav-container {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+/* Sidebar responsive fix */
+.sidebar-navigation {
+    max-width: var(--sidebar-width, 280px);
+    width: var(--sidebar-width, 280px);
+    overflow-x: hidden;
+}
+
+/* Main content area fixes */
+.main-content {
+    overflow-x: hidden;
+}
+.main-content > * {
+    margin:0 auto;
+}
+
+/* Hero section overflow fixes */
+
+.hero-section {
+    max-width: 100vw;
+    width: 100%;
+    overflow-x: hidden;
+     margin-bottom: clamp(2rem, 5vw, 4rem);
+}
+
+/* Carousel container fixes */
+.carousel-main {
+    max-width: 100%;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+.carousel-display {
+    max-width: 100%;
+    width: 100%;
+}
+
+.carousel-image {
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+/* Content grid responsive fixes */
+.content-grid {
+    max-width: 100%;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+/* Section containers */
+.section-container {
+    max-width: 100%;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+/* About page specific fixes */
+.about-container {
+    max-width: 100%;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+.hero-container {
+    max-width: 100%;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+/* Skills grid overflow fix */
+.skills-grid {
+    max-width: 100%;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+/* Ensure no child elements exceed container width */
+.skill-category,
+.passion-card,
+.contact-method {
+    max-width: 100%;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+
+/* Text content overflow fixes */
+h1, h2, h3, h4, h5, h6, p, li, span {
+    max-width: 100%;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
+}
+
+/* Image overflow fixes */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Mobile menu fixes */
+.mobile-menu {
+    max-width: min(350px, 90vw);
+    width: min(350px, 90vw);
+}
+
+/* Header image fix */
+#header-img {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Responsive grid fixes for different screen sizes */
+@media (max-width: 1023px) {
+    .layout-container {
+        grid-template-areas: 
+            "header"
+            "navigation"
+            "main"
+            "footer";
+        grid-template-columns: 1fr;
+    }
+    
+    .content-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .about-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+}
+
+@media (max-width: 767px) {
+    /* Ultra mobile fixes */
+    .nav-container {
+        padding: 0 0.5rem;
+    }
+    
+    .main-content {
+        padding: 1rem;
+    }
+    
+    .section-container {
+        padding: 1rem;
+    }
+    
+    /* Carousel mobile fixes */
+    .carousel-main {
+        padding: 0;
+        margin: 0;
+        gap: 1rem;
+    }
+    
+    .carousel-header {
+        padding: 0 1rem;
+    }
+    
+    /* Skills grid mobile fix */
+    .skills-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    /* Navigation mobile fixes */
+    .nav-menu {
+        display: none;
+    }
+    
+    .mobile-menu-toggle {
+        display: block;
+    }
+}
+
+/* Prevent specific overflow issues */
+.carousel-thumbnails {
+    overflow-x: auto;
+    overflow-y: hidden;
+    max-width: 100%;
+}
+
+.skill-list {
+    max-width: 100%;
+    overflow-wrap: break-word;
+}
+
+.skill-tag {
+    max-width: 100%;
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+
+/* Ensure flexbox doesn't cause overflow */
+.nav-menu,
+.nav-actions,
+.carousel-controls {
+    flex-wrap: wrap;
+    max-width: 100%;
+}
+
+/* Grid container overflow prevention */
+.passion-grid,
+.contact-info {
+    max-width: 100%;
+    width: 100%;
+}
+
+/* Additional safety measures */
+.container,
+.wrapper,
+[class*="container"],
+[class*="wrapper"] {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+/* Debugging helper (remove in production) */
+/* 
+.debug-overflow * {
+    outline: 1px solid red !important;
+    position: relative;
+}
+*/

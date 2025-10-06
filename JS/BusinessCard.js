@@ -67,6 +67,9 @@ class MainImageSlider{
         this.max = max;
         this.img = document.getElementById('image-main');
     }
+    init(){
+        
+    }
 
     setPosition(inc){
         for(let i=0; i<radio.length; i++){radio[(i)].checked=false};

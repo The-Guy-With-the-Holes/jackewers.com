@@ -1,0 +1,222 @@
+<!-- Modern Navigation Component -->
+
+<!-- Mobile/Tablet Navigation Header -->
+<div class="main-navigation">
+    <div class="nav-container">
+        <!-- Current Page Indicator -->
+        <div class="nav-brand">
+            <div class="brand-icon" id="current-page-icon">🏠</div>
+            <span id="current-page-name">Home</span>
+        </div>
+        
+        <!-- Desktop Menu (hidden on mobile) -->
+        <ul class="nav-menu">
+            <li><a href="/" class="nav-link" data-page="home">
+                <!-- <span class="nav-icon">🏠</span> -->
+                <span>Home</span>
+            </a></li>
+            <li><a href="/About" class="nav-link" data-page="about">
+                <!-- <span class="nav-icon">👤</span> -->
+                <span>About</span>
+            </a></li>
+            <li><a href="/projects/" class="nav-link" data-page="projects">
+                <!-- <span class="nav-icon">💼</span> -->
+                <span>Projects</span>
+            </a></li>
+            <li><a href="/linktree.html" class="nav-link" data-page="linktree">
+                <!-- <span class="nav-icon">🔗</span> -->
+                <span>Links</span>
+            </a></li>
+        </ul>
+        
+        <!-- Navigation Actions -->
+        <div class="nav-actions">
+            <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+                <span class="theme-icon">🌙</span>
+            </button>
+            <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Open navigation menu">
+                <span>☰</span>
+                <span>Menu</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Desktop Sidebar Navigation -->
+<nav class="sidebar-navigation" role="navigation" aria-label="Main navigation">
+    <!-- Sidebar Header -->
+    <div class="sidebar-header">
+        <a href="/" class="sidebar-brand">
+            <div class="brand-icon">JE</div>
+            <span>Jack Ewers</span>
+        </a>
+        <p class="sidebar-tagline">Developer • Builder • Advocate</p>
+    </div>
+    
+    <!-- Sidebar Menu -->
+    <div class="sidebar-menu">
+        <!-- Main Navigation -->
+        <div class="menu-section">
+            <h3 class="menu-section-title">Navigation</h3>
+            <ul class="sidebar-nav-menu">
+                <li class="sidebar-nav-item">
+                    <a href="/" class="sidebar-nav-link" data-page="home">
+                        <!-- <span class="nav-icon">🏠</span> -->
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="/About" class="sidebar-nav-link" data-page="about">
+                        <!-- <span class="nav-icon">👤</span> -->
+                        <span>About Me</span>
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="/projects/" class="sidebar-nav-link" data-page="projects">
+                        <!-- <span class="nav-icon">💼</span> -->
+                        <span>Projects</span>
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="/Certificates/Certificates.html" class="sidebar-nav-link" data-page="certificates">
+                        <!-- <span class="nav-icon">🏆</span> -->
+                        <span>Certificates</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        
+        <!-- Quick Links -->
+        <div class="menu-section">
+            <h3 class="menu-section-title">Connect</h3>
+            <ul class="sidebar-nav-menu">
+                <li class="sidebar-nav-item">
+                    <a href="/linktree.html" class="sidebar-nav-link" data-page="linktree">
+                        <!-- <span class="nav-icon">🔗</span> -->
+                        <span>All Links</span>
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="https://github.com/The-Guy-With-the-Holes" class="sidebar-nav-link" target="_blank" rel="noopener">
+                        <!-- <span class="nav-icon">💻</span> -->
+                        <span>GitHub</span>
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="https://linkedin.com/in/jackewers" class="sidebar-nav-link" target="_blank" rel="noopener">
+                        <!-- <span class="nav-icon">💼</span> -->
+                        <span>LinkedIn</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        
+        <!-- Projects Showcase -->
+        <div class="menu-section">
+            <h3 class="menu-section-title">Featured</h3>
+            <ul class="sidebar-nav-menu">
+                <li class="sidebar-nav-item">
+                    <a href="/projects/be-my-valentine/" class="sidebar-nav-link">
+                        <span class="nav-icon">💝</span>
+                        <span>Be My Valentine</span>
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="/projects/calculator/" class="sidebar-nav-link">
+                        <span class="nav-icon">🧮</span>
+                        <span>Calculator</span>
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="/poo_games/" class="sidebar-nav-link">
+                        <span class="nav-icon">🎮</span>
+                        <span>Games</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    
+    <!-- Sidebar Footer -->
+    <div class="sidebar-footer">
+        <button class="theme-toggle" id="sidebar-theme-toggle" aria-label="Toggle dark mode">
+            <span class="nav-icon">🌙</span>
+            <span>Dark Mode</span>
+        </button>
+    </div>
+</nav>
+
+<!-- Mobile Menu Overlay -->
+<div class="mobile-menu-overlay" id="mobile-menu-overlay"></div>
+
+<!-- Mobile Slide-out Menu -->
+<div class="mobile-menu" id="mobile-menu">
+    <div class="mobile-menu-header">
+        <div class="nav-brand">
+            <div class="brand-icon">☰</div>
+            <span>Menu</span>
+        </div>
+        <button class="mobile-menu-close" id="mobile-menu-close" aria-label="Close menu">
+            ✕
+        </button>
+    </div>
+    
+    <ul class="mobile-nav-menu">
+        <li class="mobile-nav-item">
+            <a href="/" class="mobile-nav-link" data-page="home">
+                <!-- <span class="nav-icon">🏠</span> -->
+                <span>Home</span>
+            </a>
+        </li>
+        <li class="mobile-nav-item">
+            <a href="/About" class="mobile-nav-link" data-page="about">
+                <!-- <span class="nav-icon">👤</span> -->
+                <span>About Me</span>
+            </a>
+        </li>
+        <li class="mobile-nav-item">
+            <a href="/projects/" class="mobile-nav-link" data-page="projects">
+                <!-- <span class="nav-icon">💼</span> -->
+                <span>Projects</span>
+            </a>
+        </li>
+        <li class="mobile-nav-item">
+            <a href="/Certificates/Certificates.html" class="mobile-nav-link" data-page="certificates">
+                <!-- <span class="nav-icon">🏆</span> -->
+                <span>Certificates</span>
+            </a>
+        </li>
+        <li class="mobile-nav-item">
+            <a href="/linktree.html" class="mobile-nav-link" data-page="linktree">
+                <!-- <span class="nav-icon">🔗</span> -->
+                <span>All Links</span>
+            </a>
+        </li>
+        
+        <!-- Divider -->
+        <li style="height: 1px; background: var(--nav-border); margin: 1rem 0;"></li>
+        
+        <!-- External Links -->
+        <li class="mobile-nav-item">
+            <a href="https://github.com/The-Guy-With-the-Holes" class="mobile-nav-link" target="_blank" rel="noopener">
+                <!-- <span class="nav-icon">💻</span> -->
+                <span>GitHub</span>
+            </a>
+        </li>
+        <li class="mobile-nav-item">
+            <a href="https://linkedin.com/in/jackewers" class="mobile-nav-link" target="_blank" rel="noopener">
+                <!-- <span class="nav-icon">💼</span> -->
+                <span>LinkedIn</span>
+            </a>
+        </li>
+        
+        <!-- Theme Toggle in Mobile Menu -->
+        <li class="mobile-nav-item" style="padding: 1rem 1.5rem;">
+            <button class="theme-toggle" id="mobile-theme-toggle" style="width: 100%; justify-content: flex-start; background: var(--nav-bg-secondary); border-radius: 0.5rem; padding: 0.75rem;">
+                <span class="theme-icon nav-icon" style="margin-right:0.5em;">🌙</span>
+                
+                <span>Toggle Dark Mode</span>
+            </button>
+        </li>
+    </ul>
+</div>

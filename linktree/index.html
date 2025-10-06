@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>@the_guy_with_the_holes | Links</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+
+        :root {  
+
+            --primary-color: #34e0ff;  
+
+            --secondary-color: #07b3ff;  
+
+            --accent-color: #00ffff;
+
+            --text-primary: #ffffff;
+
+            --text-secondary: #34e0ff;
+
+            --surface: rgba(52, 224, 255, 0.15);  
+
+            --surface-hover: rgba(52, 224, 255, 0.25); 
+
+            --border: rgba(52, 224, 255, 0.3);
+
+            --shadow: 0 8px 32px 0 rgba(52, 224, 255, 0.2);  
+
+            --backdrop-blur: blur(8px); 
+
+        } 
+
+
+
+        * { 
+
+            margin: 0;  
+
+            padding: 0;          
+
+            box-sizing: border-box;  
+
+        }
+
+        body {  
+
+            font-family: 'Inter', sans-serif; 
+
+            background: 
+                radial-gradient(120vw 120vh at 50% 55%, rgba(30,90,160,.26), transparent 60%),
+                radial-gradient(80vw 60vh at 60% 30%, rgba(30,120,200,.16), transparent 55%),
+                linear-gradient(#0000,#0004),
+                #07101c;
+            background-color: #03060b;
+
+            min-height: 100vh; 
+
+            display: flex;  
+
+            align-items: flex-start;  
+
+            justify-content: center;
+
+            padding: 40px 20px 60px 20px;
+
+            position: relative;  
+
+         
+
+        }  
+
+ 
+
+        /* Animated background elements */  
+
+        body::before {
+
+            content: '';  
+
+            position: fixed; 
+
+            top: -50%;
+
+            left: -50%;
+
+            width: 200%;
+
+            height: 200%;
+
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+
+            background-size: 50px 50px;
+
+            /* animation: float 20s linear infinite; */
+
+            z-index: -1; 
+
+        } 
+
+ 
+
+        body::after {  
+
+            content: '';  
+
+            position: fixed;  
+
+            top: 0;  
+
+            left: 0;  
+
+            width: 100%;   
+
+            height: 100%; 
+
+            background: linear-gradient(45deg, transparent 0%, rgba(255,255,255,0.05) 50%, transparent 100%);
+
+            animation: slide 15s ease-in-out infinite;
+
+            z-index: -1; 
+
+        }        
+
+           
+
+        @keyframes float {          
+
+            0% { transform: translate(0px, 0px) rotate(0deg); }       
+
+            33% { transform: translate(30px, -30px) rotate(120deg); }    
+
+            66% { transform: translate(-20px, 20px) rotate(240deg); }
+
+            100% { transform: translate(0px, 0px) rotate(360deg); }      
+
+        }          
+        @keyframes slide {
+
+            0%, 100% { transform: translateX(-100%); }    
+
+            50% { transform: translateX(100%); }          
+
+        }             
+
+            
+
+
+        .linktree-container {        
+
+            max-width: 480px;        
+
+            width: 100%;             
+
+            background: var(--surface);   
+
+            backdrop-filter: var(--backdrop-blur);   
+
+            border-radius: 20px;           
+
+            border: 1px solid var(--border);     
+
+            box-shadow: 
+                var(--shadow),
+                0 0 20px rgba(52, 224, 255, 0.3),
+                inset 0 0 20px rgba(52, 224, 255, 0.1);
+
+            padding: 40px 30px;         
+
+            position: relative;
+
+            margin: 0 auto;         
+
+            animation: fadeInUp 0.8s ease-out;       
+
+        }     
+
+        @keyframes fadeInUp {            
+
+            from {                    
+
+                opacity: 0;                
+
+                transform: translateY(30px);            
+
+            }
+
+            to {           
+
+                opacity: 1;   
+
+                transform: translateY(0);
+
+            }       
+
+        }
+
+        /* Profile Section */
+
+        .profile-section {        
+
+            text-align: center;     
+
+            margin-bottom: 40px;   
+
+        }
+
+
+        .avatar {
+
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid rgba(52, 224, 255, 0.5);
+            box-shadow: 
+                0 8px 20px rgba(0, 0, 0, 0.15),
+                0 0 30px rgba(52, 224, 255, 0.4);
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .avatar:hover {
+            transform: scale(1.05);
+            box-shadow: 
+                0 8px 20px rgba(0, 0, 0, 0.15),
+                0 0 40px rgba(52, 224, 255, 0.6),
+                0 0 60px rgba(52, 224, 255, 0.3);
+            border-color: rgba(52, 224, 255, 0.8);
+        }
+
+        .profile-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+            text-shadow: 
+                0 2px 4px rgba(0, 0, 0, 0.1),
+                0 0 10px rgba(52, 224, 255, 0.6),
+                0 0 20px rgba(52, 224, 255, 0.3);
+        }
+
+        .profile-subtitle {
+            font-size: 16px;
+            color: var(--text-secondary);
+            font-weight: 400;
+        }
+
+        /* Links Container */
+        .links-container {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+
+        .link-item {
+            display: flex;
+            align-items: center;
+            padding: 18px 24px;
+            background: var(--surface);
+            backdrop-filter: var(--backdrop-blur);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 500;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .link-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .link-item:hover::before {
+            left: 100%;
+        }
+
+        .link-item:hover {
+            background: var(--surface-hover);
+            transform: translateY(-2px);
+            box-shadow: 
+                0 12px 24px rgba(0, 0, 0, 0.15),
+                0 0 15px rgba(52, 224, 255, 0.4),
+                inset 0 0 15px rgba(52, 224, 255, 0.1);
+            border-color: var(--primary-color);
+        }
+
+        .link-icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 16px;
+            flex-shrink: 0;
+        }
+
+        .link-text {
+            flex: 1;
+            text-align: left;
+        }
+
+        /* Social Section */
+        .social-section {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .social-title {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            background: var(--surface);
+            backdrop-filter: var(--backdrop-blur);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: var(--surface-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .social-icon {
+            width: 24px;
+            height: 24px;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            font-size: 12px;
+            color: var(--text-secondary);
+            opacity: 0.7;
+        }
+
+        .footer a {
+            color: inherit;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .footer a:hover {
+            opacity: 1;
+        }
+
+        /* Desktop-first approach */
+        @media (min-width: 1024px) {
+            body {
+                padding: 30px 40px 80px 40px;
+            }
+            
+            .linktree-container {
+                max-width: 420px;
+                padding: 50px 40px;
+                margin-top: 10px;
+            }
+        }
+
+        /* Tablet adjustments */
+        @media (max-width: 1023px) and (min-width: 768px) {
+            body {
+                padding: 25px 30px 60px 30px;
+               
+            }
+            
+            .linktree-container {
+                max-width: 450px;
+                margin-top: 10px;
+            }
+        }
+
+            /* Tablet single-page no-scroll */
+            @media (max-width: 1023px) and (min-width: 768px) {
+                body {
+                    height: 100vh;
+                    padding: 0;
+                    margin: 0;
+                    overflow: hidden;
+                }
+                .linktree-container {
+                    height: 100vh;
+                    max-width: 450px;
+                    margin: 0 auto;
+                    padding: 0 10px;
+                    overflow: hidden;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                }
+            }
+
+        /* Mobile design */
+        @media (max-width: 767px) {
+            body {
+                padding: 15px 15px 40px 15px;
+         
+            }
+            
+            .linktree-container {
+                margin: 5px auto 0 auto;
+                padding: 30px 25px;
+            }
+        }
+
+        /* Small mobile */
+        @media (max-width: 480px) {
+            body {
+                padding: 10px 10px 30px 10px;
+            }
+            
+            .linktree-container {
+                margin: 5px auto 0 auto;
+                padding: 25px 20px;
+            }
+
+            .avatar {
+                width: 100px;
+                height: 100px;
+            }
+
+            .profile-title {
+                font-size: 24px;
+            }
+
+            .link-item {
+                padding: 16px 20px;
+                font-size: 15px;
+            }
+
+            .social-links {
+                gap: 16px;
+            }
+        }
+
+        /* Dark mode support */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --text-primary: #f7fafc;
+                --text-secondary: #e2e8f0;
+                --surface: rgba(0, 0, 0, 0.25);
+                --surface-hover: rgba(0, 0, 0, 0.35);
+                --border: rgba(255, 255, 255, 0.1);
+            }
+        }
+
+        /* Matrix effect overrides */
+        .col {
+            position: fixed !important;
+            top: 0;
+            width: 2rem !important;
+            height: 100vh;
+            pointer-events: none;
+            z-index: -5;
+            font-family: 'Courier New', monospace !important;
+        }
+
+        .stream {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: auto;
+            writing-mode: vertical-rl;
+            text-orientation: upright;
+            white-space: pre;
+            line-height: 1.2;
+            color: #34e0ff !important;
+            text-shadow: 
+                0 0 5px #34e0ff,
+                0 0 10px #34e0ff,
+                0 0 15px #34e0ff !important;
+            filter: drop-shadow(0 0 3px #34e0ff);
+        }
+
+        @keyframes descend {
+            0% { 
+                transform: translateY(-100vh) translateX(var(--dx, 0px));
+                opacity: 0;
+            }
+            10% { 
+                opacity: 1;
+            }
+            90% { 
+                opacity: 1;
+            }
+            100% { 
+                transform: translateY(100vh) translateX(var(--dx, 0px));
+                opacity: 0;
+            }
+        }
+    </style>
+    <!-- Matrix effect now handled by JavaScript canvas -->
+</head>
+<body>
+<!-- Matrix rain is now handled by canvas -->
+
+    <div class="linktree-container">
+        <!-- Profile Section -->
+        <div class="profile-section">
+            <img src="/i/web-ready/image_1.jpeg" alt="Jack Ewers" class="avatar">
+            <h1 class="profile-title">@the_guy_with_the_holes</h1>
+            <p class="profile-subtitle">Developer • Builder • Advocate</p>
+        </div>
+
+        <!-- Main Links -->
+        <div class="links-container">
+            <a href="https://jackewers.com" class="link-item" target="_blank" rel="noopener noreferrer">
+                <img src="/favicon.ico" alt="Website" class="link-icon">
+                <span class="link-text">JackEwers.com</span>
+            </a>
+
+            <a href="https://github.com/The-Guy-With-the-Holes" class="link-item" target="_blank" rel="noopener noreferrer">
+                <img src="https://github.com/favicon.ico" alt="GitHub" class="link-icon">
+                <span class="link-text">GitHub</span>
+            </a>
+
+            <a href="https://www.linkedin.com/in/jack-ewers-14a155212/" class="link-item" target="_blank" rel="noopener noreferrer">
+                <svg class="link-icon" viewBox="0 0 24 24" fill="#0077B5">
+                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                </svg>
+                <span class="link-text">LinkedIn</span>
+            </a>
+
+            <a href="mailto:webmaster@jackewers.com" class="link-item">
+                <svg class="link-icon" viewBox="0 0 24 24" fill="#EA4335">
+                    <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/>
+                </svg>
+                <span class="link-text">Email Me</span>
+            </a>
+
+            <a href="tel:+61479000429" class="link-item">
+                <svg class="link-icon" viewBox="0 0 24 24" fill="#25D366">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.465 3.488"/>
+                </svg>
+                <span class="link-text">Call Me</span>
+            </a>
+        </div>
+
+        <!-- Social Links -->
+        <div class="social-section">
+            <p class="social-title">Connect with me</p>
+            <div class="social-links">
+                <a href="https://github.com/The-Guy-With-the-Holes" class="social-link" target="_blank" rel="noopener noreferrer">
+                    <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                    </svg>
+                </a>
+                <a href="https://www.linkedin.com/in/jack-ewers-14a155212/" class="social-link" target="_blank" rel="noopener noreferrer">
+                    <svg class="social-icon" viewBox="0 0 24 24" fill="#0077B5">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            Powered by <a href="https://jackewers.com">JackEwers.com</a>
+        </div>
+    </div>
+
+    <script>
+        // Simple hover effects for links
+        document.addEventListener('DOMContentLoaded', () => {
+            const links = document.querySelectorAll('.link-item');
+            
+            links.forEach(link => {
+                link.addEventListener('mouseenter', () => {
+                    link.style.transform = 'translateY(-2px)';
+                });
+                
+                link.addEventListener('mouseleave', () => {
+                    link.style.transform = 'translateY(0)';
+                });
+            });
+            
+            // Add smooth scroll behavior
+            document.documentElement.style.scrollBehavior = 'smooth';
+        });
+
+        // FRESH MATRIX RAIN EFFECT - Built from scratch
+        class MatrixRain {
+            constructor() {
+                this.canvas = null;
+                this.ctx = null;
+                this.columns = [];
+                this.numColumns = Math.floor(window.innerWidth / 20);
+                this.characters = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲンabcdefghijklmnopqrstuvwxyz0123456789@#$%^&*()_+-=[]{}|;:,.<>?/~`';
+                this.fontSize = 16;
+                this.init();
+            }
+
+            init() {
+                // Create canvas
+                this.canvas = document.createElement('canvas');
+                this.canvas.style.position = 'fixed';
+                this.canvas.style.top = '0';
+                this.canvas.style.left = '0';
+                this.canvas.style.width = '100%';
+                this.canvas.style.height = '100%';
+                this.canvas.style.zIndex = '-10';
+                this.canvas.style.pointerEvents = 'none';
+                document.body.appendChild(this.canvas);
+
+                this.ctx = this.canvas.getContext('2d');
+                this.resize();
+
+                // Initialize columns
+                for (let i = 0; i < this.numColumns; i++) {
+                    this.columns[i] = {
+                        x: i * 20,
+                        y: Math.random() * -window.innerHeight,
+                        speed: Math.random() * 3 + 1,
+                        chars: []
+                    };
+
+                    // Fill column with random characters
+                    for (let j = 0; j < 20; j++) {
+                        this.columns[i].chars[j] = this.getRandomChar();
+                    }
+                }
+
+                // Start animation
+                this.animate();
+
+                // Handle resize
+                window.addEventListener('resize', () => this.resize());
+            }
+
+            resize() {
+                this.canvas.width = window.innerWidth;
+                this.canvas.height = window.innerHeight;
+                this.numColumns = Math.floor(window.innerWidth / 20);
+            }
+
+            getRandomChar() {
+                return this.characters.charAt(Math.floor(Math.random() * this.characters.length));
+            }
+
+            animate() {
+                // Clear canvas with fade effect
+                this.ctx.fillStyle = 'rgba(3, 6, 11, 0.05)';
+                this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+
+                // Draw columns
+                this.ctx.font = `${this.fontSize}px monospace`;
+
+                this.columns.forEach((column, index) => {
+                    // Update position
+                    column.y += column.speed;
+
+                    // Reset if off screen
+                    if (column.y > this.canvas.height + 100) {
+                        column.y = Math.random() * -200 - 100;
+                        column.speed = Math.random()  + 1;
+                    }
+
+                    // Draw characters in column
+                    for (let i = 0; i < column.chars.length; i++) {
+                        const y = column.y + (i * this.fontSize);
+                        
+                        if (y > 0 && y < this.canvas.height) {
+                            // Brightest character at the front
+                            if (i === 0) {
+                                this.ctx.fillStyle = '#ffffff';
+                                this.ctx.shadowColor = '#34e0ff';
+                                this.ctx.shadowBlur = 10;
+                            } else if (i < 3) {
+                                this.ctx.fillStyle = '#34e0ff';
+                                this.ctx.shadowColor = '#34e0ff';
+                                this.ctx.shadowBlur = 5;
+                            } else {
+                                const alpha = Math.max(0, 1 - (i / column.chars.length));
+                                this.ctx.fillStyle = `rgba(52, 224, 255, ${alpha})`;
+                                this.ctx.shadowBlur = 0;
+                            }
+
+                            this.ctx.fillText(column.chars[i], column.x, y);
+                        }
+                    }
+
+                    // Occasionally change characters
+                    if (Math.random() < 0.005) {
+                        const randomIndex = Math.floor(Math.random() * column.chars.length);
+                        column.chars[randomIndex] = this.getRandomChar();
+                    }
+                });
+
+                // Continue animation
+                requestAnimationFrame(() => this.animate());
+            }
+        }
+
+        // Start matrix effect when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            new MatrixRain();
+            // scroll to top on load
+            window.scrollTo(0, 0);
+        });
+    </script>
+</body>
+</html>
