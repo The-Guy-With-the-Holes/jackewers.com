@@ -120,7 +120,7 @@ Address:[
 Links:{
     Github: { href:"https://www.github.com/the-guy-with-the-holes/BusinessCard", img:requestRoot('BusinessCard')+'i/Icons/64-BIT/Github.png' },
     Twitter: { href:"https://www.twitter.com/Jack_S_Ewers", img:requestRoot('BusinessCard')+'i/Icons/64-BIT/Twitter.png' },
-    LinkedIn: { href:"https://www.linkedin.com/in/jack-ewers-14a155212/", img:requestRoot('BusinessCard')+'i/Icons/64-BIT/Linkedin.png' },
+    LinkedIn: { href:"https://www.linkedin.com/in/the-guy-with-the-holes/", img:requestRoot('BusinessCard')+'i/Icons/64-BIT/Linkedin.png' },
     Instagram: { href:"https://www.instagram.com/the_guy_with_the_holes", img:requestRoot('BusinessCard')+'i/Icons/64-BIT/Instagram.png' },
     Facebook: { href:"https://www.facebook.com/BloodWorks.Jack/", img:requestRoot('BusinessCard')+'i/Icons/64-BIT/Facebook.png' },
 

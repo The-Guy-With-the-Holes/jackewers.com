@@ -118,7 +118,7 @@ class ModernNavigation {
         if (path === '/projects' || path === '/projects/' || path === '/projects') return 'projects';
         if (path === '/projects/index.html') return 'projects';
         if (path === '/linktree' || path === '/linktree.html') return 'linktree';
-        if (path === '/certificates' || path === '/certificates/certificates.html') return 'certificates';
+        if (path === '/certificates' || path === '/certificates/index.html') return 'certificates';
         return 'other';
     }
     

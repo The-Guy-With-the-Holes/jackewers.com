@@ -66,7 +66,7 @@ const SocialConfig = {
         ['JackEwers.com', 'https://jackewers.com', '/favicon.ico'],
         ['Phone', 'tel:+61479000429', '/i/Icons/Phone.png', 'footer:no,shareable:no'],
         ['Email', 'mailto:webmaster@jackewers.com', '/i/Icons/Mail.png', 'shareable:no'],
-        ['LinkedIn', 'https://linkedin.com/in/jack-ewers-14a155212/', 'https://linkedin.com/favicon.ico'],
+        ['LinkedIn', 'https://linkedin.com/in/the-guy-with-the-holes/', 'https://linkedin.com/favicon.ico'],
         ['GitHub', 'https://github.com/The-Guy-With-the-Holes', 'https://github.com/favicon.ico'],
     ],
 

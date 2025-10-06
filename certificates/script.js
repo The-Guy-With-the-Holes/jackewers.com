@@ -1,4 +1,4 @@
-//Certificates
+//certificates
 var BlockIndex = 0 ;
 var MainTitle = document.querySelector('#MainTitle');
 var CertField = document.getElementById('CertField');
