@@ -22,7 +22,7 @@
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     
     <!-- Preload critical resources -->
-    <link rel="preload" href="/i/web-ready/personal/main_img6.webp" as="image">
+    <link rel="preload" href="/shared/assets/images/carousel/personal-moments/personal_1.webp" as="image">
     
     <!-- Preconnect to external resources -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -34,13 +34,13 @@
     <link rel="stylesheet" href="/shared/assets/styles/styles.css">
     <link rel="stylesheet" href="/shared/assets/styles/nav.css">
     <link rel="stylesheet" href="/shared/assets/styles/desktop-enhancements.css">
-    <link rel="stylesheet" href="/shared/assets/styles/projects-enhancements.css">
+    <link rel="stylesheet" href="/shared/assets/styles/projects.css">
     
     <!-- Non-critical CSS - loaded asynchronously -->
-    <link rel="preload" href="/shared/assets/styles/about-enhanced.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="about.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 
     <noscript>
-        <link rel="stylesheet" href="/shared/assets/styles/about-enhanced.css">
+        <link rel="stylesheet" href="about.css">
     </noscript>
 
     <!-- Structured data -->
@@ -80,7 +80,7 @@
         <section class="about-hero" role="banner">
             <div class="hero-container">
                 <div class="hero-image">
-                    <img src="/i/web-ready/personal/main_img6.webp" 
+                    <img src="/shared/assets/images/carousel/personal-moments/personal_1.webp" 
                          alt="Jack Ewers - Software Developer and Mental Health Advocate" 
                          loading="eager">
                     <div class="image-overlay">
@@ -351,17 +351,16 @@
                                 <span class="button-icon">🛠️</span>
                                 View My Work
                             </a>
-                            <a href="/blog" class="connect-button secondary">
-                                <span class="button-icon">📝</span>
-                                Read My Blog
-                            </a>
+                          
                             <a href="/contact" class="connect-button secondary">
                                 <span class="button-icon">💬</span>
                                 Get In Touch
                             </a>
                         </div>
                     </div>
-                    <div id="link_display" style="padding-top:3rem;"></div>
+                    <div id="link_display" style="padding-top:3rem;">
+                        <div id="projects-container-simple"></div>
+                    </div>
                 </div>
             </section>
 
@@ -369,9 +368,8 @@
 
     </main>
 
-    <!-- FOOTER -->
-    <footer id="footer" role="contentinfo"></footer>
-    <script src="/JS/projects.js" defer></script>
+    <script src="/shared/assets/config/projects-config.js"></script>
+    <script src="/shared/assets/scripts/projects.js" defer></script>
     <!-- Enhanced JavaScript -->
     <script type="text/javascript">
         // Global Settings Configuration
@@ -380,12 +378,15 @@
             createNav: true,
             createFooter: true,
             darkMode: true,
+            linkDisplay: {
             sizes : {
             mobile: { width: 480, columns: 1, items:3, special:'banner',},
             tablet: { width: 580, columns: 2, items:2, special:null,},
-            laptop: { width: 768, columns: 3, items:3, special:null,},
+            laptop: { width: 768, columns: 2, items:4, special:null,},
             desktop: { width: Infinity, columns:3, items:3, special:null,}
             },
+        },
+       
         };
 
         // Smooth scrolling for internal links
@@ -474,37 +475,8 @@
     <!-- Load Scripts -->
     <script src="https://bloodweb.net/KeyFunctions.js"></script>
     <script src="/KeyFunctions.js" type="text/javascript"></script>
-    <script src="/JS/nav.js" defer></script>
+    <script src="/shared/assets/scripts/nav.js" defer></script>
     
     <!-- Initialize Modern Navigation -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Load header component first
-            fetch('/components/header.html')
-                .then(response => response.text())
-                .then(html => {
-                    const headerElements = document.querySelectorAll('header[data-render="component"]');
-                    headerElements.forEach(header => {
-                        header.innerHTML = html;
-                    });
-                })
-                .catch(error => console.error('Error loading header:', error));
-            
-            // Load modern navigation component
-            fetch('/components/modern-navbar.html?v=' + Date.now())
-                .then(response => response.text())
-                .then(html => {
-                    document.getElementById('nav').innerHTML = html;
-                    // Re-initialize ModernNavigation after nav is loaded
-                    if (window.modernNav) {
-                        window.modernNav.setupEventListeners();
-                        window.modernNav.setActiveNavItem();
-                    } else if (window.ModernNavigation) {
-                        window.modernNav = new window.ModernNavigation();
-                    }
-                })
-                .catch(error => console.error('Error loading navigation:', error));
-        });
-    </script>
 </body>
 </html>
