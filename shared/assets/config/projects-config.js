@@ -2,7 +2,7 @@ const placeHolderProjects =
 [
     [
         'Linktree',
-        '/linktree.html',
+        '/linktree',
         'Redesigned Personal Portfolio',
         'A rework of a popular social link aggregation page into a modern, accessible personal portfolio featuring image carousel with camera integration, dark mode support, and responsive design. Built with vanilla JavaScript and modern CSS.',
         ['HTML/CSS', 'JavaScript', 'Responsive Design', 'Accessibility'],
