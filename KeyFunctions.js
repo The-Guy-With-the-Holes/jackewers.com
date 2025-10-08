@@ -525,6 +525,8 @@ document.addEventListener('DOMContentLoaded',
     if (!Settings) return console.warn('No settings to make')
 
     
+
+    
     if (Settings.createHeader){
       fetch(headerComponent)
         .then(response => response.text())
@@ -542,6 +544,14 @@ document.addEventListener('DOMContentLoaded',
         .catch(error => console.error('Error loading header:', error));
     }
     if(Settings.createNav){
+      // check if the nav.css file is srced in the document head
+      const domhasNavCSS = document.querySelector('link[href="/shared/assets/css/nav.css"]');
+      if(!domhasNavCSS){
+        console.warn('Nav CSS not found. Please add it to the head for proper styling.');
+        const navCSS = createElement('link',{rel:'stylesheet', href:'/shared/assets/styles/nav.css'});
+        document.head.appendChild(navCSS);
+      }
+     
       fetch(navComponent + '?v=' + Date.now())
         .then(response => response.text())
         .then(html => {
