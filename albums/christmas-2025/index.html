@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Christmas 2025 — Photo Album</title>
+    <style>
+        :root{
+            --bg:#0f1724; --card:#0b1220; --accent:#c2410c; --muted:#94a3b8;
+            --gap:14px;
+        }
+        *{box-sizing:border-box}
+        html,body{height:100%}
+        body{
+            margin:0;
+            font-family:system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+            background:linear-gradient(180deg,#071025 0%,var(--bg) 100%);
+            color:#e6eef8;
+            -webkit-font-smoothing:antialiased;
+            -moz-osx-font-smoothing:grayscale;
+            padding:28px;
+        }
+
+        header{
+            display:flex;
+            align-items:center;
+            gap:16px;
+            margin-bottom:18px;
+        }
+        .logo{
+            width:56px;height:56px;border-radius:10px;
+            display:grid;place-items:center;
+            background:linear-gradient(135deg,#7c2d12,#ff7a18);
+            box-shadow:0 6px 18px rgba(0,0,0,.45);
+            font-weight:700;font-size:18px;color:white;
+        }
+        h1{font-size:20px;margin:0}
+        p.lead{margin:2px 0 0;color:var(--muted);font-size:13px}
+
+        .controls{
+            margin-left:auto; display:flex; gap:8px; align-items:center;
+        }
+        .btn{
+            background:transparent;border:1px solid rgba(255,255,255,.06);
+            color:var(--muted); padding:8px 12px;border-radius:8px;
+            font-size:13px;cursor:pointer;
+        }
+        .grid{
+            display:grid;
+            grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+            gap:var(--gap);
+            margin-top:18px;
+        }
+
+        figure.card{
+            margin:0;
+            background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(0,0,0,0.12));
+            border-radius:12px;
+            overflow:hidden;
+            border:1px solid rgba(255,255,255,0.03);
+            cursor:pointer;
+            transition:transform .15s ease, box-shadow .15s ease;
+        }
+        figure.card:active{transform:scale(.995)}
+        .thumb{
+            display:block;
+            width:100%; aspect-ratio:3/2;
+            background:linear-gradient(135deg,#0b1225,#102135);
+            display:grid; place-items:center; color:#cbd5e1;
+            font-weight:600; font-size:18px;
+            position:relative;
+        }
+        .thumb .meta{
+            position:absolute; left:8px; bottom:8px; background:rgba(0,0,0,.35);
+            padding:6px 8px; border-radius:8px; font-size:12px; color:#fff;
+            backdrop-filter:blur(4px);
+        }
+        figcaption{
+            padding:10px 12px 14px; font-size:13px; color:var(--muted);
+            display:flex; align-items:center; justify-content:space-between;
+        }
+        .placeholder-ornament{
+            width:44px;height:44px;border-radius:8px;display:grid;place-items:center;
+            background:linear-gradient(135deg,#13243a,#242e3d); color:#fff; font-weight:700;
+        }
+
+        /* Modal */
+        .modal{
+            position:fixed; inset:0; display:none; place-items:center;
+            background:linear-gradient(180deg,rgba(2,6,23,0.72),rgba(2,6,23,0.9));
+            z-index:60; padding:28px;
+        }
+        .modal.show{display:grid}
+        .modal-content{
+            max-width:1100px; width:100%; border-radius:12px; overflow:hidden;
+            box-shadow:0 30px 80px rgba(2,8,23,0.7);
+            background:#041024; color:#fff;
+        }
+        .modal-header{display:flex; justify-content:space-between; padding:12px 16px; align-items:center}
+        .modal-body{padding:18px; display:grid; gap:8px}
+        .large{
+            width:100%; aspect-ratio:16/9; background:linear-gradient(135deg,#0b1225,#1a2d3f);
+            display:grid; place-items:center; font-size:26px; font-weight:700;
+            color:#fff;
+        }
+        .close-btn{background:transparent;border:0;color:var(--muted);cursor:pointer;font-size:15px}
+
+        @media (max-width:520px){
+            body{padding:14px}
+            .logo{width:44px;height:44px;font-size:15px}
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Xmas</div>
+        <div>
+            <h1>Christmas 2025</h1>
+            <p class="lead">Placeholder photo album — replace placeholders with your images</p>
+        </div>
+
+        <div class="controls">
+            <button class="btn" id="addBtn">Add photos</button>
+            <button class="btn" id="downloadBtn">Download ZIP</button>
+        </div>
+    </header>
+
+    <main>
+        <section class="grid" id="gallery">
+            <!-- 9 placeholder items -->
+            <figure class="card" data-title="Family Tree Decorating">
+                <div class="thumb" style="background:linear-gradient(135deg,#42221b,#8b3b13);">
+                    <div class="meta">Photo 1</div>
+                    <svg width="62" height="62" viewBox="0 0 24 24" fill="none" aria-hidden>
+                        <path d="M12 2l1.8 4.5L18 8l-3.6 2.5L14.4 15 12 12.8 9.6 15l-.96-4.5L5.2 8l4.2-1.5L12 2z" fill="#ffd7c2"/>
+                    </svg>
+                </div>
+                <figcaption>
+                    <div>Family Tree Decorating</div>
+                    <div class="placeholder-ornament">1</div>
+                </figcaption>
+            </figure>
+
+            <figure class="card" data-title="Morning Gift Exchange">
+                <div class="thumb" style="background:linear-gradient(135deg,#0b3b2a,#137a5f);">
+                    <div class="meta">Photo 2</div>
+                    <svg width="62" height="62" viewBox="0 0 24 24" fill="none" aria-hidden>
+                        <circle cx="12" cy="12" r="8" fill="#c5f3e0"/>
+                    </svg>
+                </div>
+                <figcaption>
+                    <div>Morning Gift Exchange</div>
+                    <div class="placeholder-ornament">2</div>
+                </figcaption>
+            </figure>
+
+            <figure class="card" data-title="Holiday Dinner">
+                <div class="thumb" style="background:linear-gradient(135deg,#24132a,#46224d);">
+                    <div class="meta">Photo 3</div>
+                    <svg width="62" height="62" viewBox="0 0 24 24" fill="none" aria-hidden>
+                        <rect x="4" y="6" width="16" height="12" rx="2" fill="#ffd6f0"/>
+                    </svg>
+                </div>
+                <figcaption>
+                    <div>Holiday Dinner</div>
+                    <div class="placeholder-ornament">3</div>
+                </figcaption>
+            </figure>
+
+            <figure class="card" data-title="Snow Play">
+                <div class="thumb" style="background:linear-gradient(135deg,#0b1f3b,#0b3c6b);">
+                    <div class="meta">Photo 4</div>
+                    <svg width="62" height="62" viewBox="0 0 24 24" fill="none" aria-hidden>
+                        <path d="M12 4l1.2 3.6L17 9l-3.6 2.4L14.4 15 12 12.8 9.6 15l1-3.6L7 9l3.8-1.4L12 4z" fill="#bde0ff"/>
+                    </svg>
+                </div>
+                <figcaption>
+                    <div>Snow Play</div>
+                    <div class="placeholder-ornament">4</div>
+                </figcaption>
+            </figure>
+
+            <figure class="card" data-title="Cozy Fireplace">
+                <div class="thumb" style="background:linear-gradient(135deg,#3a1308,#6b2414);">
+                    <div class="meta">Photo 5</div>
+                    <svg width="62" height="62" viewBox="0 0 24 24" fill="none" aria-hidden>
+                        <path d="M12 3c1.5 3 5 4 6 7s-1 5-3 6-4 2-6 2 1-3 0-6-4-4-3-8 3-1 6-1z" fill="#ffd9b8"/>
+                    </svg>
+                </div>
+                <figcaption>
+                    <div>Cozy Fireplace</div>
+                    <div class="placeholder-ornament">5</div>
+                </figcaption>
+            </figure>
+
+            <figure class="card" data-title="Holiday Lights">
+                <div class="thumb" style="background:linear-gradient(135deg,#20233a,#3b2e6f);">
+                    <div class="meta">Photo 6</div>
+                    <svg width="62" height="62" viewBox="0 0 24 24" fill="none" aria-hidden>
+                        <circle cx="7" cy="12" r="2" fill="#fff7b2"/><circle cx="12" cy="8" r="2" fill="#ffd7a6"/><circle cx="17" cy="13" r="2" fill="#bde2ff"/>
+                    </svg>
+                </div>
+                <figcaption>
+                    <div>Holiday Lights</div>
+                    <div class="placeholder-ornament">6</div>
+                </figcaption>
+            </figure>
+
+            <figure class="card" data-title="Baking Cookies">
+                <div class="thumb" style="background:linear-gradient(135deg,#3a2b10,#6c4b1b);">
+                    <div class="meta">Photo 7</div>
+                    <svg width="62" height="62" viewBox="0 0 24 24" fill="none" aria-hidden>
+                        <path d="M8 7h8v10H8z" fill="#ffe8b0"/>
+                    </svg>
+                </div>
+                <figcaption>
+                    <div>Baking Cookies</div>
+                    <div class="placeholder-ornament">7</div>
+                </figcaption>
+            </figure>
+
+            <figure class="card" data-title="Caroling">
+                <div class="thumb" style="background:linear-gradient(135deg,#2b2a3f,#48396b);">
+                    <div class="meta">Photo 8</div>
+                    <svg width="62" height="62" viewBox="0 0 24 24" fill="none" aria-hidden>
+                        <path d="M6 8h12v2H6zM6 12h12v2H6z" fill="#e6f0ff"/>
+                    </svg>
+                </div>
+                <figcaption>
+                    <div>Caroling</div>
+                    <div class="placeholder-ornament">8</div>
+                </figcaption>
+            </figure>
+
+            <figure class="card" data-title="Quiet Morning">
+                <div class="thumb" style="background:linear-gradient(135deg,#08202a,#0f3b45);">
+                    <div class="meta">Photo 9</div>
+                    <svg width="62" height="62" viewBox="0 0 24 24" fill="none" aria-hidden>
+                        <rect x="6" y="6" width="12" height="12" rx="2" fill="#cfeef0"/>
+                    </svg>
+                </div>
+                <figcaption>
+                    <div>Quiet Morning</div>
+                    <div class="placeholder-ornament">9</div>
+                </figcaption>
+            </figure>
+        </section>
+
+        <div class="modal" id="modal" aria-hidden="true">
+            <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+                <div class="modal-header">
+                    <strong id="modalTitle">Photo</strong>
+                    <button class="close-btn" id="modalClose" aria-label="Close">✕</button>
+                </div>
+                <div class="modal-body">
+                    <div class="large" id="modalLarge">Photo</div>
+                    <div style="display:flex;justify-content:space-between;color:var(--muted);font-size:13px">
+                        <div id="modalCaption">Placeholder caption</div>
+                        <div id="modalIndex">1 / 9</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Simple gallery interactions for placeholders
+        const gallery = document.getElementById('gallery');
+        const modal = document.getElementById('modal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalLarge = document.getElementById('modalLarge');
+        const modalCaption = document.getElementById('modalCaption');
+        const modalIndex = document.getElementById('modalIndex');
+        const modalClose = document.getElementById('modalClose');
+
+        const items = Array.from(gallery.querySelectorAll('figure.card'));
+
+        items.forEach((item, idx) => {
+            item.addEventListener('click', () => openModal(idx));
+        });
+
+        function openModal(index){
+            const item = items[index];
+            const title = item.dataset.title || ('Photo ' + (index+1));
+            modalTitle.textContent = title;
+            modalLarge.textContent = title;
+            modalCaption.textContent = title;
+            modalIndex.textContent = (index+1) + ' / ' + items.length;
+            modal.classList.add('show');
+            modal.setAttribute('aria-hidden','false');
+        }
+
+        function closeModal(){
+            modal.classList.remove('show');
+            modal.setAttribute('aria-hidden','true');
+        }
+
+        modalClose.addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => { if(e.target === modal) closeModal(); });
+
+        // Buttons are placeholders — here for future wiring
+        document.getElementById('addBtn').addEventListener('click', () => {
+            alert('Add photos: drop files or pick images to replace placeholders (not implemented).');
+        });
+        document.getElementById('downloadBtn').addEventListener('click', () => {
+            alert('Download ZIP: bundle images and download (not implemented).');
+        });
+    </script>
+</body>
+</html>
