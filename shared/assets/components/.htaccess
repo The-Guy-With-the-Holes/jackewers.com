@@ -1,0 +1,13 @@
+# Prevent caching of components for development
+<Files "*.html">
+    Header set Cache-Control "no-cache, no-store, must-revalidate"
+    Header set Pragma "no-cache"
+    Header set Expires "0"
+</Files>
+
+# Enable rewrite engine for cache busting
+RewriteEngine On
+
+# Add timestamp to component requests
+RewriteCond %{QUERY_STRING} ^v=
+RewriteRule ^components/(.+)$ components/$1 [L]

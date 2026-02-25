@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Execute Command</title>
+    <script>
+        function executeCommand() {
+            const command = document.getElementById('command').value;
+            fetch('/execute-command', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ command }),
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert('Command executed successfully!');
+                } else {
+                    alert('Failed to execute command.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred while executing the command.');
+            });
+        }
+    </script>
+</head>
+<body>
+    <h1>Execute Command</h1>
+    <input type="text" id="command" placeholder="Enter SSH command">
+    <button onclick="executeCommand()">Execute Command</button>
+</body>
+</html>

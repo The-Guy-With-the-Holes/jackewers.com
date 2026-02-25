@@ -1,0 +1,399 @@
+{
+  "businesses": [
+    {
+      "id": "opal-heart",
+      "name": "Opal Heart Piercing",
+      "categories": ["Piercing"],
+      "icon": "fas fa-gem",
+      "image": "https://www.opalheart.com.au/wp-content/uploads/2021/09/logo.png",
+      "city": "Perth",
+      "state": "WA",
+      "country": "Australia",
+      "onlineOnly": false,
+      "description": "Professional piercing services specializing in heart piercings and body jewelry. Expert in safe and hygienic practices.",
+      "features": [
+        "APP & AUPP Certified Piercer's",
+        "Aftercare consultation",
+        "Safe and hygienic practices"
+      ],
+      "website": "https://OpalHeart.com.au",
+      "testimonial": {
+        "text": "There is no other professional piercing studio in Western Australia. We are so very lucky that the only one we have is also one of the best in the world.",
+        "author": "Jack Ewers"
+      }
+    },
+    {
+      "id":"stone-heart",
+      "name": "Stone Heart Body Art",
+      "categories": ["Tattooing", "Piercing", "Laser Removal"],
+      "icon": "fas fa-snake",
+      "image": "https://www.stoneheart.com.au/wp-content/uploads/2023/12/header_dark.png",
+      "city": "Sydney",
+      "state": "NSW",
+      "country": "Australia",
+      "onlineOnly": false,
+      "description": "Professional body piercer specializing in a variety of piercing styles and techniques.",
+
+      "features": [
+        "Custom piercing designs",
+        "Tattoo & Lazer removal services",
+        "Aftercare support"
+      ],
+      "website": "https://stoneheart.com.au",
+      "testimonial": {
+        "text": "Stone Heart is amazing! A wide range of piercings and top-notch hygiene standards."
+      }
+    },
+          {
+      "id": "hellish-hair",
+      "name": "Hellish Hair",
+      "categories": ["Hairdressing", "Beauty"],
+      "icon": "fas fa-scissors",
+      "image": "data:image/jpeg;base64,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",
+      "city": "Fremantle",
+      "state": "WA",
+      "country": "Australia",
+      "onlineOnly": false,
+      "description": "Alternative hair salon offering unique styles and colors. Specializing in edgy cuts and vibrant hair colors.",
+      "features": [
+        "Creative hair coloring techniques",
+        "Custom haircut designs",
+        "Personalized consultations"
+      ],
+      "website": "https://www.instagram.com/hellishhair/",
+      "testimonial": {
+        "text": "Ebony is a f*cking darling, with a passion for hair, style, and all things spooky go get your hair did by her."
+      }
+    },
+    {
+      "id": "bittersweet-tattoo",
+      "name": "BitterSweet Tattoo",
+      "categories": ["Tattooing", "Piercing"],
+      "icon": "fas fa-paint-brush",
+      "image":"data:image/jpeg;base64,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", 
+      "city": "Subiaco",
+      "state": "WA",
+      "country": "Australia",
+      "onlineOnly": false,
+      "description": "Professional body piercing studio with experienced piercers and quality jewelry.",
+      "features": [
+        "Experienced piercers",
+        "Quality jewelry selection",
+        "Clean and professional environment"
+      ],
+      "website": "https://www.instagram.com/bittersweettattoo/?hl=en",
+      "testimonial": {
+        "text": "Great piercing studio with professional service."
+      }
+    },
+    {
+      "id":"neo-mail",
+      "name": "Neo Mail",
+      "categories": ["Tech Services", "Web Development"],
+      "icon": "fas fa-laptop-code",
+      "image":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAABAUlEQVR4AWJwL/ABtFqHIAhDURiFr4LJnoxmMdmx2E12UNUqImhvisne7GDvxWQPgmA1iLh4fU/8QWTgdmY4bGzjfdzxYDMbei20DyWx93kl3iuSL60f2sSjrgnz1AZehVAz5F/dBe4FpJQILYipXQQTARz9iam7aWGE5sCU2dw9KxqqcEzg1t2mHBWWD4SoMAbGZpnR82NR72oRBOadtDW+eiGQTNoY3ThIJxXKQf56OchRDnKUgxzlIEQ7kwsH/4wCkKMcLK+8XRr6gaBGMH0pcqAY7AmjqDGMo8YwjhrAMCrwCDCEvu7FXQcwhEYrPiBUk5609YsUgPXHP+9Zaz4BTfOfjyWFE98AAAAASUVORK5CYII=",
+
+      "isAffiliate": true,
+      "isOnlineOnly": true,
+      "description": "Reliable email hosting and web development services for businesses of all sizes.",
+      "features": [
+        "Secure email hosting",
+        "Custom web development",
+        "24/7 customer support"
+      ],
+      "website": "https://neo.cello.so/xeJyhSAzZkw",
+      "testimonial": {
+        "text": "Fast and reliable email service.... no like seriously these guys are great. dirt cheap for a catch all email. (hit me up  @ poopfart@jackewers.com to see)"
+      }
+    },
+
+    {"id":"bloodweb",
+      "name": "Bloodweb",
+      "categories": ["Tech Services"],
+      "icon": "fas fa-tint",
+      "image":"https://bloodweb.net/favicon.ico",
+      "isOnlineOnly": true,
+      "description": "Professional make lab and web development services.",
+      "features": [
+        "Custom web development",
+        "99.9% uptime guarantee",
+        "Expert support team"
+      ],
+      "website": "https://bloodweb.com.au/",
+      "testimonial": {
+        "text": "Is my business, is great?."
+      }
+    },
+    {"id":"the-piercing-urge",
+      "name": "The Piercing Urge",
+      "categories": ["Piercing"],
+      "icon": "fas fa-pen-nib",
+      "image":"https://cdn.shopify.com/s/files/1/0257/8697/4307/files/TPULOGO_1.jpg?height=628&pad_color=fff&v=1613786414&width=1200", 
+      "city": "Prahan",
+      "state": "VIC",
+      "country": "Australia",
+      "onlineOnly": false,
+      "description":"A premier piercing studio in Prahan, known for its skilled piercers and wide range of piercing styles.",
+      "features": [
+        "Detail-oriented",
+        "Client safety focused",
+        "Wide range of piercing styles"
+      ],
+      "website":"https://www.instagram.com/piercersuzanne/",
+      "testimonial":{
+        "text":"The piercing urge is one of the best piercing studios in Melbourne. Suzanne is an amazing piercer and makes you feel so comfortable."
+      }
+    },
+    {"id":"gilt-moth-tattoo",
+      "name": "Gilt Moth Tattoo",
+      "categories": ["Tattooing", "Piercing"],
+      "icon": "fas fa-dragon",
+      "image":"https://0321819abe0b74200b6a.cdn6.editmysite.com/uploads/b/0321819abe0b74200b6a67930eea31dd9e839b4d6fb7288d60ba4d8684888cca/Gmt-newlogo-mot_black_1669844740.png?width=2400&optimize=medium",
+      "city": "London",
+      "state": "England",
+      "country": "United Kingdom",
+      "onlineOnly": false,
+      "description":"A renowned tattoo studio in London, celebrated for its talented artists and custom tattoo designs.",
+      "features": [
+        "UKAPP Certified Piercer's",
+        "Talented artists",
+        "Hygienic practices"
+      ],
+      "website":"https://giltmothtattoo.com.au/",
+      "testimonial":{
+        "text":"Gilt Moth Tattoo is one of the body art studios in London. The artists are incredibly talented and create stunning custom designs."
+      }
+    },
+    {
+      "id":"amory-body-arts",
+      "name": "Amory Body Arts",
+      "categories": ["Piercing"],
+      "icon": "fas fa-heart",
+      "image":"data:image/png;base64,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",
+      "city": "Santa Cruz",
+      "state": "CA",
+      "country": "USA",
+      "onlineOnly": false,
+      "description": "Trusted APP piercing studio in Santa Cruz offering a variety of piercing styles with a focus on safety and hygiene.",
+      "features": [
+        "Skilled piercers certified by APP",
+        "Hygienic practices",
+        "Variety of piercing styles"
+      ],
+      "website": "https://www.amorybodyarts.com/",
+      "testimonial": {
+        "text": "Amory Body Arts is a fantastic piercing studio. The piercers are highly skilled and prioritize client safety." 
+      }
+    },
+    {
+      "id":"w3",
+      "name": "w3-schools",
+      "categories": ["Education", "Web Development"],
+      "icon": "fas fa-school",
+      "image":"https://campus.w3schools.com/cdn/shop/files/W3Schools_Logo_RGB_160x150.png?v=1660296556",
+      "isOnlineOnly": true,
+      "description": "Comprehensive online resource for learning web development technologies including HTML, CSS, JavaScript, and more.",
+      "features": [
+        "Extensive tutorials and references",
+        "Interactive coding examples",
+        "Free access to learning materials"
+      ],
+      "website": "https://www.w3schools.com/",
+      "testimonial": "Most of my proficiency in writing software comes from w3-schools. This website is an amazing resource for learning web development."
+  },
+  {
+    "id":"zsa",
+    "name": "ZSA Technology Labs",
+    "categories": ["Tech Services", "Hardware"],
+    "icon": "fas fa-keyboard",
+    "image":"data:image/jpeg;base64,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",
+    "isOnlineOnly": true,
+    "description": "Innovative hardware company specializing in ergonomic keyboards and input devices for enhanced productivity.",
+    "features": [
+      "Ergonomic keyboard designs",
+      "Customizable key layouts",
+      "High-quality build materials"
+    ],
+    "website": "https://zsa.io/",
+    "testimonial": "Joeltron showed me his ergodox easy many moons ago and i fell inlove. Purchased a Moonlander not long after and have never looked back."
+  },
+  {
+    "id":"open-home-foundation",
+    "name": "Open Home Foundation",
+    "categories": ["Non-Profit", "Technology"],
+    "icon": "fas fa-hands-helping",
+    "image":"https://www.openhomefoundation.org/assets/images/logo/open-home-foundation.svg",
+    "isOnlineOnly": true,
+    "description": "Non-profit organization dedicated to providing technology education and resources to underserved communities.",
+    "features": [
+      "Technology education programs",
+      "Community outreach",
+      "Resource distribution"
+    ],
+    "website": "https://www.openhomefoundation.org/",
+    "testimonial": "These guys made the home-assistant operating system, which is amazing for smart homes. fucking love it."
+  },
+  {
+    "id":"raspberry-pi-foundation",
+    "name": "Raspberry Pi Foundation",
+    "categories": ["Education", "Technology"],
+    "icon": "fas fa-raspberry-pi",
+    "image": "https://www.raspberrypi.org/assets/components/site/header/foundation-logo-b0f19781e462be54d3371c3da03431bb6dc407fca9f36820d27a7ff4e673406e.svg",
+    "isOnlineOnly": true,
+    "description": "Charity organization that promotes the study of computer science and related topics, with a focus on the Raspberry Pi computer.",
+    "features": [
+      "Raspberry Pi computers",
+      "Educational resources",
+      "Community support"
+    ],
+    "website": "https://www.raspberrypi.org/",
+    "testimonial": "The Raspberry Pi is a fantastic tool for learning programming and electronics. It's changed the way I teach!"
+  },
+  {
+    "id":"lovesick",
+    "name": "Lovesick tattoo",  
+    "categories": ["Tattoo", "Piercing"],
+    "icon": "fas fa-tint",
+    "image": "https://images.squarespace-cdn.com/content/v1/61948aa70eeb460beb131ea1/a97c0044-a56e-4177-b93c-71079ace9d51/image0.png?format=750w",
+    "city": "Brisbane",
+    "state": "QLD",
+    "country": "Australia",
+    "onlineOnly": false,
+    "description": "Renowned tattoo and piercing studio in Brisbane known for its talented artists and exceptional customer service.",
+    "features": [
+      "Talented tattoo artists",
+      "Exceptional customer service",
+      "Wide range of tattoo styles"
+    ],
+    "website": "https://www.lovesicktattoo.com/",
+    "testimonial": "You might be sick of love, but you will never be sick of lovesick tattoo!"
+    
+
+  },
+  {
+    "id":"bambu-labs",
+    "name": "Bambu Labs",
+    "categories": ["3D Printing", "Technology"],
+    "icon": "fas fa-cube",
+    "image":"https://bambulab.com/wp-content/uploads/2022/08/cropped-Logo-1.png",
+    "isOnlineOnly": true,
+    "description": "Innovative 3D printing company known for its user-friendly printers and advanced features.",
+    "features": [
+      "User-friendly 3D printers",
+      "Advanced printing features",
+      "High-quality prints"
+    ],
+    "website": "https://bambulab.com/",
+    "testimonial": "Bambu Labs printers have revolutionized my 3D printing experience. The ease of use and print quality are outstanding. No longer do I have to spend hours fucking around with settings to get a decent print. I get to spend time designing models."
+  },
+
+  { "id":"sacral-body-designs",
+    "name": "Sacral Body Designs",
+    "categories": ["Tattoo", "Piercing", "Hairdressing"],
+    "icon": "fas fa-tint",
+    "image": "https://www.sacralbodydesigns.com.au/cdn/shop/files/Heart_Badge_Full_Colour.png?v=1755486488&width=95",
+    "city": "Albury, Wodonga",
+    "state": "NSW",
+    "country": "Australia",
+    "onlineOnly": false,
+    "description": "The best tattoo and piercing studio in Albury Wodonga. Sacral Body Designs is known for its talented artists, exceptional customer service, and wide range of tattoo styles.",
+    "features": [
+      "Talented tattoo artists",
+      "Exceptional customer service",
+      "Wide range of tattoo styles"
+    ],
+    "website": "https://sacralbodydesigns.com/",
+    "testimonial": {
+      "text": "This studio is so f***cking pretty and filled with the most incredible hoomans. This place should be considered a national treasure." 
+    }
+   },
+     {
+    "id":"clickerino",
+    "name": "Clickerino",
+    "categories": ["Jewelry"],
+    "icon": "fas fa-gem",
+    "image": "https://www.clickerino.com/wp-content/uploads/2022/08/clickerino_logo-1024x223.png",
+    "isOnlineOnly": true,
+    "description": "The highest quality hinge rings on the market. (also the most affordable). Clickerino is wholesaler business specialising in hinge rings, threadless flat back labrets and ends. ",
+    "features": [
+      "High-quality hinge rings",
+      "Affordable prices",
+      "Wide range of products and sizes"
+    ],
+    "website": "https://clickerino.com/",
+    "testimonial": "Clickerino is the best place to buy hinge rings. Australian owned and operated, you wont find better quality or prices anywhere else.  They have a huge range of products and sizes, their customer service is fantastic, and their distro-dude is oh so handsome and funny."
+  },
+   {"id":"tine-piercing",
+    "name": "Tine Piercing",
+    "categories": ["Piercing"],
+    "icon": "fas fa-tint",
+    "image": "https://tinepiercing.com/cdn/shop/files/Tine-Piercing-Logo-Black.png?v=1721229393&width=120",
+    "city": "Witchita",
+    "state": "KS",
+    "country": "USA",
+    "onlineOnly": false,
+    "description": "Tine Piercing is woman owned and operated piercing studio in Wichita, Kansas. Dedicated to creating a safe, inclusive, and empowering environment for all",
+    "features": [
+      "Skilled piercers certified by APP",
+      "Hygienic practices",
+      "Variety of piercing styles"
+    ],
+    "website": "https://tinepiercing.com/",
+    "testimonial":"They say the people make the place, and that is certainly true of Tine Piercing. Mollie and Sierra are incredible and deserve all the good things."
+  },
+
+  {
+    "id":"the-satanic-temple",
+    "name": "The Satanic Temple",
+    "categories": ["Religion", "Non-Profit"],
+    "icon": "fas fa-pentagram",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Baphosimb.svg/250px-Baphosimb.svg.png",
+    "isOnlineOnly": true,
+    "description": "The Satanic Temple, it's like a regular religion but focused on love, acceptance and the total condemnation of any individuals or organizations that would harm children. ",
+    "features": [
+      "Promotion of individualism and self-expression",
+      "Advocacy for the rights of all humans and animals",
+      "Community support for members"
+    ],  
+    "website": "https://thesatanictemple.com/pages/about-us",
+    "testimonial": "The Satanic Temple is a fantastic organization that promotes individualism and self-expression. They are also advocates for the rights of all humans and animals, which is something I really appreciate. We also fundamentally condemn any individuals who would harm children ( I think they are called 'christians' or something?) and we are not affiliated with any such individuals or organizations. If you are looking for a community that supports you and your beliefs, I highly recommend checking out The Satanic Temple."
+  },
+  {
+    "id":"dj-bronia",
+    "name": "DJ Bronia Mood Enhancement",
+    "categories": ["Music", "Entertainment"],
+    "icon": "fas fa-music",
+    "image": "https://www.djbronia.com.au/wp-content/uploads/2024/05/IMG_3988_ed.jpg",
+    "city": "Perth", 
+    "state": "WA",
+    "country": "Australia",
+    "onlineOnly": false,
+    "description": "DJ Bronia is a Perth-based DJ known for her eclectic music selection and ability to create an unforgettable atmosphere at any event.",
+    "features": [
+      "Eclectic music selection",
+      "Ability to create an unforgettable atmosphere",
+      "Experience performing at various events"
+    ],
+    "website": "https://www.djbronia.com.au/",
+    "testimonial":"DJ Bronia is an absolute legend. Her music selection is always on point, and she knows how to get the crowd moving. If you want a great time, book DJ Bronia for your next event!"
+  },
+  {
+    "id":"buddhist-temple-of-perth",
+    "name": "Fo Guang Shan Buddhist Temple",
+    "categories": ["Religion", "Non-Profit"],
+    "icon": "fas fa-praying-hands",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Kamakura_Budda_Daibutsu_front_1885.jpg/250px-Kamakura_Budda_Daibutsu_front_1885.jpg",
+    "isOnlineOnly": true,
+    "description": "Fo Guang Shan Buddhist Temple is a place of worship and community for Buddhists in Perth. They offer various programs and activities to promote Buddhist teachings and practices.",
+    "features": [
+      "Buddhist teachings and practices",
+      "Community programs and activities",
+      "Meditation and mindfulness sessions"
+    ],
+    "website": "https://en.fgswa.org.au/",
+    "testimonial": "Fo Guang Shan Buddhist Temple is a wonderful place for anyone interested in learning about Buddhism and participating in community activities. The temple offers a peaceful and welcoming environment for all."
+  }
+    
+
+]
+}

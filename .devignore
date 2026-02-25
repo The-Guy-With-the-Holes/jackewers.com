@@ -1,0 +1,33 @@
+# Development-only files - DO NOT sync to production
+
+# Git repository
+.git/
+
+
+# Development dependencies
+node_modules/
+
+# Log files
+*.log
+error_log
+debug.log
+
+# Temporary files
+*.tmp
+*.swp
+*.swo
+*~
+.DS_Store
+
+# IDE files
+.vscode/
+.idea/
+*.code-workspace
+
+# Environment files
+.env
+.env.local
+
+# Archived & Testing
+archived/ 
+test/

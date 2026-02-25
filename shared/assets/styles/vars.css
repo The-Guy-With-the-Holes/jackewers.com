@@ -1,0 +1,197 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&family=Share+Tech+Mono&family=Spectral+SC:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+/* This file contains root variables and media queries */
+
+/* Light Mode (Default) */
+:root{
+
+    /* Font Sizes */
+    --font-XXL: min(max(2.4rem,8vw),82px);
+    --font-XL: min(max(6.5vw, .1rem),72px);
+    --font-L: min(max(4.75vw, .85rem),64px);
+    --font-LS: min(max(4.2vw, .75rem),56px);
+    --font-ML: min(max(4vw, .7rem),48px);
+    --font-M: min(max(3.2vw, .6rem),36px);
+    --font-MS: min(max(2.8vw, .5rem),32px);
+    --font-S: min(max(2.4vw, .5rem),24px);
+
+    /* Padding & Margin */    
+    --padding-left-L: min(4vw,24px);
+    --padding-vertical-M: min(.4em,2vh);
+    --padding-vertical-L: min(.6em,4vh);
+    --padding-scale-large-top: min(8dvh, 6vw) 1% 2% 1%;
+    --padding-scale-xs-noV: 0 min(2dvh, 1vw) 0 min(2dvh, 1vw);
+    --padding-scale-xs-noH: min(2.4dvh, 1.2vw) 0 min(2.4dvh, 1.2vw) 0;
+    --padding-scale-xs: min(2dvh, 1vw) min(2dvh, 1vw) min(2dvh, 1vw) min(2dvh, 1vw);
+    
+    /* Border Widths */
+    --border-width-XS: min(1px, .1em);
+    --border-width-S: min(2px, .2em);
+    --border-width-M: min(4px, .4em);
+    --border-width-L: min(8px, .8em);
+
+    /* Content Separation */
+    --body-content-seperator: min(.5vh,10px);
+    --body-content-seperator-double: min(1vh,20px);
+    --body-content-seperator-L: min(2vh,24px);   
+    --body-content-seperator-XL: min(3vh,36px); 
+    --body-content-margin-top: min(1vh,20px); 
+    --body-content-margin-double: min(2vh,40px);
+
+    /* Header & Image Sizes */
+    --header-img-width: min(12vw, 4.6em);
+    --nav-img-width: min(15vw,4em);
+
+    /* Scalable Images */
+    --extra-large-img-width: min(50vw, 16.5em);
+    --large-img-width: min(45vw, 15em);
+    --medium_large-img-width: min(40vw, 13.5em);
+    --medium-img-width: min(35vw, 12em);
+    --small_medium-img-width: min(30vw, 10.5em);
+    --small-img-width: min(25vw, 9em);
+    --tiny_small-img-width: min(20vw, 7.5em);
+    --tiny-img-width: min(15vw, 6em);
+    --extra-tiny-img-width: min(5vw, 4.5em);
+}
+
+
+:root[data-theme="dark"] {
+    
+    /* Theme colors */
+    --sun-color: #FFD700;
+    --moon-color: #FFF;
+
+  /* Dark Mode Variables */
+    --bg-main: 
+        url("data:image/svg+xml;utf8,<svg width='120' height='104' viewBox='0 0 120 104' fill='none' xmlns='http://www.w3.org/2000/svg'><polygon points='60,4 116,32 116,72 60,100 4,72 4,32' fill='%23e0e0e0' stroke='%23bdbdbd55' stroke-width='4'/></svg>"),
+        url("data:image/svg+xml;utf8,<svg width='120' height='104' viewBox='0 0 120 104' fill='none' xmlns='http://www.w3.org/2000/svg'><polygon points='60,4 116,32 116,72 60,100 4,72 4,32' fill='%23000000b1' stroke='%23add8E6' stroke-width='4'/></svg>");
+    --bg-section: rgba(255, 255, 255, 0.02);
+    --bg-hero: linear-gradient(135deg, 
+        rgba(0, 170, 187, 0.1) 0%, 
+        rgba(52, 211, 153, 0.1) 50%, rgba(102, 126, 234, 0.1) 100%)
+   
+
+
+    --bg-surface: #14101a;
+    --bg-elevated: #1a1523;
+    --bg-content: #333333;
+    --bg-container: #2a2a2aaa;
+    --font-main: #f3faf9;
+    --text-primary: #f0eef7;
+    --text-secondary: #c1bccc;
+    --text-subtle: #bfb8d4;
+    --text-highlight: #ffffff;
+    
+    /* Navigation */
+    --nav-accent: #ff5a7a;
+    --nav-bg: rgba(16, 8, 30, 0.96);
+    --nav-border: rgba(124, 58, 237, 0.35);
+    --nav-hover: rgba(124, 58, 237, 0.18);
+    --nav-active: rgba(124, 58, 237, 0.33);
+    --nav-background:
+        radial-gradient(1200px 600px at 110% -10%, color-mix(in lch, var(--nav-accent) 14%, transparent) 0%, transparent 65%),
+        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02) 35%, rgba(0,0,0,.20) 100%),
+        linear-gradient(135deg, #0f1217, #161b22);
+    
+    /* Accent Colors */
+    --accent-primary: #7c3aed;
+    --accent-secondary: #d946ef;
+    --accent-tertiary: #22d3ee;
+    
+    /* Borders & Lines */
+    --border-color: rgba(255, 255, 255, 0.10);
+    --line-color: rgba(255, 255, 255, 0.10);
+    
+    /* Shadows */
+    --box-shadow-1: 8px 6px rgba(0, 0, 0, .8);
+    --box-shadow-2: 6px 4px rgba(0, 0, 0, .8);
+    
+    /* Theme Colors */
+    --color-theme-A: gray, black, slategray;
+    --color-theme-B: gray, black, blue, slategray;
+    --rainbow-bg: linear-gradient(-70.9deg, rgb(255, 69, 0), rgb(255, 140, 0), rgb(255, 99, 71), rgb(255, 20, 147));
+    
+    /* Misc */
+    --muted-bg: rgba(255, 255, 255, 0.06);
+
+}
+
+.hidden, .hidden>*{
+    display:none !important;
+}
+
+
+.small {
+    color: green;
+    display: block;
+    text-decoration: none;
+}
+
+
+/* Dark Mode (Media Query) */
+:root[data-theme="light"] {
+
+    /* Theme colors */
+    --sun-color: #FFD700;
+    --moon-color: #FFF;
+
+    /* Light Mode Colors & Backgrounds */
+    --bg-main: 
+        url("data:image/svg+xml;utf8,<svg width='120' height='104' viewBox='0 0 120 104' fill='none' xmlns='http://www.w3.org/2000/svg'><polygon points='60,4 116,32 116,72 60,100 4,72 4,32' fill='%23e0f7fa' stroke='%23b2ebf2' stroke-width='4'/></svg>"),
+        url("data:image/svg+xml;utf8,<svg width='120' height='104' viewBox='0 0 120 104' fill='none' xmlns='http://www.w3.svg'><polygon points='60,4 116,32 116,72 60,100 4,72 4,32' fill='%23b3e5fc' stroke='%2381d4fa' stroke-width='4'/></svg>");
+    --bg-hero: linear-gradient(135deg, 
+    rgba(0, 170, 187, 0.5) 0%, 
+    rgba(52, 211, 153, 0.5) 50%, 
+    rgba(102, 126, 234, 0.5) 100%)
+    ;
+    --subtle-hero: linear-gradient(135deg, 
+    rgba(0, 170, 187, 0.2) 0%,
+    rgba(52, 211, 153, 0.2) 50%,
+    rgba(102, 126, 234, 0.2) 100%);
+
+    --bg-section:rgba(255, 255, 255, 0.7);
+    
+    --bg-surface: #ffffff;
+    --bg-elevated: #f3f3f7;
+    --bg-content: azure;
+    --bg-container: #fafafaaa;
+    
+    /* Text Colors */
+    --font-main: #303030;
+    --text-primary: #111114;
+    --text-secondary: #4d4a58;
+    --text-subtle: #4d4a58;
+    --text-highlight: #000000;
+    
+    /* Navigation */
+    --nav-accent: #ff5a7a;
+    --nav-bg: rgba(255, 255, 255, 0.85);
+    --nav-border: rgba(0, 0, 0, .12);
+    --nav-hover: rgba(124, 58, 237, .12);
+    --nav-active: rgba(124, 58, 237, .22);
+    --nav-background:
+        radial-gradient(900px 480px at -12% -18%, color-mix(in lch, var(--nav-accent) 18%, transparent) 0%, transparent 60%),
+        linear-gradient(180deg, rgba(0,0,0,.05), rgba(0,0,0,0) 35%),
+        linear-gradient(135deg, #f8fafc, #eef2f7);
+    
+    /* Accent Colors */
+    --accent-primary: #a0a0a0;
+    --accent-secondary: #d1d5db;
+    --accent-tertiary: #60a5fa;
+    
+    /* Borders & Lines */
+    --border-color: rgba(0, 0, 0, .12);
+    --line-color: rgba(0, 0, 0, .12);
+    
+    /* Shadows */
+    --box-shadow-1: 8px 6px rgba(0, 0, 0, .2);
+    --box-shadow-2: 6px 4px rgba(0, 0, 0, .2);
+    
+    /* Theme Colors */
+    --color-theme-A: #FFD1DC, #BFD8D2, #DFD3C3, #F0E6EF;
+    --color-theme-B: #FFD700, #FFA07A, #EE82EE, #98FB98;
+    --rainbow-bg: linear-gradient(-70.9deg, rgb(255, 215, 0), rgb(255, 160, 122), rgb(238, 130, 238), rgb(152, 251, 152));
+    
+    /* Misc */
+    --muted-bg: rgba(0, 0, 0, 0.04);
+  
+}

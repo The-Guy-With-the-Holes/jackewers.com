@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Get in touch with Jack Ewers - Let's build something amazing together">
+    <title>Contact | Jack Ewers</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Shared Styles -->
+    <link rel="stylesheet" href="/shared/assets/styles/design-system.css">
+    <link rel="stylesheet" href="/shared/assets/styles/components.css">
+    <link rel="stylesheet" href="/shared/assets/styles/utilities.css">
+    <link rel="stylesheet" href="/shared/assets/styles/animations.css">
+    <link rel="stylesheet" href="/shared/assets/styles/nav.css">
+    
+    <!-- Contact Page Styles -->
+    <link rel="stylesheet" href="/contact/styles.css">
+     
+</head>
+<body>
+   
+    <div class="hero-image-container">
+      <img 
+          src="https://media.bloodweb.net/jackewers/branding/banner/banner-img-light.webp"
+          alt="Jack Ewers - Software Developer"
+          class="hero-image"
+          onerror="this.src='https://media.bloodweb.net/jackewers/images/headshot.jpg'"
+      >
+      <div class="hero-image-overlay"></div>
+  </div>
+  
+    <!-- Navigation Component -->
+    <div id="nav-placeholder" class="nav-skeleton"></div>
+    <script src="/shared/assets/scripts/load-navbar.js"></script>
+    <script src="/shared/assets/scripts/theme.js"></script>
+
+    <!-- Contact Container -->
+    <div class="contact-container">
+        <!-- Header -->
+        <div class="contact-header">
+            <div class="contact-tag">
+                <i class="fas fa-paper-plane"></i>
+                Let's Connect
+            </div>
+            <h1 class="contact-title">Get In Touch</h1>
+            <p class="contact-description">
+                Have a project in mind? Want to collaborate? Just want to say hi? 
+                I'd love to hear from you!
+            </p>
+        </div>
+
+        <!-- Contact Grid -->
+        <div class="contact-grid">
+            <!-- Contact Info -->
+            <div class="contact-info-card">
+                <h2 class="contact-info-title">
+                    <i class="fas fa-address-card"></i>
+                    Contact Information
+                </h2>
+
+                <div class="contact-section-divider">Best Ways to Reach Me</div>
+
+                <a href="mailto:webmaster@jackewers.com" class="contact-method">
+                    <div class="contact-method-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="contact-method-content">
+                        <h3>webmaster@jackewers.com</h3>
+                        <span class="contact-detail">Email - Preferred method</span>
+                    </div>
+                </a>
+
+                <a href="tel:+61479000429" class="contact-method">
+                    <div class="contact-method-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <div class="contact-method-content">
+                        <h3>+61 479 000 429</h3>
+                        <span class="contact-detail">Phone - Call or WhatsApp</span>
+                    </div>
+                </a>
+
+                <div class="contact-section-divider">Other Information</div>
+
+                <a href="https://www.google.com/maps/@-33.8567844,151.2152967,3a,75y,90t/data=!3m8!1e1!3m6!1sAF1QipMfZ-8XN5_yX5KqFU3B7RMZMVNHnWs9KQvzN0Gp!2e10!3e11!6shttps:%2F%2Flh5.googleusercontent.com%2Fp%2FAF1QipMfZ-8XN5_yX5KqFU3B7RMZMVNHnWs9KQvzN0Gp%3Dw203-h100-k-no-pi-0-ya56.999996-ro-0-fo100!7i7168!8i3584" target="_blank" rel="noopener noreferrer" class="contact-method">
+                    <div class="contact-method-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="contact-method-content">
+                        <h3>Australia</h3>
+                        <span class="contact-detail">Open to remote work</span>
+                    </div>
+                </a>
+
+                <a href="/linktree" class="contact-method">
+                    <div class="contact-method-icon">
+                        <i class="fas fa-link"></i>
+                    </div>
+                    <div class="contact-method-content">
+                        <h3>LinkTree</h3>
+                        <span class="contact-detail">All my links in one place</span>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="contact-form-card">
+                <h2 class="contact-form-title">
+                    <i class="fas fa-comment-dots"></i>
+                    Send a Message
+                </h2>
+                
+                <form id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                    <div class="form-group">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" id="name" name="name" class="form-input" required placeholder="Your name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject" class="form-label">Subject</label>
+                        <input type="text" id="subject" name="subject" class="form-input" required placeholder="What's this about?">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message" class="form-label">Message</label>
+                        <textarea id="message" name="message" class="form-textarea" required placeholder="Tell me more..."></textarea>
+                    </div>
+
+                    <button type="submit" class="form-button">
+                        <i class="fas fa-paper-plane"></i>
+                        Send Message
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Social Links -->
+        <div class="social-links-section">
+            <h2 class="social-links-title">Connect on Social Media</h2>
+            <div class="social-links-grid">
+                <a href="https://github.com/The-Guy-With-the-Holes" target="_blank" rel="noopener noreferrer" class="social-link">
+                    <div class="social-link-icon github">
+                        <i class="fab fa-github"></i>
+                    </div>
+                    <span class="social-link-name">GitHub</span>
+                </a>
+
+                <a href="https://www.linkedin.com/in/the-guy-with-the-holes" target="_blank" rel="noopener noreferrer" class="social-link">
+                    <div class="social-link-icon linkedin">
+                        <i class="fab fa-linkedin"></i>
+                    </div>
+                    <span class="social-link-name">LinkedIn</span>
+                </a>
+
+                <a href="https://instagram.com/the_guy_with_the_holes" target="_blank" rel="noopener noreferrer" class="social-link">
+                    <div class="social-link-icon instagram">
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                    <span class="social-link-name">Instagram</span>
+                </a>
+
+                <a href="https://www.facebook.com/jack.ewers.2025/" target="_blank" rel="noopener noreferrer" class="social-link">
+                    <div class="social-link-icon facebook">
+                        <i class="fab fa-facebook"></i>
+                    </div>
+                    <span class="social-link-name">Facebook</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Contact form submission
+        document.getElementById('contactForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const name = formData.get('name');
+            const subject = formData.get('subject');
+            const message = formData.get('message');
+            
+            // Get submit button
+            const submitBtn = this.querySelector('.form-button');
+            const originalBtnHtml = submitBtn.innerHTML;
+            
+            // Disable button and show loading state
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+            
+            // Prepare messages
+            const emailMessage = `Contact Form Submission
+
+From: ${name}
+Subject: ${subject}
+
+Message:
+${message}
+
+---
+This message was sent via the contact form at jackewers.com`;
+
+            const ntfyMessage = `📬 New Contact Form Message
+From: ${name}
+Subject: ${subject}
+
+${message}`;
+            
+            try {
+                // Send via email API
+                const emailResponse = await fetch('https://bloodweb.net/api/jackewers/send-mail.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        to: 'webmaster@jackewers.com',
+                        subject: `Contact Form: ${subject}`,
+                        message: emailMessage,
+                        from: 'contact@jackewers.com'
+                    })
+                });
+
+                // Send via ntfy
+                const ntfyResponse = await fetch('https://ntfy.sh/jackewers_notif', {
+                    method: 'POST',
+                    body: ntfyMessage,
+                    headers: {
+                        'Content-Type': 'text/plain',
+                        'Title': `Contact: ${subject}`,
+                        'Priority': '4',
+                        'Tags': 'email,contact'
+                    }
+                });
+
+                if (emailResponse.ok || ntfyResponse.ok) {
+                    // Success!
+                    submitBtn.innerHTML = '<i class="fas fa-check"></i> Message Sent!';
+                    submitBtn.style.background = 'var(--color-success)';
+                    
+                    // Reset form
+                    this.reset();
+                    
+                    setTimeout(() => {
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = originalBtnHtml;
+                        submitBtn.style.background = '';
+                    }, 3000);
+                } else {
+                    throw new Error('Both services failed');
+                }
+            } catch (error) {
+                console.error('Error sending message:', error);
+                submitBtn.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Failed - Try Again';
+                submitBtn.style.background = '#ef4444';
+                submitBtn.disabled = false;
+                
+                setTimeout(() => {
+                    submitBtn.innerHTML = originalBtnHtml;
+                    submitBtn.style.background = '';
+                }, 3000);
+            }
+        });
+    </script>
+</body>
+</html>

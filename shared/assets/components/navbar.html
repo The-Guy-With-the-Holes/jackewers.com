@@ -1,0 +1,61 @@
+<nav class="nav" id="nav">
+    <div class="nav-container">
+        <button class="nav-mobile-toggle" id="navToggle" aria-label="Toggle navigation">
+           MENU ☰
+        </button>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="/" class="nav-link" data-page="home">Home</a></li>
+            <li class="nav-item">
+                <a href="/about" class="nav-link has-dropdown" data-page="about">
+                    About <i class="fas fa-chevron-down" style="font-size: 0.75rem;"></i>
+                </a>
+                <div class="nav-dropdown">
+                    <a href="/about" class="nav-dropdown-link">
+                        <i class="fas fa-user"></i>
+                        About Me
+                    </a>
+                    <span class="nav-dropdown-link disabled" style="opacity: 0.5; cursor: not-allowed;">
+                        <i class="fas fa-blog"></i>
+                        Blog
+                    </span>
+                    <span class="nav-dropdown-link disabled" style="opacity: 0.5; cursor: not-allowed;">
+                        <i class="fas fa-heart"></i>
+                        Body Mods
+                    </span>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a href="/app" class="nav-link has-dropdown" data-page="projects">
+                    Projects <i class="fas fa-chevron-down" style="font-size: 0.75rem;"></i>
+                </a>
+                <div class="nav-dropdown">
+                    <a href="/app" class="nav-dropdown-link">
+                        <i class="fas fa-code"></i>
+                        All Projects
+                    </a>
+                    <a href="/app/100-days-of-code" class="nav-dropdown-link">
+                        <i class="fas fa-calendar-alt"></i>
+                        100 Days of Code
+                    </a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a href="/albums" class="nav-link has-dropdown" data-page="albums">
+                    Albums <i class="fas fa-chevron-down" style="font-size: 0.75rem;"></i>
+                </a>
+                <div class="nav-dropdown">
+                    <a href="/albums" class="nav-dropdown-link">
+                        <i class="fas fa-images"></i>
+                        Photo Albums
+                    </a>
+                    <a href="/certificates" class="nav-dropdown-link">
+                        <i class="fas fa-certificate"></i>
+                        Certificates
+                    </a>
+                </div>
+            </li>
+            <li> <a href="/recommendations" class="nav-link" data-page="recommendations">Homies</a></li>
+            <li><a href="/contact" class="nav-link" data-page="contact">Contact</a></li>
+        </ul>
+    </div>
+</nav>

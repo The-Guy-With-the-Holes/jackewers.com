@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pico Password manager </title>
+    <link rel="stylesheet" href="/shared/assets/styles/nav_and_socials.css">
+    <link rel="stylesheet" href="/shared/assets/styles/projects.css">
+</head>
+
+<body>
+    <nav class="main-nav">
+        <div class="branding">
+            <img src="/i/branding/buildables.png" alt="Favicon Image">
+            <!-- <br><span>by Bloodweb</span> -->
+        </div>
+        <div class="nav-actions">
+            <button onclick="window.location.href='/app/index.html'">Projects</button>
+        </div>
+    </nav>
+
+    <div id="instructions"> <!-- Begin reading instructions -->
+        <p class="js-required-message">This page requires JavaScript to function properly. Please enable JavaScript in
+            your browser settings.</p>
+        </div>
+        <section id="overview">
+            <h1> P.W.M User Guide </h1>
+            <!-- <div class="user-info">
+                <p>User: Jack</p>
+                <p>Category: Electronics</p>
+                <p>Views: 1234</p>
+                <p>Likes: 56</p>
+                <p>Comments: 12</p>
+                <button>Save as PDF</button>
+            </div> -->
+        <div class="image-blocks">
+            <img class="full-size-img" src="/app/P.W.M/Stop_icon.png" alt="Stop Icon">
+            <img class="full-size-img" src="/app/P.W.M/Creds_overview.png" alt="Creds Overview">
+        </div>
+        <!-- <div class="full-user-block">
+            <p>Full user block content here...</p>
+        </div> -->
+        <div class="project-description">
+            <p>Project Description: This project involves setting up and using the THonny IDE to manage your Python programs on a microcontroller. Follow the steps below to get started.</p>
+        </div>
+    </section>
+
+    <!-- Project Section -->
+    <section id="project">
+        <h2>Supplies</h2>
+        <div class="supplies">
+            <h3>Supplies Title</h3>
+            <ul>
+                <li>Microcontroller</li>
+                <li>USB Cable</li>
+                <li>Computer with THonny IDE installed</li>
+                <li>Wi-Fi credentials</li>
+            </ul>
+        </div>
+
+        <h2>Steps</h2>
+        <div class="steps">
+            <div class="step">
+                <h3>Step 1: Stop the Running Program</h3>
+                <img class="full-size-img" src="/app/P.W.M/Stop_icon.png" alt="Stop Icon">
+                <p>The top area of the THonny IDE will have a red stop icon. Pressing this icon will halt the currently running Python program and allow you to edit the files on the device.</p>
+            </div>
+            <div class="step">
+                <h3>Step 2: Edit the Credentials File</h3>
+                <img class="full-size-img" src="/app/P.W.M/Creds_overview.png" alt="Creds Overview">
+                <p>Now that the board is no longer executing Python, its files are editable. Open the file `creds.py` in the IDE. This is the file that will hold all your passwords.</p>
+                <h4>Important Notes for Using the Credentials Array:</h4>
+                <ul>
+                    <li>Items in the array must be inside a tuple(). Every tuple except for the last one must be preceded by a comma ','.</li>
+                    <li>Items inside the tuple (except for references to the predefined email array, such as email[0..1..2..etc]) must all be contained within quotes ''.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <script>
+        const userSettings = {
+            return:{
+                ref:'/app/index.html',
+                label:'Back to Projects'
+            }
+        }
+    </script>
+    <!-- Import Key Functions -->
+    <script src="/KeyFunctions.js"></script>
+    <!-- Make instructions-->
+    <script src="/JS/instructables.js"></script>
+    <!-- Create return label and any other Nav items -->
+    <script src="/JS/Navigation.js"></script>
+</body>
+
+</html>

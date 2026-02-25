@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Crop Tool - Batch Processing</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem;
+            color: #1e293b;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #4c51bf 0%, #667eea 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.95;
+        }
+
+        .content {
+            padding: 2rem;
+        }
+
+        .upload-section {
+            border: 3px dashed #cbd5e0;
+            border-radius: 15px;
+            padding: 3rem;
+            text-align: center;
+            background: #f7fafc;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .upload-section:hover {
+            border-color: #667eea;
+            background: #edf2f7;
+        }
+
+        .upload-section.dragover {
+            border-color: #667eea;
+            background: #e6fffa;
+            transform: scale(1.02);
+        }
+
+        .upload-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: #667eea;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 0.5rem;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+        }
+
+        .btn-danger {
+            background: linear-gradient(135deg, #f56565 0%, #e53e3e 100%);
+        }
+
+        .editor-section {
+            display: none;
+            margin-top: 2rem;
+        }
+
+        .editor-section.active {
+            display: block;
+        }
+
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: #f7fafc;
+            border-radius: 15px;
+        }
+
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .control-group label {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #4a5568;
+        }
+
+        .control-group input,
+        .control-group select {
+            padding: 0.5rem;
+            border: 2px solid #cbd5e0;
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+
+        .image-preview {
+            max-width: 100%;
+            margin: 2rem 0;
+            border-radius: 15px;
+            overflow: hidden;
+            background: #000;
+        }
+
+        #cropImage {
+            max-width: 100%;
+            display: block;
+        }
+
+        .batch-info {
+            background: #edf2f7;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .batch-info p {
+            margin: 0.5rem 0;
+            font-weight: 500;
+        }
+
+        .file-list {
+            max-height: 200px;
+            overflow-y: auto;
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+
+        .file-item {
+            padding: 0.5rem;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .file-item:last-child {
+            border-bottom: none;
+        }
+
+        .file-item.processed {
+            background: #c6f6d5;
+        }
+
+        .status-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .status-badge.pending {
+            background: #fed7d7;
+            color: #742a2a;
+        }
+
+        .status-badge.done {
+            background: #c6f6d5;
+            color: #22543d;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .controls {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📐 Image Crop Tool</h1>
+            <p class="subtitle">Crop single images or batch process multiple files with the same dimensions</p>
+        </header>
+
+        <div class="content">
+            <!-- Upload Section -->
+            <div class="upload-section" id="uploadZone">
+                <div class="upload-icon">📁</div>
+                <h2>Drop images here or click to browse</h2>
+                <p style="margin-top: 1rem; color: #718096;">Supports JPG, JPEG, and PNG files</p>
+                <input type="file" id="fileInput" accept="image/jpeg,image/jpg,image/png" multiple>
+                <button class="btn" onclick="document.getElementById('fileInput').click()">Select Images</button>
+            </div>
+
+            <!-- Editor Section -->
+            <div class="editor-section" id="editorSection">
+                <div class="batch-info">
+                    <p><strong>Batch Mode:</strong> <span id="batchStatus">Single Image</span></p>
+                    <p><strong>Files Selected:</strong> <span id="fileCount">0</span></p>
+                    <p style="color: #667eea; font-size: 0.9rem;">Set your crop area on the first image. This will be applied to all images.</p>
+                </div>
+
+                <div class="controls">
+                    <div class="control-group">
+                        <label for="aspectRatio">Aspect Ratio</label>
+                        <select id="aspectRatio">
+                            <option value="free">Free</option>
+                            <option value="1">1:1 (Square)</option>
+                            <option value="1.7777777778">16:9</option>
+                            <option value="1.3333333333">4:3</option>
+                            <option value="0.5625">9:16 (Portrait)</option>
+                            <option value="0.75">3:4 (Portrait)</option>
+                        </select>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="outputFormat">Output Format</label>
+                        <select id="outputFormat">
+                            <option value="original">Original Format</option>
+                            <option value="png">PNG</option>
+                            <option value="jpeg">JPEG</option>
+                        </select>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="quality">JPEG Quality (%)</label>
+                        <input type="number" id="quality" min="1" max="100" value="90">
+                    </div>
+
+                    <div style="display: flex; align-items: flex-end; gap: 1rem; margin-left: auto;">
+                        <button class="btn btn-secondary" id="cropBtn" onclick="processCrop()">Crop & Download</button>
+                        <button class="btn btn-danger" onclick="reset()">Reset</button>
+                    </div>
+                </div>
+
+                <div class="image-preview">
+                    <img id="cropImage" src="" alt="Image to crop">
+                </div>
+
+                <div class="file-list" id="fileList" style="display: none;"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.js"></script>
+    <script>
+        let cropper = null;
+        let selectedFiles = [];
+        let currentFileIndex = 0;
+        let cropData = null;
+
+        const fileInput = document.getElementById('fileInput');
+        const uploadZone = document.getElementById('uploadZone');
+        const editorSection = document.getElementById('editorSection');
+        const cropImage = document.getElementById('cropImage');
+        const fileListDiv = document.getElementById('fileList');
+
+        // File input handler
+        fileInput.addEventListener('change', handleFiles);
+
+        // Drag and drop handlers
+        uploadZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadZone.classList.add('dragover');
+        });
+
+        uploadZone.addEventListener('dragleave', () => {
+            uploadZone.classList.remove('dragover');
+        });
+
+        uploadZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadZone.classList.remove('dragover');
+            const files = Array.from(e.dataTransfer.files).filter(f => 
+                f.type === 'image/jpeg' || f.type === 'image/jpg' || f.type === 'image/png'
+            );
+            if (files.length > 0) {
+                fileInput.files = e.dataTransfer.files;
+                handleFiles();
+            }
+        });
+
+        // Aspect ratio change handler
+        document.getElementById('aspectRatio').addEventListener('change', (e) => {
+            if (cropper) {
+                const value = e.target.value;
+                cropper.setAspectRatio(value === 'free' ? NaN : parseFloat(value));
+            }
+        });
+
+        function handleFiles() {
+            selectedFiles = Array.from(fileInput.files);
+            if (selectedFiles.length === 0) return;
+
+            document.getElementById('fileCount').textContent = selectedFiles.length;
+            document.getElementById('batchStatus').textContent = 
+                selectedFiles.length > 1 ? `Batch (${selectedFiles.length} files)` : 'Single Image';
+
+            // Show file list if multiple files
+            if (selectedFiles.length > 1) {
+                fileListDiv.style.display = 'block';
+                renderFileList();
+            } else {
+                fileListDiv.style.display = 'none';
+            }
+
+            // Load first image
+            loadImage(0);
+            editorSection.classList.add('active');
+        }
+
+        function renderFileList() {
+            fileListDiv.innerHTML = selectedFiles.map((file, index) => `
+                <div class="file-item" id="file-${index}">
+                    <span>${file.name}</span>
+                    <span class="status-badge pending" id="status-${index}">Pending</span>
+                </div>
+            `).join('');
+        }
+
+        function loadImage(index) {
+            currentFileIndex = index;
+            const file = selectedFiles[index];
+            const reader = new FileReader();
+
+            reader.onload = (e) => {
+                cropImage.src = e.target.result;
+
+                if (cropper) {
+                    cropper.destroy();
+                }
+
+                cropper = new Cropper(cropImage, {
+                    viewMode: 1,
+                    dragMode: 'move',
+                    aspectRatio: NaN,
+                    autoCropArea: 1,
+                    restore: false,
+                    guides: true,
+                    center: true,
+                    highlight: true,
+                    cropBoxMovable: true,
+                    cropBoxResizable: true,
+                    toggleDragModeOnDblclick: false,
+                });
+            };
+
+            reader.readAsDataURL(file);
+        }
+
+        async function processCrop() {
+            if (!cropper) return;
+
+            // Get crop data from first image
+            cropData = cropper.getData();
+            const imageData = cropper.getImageData();
+            
+            // Calculate relative crop dimensions (percentage-based)
+            const relCropData = {
+                x: cropData.x / imageData.naturalWidth,
+                y: cropData.y / imageData.naturalHeight,
+                width: cropData.width / imageData.naturalWidth,
+                height: cropData.height / imageData.naturalHeight
+            };
+
+            const outputFormat = document.getElementById('outputFormat').value;
+            const quality = parseInt(document.getElementById('quality').value) / 100;
+
+            // Process all files
+            for (let i = 0; i < selectedFiles.length; i++) {
+                await processFile(selectedFiles[i], relCropData, outputFormat, quality, i);
+            }
+
+            alert(`Successfully cropped and downloaded ${selectedFiles.length} image(s)!`);
+        }
+
+        function processFile(file, relCropData, outputFormat, quality, index) {
+            return new Promise((resolve) => {
+                const reader = new FileReader();
+                
+                reader.onload = (e) => {
+                    const img = new Image();
+                    
+                    img.onload = () => {
+                        // Calculate absolute crop dimensions for this image
+                        const cropX = relCropData.x * img.width;
+                        const cropY = relCropData.y * img.height;
+                        const cropWidth = relCropData.width * img.width;
+                        const cropHeight = relCropData.height * img.height;
+
+                        // Create canvas and crop
+                        const canvas = document.createElement('canvas');
+                        canvas.width = cropWidth;
+                        canvas.height = cropHeight;
+                        const ctx = canvas.getContext('2d');
+                        
+                        ctx.drawImage(
+                            img,
+                            cropX, cropY, cropWidth, cropHeight,
+                            0, 0, cropWidth, cropHeight
+                        );
+
+                        // Determine output format
+                        let mimeType = file.type;
+                        let extension = file.name.split('.').pop();
+                        
+                        if (outputFormat === 'png') {
+                            mimeType = 'image/png';
+                            extension = 'png';
+                        } else if (outputFormat === 'jpeg') {
+                            mimeType = 'image/jpeg';
+                            extension = 'jpg';
+                        }
+
+                        // Convert to blob and download
+                        canvas.toBlob((blob) => {
+                            const url = URL.createObjectURL(blob);
+                            const a = document.createElement('a');
+                            const baseName = file.name.replace(/\.[^/.]+$/, '');
+                            a.href = url;
+                            a.download = `${baseName}_cropped.${extension}`;
+                            a.click();
+                            URL.revokeObjectURL(url);
+
+                            // Update status
+                            if (selectedFiles.length > 1) {
+                                document.getElementById(`file-${index}`).classList.add('processed');
+                                const statusBadge = document.getElementById(`status-${index}`);
+                                statusBadge.textContent = 'Done';
+                                statusBadge.classList.remove('pending');
+                                statusBadge.classList.add('done');
+                            }
+
+                            resolve();
+                        }, mimeType, quality);
+                    };
+                    
+                    img.src = e.target.result;
+                };
+                
+                reader.readAsDataURL(file);
+            });
+        }
+
+        function reset() {
+            if (cropper) {
+                cropper.destroy();
+                cropper = null;
+            }
+            
+            selectedFiles = [];
+            currentFileIndex = 0;
+            cropData = null;
+            fileInput.value = '';
+            editorSection.classList.remove('active');
+            document.getElementById('fileCount').textContent = '0';
+            document.getElementById('batchStatus').textContent = 'Single Image';
+            fileListDiv.style.display = 'none';
+        }
+    </script>
+</body>
+</html>

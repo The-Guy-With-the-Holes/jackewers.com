@@ -1,0 +1,67 @@
+{
+    "version": "2.0.0",
+    "build": 13,
+    "codename": "",
+    "changelog": [
+        {
+            "version": "2.0.0",
+            "title": "Portfolio Redesign",
+            "subtext": "Modern portfolio website",
+            "codename": "",
+            "builds": [
+                {
+                    "build": 13,
+                    "date": "2026-02-24 16:25:25",
+                    "notes": "settings.json"
+                },
+                {
+                    "build": 12,
+                    "date": "2026-02-24 16:22:05",
+                    "notes": "false postive.."
+                },
+                {
+                    "build": 11,
+                    "date": "2026-02-24 16:18:46",
+                    "notes": "Remove false positive"
+                },
+                {
+                    "build": 10,
+                    "date": "2026-02-24 16:14:54",
+                    "notes": "Media URL's changed to use media.bloodweb.net"
+                },
+                {
+                    "build": 9,
+                    "date": "2026-02-24 16:12:06",
+                    "notes": "(No notes)"
+                },
+                {
+                    "build": 5,
+                    "date": "2026-02-24 15:53:59",
+                    "notes": "Test build"
+                },
+                {
+                    "build": 4,
+                    "date": "2026-02-05 16:58:34",
+                    "notes": "\u2022 Fixed"
+                },
+                {
+                    "build": 3,
+                    "date": "2026-02-05 16:49:20",
+                    "notes": "\u2022 Fixed v2"
+                },
+                {
+                    "build": 2,
+                    "date": "2026-02-05 16:08:27",
+                    "notes": "\u2022 V2.0.0.0"
+                },
+                {
+                    "build": 1,
+                    "date": "2026-02-05 15:08:31",
+                    "notes": "\u2022 V2.0.0.0"
+                }
+            ]
+        }
+    ],
+    "release_date": "2026-02-25 02:26:15",
+    "environment": "production"
+}

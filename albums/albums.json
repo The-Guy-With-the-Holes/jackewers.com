@@ -1,0 +1,130 @@
+{
+    "albums": [
+        {
+            "id": "fam",
+            "name": "Family",
+            "description": "Family moments and memories",
+            "coverImage": "fam_0.webp",
+            "photoCount": 5,
+            "weight": 1,
+            "basePath": "https://media.bloodweb.net/jackewers/albums/fam/",
+            "photos": [
+                "fam_0.webp",
+                "fam_1.webp",
+                "fam_2.webp",
+                "fam_3.webp",
+                "fam_4.webp"
+            ]
+        },
+        {
+            "id": "homies",
+            "name": "Friends",
+            "description": "Good times with friends",
+            "coverImage": "homies_0.webp",
+            "photoCount": 6,
+            "weight": 2,
+            "basePath": "https://media.bloodweb.net/jackewers/albums/homies/",
+            "photos": [
+                "homies_0.webp",
+                "homies_1.webp",
+                "homies_2.webp",
+                "homies_3.webp",
+                "homies_4.webp",
+                "homies_5.webp"
+            ]
+        },
+        {
+            "id": "seb",
+            "name": "Seb",
+            "description": "Adventures with Seb",
+            "coverImage": "seb_1.webp",
+            "photoCount": 5,
+            "weight": 3,
+            "requiresUnlock": true,
+            "unlockDate": "6/3/2021",
+            "unlockHint": "Hint: Sebastians Birthday.",
+            "basePath": "https://media.bloodweb.net/jackewers/albums/seb/",
+            "photos": [
+                "seb_1.webp",
+                "seb_2.webp",
+                "seb_3.webp",
+                "seb_4.webp",
+                "seb_5.webp"
+            ]
+        },
+        {
+            "id": "love",
+            "name": "My Love",
+            "description": "Special moments together",
+            "coverImage": "love_0.webp",
+            "photoCount": 5,
+            "weight": 4,
+            "basePath": "https://media.bloodweb.net/jackewers/albums/my-love/",
+            "photos": [
+                "love_0.webp",
+                "love_1.webp",
+                "love_2.webp",
+                "love_3.webp",
+                "love_4.webp"
+            ]
+        },
+        {
+            "id": "app2025",
+            "name": "APP2025",
+            "description": "Photos from the 2025 Association of Professional Piercers conference, in Las Vegas, Nevada",
+            "coverImage": "app2025_0.webp",
+            "photoCount": 4,
+            "weight": 5,
+            "basePath": "https://media.bloodweb.net/jackewers/albums/APP2025/",
+            "photos": [
+                "5.webp",
+                "Homies.webp",
+                "4.webp",
+                "6.webp",
+                "7.webp",
+                "8.webp",
+                "9.webp",
+                "10.webp",
+                "11.webp",
+                "12.webp",
+                "13.webp",
+                "14.webp",
+                "15.webp",
+                "16.webp",
+                "17.webp",
+                "18.webp",
+                "19.webp",
+                "20.webp",
+                "21.webp",
+                "22.webp",
+                "23.webp",
+                "24.webp",
+                "25.webp",
+                "26.webp",
+                "27.webp",
+                "28.webp",
+                "29.webp",
+                "30.webp",
+                "31.webp",
+                "32.webp",
+                "33.webp",
+                "34.webp",
+                "35.webp",
+                "36.webp",
+                "37.webp",
+                "38.webp",
+                "39.webp",
+                "40.webp",
+                "41.webp",
+                "42.webp",
+                "43.webp",
+                "44.webp",
+                "45.webp",
+                "46.webp",
+                "47.webp",
+                "48.webp",
+                "49.webp"
+            ]
+        }
+    ]
+}

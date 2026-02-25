@@ -1,0 +1,5 @@
+{
+    "reset_lower_versions": true,
+    "auto_patch_after_deploy": false,
+    "skip_backup": false
+}

@@ -1,0 +1,1642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Trusted services and talented professionals recommended by Jack Ewers.">
+    <title>Recommendations | Jack Ewers</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/shared/assets/styles/nav.css">
+     
+    <style>
+        :root {
+            --color-primary: #6366f1;
+            --color-primary-light: #818cf8;
+            --color-secondary: #06b6d4;
+            --color-accent: #f59e0b;
+            --color-success: #10b981;
+            --color-bg-primary: #fff;
+            --color-bg-secondary: #f8fafc;
+            --color-bg-tertiary: #f1f5f9;
+            --color-text-primary: #0f172a;
+            --color-text-secondary: #475569;
+            --color-text-tertiary: #94a3b8;
+            --color-border: #e2e8f0;
+            --space-xs: .5rem;
+            --space-sm: .75rem;
+            --space-md: 1rem;
+            --space-lg: 1.5rem;
+            --space-xl: 2rem;
+            --space-2xl: 3rem;
+            --space-3xl: 4rem;
+            --radius-md: .5rem;
+            --radius-lg: .75rem;
+            --radius-xl: 1rem;
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0/.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0/.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0/.1);
+            --transition-base: 300ms cubic-bezier(.4, 0, .2, 1);
+        }
+
+        body.light-mode {
+            --color-bg-primary: #ffffff;
+            --color-bg-secondary: #ffffff;
+            --color-bg-tertiary: #f1f5f9;
+            --color-text-primary: #0f172a;
+            --color-text-secondary: #334155;
+            --color-text-tertiary: #64748b;
+            --color-border: #cbd5e1;
+        }
+
+        @media (prefers-color-scheme:dark) {
+            :root {
+                --color-bg-primary: #0f172a;
+                --color-bg-secondary: #1e293b;
+                --color-bg-tertiary: #334155;
+                --color-text-primary: #f8fafc;
+                --color-text-secondary: #cbd5e1;
+                --color-text-tertiary: #64748b;
+                --color-border: #334155;
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Inter, sans-serif;
+            line-height: 1.6;
+            color: var(--color-text-primary);
+            background: var(--color-bg-primary);
+            padding: 0 var(--space-xs);
+        }
+
+        .header {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: var(--space-3xl) var(--space-lg);
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: var(--space-lg);
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .controls {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-lg);
+            margin: var(--space-xl) 0;
+        }
+
+        .mode-toggle {
+            display: flex;
+            gap: var(--space-md);
+            justify-content: center;
+        }
+
+        .filters {
+            display: flex;
+            gap: var(--space-md);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .results-info {
+            text-align: center;
+            color: var(--color-text-secondary);
+            font-size: 0.875rem;
+            margin-bottom: var(--space-md);
+        }
+
+        .clear-filters-btn {
+            padding: var(--space-sm) var(--space-md);
+            border: 2px solid var(--color-border);
+            background: transparent;
+            color: var(--color-text-secondary);
+            border-radius: var(--radius-lg);
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: all var(--transition-base);
+        }
+
+        body.light-mode .clear-filters-btn {
+            border: 2px solid #cbd5e1;
+            background: #ffffff;
+            color: #64748b;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .clear-filters-btn:hover {
+            border-color: var(--color-primary);
+            color: var(--color-primary);
+        }
+
+        body.light-mode .clear-filters-btn:hover {
+            background: #f8fafc;
+        }
+
+        .filter-input {
+            padding: var(--space-sm) var(--space-lg);
+            border: 2px solid var(--color-border);
+            background: var(--color-bg-secondary);
+            color: var(--color-text-primary);
+            border-radius: var(--radius-lg);
+            font-size: 1rem;
+            min-width: 200px;
+            transition: all var(--transition-base);
+        }
+
+        body.light-mode .filter-input {
+            border: 2px solid #cbd5e1;
+            background: #ffffff;
+            color: #0f172a;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .filter-input:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        }
+
+        .filter-select {
+            padding: var(--space-sm) var(--space-lg);
+            border: 2px solid var(--color-border);
+            background: var(--color-bg-secondary);
+            color: var(--color-text-primary);
+            border-radius: var(--radius-lg);
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all var(--transition-base);
+        }
+
+        body.light-mode .filter-select {
+            border: 2px solid #cbd5e1;
+            background: #ffffff;
+            color: #0f172a;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .filter-select:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        }
+
+        .mode-btn {
+            padding: var(--space-md) var(--space-xl);
+            border: 2px solid var(--color-border);
+            background: var(--color-bg-secondary);
+            color: var(--color-text-secondary);
+            border-radius: var(--radius-lg);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition-base);
+        }
+
+        body.light-mode .mode-btn {
+            border: 2px solid #cbd5e1;
+            background: #ffffff;
+            color: #475569;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .mode-btn.active {
+            background: var(--color-primary);
+            color: white;
+            border-color: var(--color-primary);
+            box-shadow: 0 4px 8px rgba(99, 102, 241, 0.3);
+        }
+
+        body.light-mode .mode-btn.active {
+            background: var(--color-primary);
+            color: white;
+            border-color: var(--color-primary);
+            box-shadow: 0 4px 8px rgba(99, 102, 241, 0.3);
+        }
+
+        .mode-btn:hover:not(.active) {
+            border-color: var(--color-primary);
+            color: var(--color-primary);
+        }
+
+        body.light-mode .mode-btn:hover:not(.active) {
+            background: #f8fafc;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 var(--space-lg) var(--space-3xl);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: var(--space-lg);
+            align-items: start;
+        }
+
+        .card {
+            background: var(--color-bg-secondary);
+            border-radius: var(--radius-xl);
+            padding: var(--space-lg);
+            cursor: pointer;
+            transition: all var(--transition-base);
+            border: 2px solid var(--color-border);
+            position: relative;
+            box-shadow: var(--shadow-md);
+        }
+
+        body.light-mode .card {
+            border: 2px solid #e2e8f0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .card::after {
+            content: '\f078';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            top: var(--space-lg);
+            right: var(--space-lg);
+            color: var(--color-text-tertiary);
+            font-size: 0.875rem;
+            transition: all var(--transition-base);
+        }
+
+        .card.expanded::after {
+            content: '\f077';
+            color: var(--color-primary);
+        }
+
+        .card:hover {
+            box-shadow: var(--shadow-lg);
+            border-color: var(--color-primary);
+        }
+
+        .card:hover::after {
+            color: var(--color-primary);
+        }
+
+        .card.expanded {
+            border-color: var(--color-primary);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            margin-bottom: var(--space-md);
+        }
+
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--color-bg-tertiary);
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        body.light-mode .card-icon {
+            background: #e0e7ff;
+            color: var(--color-primary);
+            border: 1px solid #c7d2fe;
+        }
+
+        .card-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: var(--radius-lg);
+        }
+
+        .card-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .card-name {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: var(--space-xs);
+        }
+
+        .card-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-sm);
+            font-size: 0.875rem;
+            color: var(--color-text-tertiary);
+        }
+
+        .card-meta span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .affiliate-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 2px 8px;
+            background: var(--color-accent);
+            color: white;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        body.light-mode .affiliate-badge {
+            background: #f59e0b;
+            box-shadow: 0 1px 3px rgba(245, 158, 11, 0.3);
+        }
+
+        .card-description {
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+        }
+
+        .card-description.collapsed {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .card-expanded-content {
+            display: none;
+            margin-top: var(--space-lg);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--color-border);
+        }
+
+        .card.expanded .card-expanded-content {
+            display: block;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+        }
+
+        .expanded-section {
+            margin-bottom: var(--space-lg);
+        }
+
+        .expanded-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .expanded-section h3 {
+            font-size: 1.125rem;
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--color-primary);
+            display: flex;
+            align-items: center;
+            gap: var(--space-xs);
+        }
+
+        .feature-list {
+            list-style: none;
+            display: grid;
+            gap: var(--space-sm);
+        }
+
+        .feature-list li {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            color: var(--color-text-secondary);
+        }
+
+        .feature-list i {
+            color: var(--color-success);
+        }
+
+        .testimonial {
+            background: var(--color-bg-secondary);
+            padding: var(--space-lg);
+            border-radius: var(--radius-lg);
+            border-left: 4px solid var(--color-primary);
+        }
+
+        body.light-mode .testimonial {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-left: 4px solid var(--color-primary);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            color: var(--color-text-secondary);
+            margin-bottom: var(--space-md);
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--color-text-primary);
+        }
+
+        .website-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-sm);
+            padding: var(--space-md) var(--space-xl);
+            background: var(--color-primary);
+            color: white;
+            text-decoration: none;
+            border-radius: var(--radius-lg);
+            font-weight: 600;
+            transition: all var(--transition-base);
+        }
+
+        .website-btn:hover {
+            background: var(--color-primary-light);
+            transform: translateY(-2px);
+        }
+
+        .share-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-sm);
+            padding: var(--space-md) var(--space-xl);
+            background: var(--color-secondary);
+            color: white;
+            border: none;
+            border-radius: var(--radius-lg);
+            font-weight: 600;
+            font-family: inherit;
+            cursor: pointer;
+            transition: all var(--transition-base);
+        }
+
+        .share-btn:hover {
+            background: #0891b2;
+            transform: translateY(-2px);
+        }
+
+        .feedback-btn {
+            position: fixed;
+            bottom: var(--space-xl);
+            right: var(--space-xl);
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: var(--color-primary);
+            color: white;
+            border: none;
+            cursor: pointer;
+            box-shadow: var(--shadow-xl);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            transition: all var(--transition-base);
+            z-index: 9999;
+        }
+
+        .feedback-btn:hover {
+            background: var(--color-primary-light);
+            transform: scale(1.1);
+        }
+
+        body.light-mode .feedback-btn {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: var(--space-md);
+            flex-wrap: wrap;
+        }
+
+        .feedback-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+            padding: var(--space-lg);
+            overflow-y: auto;
+        }
+
+        .feedback-modal.show {
+            display: flex;
+        }
+
+        .feedback-modal-content {
+            background: var(--color-bg-primary);
+            border-radius: var(--radius-xl);
+            padding: var(--space-2xl);
+            max-width: 600px;
+            width: 100%;
+            box-shadow: var(--shadow-xl);
+            position: relative;
+            margin: auto;
+        }
+
+        body.light-mode .feedback-modal-content {
+            background: #ffffff;
+            border: 2px solid #e2e8f0;
+        }
+
+        .feedback-modal-close {
+            position: absolute;
+            top: var(--space-lg);
+            right: var(--space-lg);
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--color-text-secondary);
+            cursor: pointer;
+            padding: 0;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all var(--transition-base);
+        }
+
+        .feedback-modal-close:hover {
+            background: var(--color-bg-tertiary);
+            color: var(--color-text-primary);
+        }
+
+        .feedback-modal h2 {
+            margin: 0 0 var(--space-sm) 0;
+            color: var(--color-text-primary);
+        }
+
+        .feedback-modal p {
+            margin: 0 0 var(--space-xl) 0;
+            color: var(--color-text-secondary);
+        }
+
+        .feedback-form {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-lg);
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-sm);
+        }
+
+        .form-group label {
+            font-weight: 600;
+            color: var(--color-text-primary);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: var(--space-md);
+            border: 2px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            background: var(--color-bg-secondary);
+            color: var(--color-text-primary);
+            font-family: inherit;
+            font-size: 1rem;
+            transition: all var(--transition-base);
+        }
+
+        body.light-mode .form-group input,
+        body.light-mode .form-group select,
+        body.light-mode .form-group textarea {
+            background: #ffffff;
+            border: 2px solid #cbd5e1;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            background: var(--color-bg-primary);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            padding: var(--space-md) var(--space-xl);
+            background: var(--color-primary);
+            color: white;
+            border: none;
+            border-radius: var(--radius-lg);
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all var(--transition-base);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-sm);
+        }
+
+        .submit-btn:hover {
+            background: var(--color-primary-light);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .business-link {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--color-bg-secondary);
+            border-radius: var(--radius-lg);
+            cursor: pointer;
+            transition: all var(--transition-base);
+            border: 2px solid var(--color-border);
+        }
+
+        body.light-mode .business-link {
+            background: #ffffff;
+            border: 2px solid #cbd5e1;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+        }
+
+        .business-link:hover {
+            border-color: var(--color-primary);
+            background: var(--color-bg-tertiary);
+        }
+
+        body.light-mode .business-link:hover {
+            background: #f8fafc;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+        }
+
+        .business-link-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--color-bg-tertiary);
+        }
+
+        .business-link-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: var(--radius-md);
+        }
+
+        .business-link-name {
+            font-weight: 600;
+            color: var(--color-text-primary);
+        }
+
+        .people-grid {
+            display: grid;
+            gap: var(--space-md);
+        }
+
+        .person-mini {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            padding: var(--space-md);
+            background: var(--color-bg-secondary);
+            border-radius: var(--radius-lg);
+            cursor: pointer;
+            transition: all var(--transition-base);
+            border: 2px solid var(--color-border);
+        }
+
+        body.light-mode .person-mini {
+            background: #ffffff;
+            border: 2px solid #e2e8f0;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+        }
+
+        .person-mini:hover {
+            border-color: var(--color-primary);
+            background: var(--color-bg-tertiary);
+        }
+
+        body.light-mode .person-mini:hover {
+            background: #f8fafc;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+        }
+
+        .person-mini-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--color-bg-tertiary);
+            flex-shrink: 0;
+        }
+
+        .person-mini-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: var(--radius-md);
+        }
+
+        .person-mini-info {
+            flex: 1;
+        }
+
+        .person-mini-name {
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .person-mini-category {
+            font-size: 0.875rem;
+            color: var(--color-text-tertiary);
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="nav-placeholder" class="nav-skeleton"></div>
+    <script src="/shared/assets/scripts/load-navbar.js"></script>
+    <script src="/shared/assets/scripts/theme.js"></script>
+
+    <header class="header">
+        <h1>Recommendations</h1>
+        <h3>Discover the best businesses and professionals i have ever had the absolute pleasure of meeting.
+            I personally vouch for each and every one of these recommendations. They are my homies, and you won't regret making them yours too. </h3>     
+        <div class="controls">
+            <div class="mode-toggle">
+                <button class="mode-btn active" data-mode="businesses">
+                    <i class="fas fa-store"></i> Businesses
+                </button>
+                <button class="mode-btn" data-mode="people">
+                    <i class="fas fa-user"></i> People
+                </button>
+            </div>
+            <div class="filters">
+                <input type="text" id="searchFilter" class="filter-input" placeholder="Search...">
+                <select id="categoryFilter" class="filter-select">
+                    <option value="">All Categories</option>
+                </select>
+                <select id="locationFilter" class="filter-select">
+                    <option value="">All Locations</option>
+                </select>
+                <button id="clearFilters" class="clear-filters-btn" style="display: none;">
+                    <i class="fas fa-times"></i> Clear
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div id="resultsInfo" class="results-info"></div>
+        <div class="grid" id="recommendationsGrid"></div>
+        
+        <!-- Bottom Notice -->
+        <div style="text-align: center; padding: var(--space-3xl) var(--space-lg); color: var(--color-text-secondary); font-style: italic; max-width: 800px; margin: 0 auto;">
+            <p>More recommendations are being added constantly. If you think I've forgotten yours, click the question mark <i class="fas fa-question" style="font-size: 0.9em; opacity: 0.7;"></i> to send a request.</p>
+        </div>
+    </div>
+
+    <!-- Floating Feedback Button -->
+    <button class="feedback-btn" onclick="openFeedbackModal()" title="Report an issue or request changes">
+        <i class="fas fa-question"></i>
+    </button>
+
+    <!-- Feedback Modal -->
+    <div class="feedback-modal" id="feedbackModal">
+        <div class="feedback-modal-content">
+            <button class="feedback-modal-close" onclick="closeFeedbackModal()">
+                <i class="fas fa-times"></i>
+            </button>
+            <h2>Report an Issue</h2>
+            <p>If you need to update or remove a listing from this page, please fill out the form below.</p>
+            
+            <form class="feedback-form" id="feedbackForm">
+                <div class="form-group">
+                    <label for="listingName">Which listing is this about? *</label>
+                    <input type="text" id="listingName" name="listingName" required placeholder="Business or person name">
+                </div>
+
+                <div class="form-group">
+                    <label for="requestType">What are you requesting? *</label>
+                    <select id="requestType" name="requestType" required>
+                        <option value="">Select an option...</option>
+                        <option value="update">Update listing details</option>
+                        <option value="remove">Remove listing</option>
+                        <option value="add">Why you no recommend me (add homie)</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="additionalInfo">Additional information *</label>
+                    <textarea id="additionalInfo" name="additionalInfo" required placeholder="Please provide details about your request..."></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">
+                    <i class="fas fa-paper-plane"></i>
+                    Submit Request
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal removed -->
+    <div class="modal" id="modal"></div>
+
+    <script>
+        // SETTINGS
+        const filterByCountryOutsideAus = true; // If true, show country for non-AUS, show "State, Australia" for AUS
+        
+        let businessesData = [];
+        let peopleData = [];
+        let currentMode = 'businesses';
+        let expandedCardId = null;
+
+        // Load JSON data
+        async function loadData() {
+            try {
+                const [businessesRes, peopleRes] = await Promise.all([
+                    fetch('businesses.json'),
+                    fetch('people.json')
+                ]);
+                
+                const businessesJson = await businessesRes.json();
+                const peopleJson = await peopleRes.json();
+                
+                businessesData = businessesJson.businesses || [];
+                peopleData = peopleJson.people || [];
+                
+                populateFilters();
+                renderCards();
+                
+                // Check for URL parameter to open specific item
+                handleUrlParameters();
+            } catch (error) {
+                console.error('Error loading data:', error);
+                document.getElementById('recommendationsGrid').innerHTML =
+                    '<p style="text-align: center; color: var(--color-danger);">Failed to load recommendations.</p>';
+            }
+        }
+
+        // Handle URL parameters for deep linking
+        function handleUrlParameters() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const itemId = urlParams.get('id');
+            
+            if (itemId) {
+                // Check if it's a business or person
+                const business = businessesData.find(b => b.id === itemId);
+                const person = peopleData.find(p => p.id === itemId);
+                
+                if (business) {
+                    currentMode = 'businesses';
+                    document.querySelectorAll('.mode-btn').forEach(btn => {
+                        btn.classList.toggle('active', btn.dataset.mode === 'businesses');
+                    });
+                    renderCards();
+                    setTimeout(() => openCard(itemId), 300);
+                } else if (person) {
+                    currentMode = 'people';
+                    document.querySelectorAll('.mode-btn').forEach(btn => {
+                        btn.classList.toggle('active', btn.dataset.mode === 'people');
+                    });
+                    renderCards();
+                    setTimeout(() => openCard(itemId), 300);
+                }
+            }
+        }
+
+        // Open and scroll to a specific card
+        function openCard(itemId) {
+            const cardElement = document.querySelector(`[data-id="${itemId}"]`);
+            if (cardElement) {
+                // Expand the card first
+                expandedCardId = itemId;
+                renderCards();
+                
+                // Wait for re-render, then scroll
+                setTimeout(() => {
+                    const updatedCard = document.querySelector(`[data-id="${itemId}"]`);
+                    if (updatedCard) {
+                        const yOffset = -100; // Offset for fixed headers/nav
+                        const y = updatedCard.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                        window.scrollTo({ top: y, behavior: 'smooth' });
+                    }
+                }, 200);
+            }
+        }
+
+        // Populate filter dropdowns with dynamic filtering
+        function populateFilters() {
+            const allData = currentMode === 'businesses' ? businessesData : peopleData;
+            const selectedCategory = document.getElementById('categoryFilter').value;
+            const selectedLocation = document.getElementById('locationFilter').value;
+            
+            // Filter data for location dropdown (based on category only)
+            let dataForLocationFilter = allData;
+            if (selectedCategory) {
+                dataForLocationFilter = dataForLocationFilter.filter(item => {
+                    const categories = item.categories || [item.category];
+                    return categories.includes(selectedCategory);
+                });
+            }
+            
+            // Filter data for category dropdown (based on location only - NOT category)
+            let dataForCategoryFilter = allData;
+            if (selectedLocation) {
+                dataForCategoryFilter = dataForCategoryFilter.filter(item => {
+                    if (currentMode === 'businesses') {
+                        if (filterByCountryOutsideAus) {
+                            if (selectedLocation.includes(', Australia')) {
+                                const state = selectedLocation.replace(', Australia', '');
+                                return item.country === 'Australia' && item.state === state;
+                            } else {
+                                return item.country === selectedLocation;
+                            }
+                        } else {
+                            return item.city === selectedLocation ||
+                                item.state === selectedLocation ||
+                                item.country === selectedLocation;
+                        }
+                    } else {
+                        // For people, check their business locations
+                        const businessIds = item.businessIds || (item.businessId ? [item.businessId] : []);
+                        const businesses = businessIds.map(id => businessesData.find(b => b.id === id)).filter(Boolean);
+                        if (filterByCountryOutsideAus) {
+                            if (selectedLocation.includes(', Australia')) {
+                                const state = selectedLocation.replace(', Australia', '');
+                                return businesses.some(b => b.country === 'Australia' && b.state === state);
+                            } else {
+                                return businesses.some(b => b.country === selectedLocation);
+                            }
+                        } else {
+                            return businesses.some(b => 
+                                b.city === selectedLocation ||
+                                b.state === selectedLocation ||
+                                b.country === selectedLocation
+                            );
+                        }
+                    }
+                });
+            }
+            // Note: Category filter does NOT filter itself - always show all categories (optionally filtered by location)
+            
+            // Populate categories from location-filtered data (NOT category-filtered)
+            const allCategories = dataForCategoryFilter.flatMap(item => item.categories || [item.category]);
+            const categories = [...new Set(allCategories)].filter(Boolean).sort();
+            const categorySelect = document.getElementById('categoryFilter');
+            const currentCategoryValue = categorySelect.value;
+            categorySelect.innerHTML = '<option value="">All Categories</option>' +
+                categories.map(cat => `<option value="${cat}">${cat}</option>`).join('');
+            // Restore selection
+            if (currentCategoryValue) {
+                categorySelect.value = currentCategoryValue;
+            }
+            
+            // Populate locations from category-filtered data
+            let locations = [];
+            
+            if (currentMode === 'businesses') {
+                // For businesses, get locations from business data
+                locations = [...new Set(dataForLocationFilter.flatMap(item => {
+                    if (!item.country) return [];
+                    if (filterByCountryOutsideAus) {
+                        // For Australia, show state; for others, show country
+                        if (item.country === 'Australia' && item.state) {
+                            return [`${item.state}, Australia`];
+                        } else {
+                            return [item.country];
+                        }
+                    } else {
+                        // Original behavior: show all location components
+                        const locs = [];
+                        if (item.state) locs.push(item.state);
+                        if (item.country) locs.push(item.country);
+                        if (item.city) locs.push(item.city);
+                        return locs;
+                    }
+                }))].sort();
+            } else {
+                // For people, get locations from their businesses
+                locations = [...new Set(dataForLocationFilter.flatMap(person => {
+                    const businessIds = person.businessIds || (person.businessId ? [person.businessId] : []);
+                    return businessIds.flatMap(id => {
+                        const business = businessesData.find(b => b.id === id);
+                        if (!business || !business.country) return [];
+                        if (filterByCountryOutsideAus) {
+                            // For Australia, show state; for others, show country
+                            if (business.country === 'Australia' && business.state) {
+                                return [`${business.state}, Australia`];
+                            } else {
+                                return [business.country];
+                            }
+                        } else {
+                            // Original behavior: show all location components
+                            const locs = [];
+                            if (business.state) locs.push(business.state);
+                            if (business.country) locs.push(business.country);
+                            if (business.city) locs.push(business.city);
+                            return locs;
+                        }
+                    });
+                }))].filter(Boolean).sort();
+            }
+            
+            // Separate Australian locations from rest of world
+            const ausLocations = locations.filter(loc => loc.includes(', Australia')).sort();
+            const otherLocations = locations.filter(loc => !loc.includes(', Australia')).sort();
+            
+            const locationSelect = document.getElementById('locationFilter');
+            const currentLocationValue = locationSelect.value;
+            let optionsHTML = '<option value="">All Locations</option>';
+            
+            // Add Australian locations with separator
+            if (ausLocations.length > 0) {
+                optionsHTML += '<option disabled>━━━ Australia ━━━</option>';
+                optionsHTML += ausLocations.map(loc => {
+                    // Display just the state name in the dropdown
+                    const displayName = loc.replace(', Australia', '');
+                    return `<option value="${loc}">${displayName}</option>`;
+                }).join('');
+            }
+            
+            // Add rest of world locations with separator
+            if (otherLocations.length > 0) {
+                if (ausLocations.length > 0) {
+                    optionsHTML += '<option disabled>━━━ Rest of the World ━━━</option>';
+                }
+                optionsHTML += otherLocations.map(loc => `<option value="${loc}">${loc}</option>`).join('');
+            }
+            
+            locationSelect.innerHTML = optionsHTML;
+            // Restore selection if still available
+            if (currentLocationValue && locations.includes(currentLocationValue)) {
+                locationSelect.value = currentLocationValue;
+            }
+        }
+
+        // Mode switching
+        document.querySelectorAll('.mode-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentMode = btn.dataset.mode;
+                expandedCardId = null;
+                
+                // Reset filters
+                document.getElementById('searchFilter').value = '';
+                document.getElementById('categoryFilter').value = '';
+                document.getElementById('locationFilter').value = '';
+                updateClearButton();
+                
+                populateFilters();
+                renderCards();
+            });
+        });
+
+        // Filter listeners
+        document.getElementById('searchFilter').addEventListener('input', () => {
+            updateClearButton();
+            renderCards();
+        });
+        document.getElementById('categoryFilter').addEventListener('change', () => {
+            updateClearButton();
+            populateFilters(); // Update location options based on selected category
+            renderCards();
+        });
+        document.getElementById('locationFilter').addEventListener('change', () => {
+            updateClearButton();
+            populateFilters(); // Update category options based on selected location
+            renderCards();
+        });
+
+        // Clear filters button
+        document.getElementById('clearFilters').addEventListener('click', () => {
+            document.getElementById('searchFilter').value = '';
+            document.getElementById('categoryFilter').value = '';
+            document.getElementById('locationFilter').value = '';
+            updateClearButton();
+            expandedCardId = null;
+            renderCards();
+        });
+
+        function updateClearButton() {
+            const hasFilters = document.getElementById('searchFilter').value ||
+                              document.getElementById('categoryFilter').value ||
+                              document.getElementById('locationFilter').value;
+            document.getElementById('clearFilters').style.display = hasFilters ? 'block' : 'none';
+        }
+
+        // Filter data
+        function filterData() {
+            const data = currentMode === 'businesses' ? businessesData : peopleData;
+            const searchTerm = document.getElementById('searchFilter').value.toLowerCase();
+            const category = document.getElementById('categoryFilter').value;
+            const location = document.getElementById('locationFilter').value;
+
+            return data.filter(item => {
+                // Search filter
+                const categories = item.categories || [item.category]; // Support both formats
+                const categoryText = categories.join(' ').toLowerCase();
+                const matchesSearch = !searchTerm || 
+                    item.name.toLowerCase().includes(searchTerm) ||
+                    item.description.toLowerCase().includes(searchTerm) ||
+                    categoryText.includes(searchTerm);
+
+                // Category filter
+                const matchesCategory = !category || categories.includes(category);
+
+                // Location filter
+                let matchesLocation = !location;
+                if (location && currentMode === 'businesses') {
+                    if (filterByCountryOutsideAus) {
+                        // Match "State, Australia" format for AUS or country name for others
+                        if (location.includes(', Australia')) {
+                            const state = location.replace(', Australia', '');
+                            matchesLocation = item.country === 'Australia' && item.state === state;
+                        } else {
+                            matchesLocation = item.country === location;
+                        }
+                    } else {
+                        matchesLocation = item.city === location ||
+                            item.state === location ||
+                            item.country === location;
+                    }
+                } else if (location && currentMode === 'people') {
+                    // For people, check their associated business locations
+                    const businessIds = item.businessIds || (item.businessId ? [item.businessId] : []);
+                    const businesses = businessIds.map(id => businessesData.find(b => b.id === id)).filter(Boolean);
+                    if (filterByCountryOutsideAus) {
+                        // Match "State, Australia" format for AUS or country name for others
+                        if (location.includes(', Australia')) {
+                            const state = location.replace(', Australia', '');
+                            matchesLocation = businesses.some(b => b.country === 'Australia' && b.state === state);
+                        } else {
+                            matchesLocation = businesses.some(b => b.country === location);
+                        }
+                    } else {
+                        matchesLocation = businesses.some(b => 
+                            b.city === location ||
+                            b.state === location ||
+                            b.country === location
+                        );
+                    }
+                }
+
+                return matchesSearch && matchesCategory && matchesLocation;
+            });
+        }
+
+        // Render cards based on current mode and filters
+        function renderCards() {
+            const grid = document.getElementById('recommendationsGrid');
+            const resultsInfo = document.getElementById('resultsInfo');
+            const data = filterData();
+            const totalData = currentMode === 'businesses' ? businessesData : peopleData;
+            
+            // Update results info
+            const modeLabel = currentMode === 'businesses' ? 'business' : 'person';
+            const modeLabelPlural = currentMode === 'businesses' ? 'businesses' : 'people';
+            resultsInfo.textContent = `Showing ${data.length} ${data.length === 1 ? modeLabel : modeLabelPlural} ${data.length !== totalData.length ? `(filtered from ${totalData.length})` : ''}`;
+            
+            if (data.length === 0) {
+                grid.innerHTML = `<p style="text-align: center; color: var(--color-text-secondary); grid-column: 1/-1; padding: var(--space-3xl);">
+                    <i class="fas fa-search" style="font-size: 3rem; margin-bottom: var(--space-md); display: block; opacity: 0.3;"></i>
+                    No ${modeLabelPlural} found matching your criteria.<br>
+                    <span style="font-size: 0.875rem; opacity: 0.7;">Try adjusting your filters or search term.</span>
+                </p>`;
+                return;
+            }
+            
+            grid.innerHTML = data.map(item => createCard(item, currentMode)).join('');
+        }
+
+        // Create card with inline expansion
+        function createCard(item, type) {
+            let location = '';
+            
+            // For people, inherit location from their business(es)
+            if (type === 'people') {
+                const businessIds = item.businessIds || (item.businessId ? [item.businessId] : []);
+                if (businessIds.length > 0) {
+                    const businesses = businessIds.map(id => businessesData.find(b => b.id === id)).filter(Boolean);
+                    if (businesses.length > 0) {
+                        // Get unique locations from all businesses
+                        const locations = businesses.map(b => 
+                            [b.city, b.state, b.country].filter(Boolean).join(', ')
+                        ).filter(Boolean);
+                        location = [...new Set(locations)].join(' & ') || 'Online';
+                    } else {
+                        location = 'Online';
+                    }
+                } else {
+                    location = 'Online';
+                }
+            } else {
+                // For businesses, use their own location
+                location = [item.city, item.state, item.country].filter(Boolean).join(', ') || 'Online';
+            }
+            
+            const iconHtml = item.image 
+                ? `<img src="${item.image}" alt="${item.name}" onerror="this.parentElement.innerHTML='<i class=&quot;fas fa-${item.icon || (type === 'businesses' ? 'store' : 'user')}&quot;></i>'">` 
+                : `<i class="fas fa-${item.icon || (type === 'businesses' ? 'store' : 'user')}"></i>`;
+
+            const isExpanded = expandedCardId === item.id;
+
+            let expandedContent = '';
+            
+            if (isExpanded) {
+                // Business link for people (support multiple businesses)
+                if (type === 'people') {
+                    const businessIds = item.businessIds || (item.businessId ? [item.businessId] : []);
+                    if (businessIds.length > 0) {
+                        const businesses = businessIds.map(id => businessesData.find(b => b.id === id)).filter(Boolean);
+                        if (businesses.length > 0) {
+                            expandedContent += `
+                                <div class="expanded-section">
+                                    <h3><i class="fas fa-store"></i> ${item.isOwner ? 'Owner Of' : 'Works At'}</h3>
+                                    ${businesses.map(business => {
+                                        const businessIconHtml = business.image 
+                                            ? `<img src="${business.image}" alt="${business.name}" onerror="this.parentElement.innerHTML='<i class=&quot;fas fa-${business.icon || 'store'}&quot;></i>'">` 
+                                            : `<i class="fas fa-${business.icon || 'store'}"></i>`;
+                                        return `
+                                            <div class="business-link" onclick="event.stopPropagation(); switchToBusiness('${business.id}')">
+                                                <div class="business-link-icon">${businessIconHtml}</div>
+                                                <span class="business-link-name">${business.name}</span>
+                                            </div>
+                                        `;
+                                    }).join('')}
+                                </div>
+                            `;
+                        }
+                    }
+                }
+
+                // Features
+                if (item.features && item.features.length > 0) {
+                    expandedContent += `
+                        <div class="expanded-section">
+                            <h3><i class="fas fa-list"></i> Services</h3>
+                            <ul class="feature-list">
+                                ${item.features.map(f => `<li><i class="fas fa-check-circle"></i>${f}</li>`).join('')}
+                            </ul>
+                        </div>
+                    `;
+                }
+
+                // Testimonial
+                if (item.testimonial) {
+                    const testimonialText = typeof item.testimonial === 'string' ? item.testimonial : item.testimonial.text;
+                    expandedContent += `
+                        <div class="expanded-section">
+                            <h3><i class="fas fa-quote-left"></i> Testimonial</h3>
+                            <div class="testimonial">
+                                <p class="testimonial-text">"${testimonialText}"</p>
+                            </div>
+                        </div>
+                    `;
+                }
+
+                // Recommended people (for businesses)
+                if (type === 'businesses') {
+                    const businessIds = [item.id];
+                    const attachedPeople = peopleData.filter(p => {
+                        const personBusinessIds = p.businessIds || (p.businessId ? [p.businessId] : []);
+                        return personBusinessIds.some(id => businessIds.includes(id));
+                    });
+                    
+                    // Sort: owners first, then by name
+                    attachedPeople.sort((a, b) => {
+                        if (a.isOwner && !b.isOwner) return -1;
+                        if (!a.isOwner && b.isOwner) return 1;
+                        return a.name.localeCompare(b.name);
+                    });
+                    
+                    if (attachedPeople.length > 0) {
+                        expandedContent += `
+                            <div class="expanded-section">
+                                <h3><i class="fas fa-users"></i> Recommended People</h3>
+                                <div class="people-grid">
+                                    ${attachedPeople.map(person => {
+                                        const personIconHtml = person.image 
+                                            ? `<img src="${person.image}" alt="${person.name}" onerror="this.parentElement.innerHTML='<i class=&quot;fas fa-${person.icon || 'user'}&quot;></i>'">` 
+                                            : `<i class="fas fa-${person.icon || 'user'}"></i>`;
+                                        const categoryDisplay = person.isOwner ? `Owner / ${person.category}` : person.category;
+                                        const crownIcon = person.isOwner ? '<i class="fas fa-crown" style="color: gold; margin-left: 4px;"></i>' : '';
+                                        return `
+                                            <div class="person-mini" onclick="event.stopPropagation(); switchToPerson('${person.id}')">
+                                                <div class="person-mini-icon">${personIconHtml}</div>
+                                                <div class="person-mini-info">
+                                                    <div class="person-mini-name">${person.name}${crownIcon}</div>
+                                                    <div class="person-mini-category">${categoryDisplay}</div>
+                                                </div>
+                                            </div>
+                                        `;
+                                    }).join('')}
+                                </div>
+                            </div>
+                        `;
+                    }
+                }
+
+                // Website button
+                if (item.website) {
+                    expandedContent += `
+                        <div class="expanded-section">
+                            <a href="${item.website}" target="_blank" rel="noopener" class="website-btn" onclick="event.stopPropagation()">
+                                <i class="fas fa-external-link-alt"></i> Visit Website
+                            </a>
+                        </div>
+                    `;
+                }
+                
+                // Share button
+                expandedContent += `
+                    <div class="expanded-section">
+                        <button class="share-btn" onclick="event.stopPropagation(); copyShareLink('${item.id}', '${item.name}')">
+                            <i class="fas fa-share-nodes"></i> Share Link
+                        </button>
+                    </div>
+                `;
+            }
+
+            return `
+                <div class="card ${isExpanded ? 'expanded' : ''}" data-id="${item.id}" onclick="toggleCard('${item.id}')">
+                    <div class="card-header">
+                        <div class="card-icon">${iconHtml}</div>
+                        <div class="card-info">
+                            <div class="card-name">${item.name}</div>
+                            <div class="card-meta">
+                                <span><i class="fas fa-tag"></i>${(item.categories || [item.category])[0]}</span>
+                                <span><i class="fas fa-map-marker-alt"></i>${location}</span>
+                                ${item.isAffiliate ? '<span class="affiliate-badge"><i class="fas fa-handshake"></i>Affiliate</span>' : ''}
+                            </div>
+                        </div>
+                    </div>
+                    <p class="card-description ${isExpanded ? '' : 'collapsed'}">${item.description}</p>
+                    ${isExpanded ? `<div class="card-expanded-content">${expandedContent}</div>` : ''}
+                </div>
+            `;
+        }
+        
+        // Copy share link to clipboard
+        function copyShareLink(itemId, itemName) {
+            const url = `${window.location.origin}${window.location.pathname}?id=${itemId}`;
+            navigator.clipboard.writeText(url).then(() => {
+                // Show temporary success message
+                const btn = event.target.closest('.share-btn');
+                const originalHtml = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-check"></i> Link Copied!';
+                btn.style.background = 'var(--color-success)';
+                setTimeout(() => {
+                    btn.innerHTML = originalHtml;
+                    btn.style.background = '';
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy:', err);
+                alert('Failed to copy link. Please try again.');
+            });
+        }
+
+        // Toggle card expansion
+        function toggleCard(id) {
+            if (expandedCardId === id) {
+                expandedCardId = null;
+            } else {
+                expandedCardId = id;
+            }
+            renderCards();
+            
+            // Scroll expanded card into view
+            if (expandedCardId) {
+                setTimeout(() => {
+                    const card = document.querySelector('.card.expanded');
+                    if (card) {
+                        card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    }
+                }, 100);
+            }
+        }
+
+        // Switch to business from person card
+        function switchToBusiness(businessId) {
+            currentMode = 'businesses';
+            document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+            document.querySelector('[data-mode="businesses"]').classList.add('active');
+            
+            // Reset filters
+            document.getElementById('searchFilter').value = '';
+            document.getElementById('categoryFilter').value = '';
+            document.getElementById('locationFilter').value = '';
+            
+            populateFilters();
+            expandedCardId = businessId;
+            renderCards();
+            
+            setTimeout(() => {
+                const card = document.querySelector('.card.expanded');
+                if (card) {
+                    card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            }, 100);
+        }
+
+        // Switch to person from business card
+        function switchToPerson(personId) {
+            currentMode = 'people';
+            document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+            document.querySelector('[data-mode="people"]').classList.add('active');
+            
+            // Reset filters
+            document.getElementById('searchFilter').value = '';
+            document.getElementById('categoryFilter').value = '';
+            document.getElementById('locationFilter').value = '';
+            
+            populateFilters();
+            expandedCardId = personId;
+            renderCards();
+            
+            setTimeout(() => {
+                const card = document.querySelector('.card.expanded');
+                if (card) {
+                    card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            }, 100);
+        }
+
+        // Feedback Modal Functions
+        function openFeedbackModal() {
+            const modal = document.getElementById('feedbackModal');
+            modal.classList.add('show');
+        }
+
+        function closeFeedbackModal() {
+            const modal = document.getElementById('feedbackModal');
+            modal.classList.remove('show');
+            document.getElementById('feedbackForm').reset();
+        }
+
+        // Handle form submission
+        document.getElementById('feedbackForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const listingName = document.getElementById('listingName').value;
+            const requestType = document.getElementById('requestType').value;
+            const additionalInfo = document.getElementById('additionalInfo').value;
+            const submitBtn = e.target.querySelector('button[type="submit"]');
+            
+            // Disable button and show loading
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+            
+            const requestTypeText = {
+                'update': 'Update Listing Details',
+                'remove': 'Remove Listing',
+                'add': 'Add New Recommendation',
+                'other': 'Other Request'
+            }[requestType] || requestType;
+            
+            const emailMessage = `Listing Feedback Request
+
+Listing: ${listingName}
+Request Type: ${requestTypeText}
+
+Additional Information:
+${additionalInfo}
+
+---
+This request was submitted via the recommendations page feedback form.`;
+
+            const ntfyMessage = `🔔 Recommendations Feedback
+${requestTypeText}: ${listingName}
+
+${additionalInfo}`;
+
+            try {
+                // Send via email API
+                const emailResponse = await fetch('https://bloodweb.net/api/jackewers/send-mail.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        to: 'jack@jackewers.com',
+                        subject: `Recommendations: ${requestTypeText} - ${listingName}`,
+                        message: emailMessage,
+                        from: 'recommendations@jackewers.com'
+                    })
+                });
+
+                // Send via ntfy
+                const ntfyResponse = await fetch('https://ntfy.sh/jackewers_notif', {
+                    method: 'POST',
+                    body: ntfyMessage,
+                    headers: {
+                        'Content-Type': 'text/plain',
+                        'Title': `Recommendations: ${requestTypeText}`,
+                        'Priority': '4',
+                        'Tags': 'email,feedback'
+                    }
+                });
+
+                if (emailResponse.ok || ntfyResponse.ok) {
+                    // Success!
+                    submitBtn.innerHTML = '<i class="fas fa-check"></i> Sent!';
+                    submitBtn.style.background = 'var(--color-success)';
+                    
+                    setTimeout(() => {
+                        closeFeedbackModal();
+                        document.getElementById('feedbackForm').reset();
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit Request';
+                        submitBtn.style.background = '';
+                    }, 2000);
+                } else {
+                    throw new Error('Both services failed');
+                }
+            } catch (error) {
+                console.error('Error sending feedback:', error);
+                submitBtn.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Failed - Try Again';
+                submitBtn.style.background = '#ef4444';
+                submitBtn.disabled = false;
+                
+                setTimeout(() => {
+                    submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit Request';
+                    submitBtn.style.background = '';
+                }, 3000);
+            }
+        });
+
+        // Close modal when clicking outside
+        document.getElementById('feedbackModal').addEventListener('click', (e) => {
+            if (e.target.id === 'feedbackModal') {
+                closeFeedbackModal();
+            }
+        });
+
+        // Close modal on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeFeedbackModal();
+            }
+        });
+
+        // Load data on page load
+        document.addEventListener('DOMContentLoaded', loadData);
+    </script>
+</body>
+</html>

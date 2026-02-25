@@ -1,0 +1,8 @@
+*.key
+*.pem
+*.crt
+*.cert
+!public-ca.pem
+linktree/generator
+cert.perm
+email-signatures/

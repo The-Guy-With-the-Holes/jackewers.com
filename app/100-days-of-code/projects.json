@@ -1,0 +1,138 @@
+[
+{
+    "name": "Linktree Clone",
+    "description": "A linktree clone built with HTML, CSS, and JavaScript to showcase multiple links in a single page.",
+    "image": "/linktree/linktree-square.png",
+    "fallbackIcon": "🔗",
+    "link": "/linktree/",
+    "tags": ["JavaScript", "DOM", "Tutorial"],
+    "dateCompleted": "2025-10-08",
+    "day": 1
+},
+{
+    "name": "Calculator",
+    "description": "A clean, responsive calculator app built with HTML, CSS, and JavaScript featuring basic arithmetic operations.",
+    "image": "/app/calculator/calculator.png",
+    "fallbackIcon": "🧮",
+    "link": "/app/calculator/",
+    "tags": ["HTML", "CSS", "JavaScript"],
+    "dateCompleted": "2025-10-09",
+    "day": 2
+},
+{
+    "name": "Office Home Assistant",
+    "description": "A Smart controller for office appliances made with an arduino uno and a resistive touch screen.",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgRwE9gUnVOnpxl4Eu8I-reU-aIkvQpngJBQ&s",
+    "fallbackIcon": "🏠",
+    "link": "/app/projects/smarthome/office-controller.html",
+    "tags": ["API", "JavaScript", "CSS"],
+    "dateCompleted": "2025-10-10",
+    "day": 3
+},
+{
+    "name": "Certificate Portfolio",
+    "description": "A portfolio website showcasing certificates and achievements.",
+    "image": "https://media.bloodweb.net/jackewers/certificates/5Diploma/Diploma%20of%20marketing.jpg",
+    "fallbackIcon": "🎓",
+    "link": "/certificates/",
+    "tags": ["HTML", "CSS", "JavaScript"],
+    "dateCompleted": "2026-02-11",
+    "day": 4
+},
+{
+    "name": "Task Manager",
+    "description": "A web app to manage tasks and to-do lists efficiently. Features, sharing, focus mode, and more.",
+    "image": "https://bloodweb.net/media/images/bloodweb/task_manager/TM_icon.png",
+    "fallbackIcon": "📋",
+    "link": "https://bloodweb.net/tasklist/",
+    "tags": ["JavaScript", "HTML", "CSS"],
+    "dateCompleted": "2026-02-12",
+    "day": 5,
+    "isWIP":true
+},
+{
+    "name": "Coin Flip Game",
+    "description": "A simple coin flip game built with HTML, CSS, and JavaScript. Featuring animations, tracking and simple toast notifications.",
+    "image": "https://bloodweb.net/media/images/bloodweb/coin_flip/coin_flip_icon.png",
+    "fallbackIcon": "🪙",
+    "link": "/app/projects/games/coin-flip/",
+    "tags": ["JavaScript", "HTML", "CSS"],
+    "dateCompleted": "2026-02-12",
+    "day": 6
+},
+{   
+    "name": "Onion Chat",
+   "description": " A Darknet chat application built with Node.js, Express, and Socket.io, allowing users to communicate securely over the Tor network.",
+   "image": "https://upload.wikimedia.org/wikipedia/commons/c/c0/Tor_logo1.png?20121031195651",
+   "fallbackIcon": "🃏",
+   "link": "https://onion.bloodweb.net/",
+   "tags": ["JavaScript", "HTML", "CSS", "Node.js", "Express", "Socket.io"],
+   "dateCompleted": "2026-02-14",
+   "day": 7,
+   "isWIP": true
+},
+{
+    "name": "Convertimatic",
+    "description": "Universal converter, Measurements, currencies, files, and more.", 
+    "image": "https://media.bloodweb.net/images/bloodweb/convertimatic/logo.jpg",
+    "fallbackIcon": "☀️",
+    "link": "https://bloodweb.net/converter/",
+    "tags": ["JavaScript", "HTML", "CSS", "API", "Modules"],
+    "dateCompleted": "2026-02-15",
+    "day": 8,
+    "isWIP": true
+},
+{
+    "name": "Smart WooCommerce Tariffs",
+    "description": "A WooCommerce plugin that applies regional tariffs to the checkout process.",
+    "image": "https://bloodweb.net/media/images/bloodweb/plugins/tarrif-banner.jpg",
+    "fallbackIcon": "🛒",
+    "link": "http://bloodweb.net/plugins/tariff-manager/",
+    "tags": ["PHP", "JavaScript", "WooCommerce", "Plugin"],
+    "dateCompleted": "2026-02-16",
+    "day": 9
+},
+{
+    "name": "Regional Coupons",
+    "description": "Look, i felt bad about making a plugin that only adds fees to regions, so i made another one that allows region specific coupons (Try \"FUCKTARIFFS\" when checking out with a clickerino order). ",
+    "image": "https://logos-world.net/wp-content/uploads/2025/04/WooCommerce-Symbol-1.png",
+    "fallbackIcon": "🛒",
+    "link": "https://bloodweb.net/plugins/regional-coupon/",
+    "tags": ["PHP", "JavaScript", "WooCommerce", "Plugin"],
+    "dateCompleted": "2026-02-16",
+    "day": 10
+},
+{
+    "name": "Batch image cropper",
+    "description": "A convertimatic module that allows users to batch crop images to a specified aspect ratio or custom dimensions. Part of Convertimatic, but deserves its own project page.",
+    "image": "https://media.bloodweb.net/images/bloodweb/convertimatic/logo.jpg",
+    "fallbackIcon": "🖼️",
+    "link": "https://bloodweb.net/converter/?image-cropper/",
+    "tags": ["JavaScript", "HTML", "CSS"],
+    "dateCompleted": "2026-02-21",
+    "day": 11
+},
+{
+    "name": "Image format converter",
+    "description": "A convertimatic module that allows users to convert images between different formats (e.g., JPEG, PNG, GIF).",
+    "image": "https://media.bloodweb.net/images/bloodweb/convertimatic/logo.jpg",
+    "fallbackIcon": "🖼️",
+    "link": "https://bloodweb.net/converter/?image-converter/",
+    "tags": ["JavaScript", "HTML", "CSS"],
+    "dateCompleted": "2026-02-22",
+    "day": 12
+},
+{
+    "name": "Steganography Tool",
+    "description": "A convertimatic module that allows users to hide messages within images using steganography techniques.",
+    "image": "https://media.bloodweb.net/images/bloodweb/convertimatic/logo.jpg",
+    "fallbackIcon": "🕵️‍♂️",
+    "link": "https://bloodweb.net/converter/?steganography/",
+    "tags": ["JavaScript", "HTML", "CSS"],
+    "dateCompleted": "2026-02-23",
+    "day": 13
+}
+
+
+
+]

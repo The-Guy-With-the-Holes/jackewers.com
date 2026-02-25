@@ -1,0 +1,153 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doorbell</title>
+    <link rel="stylesheet" href="/shared/assets/styles/nav_and_socials.css">
+
+    <link rel="stylesheet" href="/shared/assets/styles/projects.css">
+</head>
+<body class="instructables">
+
+    <div id="instructions"> <!-- Begin reading instructions -->
+        <p class="js-required-message">This page requires JavaScript to function properly. Please enable JavaScript in
+            your browser settings.</p>
+    </div>
+
+    <div class="instruction" data-style="header"
+        data-title=" W.A.S.A.P.P User Guide:"
+        data-image="/app/doorbell/doorbell.jpg /app/doorbell/doorbell_open.jpg"
+        data-content="The Wilhelm-Arcade-Scream-Activated-Python_Powered-Pico WASAP is an innovative doorbell system that brings a dramatic twist to the traditional doorbell experience. 
+            When the arcade button is pressed, the Raspberry Pi Pico sends a signal via Wi-Fi to a server running Flask, 
+            which then plays the iconic Wilhelm scream throughout the house. 
+            This unique setup combines modern technology with a classic sound effect, 
+            ensuring that your guests' arrival is announced in a memorable and entertaining way.">  
+    </div>
+    
+<div class="instruction" data-style="ul"
+data-title="Parts List:"
+data-image=""
+data-content="
+    <li> RaspberryPi Pico W (with headers)</li>
+    <br>
+    <li> 30-33mm Arcade push button</li>
+    <br>
+    <li> Power supply for the pico (I used a AAA battery bank, but a Lipo)</li>
+    <br>
+    <li> Dupont cables</li>
+    <br>
+    <li> Computer Device With a Speaker (For the Server) </li>
+    ">
+</div>  
+
+<div class="instruction" data-style="ol"
+data-title="Programming:"
+data-image=""
+data-content="
+<li>
+    Set up the server using Flask on your computer. 
+    You can find the code for the server below:
+    <br>
+    If you don't have Flask installed, you can install it using pip install Flask
+
+Be sure to replace 'path/to/audio.mp3' with the path to the audio file you want to play.
+</li>
+<pre>
+<code>
+# This file is used to play the doorbell sound when a request is made to the server
+# inititalise this file via: python doorbell_server.py
+# Send the request via: curl -X POST http://localhost:5000/play_audio
+
+from flask import Flask
+import os
+
+app = Flask(name)
+
+@app.route('/play_audio', methods=['POST'])
+def play_audio():
+os.system('aplay path/to/audio.mp3)  
+return 'Audio played', 200
+
+if name == 'main':
+app.run(host='0.0.0.0', port=5000)
+</code>
+</pre>
+<li>
+    Install the latest version of MicroPython on the RaspberryPi Pico
+</li>
+<li>
+    Create a new Python file on the RaspberryPi Pico and copy the following code:
+    Be sure to replace 'your_wifi_ssid' and 'your_wifi_password' with your Wi-Fi credentials, and 'SERVER_IP' with the IP address of your server.
+</li>
+<pre>
+<code>
+import network
+import urequests
+import machine
+import time
+
+# Wi-Fi credentials
+SSID = 'your_wifi_ssid'
+PASSWORD = 'your_wifi_password'
+
+# Button setup
+button = machine.Pin(14, machine.Pin.IN, machine.Pin.PULL_UP)  
+
+# Connect to Wi-Fi
+wlan = network.WLAN(network.STA_IF)
+wlan.active(True)
+wlan.connect(SSID, PASSWORD)
+
+# Wait for connection
+while not wlan.isconnected():
+    time.sleep(1)
+
+print('Connected to Wi-Fi')
+
+# URL of the server endpoint
+url = 'http://SERVER_IP:5000/play_audio' 
+
+def play_audio():
+    try:
+        response = urequests.post(url)
+        print('Audio play response:', response.text)
+    except Exception as e:
+        print('Failed to send request:', e)
+
+while True:
+    if not button.value():  # Button pressed
+        play_audio()
+        time.sleep(1)  # Debounce delay
+</code>
+<pre>
+
+</div>
+"></div>
+
+
+<script>
+const userSettings = {
+    LD_slider:true,
+    createNav:false,
+    return:{
+        ref:'/app/index.html',
+        label:'Back to Projects'
+    },
+
+    branding:{
+        init:true,
+        position:'top right',
+        foot_note:'Powered by Bloodweb.Net',
+    },
+
+}
+</script>
+<!-- Import Key Functions -->
+<script src="/KeyFunctions.js"></script>
+<!-- Make instructions-->
+<script src="/JS/instructables.js"></script>
+<!-- Create return label and any other Nav items -->
+<script src="https://bloodweb.net/JS/Navigation.js"></script>
+</body>
+</html> 

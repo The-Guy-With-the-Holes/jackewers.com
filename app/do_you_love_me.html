@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Do you love me?</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #fcfdfc;
+            padding: min(5vh,50px) min(1vw,20px);
+        }
+
+        h1 { color: #080800; }
+
+        .cat-gif {
+            width: 300px;
+            height: auto;
+            margin: 20px 0;
+        }
+
+        .buttons { margin: 20px 0; }
+
+        .buttons button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 0 10px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: black;
+            color: white;
+        }
+
+        .hacked-message {
+            display: none;
+            color: red;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Do you love me?</h1>
+    <img src="https://www.jackewers.com/i/Cute_cat.gif" alt="Cute Cat" class="cat-gif" id="catGif">
+    <div class="buttons">
+        <button class="yes-button" onclick="handleYes()">❤️ Yes</button>
+        <button class="no-button" onclick="handleNo()">💔 No</button>
+    </div>
+    <div class="hacked-message" id="hackedMessage"></div>
+
+<script>
+    function handleYes() {
+        document.body.style.backgroundColor = '#f6f8f5';
+        document.getElementById('catGif').src = 'https://www.jackewers.com/i/Cute_cat2.gif';
+        document.querySelector('h1').innerText = 'I love you too! <3';
+        document.getElementsByClassName('buttons')[0].style.display = 'none';
+    }
+
+    function getDeviceInfo() {
+        const userAgent = navigator.userAgent;
+        const screenWidth = screen.width;
+        const screenHeight = screen.height;
+        const language = navigator.language;
+        const platform = navigator.platform;
+        const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        const cookiesEnabled = navigator.cookieEnabled;
+        const onlineStatus = navigator.onLine;
+
+        return {
+            userAgent,
+            screenWidth,
+            screenHeight,
+            language,
+            platform,
+            timezone,
+            cookiesEnabled,
+            onlineStatus
+        };
+    }
+
+    function handleNo() {
+        const deviceInfo = getDeviceInfo();
+        const hackedMessage = document.getElementById('hackedMessage');
+        hackedMessage.innerHTML = `
+            <h2>You got hacked!</h2>
+            <p>Your IP: 192.168.1.1</p>
+            <p>User Agent: ${deviceInfo.userAgent}</p>
+            <p>Screen Resolution: ${deviceInfo.screenWidth}x${deviceInfo.screenHeight}</p>
+            <p>Language: ${deviceInfo.language}</p>
+            <p>Platform: ${deviceInfo.platform}</p>
+            <p>Timezone: ${deviceInfo.timezone}</p>
+            <p>Cookies Enabled: ${deviceInfo.cookiesEnabled}</p>
+            <p>Online Status: ${deviceInfo.onlineStatus ? 'Online' : 'Offline'}</p>
+        `;
+        hackedMessage.style.display = 'block';
+
+        // Hide all other elements
+        document.querySelector('h1').style.display = 'none';
+        document.getElementById('catGif').style.display = 'none';
+        document.getElementsByClassName('buttons')[0].style.display = 'none';
+    }
+</script>
+</body>
+</html>

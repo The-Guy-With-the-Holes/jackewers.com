@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Photo Albums - Jack Ewers. Personal moments, family, friends, and life experiences.">
+    <title>Photo Albums | Jack Ewers</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Shared Styles -->
+    <link rel="stylesheet" href="/shared/assets/styles/design-system.css">
+    <link rel="stylesheet" href="/shared/assets/styles/components.css">
+    <link rel="stylesheet" href="/shared/assets/styles/utilities.css">
+    <link rel="stylesheet" href="/shared/assets/styles/animations.css">
+    <link rel="stylesheet" href="/shared/assets/styles/nav.css">
+    
+    <!-- Albums Page Styles -->
+    <link rel="stylesheet" href="/albums/styles.css">
+
+</head>
+<body>
+    <!-- Navigation Component -->
+    <div id="nav-placeholder" class="nav-skeleton"></div>
+    <script src="/shared/assets/scripts/load-navbar.js"></script>
+    <script src="/shared/assets/scripts/theme.js"></script>
+    
+    <div class="container">
+        <div class="header">
+            <h1>Photo Albums</h1>
+            <p>Moments that matter - the people, places, and experiences that shape who I am</p>
+        </div>
+        
+        <h2 class="section-header">Personal Albums</h2>
+        
+        <div class="albums-grid" id="albums-grid">
+            <!-- Albums will be loaded dynamically from JSON -->
+        </div>
+    </div>
+    
+    <!-- Album Dialog -->
+    <div class="album-dialog" id="album-dialog" onclick="closeAlbumDialog(event)">
+        <div class="album-dialog-content" onclick="event.stopPropagation()">
+            <div class="album-dialog-header">
+                <h2 class="album-dialog-title" id="dialog-title"></h2>
+                <button class="album-dialog-close" onclick="closeAlbumDialog()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="album-dialog-body">
+                <div class="album-photos-grid" id="dialog-photos-grid"></div>
+                <div class="load-more-container" id="load-more-container" style="display: none;">
+                    <button class="load-more-btn" id="load-more-btn" onclick="loadMorePhotos()">
+                        <i class="fas fa-images"></i> Load More Photos
+                    </button>
+                    <p class="photo-count" id="photo-count"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Lightbox Modal -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+        <button class="lightbox-close" onclick="closeLightbox()">
+            <i class="fas fa-times"></i>
+        </button>
+        <button class="lightbox-nav prev" onclick="event.stopPropagation(); navigateLightbox(-1)">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <div class="lightbox-content" onclick="event.stopPropagation()">
+            <img src="" alt="" class="lightbox-image" id="lightbox-image">
+        </div>
+        <button class="lightbox-nav next" onclick="event.stopPropagation(); navigateLightbox(1)">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+        <div class="lightbox-counter" id="lightbox-counter"></div>
+    </div>
+    
+    <!-- Unlock Dialog -->
+    <div class="unlock-dialog" id="unlock-dialog">
+        <div class="unlock-dialog-content">
+            <div class="unlock-dialog-icon">
+                <i class="fas fa-lock"></i>
+            </div>
+            <h3 class="unlock-dialog-title" id="unlock-title">This Album is Locked</h3>
+            <p class="unlock-dialog-hint" id="unlock-hint"></p>
+            <input type="text" class="unlock-dialog-input" id="unlock-input" placeholder="Enter date (MM/DD/YYYY)">
+            <div class="unlock-dialog-error" id="unlock-error"></div>
+            <div class="unlock-dialog-buttons">
+                <button class="unlock-dialog-btn secondary" onclick="closeUnlockDialog()">Cancel</button>
+                <button class="unlock-dialog-btn primary" onclick="attemptUnlock()">Unlock</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Configuration
+        const PHOTOS_PER_PAGE = 24; // Load 24 photos at a time
+        const CAROUSEL_INTERVAL = 5000;
+
+        // State management
+        let albumsData = [];
+        let currentIndices = {};
+        let currentLightboxAlbum = null;
+        let currentLightboxIndex = 0;
+        let currentAlbumPhotos = [];
+        let displayedPhotoCount = 0;
+        let interactedAlbums = new Set(); // Track which albums have been interacted with
+        let carouselIntervals = {}; // Track individual album intervals
+
+        // Load albums from JSON
+        async function loadAlbums() {
+            try {
+                const response = await fetch('albums.json');
+                const data = await response.json();
+                albumsData = data.albums;
+                renderAlbumGrid();
+                initializeCarousels();
+            } catch (error) {
+                console.error('Error loading albums:', error);
+                // Fallback to hardcoded data if JSON fails
+                loadFallbackData();
+            }
+        }
+
+        // Fallback data if JSON load fails
+        function loadFallbackData() {
+            albumsData = [
+                {
+                    id: "fam",
+                    name: "Family",
+                    basePath: "https://media.bloodweb.net/jackewers/images/carousel/fam/",
+                    photos: ["fam_0.webp", "fam_1.webp", "fam_2.webp", "fam_3.webp", "fam_4.webp"],
+                    photoCount: 5
+                },
+                {
+                    id: "homies",
+                    name: "Friends",
+                    basePath: "https://media.bloodweb.net/jackewers/images/carousel/homies/",
+                    photos: ["homies_0.webp", "homies_1.webp", "homies_2.webp", "homies_3.webp", "homies_4.webp", "homies_5.webp"],
+                    photoCount: 6
+                },
+                {
+                    id: "seb",
+                    name: "Seb",
+                    basePath: "https://media.bloodweb.net/jackewers/images/carousel/seb/",
+                    photos: ["seb_1.webp", "seb_2.webp", "seb_3.webp", "seb_4.webp", "seb_5.webp"],
+                    photoCount: 5
+                },
+                {
+                    id: "love",
+                    name: "My Love",
+                    basePath: "https://media.bloodweb.net/jackewers/images/carousel/my-love/",
+                    photos: ["love_0.webp", "love_1.webp", "love_2.webp", "love_3.webp", "love_4.webp"],
+                    photoCount: 5
+                }
+            ];
+            renderAlbumGrid();
+            initializeCarousels();
+        }
+
+        // Render album grid from data
+        function renderAlbumGrid() {
+            const grid = document.getElementById('albums-grid');
+            grid.innerHTML = '';
+            
+            // Sort albums by weight (ascending), albums without weight go to end
+            const sortedAlbums = [...albumsData].sort((a, b) => {
+                const weightA = a.weight !== undefined ? a.weight : Infinity;
+                const weightB = b.weight !== undefined ? b.weight : Infinity;
+                return weightA - weightB;
+            });
+            
+            sortedAlbums.forEach(album => {
+                const albumCard = createAlbumCard(album);
+                grid.appendChild(albumCard);
+            });
+        }
+
+        // Create album card element
+        function createAlbumCard(album) {
+            const container = document.createElement('div');
+            container.className = 'album-container';
+            container.dataset.album = album.id;
+            
+            const albumImages = document.createElement('div');
+            albumImages.className = 'album-images';
+            albumImages.id = `album-${album.id}`;
+            
+            // Check if album is locked and not unlocked
+            const isLocked = album.requiresUnlock && !isAlbumUnlocked(album.id);
+            
+            if (isLocked) {
+                // Show lock icon instead of images
+                albumImages.innerHTML = `
+                    <div class="locked-album-overlay">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                `;
+            } else {
+                // Add preview images (first 5 max for carousel)
+                const previewCount = Math.min(album.photos.length, 5);
+                album.photos.slice(0, previewCount).forEach((photo, index) => {
+                    const img = document.createElement('img');
+                    img.src = album.basePath + photo;
+                    img.alt = album.name;
+                    img.className = 'album-image' + (index === 0 ? ' active' : '');
+                    img.loading = 'lazy';
+                    albumImages.appendChild(img);
+                });
+                
+                // Navigation buttons
+                const nav = document.createElement('div');
+                nav.className = 'album-nav';
+                nav.innerHTML = `
+                    <button class="album-nav-btn" onclick="event.stopPropagation(); changeAlbumImage('album-${album.id}', -1)">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="album-nav-btn" onclick="event.stopPropagation(); changeAlbumImage('album-${album.id}', 1)">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                `;
+                albumImages.appendChild(nav);
+                
+                // Indicators
+                const indicators = document.createElement('div');
+                indicators.className = 'album-indicators';
+                indicators.id = `indicators-${album.id}`;
+                albumImages.appendChild(indicators);
+            }
+            
+            // Title
+            const title = document.createElement('div');
+            title.className = 'album-title';
+            if (album.description) {
+                title.innerHTML = `<div style="font-size: 1.25rem; font-weight: 700; margin-bottom: 0.25rem;">${album.name}</div><div style="font-size: 0.875rem; font-weight: 400; opacity: 0.7;">${album.description}</div>`;
+            } else {
+                title.textContent = album.name;
+            }
+            
+            container.appendChild(albumImages);
+            container.appendChild(title);
+            
+            // Click handler
+            container.addEventListener('click', (e) => {
+                // Stop carousel when album is interacted with
+                const albumId = `album-${album.id}`;
+                stopCarousel(albumId);
+                
+                if (e.target.closest('.album-nav-btn') || e.target.closest('.indicator')) {
+                    return;
+                }
+                
+                // Check if album is locked
+                if (album.requiresUnlock && !isAlbumUnlocked(album.id)) {
+                    showUnlockDialog(album);
+                } else {
+                    openAlbumDialog(album.id);
+                }
+            });
+            
+            return container;
+        }
+
+        // Initialize carousel indicators and state
+        function initializeCarousels() {
+            albumsData.forEach((album, index) => {
+                const albumId = `album-${album.id}`;
+                currentIndices[albumId] = 0;
+                initializeIndicators(albumId);
+                
+                // Staggered auto-advance - skip locked albums
+                if (!album.requiresUnlock || isAlbumUnlocked(album.id)) {
+                    const delay = 5000 + (index * 2500); // 5s, 7.5s, 10s, etc.
+                    
+                    carouselIntervals[albumId] = setTimeout(() => {
+                        const intervalId = setInterval(() => {
+                            if (!interactedAlbums.has(albumId)) {
+                                changeAlbumImage(albumId, 1);
+                            } else {
+                                clearInterval(intervalId);
+                            }
+                        }, CAROUSEL_INTERVAL);
+                    }, delay);
+                }
+            });
+        }
+        
+        // Stop carousel for an album when interacted with
+        function stopCarousel(albumId) {
+            interactedAlbums.add(albumId);
+            if (carouselIntervals[albumId]) {
+                clearTimeout(carouselIntervals[albumId]);
+                delete carouselIntervals[albumId];
+            }
+        }
+
+        // Open album dialog with pagination
+        function openAlbumDialog(albumId) {
+            const album = albumsData.find(a => a.id === albumId);
+            if (!album) return;
+            
+            const dialog = document.getElementById('album-dialog');
+            const dialogTitle = document.getElementById('dialog-title');
+            const grid = document.getElementById('dialog-photos-grid');
+            
+            // Reset state
+            currentAlbumPhotos = album.photos.map(photo => album.basePath + photo);
+            displayedPhotoCount = 0;
+            
+            // Set title
+            dialogTitle.textContent = album.name;
+            if (album.description) {
+                dialogTitle.innerHTML = `${album.name}<br><small style="font-size: 0.6em; font-weight: 400; opacity: 0.8;">${album.description}</small>`;
+            }
+            
+            // Clear grid
+            grid.innerHTML = '';
+            
+            // Load first batch
+            loadMorePhotos();
+            
+            // Show dialog
+            dialog.classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Load more photos (pagination)
+        function loadMorePhotos() {
+            const grid = document.getElementById('dialog-photos-grid');
+            const loadMoreContainer = document.getElementById('load-more-container');
+            const loadMoreBtn = document.getElementById('load-more-btn');
+            const photoCount = document.getElementById('photo-count');
+            
+            const startIndex = displayedPhotoCount;
+            const endIndex = Math.min(startIndex + PHOTOS_PER_PAGE, currentAlbumPhotos.length);
+            
+            // Add photos
+            for (let i = startIndex; i < endIndex; i++) {
+                const photoItem = document.createElement('div');
+                photoItem.className = 'album-photo-item';
+                photoItem.onclick = () => openLightbox(currentAlbumPhotos, i);
+                
+                const img = document.createElement('img');
+                img.dataset.src = currentAlbumPhotos[i];
+                img.alt = `Photo ${i + 1}`;
+                img.loading = 'lazy';
+                
+                // Intersection Observer for lazy loading
+                observeImage(img);
+                
+                photoItem.appendChild(img);
+                grid.appendChild(photoItem);
+            }
+            
+            displayedPhotoCount = endIndex;
+            
+            // Update load more button
+            if (displayedPhotoCount < currentAlbumPhotos.length) {
+                loadMoreContainer.style.display = 'block';
+                loadMoreBtn.disabled = false;
+                photoCount.textContent = `Showing ${displayedPhotoCount} of ${currentAlbumPhotos.length} photos`;
+            } else {
+                loadMoreContainer.style.display = 'none';
+            }
+        }
+
+        // Intersection Observer for lazy loading images
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.src = img.dataset.src;
+                    img.removeAttribute('data-src');
+                    observer.unobserve(img);
+                }
+            });
+        }, {
+            rootMargin: '50px'
+        });
+
+        function observeImage(img) {
+            imageObserver.observe(img);
+        }
+
+        // Close album dialog
+        function closeAlbumDialog(event) {
+            if (event && event.target.id !== 'album-dialog') {
+                return;
+            }
+            
+            const dialog = document.getElementById('album-dialog');
+            dialog.classList.remove('show');
+            document.body.style.overflow = '';
+        }
+
+        // Open lightbox
+        function openLightbox(photos, photoIndex) {
+            currentLightboxAlbum = photos;
+            currentLightboxIndex = photoIndex;
+            
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImage = document.getElementById('lightbox-image');
+            
+            lightboxImage.src = photos[photoIndex];
+            updateLightboxCounter();
+            
+            lightbox.classList.add('show');
+        }
+
+        // Close lightbox
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('show');
+        }
+
+        // Navigate lightbox
+        function navigateLightbox(direction) {
+            const photos = currentLightboxAlbum;
+            currentLightboxIndex += direction;
+            
+            if (currentLightboxIndex < 0) {
+                currentLightboxIndex = photos.length - 1;
+            } else if (currentLightboxIndex >= photos.length) {
+                currentLightboxIndex = 0;
+            }
+            
+            const lightboxImage = document.getElementById('lightbox-image');
+            lightboxImage.src = photos[currentLightboxIndex];
+            updateLightboxCounter();
+        }
+
+        // Update lightbox counter
+        function updateLightboxCounter() {
+            const counter = document.getElementById('lightbox-counter');
+            const photos = currentLightboxAlbum;
+            counter.textContent = `${currentLightboxIndex + 1} / ${photos.length}`;
+        }
+
+        // Carousel functions
+        function changeAlbumImage(albumId, direction) {
+            const container = document.getElementById(albumId);
+            if (!container) return;
+            
+            const images = container.querySelectorAll('.album-image');
+            if (images.length === 0) return; // No images (e.g., locked album)
+            
+            // Stop carousel when user manually changes
+            if (direction !== 1 || interactedAlbums.has(albumId)) {
+                stopCarousel(albumId);
+            }
+            
+            images[currentIndices[albumId]].classList.remove('active');
+            
+            currentIndices[albumId] += direction;
+            
+            if (currentIndices[albumId] < 0) {
+                currentIndices[albumId] = images.length - 1;
+            } else if (currentIndices[albumId] >= images.length) {
+                currentIndices[albumId] = 0;
+            }
+            
+            images[currentIndices[albumId]].classList.add('active');
+            updateIndicators(albumId);
+        }
+
+        function initializeIndicators(albumId) {
+            const container = document.getElementById(albumId);
+            if (!container) return;
+            
+            const images = container.querySelectorAll('.album-image');
+            const indicatorsContainer = document.getElementById('indicators-' + albumId.replace('album-', ''));
+            
+            images.forEach((_, index) => {
+                const indicator = document.createElement('div');
+                indicator.className = 'indicator' + (index === 0 ? ' active' : '');
+                indicator.onclick = (e) => {
+                    e.stopPropagation();
+                    goToSlide(albumId, index);
+                };
+                indicatorsContainer.appendChild(indicator);
+            });
+        }
+
+        function updateIndicators(albumId) {
+            const indicatorsContainer = document.getElementById('indicators-' + albumId.replace('album-', ''));
+            if (!indicatorsContainer) return;
+            
+            const indicators = indicatorsContainer.querySelectorAll('.indicator');
+            indicators.forEach((indicator, index) => {
+                indicator.classList.toggle('active', index === currentIndices[albumId]);
+            });
+        }
+
+        function goToSlide(albumId, index) {
+            const container = document.getElementById(albumId);
+            if (!container) return;
+            
+            const images = container.querySelectorAll('.album-image');
+            images[currentIndices[albumId]].classList.remove('active');
+            currentIndices[albumId] = index;
+            images[currentIndices[albumId]].classList.add('active');
+            updateIndicators(albumId);
+        }
+
+        // Unlock Dialog Functions
+        let currentLockedAlbum = null;
+        
+        function isAlbumUnlocked(albumId) {
+            try {
+                const unlocked = localStorage.getItem(`album_unlocked_${albumId}`);
+                return unlocked === 'true';
+            } catch (e) {
+                return false;
+            }
+        }
+        
+        function showUnlockDialog(album) {
+            currentLockedAlbum = album;
+            const dialog = document.getElementById('unlock-dialog');
+            const title = document.getElementById('unlock-title');
+            const hint = document.getElementById('unlock-hint');
+            const input = document.getElementById('unlock-input');
+            const error = document.getElementById('unlock-error');
+            
+            title.textContent = `Unlock ${album.name}`;
+            hint.textContent = album.unlockHint || 'Enter the unlock code';
+            input.value = '';
+            error.textContent = '';
+            
+            dialog.classList.add('show');
+            input.focus();
+        }
+        
+        function closeUnlockDialog() {
+            const dialog = document.getElementById('unlock-dialog');
+            dialog.classList.remove('show');
+            currentLockedAlbum = null;
+        }
+        
+        function attemptUnlock() {
+            if (!currentLockedAlbum) return;
+            
+            const input = document.getElementById('unlock-input');
+            const error = document.getElementById('unlock-error');
+            const enteredDate = input.value.trim();
+            
+            // Normalize both dates for comparison (remove leading zeros, support various formats)
+            const normalizeDate = (dateStr) => {
+                const parts = dateStr.split('/').map(part => parseInt(part, 10));
+                if (parts.length === 3) {
+                    return `${parts[0]}/${parts[1]}/${parts[2]}`;
+                }
+                return dateStr;
+            };
+            
+            const normalizedEntered = normalizeDate(enteredDate);
+            const normalizedRequired = normalizeDate(currentLockedAlbum.unlockDate);
+            
+            if (normalizedEntered === normalizedRequired) {
+                // Success! Unlock the album
+                try {
+                    localStorage.setItem(`album_unlocked_${currentLockedAlbum.id}`, 'true');
+                } catch (e) {
+                    console.error('Failed to save unlock state:', e);
+                }
+                
+                closeUnlockDialog();
+                
+                // Re-render the albums grid to show unlocked state
+                renderAlbumGrid();
+                initializeCarousels();
+                
+                // Open the album
+                setTimeout(() => {
+                    openAlbumDialog(currentLockedAlbum.id);
+                }, 300);
+            } else {
+                error.textContent = 'Incorrect date. Please try again.';
+                input.classList.add('error');
+                setTimeout(() => input.classList.remove('error'), 500);
+            }
+        }
+        
+        // Allow Enter key to submit unlock
+        document.addEventListener('DOMContentLoaded', () => {
+            const unlockInput = document.getElementById('unlock-input');
+            if (unlockInput) {
+                unlockInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        attemptUnlock();
+                    }
+                });
+            }
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            const lightbox = document.getElementById('lightbox');
+            const dialog = document.getElementById('album-dialog');
+            const unlockDialog = document.getElementById('unlock-dialog');
+            
+            if (e.key === 'Escape') {
+                if (lightbox.classList.contains('show')) {
+                    closeLightbox();
+                } else if (unlockDialog.classList.contains('show')) {
+                    closeUnlockDialog();
+                } else if (dialog.classList.contains('show')) {
+                    closeAlbumDialog();
+                }
+            } else if (lightbox.classList.contains('show')) {
+                if (e.key === 'ArrowLeft') {
+                    navigateLightbox(-1);
+                } else if (e.key === 'ArrowRight') {
+                    navigateLightbox(1);
+                }
+            }
+        });
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', loadAlbums);
+    </script>
+</body>
+</html>

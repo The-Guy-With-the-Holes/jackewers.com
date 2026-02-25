@@ -1,0 +1,81 @@
+{
+    "albums": [
+        {
+            "id": "makin-shit",
+            "name": "Makin' Shit",
+            "description": "Creative projects and builds",
+            "icon": "fas fa-tools",
+            "color": "var(--color-primary)",
+            "link": "/app/",
+            "weight": 1,
+            "photos": [
+                "https://media.bloodweb.net/jackewers/albums/makin-shit/wall-art.webp",
+                "https://media.bloodweb.net/jackewers/albums/makin-shit/scooby.webp",
+                "https://media.bloodweb.net/jackewers/albums/makin-shit/fangs.webp",
+                "https://media.bloodweb.net/jackewers/albums/makin-shit/doorbell.webp",
+                "https://media.bloodweb.net/jackewers/albums/makin-shit/lablabu.webp",
+                "https://media.bloodweb.net/jackewers/albums/makin-shit/dick-canoe.webp",
+                "https://media.bloodweb.net/jackewers/albums/makin-shit/ducky.webp",
+                "https://media.bloodweb.net/jackewers/albums/makin-shit/ghosts.webp",
+                "https://media.bloodweb.net/jackewers/albums/makin-shit/mastocytosis.webp",
+                "https://media.bloodweb.net/jackewers/albums/makin-shit/towel.webp"
+            ]
+        },
+        {
+            "id": "recent-events",
+            "name": "Recent Events",
+            "description": "AUPP2025",
+            "icon": "fas fa-calendar-days",
+            "color": "var(--color-secondary)",
+            "link": "/albums/",
+            "weight": 2,
+            "photos": [
+                "https://media.bloodweb.net/jackewers/albums/AUPP2025/jaccaranda.webp",
+                "https://media.bloodweb.net/jackewers/albums/AUPP2025/overhead-banner.webp",
+                "https://media.bloodweb.net/jackewers/albums/AUPP2025/larry.webp",
+                "https://media.bloodweb.net/jackewers/albums/AUPP2025/booth-wide.webp",
+                "https://media.bloodweb.net/jackewers/albums/AUPP2025/headshot.webp",
+                "https://media.bloodweb.net/jackewers/albums/AUPP2025/bazza.webp",
+                "https://media.bloodweb.net/jackewers/albums/AUPP2025/kel.webp",
+                "https://media.bloodweb.net/jackewers/albums/AUPP2025/dinotrio.webp",
+                "https://media.bloodweb.net/jackewers/albums/AUPP2025/headshot-barbie.webp",
+                "https://media.bloodweb.net/jackewers/albums/AUPP2025/nom.webp",
+                "https://media.bloodweb.net/jackewers/albums/AUPP2025/gang.webp"
+                
+            ]
+        },
+        {
+            "id": "past-events",
+            "name": "Past Events",
+            "description": "APP2025",
+            "icon": "fas fa-clock-rotate-left",
+            "color": "var(--color-accent)",
+            "link": "/albums/",
+            "weight": 3,
+            "minWidth": 768,
+            "photos": [
+                "https://media.bloodweb.net/jackewers/albums/APP2025/5.webp",
+                "https://media.bloodweb.net/jackewers/albums/APP2025/17.webp",
+                "https://media.bloodweb.net/jackewers/albums/APP2025/13.webp",
+                "https://media.bloodweb.net/jackewers/albums/APP2025/19.webp",
+                "https://media.bloodweb.net/jackewers/albums/APP2025/20.webp",
+                "https://media.bloodweb.net/jackewers/albums/APP2025/24.webp",
+                "https://media.bloodweb.net/jackewers/albums/APP2025/26.webp",
+                "https://media.bloodweb.net/jackewers/albums/APP2025/28.webp",
+                "https://media.bloodweb.net/jackewers/albums/APP2025/27.webp",
+                "https://media.bloodweb.net/jackewers/albums/APP2025/36.webp"
+            ]
+        },
+        {
+            "id": "random-projects",
+            "name": "Random Projects",
+            "description": "Experimental ideas and side quests",
+            "icon": "fas fa-lightbulb",
+            "color": "var(--color-warning)",
+            "link": "/projects/",
+            "weight": 4,
+            "minWidth": 1024,
+            "photos": []
+        }
+    ]
+}

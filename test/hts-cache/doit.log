@@ -1,0 +1,8 @@
+https://www.tyresave.com.au -O /var/www/html/test
+File generated automatically on Sun, 26 May 2024 19:19:15, do NOT edit
+
+To update a mirror, just launch httrack without any parameters
+The existing cache will be used (and modified)
+To have other options, retype all parameters and launch HTTrack
+To continue an interrupted mirror, just launch httrack without any parameters
+

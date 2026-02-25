@@ -1,0 +1,402 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Generator - Jack Ewers</title>
+    <meta name="description" content="Generate custom QR codes and export them as PNG, JPG, or SVG. Professional QR code generator with customization options.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">Jack Ewers</a>
+            <div class="nav-links">
+                <a href="/about" class="nav-link">About</a>
+                <a href="/app" class="nav-link">Projects</a>
+                <a href="/blog-posts" class="nav-link">Blog</a>
+                <a href="/certificates" class="nav-link">Certificates</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <main class="main-container">
+        <!-- Hero Section -->
+        <div class="hero-section">
+            <h1>QR Code Generator</h1>
+            <p>Create custom QR codes and export them in multiple formats</p>
+        </div>
+
+        <!-- QR Generator Widget -->
+        <div class="qr-generator-container">
+            <div class="generator-panel">
+                <!-- Input Section -->
+                <div class="input-section">
+                    <div class="input-group">
+                        <label for="qrText">Text or URL</label>
+                        <textarea 
+                            id="qrText" 
+                            placeholder="Enter text, URL, or data to encode..."
+                            rows="3"
+                        ></textarea>
+                    </div>
+
+                    <!-- Customization Options -->
+                    <div class="options-grid">
+                        <div class="option-group">
+                            <label for="qrSize">Size (px)</label>
+                            <select id="qrSize">
+                                <option value="256">256x256</option>
+                                <option value="512" selected>512x512</option>
+                                <option value="1024">1024x1024</option>
+                                <option value="2048">2048x2048</option>
+                            </select>
+                        </div>
+
+                        <div class="option-group">
+                            <label for="qrErrorLevel">Error Correction</label>
+                            <select id="qrErrorLevel">
+                                <option value="L">Low (7%)</option>
+                                <option value="M" selected>Medium (15%)</option>
+                                <option value="Q">Quartile (25%)</option>
+                                <option value="H">High (30%)</option>
+                            </select>
+                        </div>
+
+                        <div class="option-group">
+                            <label for="qrForeground">Foreground Color</label>
+                            <input type="color" id="qrForeground" value="#000000">
+                        </div>
+
+                        <div class="option-group">
+                            <label for="qrBackground">Background Color</label>
+                            <input type="color" id="qrBackground" value="#ffffff">
+                        </div>
+                    </div>
+
+                    <!-- Generate Button -->
+                    <button id="generateBtn" class="generate-btn">
+                        <span class="btn-text">Generate QR Code</span>
+                        <span class="btn-icon">⚡</span>
+                    </button>
+                </div>
+
+                <!-- Preview Section -->
+                <div class="preview-section">
+                    <div class="preview-header">
+                        <h3>Preview</h3>
+                        <div class="preview-info" id="previewInfo">
+                            Enter text to generate QR code
+                        </div>
+                    </div>
+                    
+                    <div class="qr-preview" id="qrPreview">
+                        <div class="placeholder-content">
+                            <div class="placeholder-icon">📱</div>
+                            <p>Your QR code will appear here</p>
+                        </div>
+                    </div>
+
+                    <!-- Export Options -->
+                    <div class="export-section" id="exportSection" style="display: none;">
+                        <h4>Export Options</h4>
+                        <div class="export-buttons">
+                            <button id="exportPNG" class="export-btn png-btn">
+                                <span class="export-icon">🖼️</span>
+                                Download PNG
+                            </button>
+                            <button id="exportJPG" class="export-btn jpg-btn">
+                                <span class="export-icon">📷</span>
+                                Download JPG
+                            </button>
+                            <button id="exportSVG" class="export-btn svg-btn">
+                                <span class="export-icon">🎨</span>
+                                Download SVG
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Features Section -->
+        <div class="features-section">
+            <h3>Features</h3>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🔄</div>
+                    <h4>Real-time Preview</h4>
+                    <p>See your QR code update instantly as you type</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h4>Customizable Design</h4>
+                    <p>Choose colors, size, and error correction levels</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📥</div>
+                    <h4>Multiple Formats</h4>
+                    <p>Export as PNG, JPG, or SVG for any use case</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h4>High Quality</h4>
+                    <p>Generate crisp QR codes up to 2048x2048 pixels</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2025 Jack Ewers. Generate QR codes with style.</p>
+            <div class="footer-links">
+                <a href="https://github.com/The-Guy-With-the-Holes" target="_blank" rel="noopener" class="footer-link">GitHub</a>
+                <a href="https://linkedin.com/in/jackewers" target="_blank" rel="noopener" class="footer-link">LinkedIn</a>
+                <a href="/app" class="footer-link">More Projects</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Define functions before they can be called
+        function loadFallbackQR() {
+            console.log('Primary QR library failed, trying fallback...');
+            const script = document.createElement('script');
+            script.src = 'https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js';
+            script.onload = () => {
+                console.log('Fallback QR library loaded');
+                // Create QRCode compatibility layer for QRious
+                window.QRCode = {
+                    toCanvas: function(canvas, text, options, callback) {
+                        try {
+                            console.log('QRious toCanvas called with:', text, options);
+                            const qr = new QRious({
+                                element: canvas,
+                                value: text,
+                                size: options?.width || 256,
+                                foreground: options?.color?.dark || '#000000',
+                                background: options?.color?.light || '#ffffff'
+                            });
+                            console.log('QRious QR created successfully');
+                            callback(null);
+                        } catch (error) {
+                            console.error('QRious error:', error);
+                            callback(error);
+                        }
+                    },
+                    toString: function(text, options, callback) {
+                        try {
+                            const qr = new QRious({
+                                value: text,
+                                size: options.width || 256,
+                                foreground: options.color?.dark || '#000000',
+                                background: options.color?.light || '#ffffff'
+                            });
+                            callback(null, qr.toDataURL('image/svg+xml'));
+                        } catch (error) {
+                            callback(error);
+                        }
+                    }
+                };
+                initQRGenerator();
+            };
+            script.onerror = () => {
+                console.error('All QR libraries failed to load');
+            };
+            document.head.appendChild(script);
+        }
+        
+        function initQRGenerator() {
+            if (typeof QRCode !== 'undefined') {
+                console.log('QR library loaded successfully');
+                const script = document.createElement('script');
+                script.src = 'qr-generator.js';
+                script.onload = () => {
+                    console.log('qr-generator.js loaded successfully');
+                };
+                script.onerror = () => {
+                    console.error('Failed to load qr-generator.js');
+                };
+                document.head.appendChild(script);
+            } else {
+                setTimeout(initQRGenerator, 100);
+            }
+        }
+        
+        // Add a simple test button handler as backup
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
+                const btn = document.getElementById('generateBtn');
+                if (btn) {
+                    console.log('Adding direct button test handler...');
+                    btn.onclick = function() {
+                        console.log('Direct button clicked!');
+                        const text = document.getElementById('qrText').value.trim();
+                        if (!text) {
+                            alert('Please enter text to generate QR code');
+                            return;
+                        }
+                        
+                        if (typeof QRCode !== 'undefined') {
+                            console.log('QRCode available, generating...');
+                            const canvas = document.createElement('canvas');
+                            const options = {
+                                width: 300,
+                                height: 300,
+                                color: {
+                                    dark: '#000000',
+                                    light: '#ffffff'
+                                }
+                            };
+                            
+                            QRCode.toCanvas(canvas, text, options, (error) => {
+                                if (error) {
+                                    console.error('QR Error:', error);
+                                    alert('Error: ' + error.message);
+                                } else {
+                                    console.log('QR Generated successfully');
+                                    const preview = document.getElementById('qrPreview');
+                                    preview.innerHTML = '';
+                                    canvas.style.maxWidth = '100%';
+                                    canvas.style.borderRadius = '8px';
+                                    preview.appendChild(canvas);
+                                    
+                                    // Show export section
+                                    const exportSection = document.getElementById('exportSection');
+                                    if (exportSection) {
+                                        exportSection.style.display = 'block';
+                                    }
+                                    
+                                    // Add export functionality
+                                    window.currentQRCanvas = canvas;
+                                    setupExportButtons(canvas, text);
+                                }
+                            });
+                        } else {
+                            console.log('QRCode not available');
+                            alert('QR library not loaded');
+                        }
+                    };
+                }
+            }, 2000);
+        });
+        
+        // Setup export button functionality
+        function setupExportButtons(canvas, text) {
+            console.log('Setting up export buttons...');
+            
+            // PNG Export
+            const pngBtn = document.getElementById('exportPNG');
+            if (pngBtn) {
+                pngBtn.onclick = function() {
+                    console.log('PNG export clicked');
+                    const link = document.createElement('a');
+                    link.download = `qr-code-${Date.now()}.png`;
+                    link.href = canvas.toDataURL('image/png');
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                    showExportFeedback('PNG');
+                };
+            }
+            
+            // JPG Export
+            const jpgBtn = document.getElementById('exportJPG');
+            if (jpgBtn) {
+                jpgBtn.onclick = function() {
+                    console.log('JPG export clicked');
+                    // Create canvas with white background for JPG
+                    const jpgCanvas = document.createElement('canvas');
+                    const ctx = jpgCanvas.getContext('2d');
+                    jpgCanvas.width = canvas.width;
+                    jpgCanvas.height = canvas.height;
+                    
+                    // Fill with white background
+                    ctx.fillStyle = '#ffffff';
+                    ctx.fillRect(0, 0, jpgCanvas.width, jpgCanvas.height);
+                    ctx.drawImage(canvas, 0, 0);
+                    
+                    const link = document.createElement('a');
+                    link.download = `qr-code-${Date.now()}.jpg`;
+                    link.href = jpgCanvas.toDataURL('image/jpeg', 0.95);
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                    showExportFeedback('JPG');
+                };
+            }
+            
+            // SVG Export
+            const svgBtn = document.getElementById('exportSVG');
+            if (svgBtn) {
+                svgBtn.onclick = function() {
+                    console.log('SVG export clicked');
+                    const dataURL = canvas.toDataURL('image/png');
+                    const svgTemplate = `<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+     width="${canvas.width}" height="${canvas.height}" viewBox="0 0 ${canvas.width} ${canvas.height}">
+    <image width="${canvas.width}" height="${canvas.height}" xlink:href="${dataURL}"/>
+</svg>`;
+                    
+                    const blob = new Blob([svgTemplate], { type: 'image/svg+xml' });
+                    const url = URL.createObjectURL(blob);
+                    
+                    const link = document.createElement('a');
+                    link.download = `qr-code-${Date.now()}.svg`;
+                    link.href = url;
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                    
+                    URL.revokeObjectURL(url);
+                    showExportFeedback('SVG');
+                };
+            }
+        }
+        
+        // Show export feedback
+        function showExportFeedback(format) {
+            console.log(`${format} export completed`);
+            
+            // Create feedback notification
+            const feedback = document.createElement('div');
+            feedback.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: linear-gradient(145deg, #10b981, #059669);
+                color: white;
+                padding: 1rem 2rem;
+                border-radius: 10px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+                z-index: 10000;
+                font-weight: 600;
+                font-family: inherit;
+            `;
+            feedback.innerHTML = `✅ ${format} downloaded successfully!`;
+            
+            document.body.appendChild(feedback);
+            
+            // Remove after 3 seconds
+            setTimeout(() => {
+                if (document.body.contains(feedback)) {
+                    document.body.removeChild(feedback);
+                }
+            }, 3000);
+        }
+    </script>
+    
+    <!-- QR Code Library -->
+    <script src="https://unpkg.com/qrcode@1.5.3/build/qrcode.min.js" onload="initQRGenerator()" onerror="loadFallbackQR()"></script>
+</body>
+</html>

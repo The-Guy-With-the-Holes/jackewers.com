@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Playground</title>
+    <link rel="stylesheet" href="playground.css">
+</head>
+<body>
+    <div class="header">
+        <h1>🚀 JavaScript Playground</h1>
+        <button class="btn" id="runBtn">Run Code (Ctrl+Enter)</button>
+        <button class="btn btn-clear" id="clearBtn">Clear Output</button>
+    </div>
+
+    <div class="container">
+        <div class="editor-panel">
+            <div class="panel-header">
+                📝 Code Editor
+                <button class="examples-btn" id="examplesBtn" title="Load Examples">☰</button>
+            </div>
+            <div class="examples-menu" id="examplesMenu">
+                <div class="example-item" data-example="alert">🔔 Alert Dialog</div>
+                <div class="example-item" data-example="console">📝 Console Logging</div>
+                <div class="example-item" data-example="canvas">💀 Canvas Skull</div>
+                <div class="example-item" data-example="form">📋 Form Validation</div>
+                <div class="example-item" data-example="animation">✨ Animation</div>
+                <div class="example-item" data-example="fetch">🌐 Fetch API</div>
+            </div>
+            <textarea id="editor" placeholder="// Write your JavaScript code here...
+// Press Ctrl+Enter to run
+
+console.log('Hello, World!');
+
+const sum = (a, b) => a + b;
+console.log('2 + 3 =', sum(2, 3));"></textarea>
+        </div>
+
+        <div class="output-panel">
+            <div class="panel-header">📺 Console Output</div>
+            <div id="output"></div>
+        </div>
+    </div>
+
+    <div class="status-bar" id="statusBar">
+        <span id="statusText">Ready to run JavaScript</span>
+        <span id="lastRun"></span>
+    </div>
+
+    <script src="playground.js"></script>
+</body>
+</html>

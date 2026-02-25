@@ -1,0 +1,126 @@
+/* ===== SIMPLE NAVIGATION STYLES ===== */
+
+/* Simple Navigation */
+.simple-navigation {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: var(--bg-hero, rgba(255, 255, 255, 0.95));
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-color, rgba(0, 0, 0, 0.1));
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.simple-nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* Header Image - on same line */
+.simple-nav-banner {
+    height: 50px;
+    width: auto;
+    max-width: 200px;
+    object-fit: contain;
+}
+
+/* Home Button */
+.simple-nav-home {
+    text-decoration: none;
+    color: white;
+    background: var(--accent-primary, #00aabb);
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    margin-left: auto;
+}
+
+.simple-nav-home:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 170, 187, 0.3);
+}
+
+/* Back Button */
+.simple-nav-back {
+    background: none;
+    border: 2px solid var(--border-color, rgba(0, 0, 0, 0.1));
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    color: var(--text-primary, #333);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.simple-nav-back:hover {
+    border-color: var(--accent-primary, #00aabb);
+    background: var(--accent-primary, #00aabb);
+    color: white;
+}
+
+/* Dark mode support */
+:root[data-theme="dark"] .simple-navigation {
+    background: rgba(40, 40, 40, 0.95);
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+:root[data-theme="dark"] .simple-nav-home,
+:root[data-theme="dark"] .simple-nav-brand,
+:root[data-theme="dark"] .simple-nav-back {
+    color: #e0e0e0;
+}
+
+:root[data-theme="dark"] .simple-nav-back {
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+:root[data-theme="dark"] .simple-nav-back:hover {
+    border-color: #00aabb;
+    background: #00aabb;
+    color: white;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .simple-nav-container {
+        padding: 0.5rem;
+        gap: 0.5rem;
+    }
+    
+    .simple-nav-banner {
+        height: 60px;
+    }
+    
+    .simple-nav-home span {
+        font-size: 0.9rem;
+    }
+    
+    .simple-nav-back {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .simple-nav-home span {
+        display: none;
+    }
+    
+    .simple-nav-home::after {
+        content: '🏠';
+    }
+    
+    .simple-nav-back span {
+        display: none;
+    }
+    
+    .simple-nav-back::after {
+        content: '←';
+        font-size: 1.2rem;
+    }
+}

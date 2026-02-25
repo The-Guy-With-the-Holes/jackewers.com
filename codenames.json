@@ -1,0 +1,12 @@
+[
+    {"name": "Portfolio", "desc": "Work showcase"},
+    {"name": "Showcase", "desc": "Highlight reel"},
+    {"name": "Craft", "desc": "Artisan work"},
+    {"name": "Canvas", "desc": "Creative space"},
+    {"name": "Gallery", "desc": "Art display"},
+    {"name": "Studio", "desc": "Creative workspace"},
+    {"name": "Palette", "desc": "Color selection"},
+    {"name": "Sketch", "desc": "Initial concept"},
+    {"name": "Vision", "desc": "Creative direction"},
+    {"name": "Signature", "desc": "Personal mark"}
+]

@@ -1,0 +1,30 @@
+This folder (APP) contains all the applications and projects that I have created. Each project has its own folder with the necessary files to run it. Some projects are still in development, while others are complete and ready to use. I will continue to add new projects and update existing ones as I learn and grow as a developer.
+
+If a new project is added, it will be listed in project.json with a brief description and a link to the project folder. Each project folder will contain an index.html file that serves as the main entry point for the application, along with any necessary CSS, JavaScript, and media files.
+
+There is 2 locations these items can be stored. 
+1. /APP folder
+2. /APP/projects 
+To learn more about the difference between these two locations, see the "Project Organization" section below.
+
+# Project Organization
+
+
+#APP folder
+    Intended for projects that are more polished, widely applicable, or have a clear use case. 
+    These projects may be more complete, have a wider audience, 
+    or be more focused on providing value to users rather than just being a learning exercise.
+#APP/projects 
+    Intended for projects that are more experimental, less polished, or have a narrower scope. 
+    These projects may be in the early stages of development, may not have a clear use case, 
+    or may be more focused on learning and experimentation rather than being a fully functional application.
+
+Some example projects that would go in the /APP folder include:
+- Calculator - tooling
+- Weather App - tooling
+- JavaScript Playground - common learning
+- 100 Days of Code - user engagement
+
+Some example projects that would go in the /APP/projects folder include:    
+- Smart Home Controller - more personal than public
+- Single page games - low frequency use 
