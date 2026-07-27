@@ -547,9 +547,31 @@ function getPageIcon(pathname, pageName) {
 
 
 
-const headerComponent = '/shared/assets/components/header.html';
-const navComponent = '/shared/assets/components/modern-navbar.html';
-const footerComponent = '/shared/assets/components/footer.html';
+function getProjectBaseUrl() {
+  const currentScript = document.currentScript ||
+    Array.from(document.scripts).find(script =>
+      script.src && script.src.includes('/KeyFunctions.js')
+    );
+
+  if (currentScript && currentScript.src) {
+    return new URL('./', currentScript.src);
+  }
+
+  const baseHref = document.querySelector('base')?.getAttribute('href');
+  if (baseHref) {
+    return new URL(baseHref, window.location.href);
+  }
+
+  return new URL('./', window.location.href);
+}
+
+function toProjectUrl(path) {
+  return new URL(path.replace(/^\//, ''), getProjectBaseUrl()).toString();
+}
+
+const headerComponent = toProjectUrl('shared/assets/components/header.html');
+const navComponent = toProjectUrl('shared/assets/components/modern-navbar.html');
+const footerComponent = toProjectUrl('shared/assets/components/footer.html');
 
 // Attach the listener to the nav (open/close vertical nav)
 document.addEventListener('DOMContentLoaded', 
@@ -585,12 +607,12 @@ document.addEventListener('DOMContentLoaded',
         // Load simple navigation CSS
         const simpleNavCSS = document.querySelector('link[href*="simple-nav.css"]');
         if(!simpleNavCSS){
-          const simpleCSS = createElement('link',{rel:'stylesheet', href:'/shared/assets/styles/simple-nav.css'});
+          const simpleCSS = createElement('link',{rel:'stylesheet', href:toProjectUrl('shared/assets/styles/simple-nav.css')});
           document.head.appendChild(simpleCSS);
         }
         
         // Load simple navigation component
-        fetch('/shared/assets/components/simple-navbar.html' + '?v=' + Date.now())
+        fetch(toProjectUrl('shared/assets/components/simple-navbar.html') + '?v=' + Date.now())
           .then(response => response.text())
           .then(html => {
               domHasNav = document.getElementById('nav');
@@ -606,10 +628,10 @@ document.addEventListener('DOMContentLoaded',
       }
       else{
    
-      const domhasNavCSS = document.querySelector('link[href="/shared/assets/css/nav.css"]');
+      const domhasNavCSS = document.querySelector('link[href*="shared/assets/styles/nav.css"]');
       if(!domhasNavCSS){
         console.warn('Nav CSS not found. Please add it to the head for proper styling.');
-        const navCSS = createElement('link',{rel:'stylesheet', href:'/shared/assets/styles/nav.css'});
+        const navCSS = createElement('link',{rel:'stylesheet', href:toProjectUrl('shared/assets/styles/nav.css')});
         document.head.appendChild(navCSS);
       }
      
@@ -650,7 +672,7 @@ document.addEventListener('DOMContentLoaded',
     } 
 
     if(Settings.returnButton){
-      loadHTML('body','/components/returnButton.html', true).then(() => {
+      loadHTML('body',toProjectUrl('components/returnButton.html'), true).then(() => {
         console.log('ccc')
       })
     }

@@ -31,3 +31,23 @@ debug.log
 # Archived & Testing
 archived/ 
 test/
+
+# Development tooling
+dev-tools/
+.devignore
+package.json
+package-lock.json
+webpack.config.js
+rollup.config.js
+vite.config.js
+tsconfig.json
+babel.config.js
+.eslintrc*
+.prettierrc*
+.editorconfig
+jest.config.js
+*.test.js
+*.spec.js
+__tests__/
+.github/
+.prodignore

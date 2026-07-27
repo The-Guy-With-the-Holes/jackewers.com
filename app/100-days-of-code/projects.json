@@ -1,5 +1,5 @@
 [
-{
+    {
     "name": "Linktree Clone",
     "description": "A linktree clone built with HTML, CSS, and JavaScript to showcase multiple links in a single page.",
     "image": "/linktree/linktree-square.png",
@@ -7,7 +7,7 @@
     "link": "/linktree/",
     "tags": ["JavaScript", "DOM", "Tutorial"],
     "dateCompleted": "2025-10-08",
-    "day": 1
+    "weight": 100
 },
 {
     "name": "Calculator",
@@ -17,7 +17,7 @@
     "link": "/app/calculator/",
     "tags": ["HTML", "CSS", "JavaScript"],
     "dateCompleted": "2025-10-09",
-    "day": 2
+    "weight": 11
 },
 {
     "name": "Office Home Assistant",
@@ -25,9 +25,9 @@
     "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgRwE9gUnVOnpxl4Eu8I-reU-aIkvQpngJBQ&s",
     "fallbackIcon": "🏠",
     "link": "/app/projects/smarthome/office-controller.html",
-    "tags": ["API", "JavaScript", "CSS"],
+    "tags": ["Arduino", "MQTT", "Home Assistant", "C++"],
     "dateCompleted": "2025-10-10",
-    "day": 3
+    "weight": 6
 },
 {
     "name": "Certificate Portfolio",
@@ -37,7 +37,7 @@
     "link": "/certificates/",
     "tags": ["HTML", "CSS", "JavaScript"],
     "dateCompleted": "2026-02-11",
-    "day": 4
+    "weight": 10
 },
 {
     "name": "Task Manager",
@@ -47,8 +47,8 @@
     "link": "https://bloodweb.net/tasklist/",
     "tags": ["JavaScript", "HTML", "CSS"],
     "dateCompleted": "2026-02-12",
-    "day": 5,
-    "isWIP":true
+    "isWIP": true,
+    "weight": 100
 },
 {
     "name": "Coin Flip Game",
@@ -58,29 +58,29 @@
     "link": "/app/projects/games/coin-flip/",
     "tags": ["JavaScript", "HTML", "CSS"],
     "dateCompleted": "2026-02-12",
-    "day": 6
+    "weight": 1
 },
-{   
+{
     "name": "Onion Chat",
-   "description": " A Darknet chat application built with Node.js, Express, and Socket.io, allowing users to communicate securely over the Tor network.",
-   "image": "https://upload.wikimedia.org/wikipedia/commons/c/c0/Tor_logo1.png?20121031195651",
-   "fallbackIcon": "🃏",
-   "link": "https://onion.bloodweb.net/",
-   "tags": ["JavaScript", "HTML", "CSS", "Node.js", "Express", "Socket.io"],
-   "dateCompleted": "2026-02-14",
-   "day": 7,
-   "isWIP": true
+    "description": "A Darknet chat application built with Node.js, Express, and Socket.io, allowing users to communicate securely over the Tor network.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/c/c0/Tor_logo1.png?20121031195651",
+    "fallbackIcon": "🧅",
+    "link": "https://onion.bloodweb.net/",
+    "tags": ["JavaScript", "HTML", "CSS", "Node.js", "Express", "Socket.io"],
+    "dateCompleted": "2026-02-14",
+    "isWIP": true,
+    "weight": 4
 },
 {
     "name": "Convertimatic",
-    "description": "Universal converter, Measurements, currencies, files, and more.", 
+    "description": "Universal converter — measurements, currencies, files, and more.",
     "image": "https://media.bloodweb.net/images/bloodweb/convertimatic/logo.jpg",
-    "fallbackIcon": "☀️",
+    "fallbackIcon": "🔄",
     "link": "https://bloodweb.net/converter/",
     "tags": ["JavaScript", "HTML", "CSS", "API", "Modules"],
     "dateCompleted": "2026-02-15",
-    "day": 8,
-    "isWIP": true
+    "isWIP": true,
+    "weight": 13
 },
 {
     "name": "Smart WooCommerce Tariffs",
@@ -90,49 +90,36 @@
     "link": "http://bloodweb.net/plugins/tariff-manager/",
     "tags": ["PHP", "JavaScript", "WooCommerce", "Plugin"],
     "dateCompleted": "2026-02-16",
-    "day": 9
+    "weight": 10
 },
 {
     "name": "Regional Coupons",
-    "description": "Look, i felt bad about making a plugin that only adds fees to regions, so i made another one that allows region specific coupons (Try \"FUCKTARIFFS\" when checking out with a clickerino order). ",
+    "description": "Look, I felt bad about making a plugin that only adds fees to regions, so I made another one that allows region-specific coupons (Try \"FUCKTARIFFS\" when checking out with a Clickerino order).",
     "image": "https://logos-world.net/wp-content/uploads/2025/04/WooCommerce-Symbol-1.png",
-    "fallbackIcon": "🛒",
+    "fallbackIcon": "🎟️",
     "link": "https://bloodweb.net/plugins/regional-coupon/",
     "tags": ["PHP", "JavaScript", "WooCommerce", "Plugin"],
     "dateCompleted": "2026-02-16",
-    "day": 10
+    "weight": 9
 },
 {
-    "name": "Batch image cropper",
-    "description": "A convertimatic module that allows users to batch crop images to a specified aspect ratio or custom dimensions. Part of Convertimatic, but deserves its own project page.",
-    "image": "https://media.bloodweb.net/images/bloodweb/convertimatic/logo.jpg",
-    "fallbackIcon": "🖼️",
-    "link": "https://bloodweb.net/converter/?image-cropper/",
-    "tags": ["JavaScript", "HTML", "CSS"],
-    "dateCompleted": "2026-02-21",
-    "day": 11
-},
-{
-    "name": "Image format converter",
-    "description": "A convertimatic module that allows users to convert images between different formats (e.g., JPEG, PNG, GIF).",
+    "name": "Advanced Image Processor",
+    "description": "A Convertimatic module that allows users to apply various changes to images, such as resizing, format conversion, and steganography.",
     "image": "https://media.bloodweb.net/images/bloodweb/convertimatic/logo.jpg",
     "fallbackIcon": "🖼️",
     "link": "https://bloodweb.net/converter/?image-converter/",
     "tags": ["JavaScript", "HTML", "CSS"],
     "dateCompleted": "2026-02-22",
-    "day": 12
+    "weight": 2
 },
 {
-    "name": "Steganography Tool",
-    "description": "A convertimatic module that allows users to hide messages within images using steganography techniques.",
+    "name": "Batch Image Processor",
+    "description": "A Convertimatic module that allows users to batch process images, applying the same changes to multiple files at once.",
     "image": "https://media.bloodweb.net/images/bloodweb/convertimatic/logo.jpg",
-    "fallbackIcon": "🕵️‍♂️",
-    "link": "https://bloodweb.net/converter/?steganography/",
+    "fallbackIcon": "✂️",
+    "link": "https://bloodweb.net/converter/?image-cropper/",
     "tags": ["JavaScript", "HTML", "CSS"],
-    "dateCompleted": "2026-02-23",
-    "day": 13
+    "dateCompleted": "2026-02-21",
+    "weight": 3
 }
-
-
-
 ]

@@ -75,54 +75,41 @@ let projectsData = [];
 
 // Generate placeholder projects to reach 100 days
 function generateProjects() {
+    const MAX_DAYS = CHALLENGE_CONFIG.totalDays;
+
+    // Sort completed real projects by dateCompleted ascending
+    let real = projectsData
+        .filter(p => p.dateCompleted)
+        .slice()
+        .sort((a, b) => new Date(a.dateCompleted) - new Date(b.dateCompleted));
+
+    // Drop lowest-weight entries until at or under MAX_DAYS.
+    // Among ties on minimum weight, drop the first (earliest date) occurrence first.
+    while (real.length > MAX_DAYS) {
+        const minWeight = Math.min(...real.map(p => p.weight ?? 0));
+        const dropIdx = real.findIndex(p => (p.weight ?? 0) === minWeight);
+        if (dropIdx === -1) break;
+        real.splice(dropIdx, 1);
+    }
+
+    // Build the full 100-slot array: real projects fill from slot 0, rest are placeholders
     const projects = [];
-    
-    const placeholderProjects = [
-        "Todo App", "Weather Widget", "Random Quote Generator", "Color Palette Generator", 
-        "Password Generator", "BMI Calculator", "Unit Converter", "Digital Clock",
-        "Stopwatch", "Countdown Timer", "Memory Game", "Rock Paper Scissors",
-        "Tic Tac Toe", "Snake Game", "Pong Game", "Flappy Bird Clone",
-        "Chat App", "Blog Platform", "Portfolio Site", "E-commerce Store",
-        "Recipe Finder", "Movie Database", "Music Player", "Photo Gallery",
-        "Calendar App", "Expense Tracker", "Note Taking App", "Drawing Canvas",
-        "QR Code Generator", "URL Shortener", "File Uploader", "Image Editor",
-        "Code Editor", "Markdown Parser", "API Wrapper", "Data Visualizer",
-        "Chart Generator", "Map Integration", "Real-time Chat", "Video Player"
-    ];
-    
-    const technologies = [
-        ["HTML", "CSS", "JavaScript"], ["React", "Node.js", "MongoDB"], 
-        ["Vue.js", "Express"], ["Python", "Flask"], ["PHP", "MySQL"],
-        ["Java", "Spring"], ["C#", ".NET"], ["Ruby", "Rails"],
-        ["Angular", "TypeScript"], ["Svelte", "Firebase"], ["Next.js", "Prisma"],
-        ["Django", "PostgreSQL"], ["Laravel", "Vue"], ["Gatsby", "GraphQL"]
-    ];
-    
-    // Generate all 100 days
-    for (let day = 1; day <= 100; day++) {
-        // Check if this day exists in projectsData
-        const existingProject = projectsData.find(p => p.day === day);
-        
-        if (existingProject) {
-            // Use actual project from JSON
-            projects.push(existingProject);
+    for (let i = 0; i < MAX_DAYS; i++) {
+        if (i < real.length) {
+            projects.push(real[i]);
         } else {
-            // Create placeholder
-            const randomProject = placeholderProjects[Math.floor(Math.random() * placeholderProjects.length)];
-            const randomTechs = technologies[Math.floor(Math.random() * technologies.length)];
-            
             projects.push({
-                day: day,
-                name: `Project ${day}`,
+                weight: 0,
+                name: `Project ${i + 1}`,
                 description: "TBC",
                 image: null,
                 link: "#",
-                tags: randomTechs,
+                tags: ["TBC"],
                 dateCompleted: null
             });
         }
     }
-    
+
     return projects;
 }
 

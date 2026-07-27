@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Merry Christmas 2025 - Ewers Family">
+    <title>Christmas 2025 | Jack Ewers</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+    <!-- Year-in-Review shared stylesheet -->
+    <link rel="stylesheet" href="../year-in-review.css">
+
+    <style>
+        /* ── Christmas 2025 Theme ── */
+        :root {
+            --theme-accent: #c2410c;
+            --theme-logo-from: #166534;
+            --theme-logo-to: #dc2626;
+        }
+
+        /* ── Main content ── */
+        .christmas-wrap {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 32px;
+            padding: 24px 16px 60px;
+            max-width: 680px;
+            margin: 0 auto;
+        }
+
+        .christmas-title {
+            font-size: clamp(2rem, 6vw, 3.4rem);
+            font-weight: 900;
+            text-align: center;
+            margin: 0;
+            background: linear-gradient(135deg, #166534, #dc2626, #ca8a04);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.15;
+            letter-spacing: -0.5px;
+        }
+
+        .christmas-photo {
+            width: 100%;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.55);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            background: #0b1220;
+        }
+
+        .christmas-photo img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .replay-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 28px;
+            background: linear-gradient(135deg, #166534, #dc2626);
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            letter-spacing: 0.3px;
+        }
+
+        .replay-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(220, 38, 38, 0.45);
+        }
+
+        .replay-btn svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+            flex-shrink: 0;
+        }
+
+        @media (max-width: 520px) {
+            body { padding: 14px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ── Video Overlay (uses year-in-review.css styles) ── -->
+    <div class="video-overlay" id="videoOverlay">
+        <div class="video-container">
+            <div class="video-loading" id="videoLoading">
+                <div class="spinner"></div>
+                <p>Loading video...</p>
+            </div>
+            <video id="yearVideo" playsinline controls muted preload="none" style="display:none;">
+                <source src="https://media.bloodweb.net/jackewers/albums/christmas-2025/2025_optimized.mp4" type="video/mp4">
+                <p style="color:white;">Your browser doesn't support HTML5 video. <a href="https://media.bloodweb.net/jackewers/albums/christmas-2025/2025-optimised.mp4" style="color:#dc2626;">Download the video</a> instead.</p>
+            </video>
+            <div class="unmute-hint" id="unmuteHint">
+                <span class="icon">🔊</span>
+                <span>Tap to unmute for sound</span>
+            </div>
+            <div class="video-controls">
+                <button class="video-btn" id="fullscreenBtn">🔳 Fullscreen</button>
+                <button class="video-btn primary" id="skipBtn">⏭️ Skip</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── Page Header ── -->
+    <header>
+        <div class="logo">🎄</div>
+        <div>
+            <h1><span class="seasonal-text">Christmas</span> 2025</h1>
+            <p class="lead">Merry Christmas from the Ewers family 🎁</p>
+        </div>
+        <div class="controls">
+            <button class="btn rewatch-attention" id="rewatchBtn" style="display:none;">🎬 Watch Again</button>
+        </div>
+    </header>
+
+    <!-- ── Main Content ── -->
+    <main class="christmas-wrap">
+        <h2 class="christmas-title">Merry Christmas 2025 🎁</h2>
+
+        <div class="christmas-photo">
+            <img
+                src="https://media.bloodweb.net/jackewers/albums/christmas-2025/Sparkle-Seb.jpg"
+                alt="Christmas 2025 - Ewers Family"
+                loading="lazy"
+            >
+        </div>
+
+        <button class="replay-btn" id="replayBtn">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"/>
+            </svg>
+            Watch Video Again
+        </button>
+    </main>
+
+    <script>
+        const videoOverlay = document.getElementById('videoOverlay');
+        const yearVideo    = document.getElementById('yearVideo');
+        const videoLoading = document.getElementById('videoLoading');
+        const fullscreenBtn = document.getElementById('fullscreenBtn');
+        const skipBtn      = document.getElementById('skipBtn');
+        const rewatchBtn   = document.getElementById('rewatchBtn');
+        const replayBtn    = document.getElementById('replayBtn');
+        const unmuteHint   = document.getElementById('unmuteHint');
+
+        let videoLoaded = false;
+        let isFullscreen = false;
+        let hintTimeout;
+
+        /* ── Load & play ── */
+        function loadAndPlayVideo() {
+            if (videoLoaded) {
+                yearVideo.style.display = 'block';
+                yearVideo.play();
+                return;
+            }
+            videoLoading.style.display = 'flex';
+            yearVideo.load();
+            yearVideo.addEventListener('canplay', function onCanPlay() {
+                videoLoaded = true;
+                videoLoading.style.display = 'none';
+                yearVideo.style.display = 'block';
+                yearVideo.play();
+                yearVideo.removeEventListener('canplay', onCanPlay);
+            }, { once: true });
+        }
+
+        /* ── Show video overlay once per session ── */
+        const VIEW_KEY = 'ewers2025_xmas_views';
+        const viewCount = parseInt(localStorage.getItem(VIEW_KEY) || '0');
+
+        if (viewCount >= 1) {
+            // Already seen — start hidden, show rewatch/replay buttons
+            videoOverlay.classList.add('hidden');
+            rewatchBtn.style.display = 'inline-block';
+        } else {
+            document.body.classList.add('modal-open');
+            loadAndPlayVideo();
+            localStorage.setItem(VIEW_KEY, '1');
+
+            // Unmute hint after 3 s
+            hintTimeout = setTimeout(() => {
+                if (yearVideo.muted && !videoOverlay.classList.contains('hidden')) {
+                    unmuteHint.classList.add('show');
+                }
+            }, 3000);
+        }
+
+        /* ── Unmute on click / volume change ── */
+        yearVideo.addEventListener('click', () => {
+            if (yearVideo.muted) {
+                yearVideo.muted = false;
+            }
+        });
+        yearVideo.addEventListener('volumechange', () => {
+            if (!yearVideo.muted) {
+                unmuteHint.classList.remove('show');
+                unmuteHint.classList.add('hide');
+            }
+        });
+
+        /* ── Auto-close after video ends ── */
+        yearVideo.addEventListener('ended', () => {
+            setTimeout(closeVideo, 1500);
+        });
+
+        /* ── Fullscreen ── */
+        fullscreenBtn.addEventListener('click', () => {
+            const container = document.querySelector('.video-container');
+            if (!isFullscreen) {
+                (container.requestFullscreen || container.webkitRequestFullscreen).call(container);
+                yearVideo.muted = false;
+                unmuteHint.classList.remove('show');
+                unmuteHint.classList.add('hide');
+            } else {
+                (document.exitFullscreen || document.webkitExitFullscreen).call(document);
+            }
+        });
+        ['fullscreenchange','webkitfullscreenchange'].forEach(ev => {
+            document.addEventListener(ev, () => {
+                isFullscreen = !!(document.fullscreenElement || document.webkitFullscreenElement);
+                fullscreenBtn.textContent = isFullscreen ? '🔲 Exit Fullscreen' : '🔳 Fullscreen';
+            });
+        });
+
+        /* ── Skip ── */
+        skipBtn.addEventListener('click', closeVideo);
+
+        /* ── Close helper ── */
+        function closeVideo() {
+            yearVideo.pause();
+            videoOverlay.classList.add('hidden');
+            document.body.classList.remove('modal-open');
+            rewatchBtn.style.display = 'inline-block';
+        }
+
+        /* ── Rewatch (header button + main replay button) ── */
+        function openVideo() {
+            videoOverlay.classList.remove('hidden');
+            document.body.classList.add('modal-open');
+            rewatchBtn.style.display = 'none';
+            yearVideo.muted = true;
+            if (videoLoaded) {
+                yearVideo.currentTime = 0;
+                yearVideo.play();
+            } else {
+                loadAndPlayVideo();
+            }
+            unmuteHint.classList.remove('hide');
+            clearTimeout(hintTimeout);
+            hintTimeout = setTimeout(() => {
+                if (yearVideo.muted && !videoOverlay.classList.contains('hidden')) {
+                    unmuteHint.classList.add('show');
+                }
+            }, 3000);
+        }
+
+        rewatchBtn.addEventListener('click', openVideo);
+        replayBtn.addEventListener('click', openVideo);
+
+        /* ── Keyboard ── */
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape' && !videoOverlay.classList.contains('hidden')) closeVideo();
+        });
+    </script>
+</body>
+</html>

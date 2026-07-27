@@ -244,11 +244,29 @@ class ModernNavigation {
         const headerImg = document.getElementById('header-img');
         if (headerImg) {
             if (theme === 'dark') {
-                headerImg.src = '/i/branding/banner-img-dark.webp';
+                headerImg.src = this.resolveProjectUrl('i/branding/banner-img-dark.webp');
             } else {
-                headerImg.src = '/i/branding/banner-img-light.webp';
+                headerImg.src = this.resolveProjectUrl('i/branding/banner-img-light.webp');
             }
         }
+    }
+
+    resolveProjectUrl(path) {
+        const currentScript = document.currentScript ||
+            Array.from(document.scripts).find(script =>
+                script.src && script.src.includes('/shared/assets/scripts/nav.js')
+            );
+
+        if (currentScript && currentScript.src) {
+            return new URL(path.replace(/^\//, ''), new URL('../../../', currentScript.src)).toString();
+        }
+
+        const baseHref = document.querySelector('base')?.getAttribute('href');
+        if (baseHref) {
+            return new URL(path.replace(/^\//, ''), new URL(baseHref, window.location.href)).toString();
+        }
+
+        return new URL(path.replace(/^\//, ''), window.location.href).toString();
     }
     
     updateThemeIcons() {

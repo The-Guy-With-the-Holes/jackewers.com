@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Office Touch Panel | Jack Ewers</title>
+
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <link rel="stylesheet" href="/shared/assets/styles/design-system.css">
+    <link rel="stylesheet" href="/shared/assets/styles/components.css">
+    <link rel="stylesheet" href="/shared/assets/styles/nav.css">
+    <link rel="stylesheet" href="/app/projects/smarthome/style.css">
+</head>
+<body>
+
+    <div id="nav-placeholder"></div>
+    <script src="/shared/assets/scripts/load-navbar.js"></script>
+    <script src="/shared/assets/scripts/theme.js"></script>
+
+    <!-- Header -->
+    <header class="project-header">
+        <a href="/app/" class="back-link"><i class="fas fa-arrow-left"></i> Back to Projects</a>
+        <div class="header-content">
+            <div class="header-text">
+                <div class="project-tag">Arduino UNO R4 WiFi · MQTT · Home Assistant</div>
+                <h1>Office Touch Panel</h1>
+                <p class="project-subtitle">Smart TFT controller for office appliances via Home Assistant</p>
+                <p class="project-description">
+                    A wall-mounted touch panel built on the Arduino UNO R4 WiFi with a resistive TFT shield.
+                    Controls lights, power, and 3D printer via MQTT, reports door state from a reed switch,
+                    broadcasts internal temperature, and supports multi-tap + long-press on a physical button —
+                    all synced live with Home Assistant.
+                </p>
+            </div>
+            <div class="header-images">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgRwE9gUnVOnpxl4Eu8I-reU-aIkvQpngJBQ&s"
+                    alt="Arduino Uno r4 stock photo"
+                    class="header-img main-img"
+                    onerror="this.style.display='none'">
+                <img src="https://media.bloodweb.net/jackewers/projects/smarthome/office-arduino.jpg"
+                     alt="Office touch panel showing MQTT status and temperature reading"
+                     class="header-img secondary-img"
+                     onerror="this.style.display='none'">  
+            </div>
+        </div>
+    </header>
+
+    <main class="project-main">
+
+        <!-- Parts List -->
+        <section class="section">
+            <h2 class="section-title"><i class="fas fa-list-check"></i> Parts List</h2>
+            <ul class="parts-list">
+                <li><i class="fas fa-microchip"></i> Arduino UNO R4 WiFi</li>
+                <li><i class="fas fa-display"></i> MCUFRIEND 2.4" TFT shield (resistive touch, ILI9341 or compatible)</li>
+                <li><i class="fas fa-door-open"></i> Reed switch (door sensor) — wired to <code>SCL</code> pin</li>
+                <li><i class="fas fa-circle-dot"></i> Physical momentary button — wired to <code>D1 (TX)</code> pin</li>
+                <li><i class="fas fa-plug"></i> USB-C power supply or 5 V DC barrel jack</li>
+                <li><i class="fas fa-server"></i> Home Assistant instance with MQTT broker (e.g. Mosquitto add-on)</li>
+                <li><i class="fas fa-wifi"></i> 2.4 GHz Wi-Fi network</li>
+                <li><i class="fas fa-screwdriver-wrench"></i> Dupont jumper wires, enclosure of your choice</li>
+            </ul>
+        </section>
+
+        <!-- Wiring -->
+        <section class="section">
+            <h2 class="section-title"><i class="fas fa-diagram-project"></i> Wiring</h2>
+            <p style="color:var(--color-text-secondary);margin-bottom:1.25rem;">
+                The TFT shield slots directly onto the Arduino headers. The two external sensors connect to spare pins
+                left exposed by the shield.
+            </p>
+            <ul class="parts-list">
+                <li><i class="fas fa-door-open"></i> Reed switch → one leg to <code>SCL</code>, other leg to <code>GND</code>
+                    <span style="margin-left:auto;font-size:0.8rem;color:var(--color-text-secondary);">uses INPUT_PULLUP</span></li>
+                <li><i class="fas fa-circle-dot"></i> Physical button → one leg to <code>D1</code>, other leg to <code>GND</code>
+                    <span style="margin-left:auto;font-size:0.8rem;color:var(--color-text-secondary);">uses INPUT_PULLUP</span></li>
+                <li><i class="fas fa-lightbulb"></i> TFT backlight → <code>D7</code> (HIGH = on)</li>
+                <li><i class="fas fa-circle-info"></i> TFT touch X+/X−/Y+/Y− → <code>D9 / A3 / A2 / D8</code> (shield default)</li>
+            </ul>
+        </section>
+
+        <!-- Libraries -->
+        <section class="section">
+            <h2 class="section-title"><i class="fas fa-book"></i> Required Libraries</h2>
+            <p style="color:var(--color-text-secondary);margin-bottom:1.25rem;">
+                Install all of these through the Arduino IDE Library Manager (<kbd>Tools → Manage Libraries</kbd>):
+            </p>
+            <ul class="parts-list">
+                <li><i class="fas fa-layer-group"></i> <strong>Riscduino_MCUFRIEND_kbv</strong> — TFT driver</li>
+                <li><i class="fas fa-layer-group"></i> <strong>Adafruit GFX Library</strong> — graphics primitives</li>
+                <li><i class="fas fa-hand-pointer"></i> <strong>TouchScreen</strong> — resistive touch decoding</li>
+                <li><i class="fas fa-wifi"></i> <strong>WiFiS3</strong> — built-in, UNO R4 WiFi only</li>
+                <li><i class="fas fa-tower-broadcast"></i> <strong>ArduinoMqttClient</strong> — MQTT publish/subscribe</li>
+            </ul>
+        </section>
+
+        <!-- MQTT / HA Setup -->
+        <section class="section">
+            <h2 class="section-title"><i class="fas fa-tower-broadcast"></i> Home Assistant &amp; MQTT Setup</h2>
+            <ol class="steps-list">
+
+                <li>
+                    <h3>Install &amp; configure the Mosquitto MQTT broker</h3>
+                    <p>
+                        In Home Assistant, go to <strong>Settings → Add-ons → Mosquitto broker</strong> and install it.
+                        Create an MQTT user under <strong>Settings → People</strong> (or use an existing HA user).
+                        Note the broker's local IP — you'll put it in the sketch.
+                    </p>
+                </li>
+
+                <li>
+                    <h3>MQTT topics used by this sketch</h3>
+                    <p>
+                        All topics are prefixed with <code>home/buttons/office/</code> or <code>office/</code>.
+                        The sketch publishes commands and subscribes to <code>/state</code> feedback so the display
+                        stays in sync if HA changes a device externally.
+                    </p>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">MQTT topic map</span>
+                            <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+                        </div>
+<pre><code># Published by Arduino (commands)
+home/buttons/office/light          → "ON" / "OFF"
+home/buttons/office/power          → "ON" / "OFF"
+home/buttons/office/3dprint        → "ON" / "OFF"
+home/buttons/office/tap            → "1" / "2" / "3" / "long"
+office/door/state                  → "open" / "closed"
+office/arduino/temperature         → "26.3"  (°C, float string)
+
+# Subscribed by Arduino (state feedback)
+home/buttons/office/light/state    → "ON" / "OFF"
+home/buttons/office/power/state    → "ON" / "OFF"
+home/buttons/office/3dprint/state  → "ON" / "OFF"
+
+# Auto-discovery (published once on boot, retained)
+homeassistant/binary_sensor/office_door/config
+homeassistant/sensor/office_arduino_temp/config</code></pre>
+                    </div>
+                </li>
+
+                <li>
+                    <h3>Create HA automations for each button</h3>
+                    <p>
+                        In Home Assistant create an automation triggered by
+                        <strong>MQTT message</strong> on e.g. <code>home/buttons/office/light</code>.
+                        The action toggles your light switch entity, then publishes the new state back
+                        to <code>home/buttons/office/light/state</code> so the panel display updates.
+                    </p>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">YAML — example HA automation (light button)</span>
+                            <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+                        </div>
+<pre><code>alias: "Office panel - light button"
+trigger:
+  - platform: mqtt
+    topic: home/buttons/office/light
+action:
+  - service: >
+      {% if trigger.payload == 'ON' %}
+        light.turn_on
+      {% else %}
+        light.turn_off
+      {% endif %}
+    target:
+      entity_id: light.office_main
+  - service: mqtt.publish
+    data:
+      topic: home/buttons/office/light/state
+      payload: "{{ trigger.payload }}"
+      retain: false</code></pre>
+                    </div>
+                </li>
+
+            </ol>
+        </section>
+
+        <!-- Sketch -->
+        <section class="section">
+            <h2 class="section-title"><i class="fas fa-code"></i> Arduino Sketch</h2>
+            <p style="color:var(--color-text-secondary);margin-bottom:1.5rem;">
+                Download the sketch and edit the <strong>WiFi &amp; MQTT CONFIG</strong> block near the top of the file before uploading.
+                The sketch compiles on Arduino IDE 2.x with the UNO R4 WiFi board package installed.
+            </p>
+
+            <a href="sketch_jan27a.ino" download="sketch_jan27a.ino" class="sketch-download-btn">
+                <i class="fas fa-download"></i>
+                Download sketch_jan27a.ino
+            </a>
+
+            <h3 style="margin:2rem 0 1rem;font-size:1.05rem;color:var(--color-text-primary);">
+                <i class="fas fa-pen-to-square" style="color:var(--color-primary);margin-right:0.5rem;"></i>
+                What to edit before uploading
+            </h3>
+            <ul class="parts-list config-list">
+                <li>
+                    <i class="fas fa-wifi"></i>
+                    <div>
+                        <strong><code>WIFI_SSID</code></strong> — your 2.4 GHz network name<br>
+                        <strong><code>WIFI_PASS</code></strong> — your Wi-Fi password
+                    </div>
+                </li>
+                <li>
+                    <i class="fas fa-server"></i>
+                    <div>
+                        <strong><code>MQTT_BROKER</code></strong> — local IP of your Home Assistant / Mosquitto host (e.g. <code>192.168.1.XX</code>)<br>
+                        <strong><code>MQTT_PORT</code></strong> — default <code>1883</code>, change if you use a custom port
+                    </div>
+                </li>
+                <li>
+                    <i class="fas fa-key"></i>
+                    <div>
+                        <strong><code>MQTT_USER</code></strong> — MQTT broker username<br>
+                        <strong><code>MQTT_PASS</code></strong> — MQTT broker password
+                    </div>
+                </li>
+                <li>
+                    <i class="fas fa-tag"></i>
+                    <div>
+                        <strong><code>MQTT_LOCATION</code></strong> — short label used as the topic prefix (default <code>"office"</code>).
+                        All topics become <code>home/buttons/office/…</code> — change this if you deploy a second panel.
+                    </div>
+                </li>
+                <li>
+                    <i class="fas fa-id-badge"></i>
+                    <div>
+                        <strong><code>MQTT_CLIENT_ID</code></strong> — unique ID for this device on the broker (default <code>"arduino_r4_panel"</code>).
+                        Must be unique if you run more than one panel.
+                    </div>
+                </li>
+            </ul>
+            <div class="install-hint" style="margin-top:1.5rem;">
+                <i class="fas fa-circle-info"></i>
+                Everything else — pin numbers, touch calibration, button layout — can be left as-is for the standard MCUFRIEND 2.4" shield on an UNO R4 WiFi.
+            </div>
+        </section>
+
+        <!-- How it works -->
+        <section class="section">
+            <h2 class="section-title"><i class="fas fa-gears"></i> How It Works</h2>
+            <ul class="parts-list">
+                <li><i class="fas fa-hand-pointer"></i>
+                    <div>
+                        <strong>Touch buttons (Light / Power / 3D Print)</strong><br>
+                        <span style="color:var(--color-text-secondary);font-size:0.9rem;">
+                            Tap to toggle — publishes <code>ON</code> or <code>OFF</code> to the matching MQTT topic.
+                            HA responds by publishing the new state back to <code>/state</code>, keeping the display in sync
+                            even if someone changes the device from a phone or voice assistant.
+                        </span>
+                    </div>
+                </li>
+                <li><i class="fas fa-xmark" style="color:#ef4444;"></i>
+                    <div>
+                        <strong>Kill All / Start All button</strong><br>
+                        <span style="color:var(--color-text-secondary);font-size:0.9rem;">
+                            Shows red <em>Kill All</em> if any device is on — one tap turns everything off.
+                            Shows green <em>Start All</em> if everything is off — one tap turns everything on.
+                        </span>
+                    </div>
+                </li>
+                <li><i class="fas fa-circle-dot"></i>
+                    <div>
+                        <strong>Physical button — multi-tap &amp; long press</strong><br>
+                        <span style="color:var(--color-text-secondary);font-size:0.9rem;">
+                            Publishes <code>"1"</code>, <code>"2"</code>, <code>"3"</code> (taps within 500 ms window)
+                            or <code>"long"</code> (held ≥ 1.5 s) to <code>home/buttons/office/tap</code>.
+                            Wire up HA automations however you like — e.g. double-tap = all lights off.
+                        </span>
+                    </div>
+                </li>
+                <li><i class="fas fa-door-open"></i>
+                    <div>
+                        <strong>Reed switch door sensor</strong><br>
+                        <span style="color:var(--color-text-secondary);font-size:0.9rem;">
+                            Publishes <code>"open"</code> / <code>"closed"</code> retained to <code>office/door/state</code>
+                            on every state change. Shows in the status bar at the bottom of the screen.
+                        </span>
+                    </div>
+                </li>
+                <li><i class="fas fa-thermometer-half"></i>
+                    <div>
+                        <strong>Internal temperature sensor</strong><br>
+                        <span style="color:var(--color-text-secondary);font-size:0.9rem;">
+                            Reads the RA4M1 MCU's onboard ADC every 2 seconds, displays it on-screen in cyan,
+                            and publishes to MQTT so Home Assistant can graph it as a sensor entity.
+                            Auto-discovery config is sent on boot.
+                        </span>
+                    </div>
+                </li>
+                <li><i class="fas fa-rotate"></i>
+                    <div>
+                        <strong>Auto-reconnect</strong><br>
+                        <span style="color:var(--color-text-secondary);font-size:0.9rem;">
+                            Wi-Fi checked every 30 s, MQTT every 5 s. The status bar shows <span style="color:#4ade80;">OK</span> /
+                            <span style="color:#f87171;">NO</span> for both so you can see at a glance if something has dropped.
+                        </span>
+                    </div>
+                </li>
+            </ul>
+        </section>
+
+        <!-- Notes -->
+        <section class="section">
+            <h2 class="section-title"><i class="fas fa-lightbulb"></i> Notes &amp; Gotchas</h2>
+            <ul class="parts-list">
+                <li><i class="fas fa-triangle-exclamation" style="color:#f59e0b;"></i>
+                    The TFT shield occupies most of the UNO's pins. <code>D1 (TX)</code> is used for the physical button —
+                    disconnect it before uploading or you'll get garbage data on the serial line.
+                </li>
+                <li><i class="fas fa-triangle-exclamation" style="color:#f59e0b;"></i>
+                    The temperature reading is an approximation using the ADC on A0 as a baseline.
+                    The RA4M1 doesn't expose the internal temp sensor directly via standard Arduino APIs yet — treat the values as indicative, not precise.
+                </li>
+                <li><i class="fas fa-circle-info"></i>
+                    Touch calibration constants (<code>TS_MINX</code> etc.) may need tweaking for your specific shield. 
+                    Print raw <code>ts.getPoint()</code> values to Serial to calibrate.
+                </li>
+                <li><i class="fas fa-circle-info"></i>
+                    The sketch uses <code>INPUT_PULLUP</code> on both the button and reed switch — so both are <strong>active-low</strong>
+                    (connect to GND, not 3.3 V).
+                </li>
+            </ul>
+        </section>
+
+    </main>
+
+    <footer class="project-footer">
+        <p>Built by <a href="/">Jack Ewers</a> · <a href="/app/">Back to Projects</a></p>
+    </footer>
+
+    <script>
+        function copyCode(btn) {
+            const code = btn.closest('.code-block').querySelector('code').innerText;
+            navigator.clipboard.writeText(code).then(() => {
+                btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                setTimeout(() => btn.innerHTML = '<i class="fas fa-copy"></i> Copy', 2000);
+            });
+        }
+    </script>
+    <script src="/shared/assets/scripts/nav.js"></script>
+
+</body>
+</html>

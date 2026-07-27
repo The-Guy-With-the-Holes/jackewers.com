@@ -1,88 +1,123 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Doorbell</title>
-    <link rel="stylesheet" href="/shared/assets/styles/nav_and_socials.css">
+    <title>W.A.S.A.P.P Doorbell | Jack Ewers</title>
 
-    <link rel="stylesheet" href="/shared/assets/styles/projects.css">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <link rel="stylesheet" href="/shared/assets/styles/design-system.css">
+    <link rel="stylesheet" href="/shared/assets/styles/components.css">
+    <link rel="stylesheet" href="/shared/assets/styles/nav.css">
+    <link rel="stylesheet" href="style.css">
 </head>
-<body class="instructables">
+<body>
 
-    <div id="instructions"> <!-- Begin reading instructions -->
-        <p class="js-required-message">This page requires JavaScript to function properly. Please enable JavaScript in
-            your browser settings.</p>
-    </div>
+    <div id="nav-placeholder"></div>
+    <script src="/shared/assets/scripts/load-navbar.js"></script>
+    <script src="/shared/assets/scripts/theme.js"></script>
 
-    <div class="instruction" data-style="header"
-        data-title=" W.A.S.A.P.P User Guide:"
-        data-image="/app/doorbell/doorbell.jpg /app/doorbell/doorbell_open.jpg"
-        data-content="The Wilhelm-Arcade-Scream-Activated-Python_Powered-Pico WASAP is an innovative doorbell system that brings a dramatic twist to the traditional doorbell experience. 
-            When the arcade button is pressed, the Raspberry Pi Pico sends a signal via Wi-Fi to a server running Flask, 
-            which then plays the iconic Wilhelm scream throughout the house. 
-            This unique setup combines modern technology with a classic sound effect, 
-            ensuring that your guests' arrival is announced in a memorable and entertaining way.">  
-    </div>
-    
-<div class="instruction" data-style="ul"
-data-title="Parts List:"
-data-image=""
-data-content="
-    <li> RaspberryPi Pico W (with headers)</li>
-    <br>
-    <li> 30-33mm Arcade push button</li>
-    <br>
-    <li> Power supply for the pico (I used a AAA battery bank, but a Lipo)</li>
-    <br>
-    <li> Dupont cables</li>
-    <br>
-    <li> Computer Device With a Speaker (For the Server) </li>
-    ">
-</div>  
+    <!-- Header -->
+    <header class="project-header">
+        <a href="/app/" class="back-link"><i class="fas fa-arrow-left"></i> Back to Projects</a>
+        <div class="header-content">
+            <div class="header-text">
+                <div class="project-tag">Raspberry Pi · MicroPython · Flask</div>
+                <h1>W.A.S.A.P.P</h1>
+                <p class="project-subtitle">Wilhelm-Arcade-Scream-Activated-Python_Powered-Pico</p>
+                <p class="project-description">
+                    An innovative doorbell system that brings a dramatic twist to the traditional experience.
+                    When the arcade button is pressed, the Raspberry Pi Pico sends a signal via Wi-Fi to a 
+                    Flask server, which plays the iconic Wilhelm scream throughout the house.
+                </p>
+            </div>
+            <div class="header-images">
+                <img src="https://media.bloodweb.net/jackewers/projects/doorbell/internals.jpg" alt="Doorbell internals" class="header-img main-img">
+                <img src="https://media.bloodweb.net/jackewers/projects/doorbell/doorbell.jpg" alt="Doorbell assembled" class="header-img secondary-img">
+            </div>
+        </div>
+    </header>
 
-<div class="instruction" data-style="ol"
-data-title="Programming:"
-data-image=""
-data-content="
-<li>
-    Set up the server using Flask on your computer. 
-    You can find the code for the server below:
-    <br>
-    If you don't have Flask installed, you can install it using pip install Flask
+    <main class="project-main">
 
-Be sure to replace 'path/to/audio.mp3' with the path to the audio file you want to play.
-</li>
-<pre>
-<code>
-# This file is used to play the doorbell sound when a request is made to the server
-# inititalise this file via: python doorbell_server.py
-# Send the request via: curl -X POST http://localhost:5000/play_audio
+        <!-- Parts List -->
+        <section class="section">
+            <h2 class="section-title"><i class="fas fa-list-check"></i> Parts List</h2>
+            <ul class="parts-list">
+                <li><i class="fas fa-microchip"></i> RaspberryPi Pico W (with headers)</li>
+                <li><i class="fas fa-circle-dot"></i> 30–33mm Arcade push button</li>
+                <li><i class="fas fa-battery-half"></i> Power supply for the Pico (AAA battery bank or LiPo)</li>
+                <li><i class="fas fa-plug"></i> Dupont cables</li>
+                <li><i class="fas fa-laptop"></i> Computer with a speaker (for the server)</li>
+            </ul>
+        </section>
+
+        <!-- Programming -->
+        <section class="section">
+            <h2 class="section-title"><i class="fas fa-code"></i> Programming</h2>
+            <ol class="steps-list">
+
+                <li>
+                    <h3>Set up the Flask server</h3>
+                    <p>
+                        Install Flask on your computer if you haven't already, then create the server file below.
+                        Replace <code>path/to/audio.mp3</code> with the path to your Wilhelm scream (or other audio file).
+
+                        if you need a copy of the scream, you can download it from <a href="https://upload.wikimedia.org/wikipedia/commons/d/d9/Wilhelm_Scream.ogg"> here</a>
+                    </p>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">Python — doorbell_server.py</span>
+                            <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+                        </div>
+<pre><code># Run with: python doorbell_server.py
+# Trigger with: curl -X POST http://localhost:5000/play_audio
 
 from flask import Flask
 import os
 
-app = Flask(name)
+app = Flask(__name__)
 
 @app.route('/play_audio', methods=['POST'])
 def play_audio():
-os.system('aplay path/to/audio.mp3)  
-return 'Audio played', 200
+    os.system('aplay path/to/audio.mp3')
+    return 'Audio played', 200
 
-if name == 'main':
-app.run(host='0.0.0.0', port=5000)
-</code>
-</pre>
-<li>
-    Install the latest version of MicroPython on the RaspberryPi Pico
-</li>
-<li>
-    Create a new Python file on the RaspberryPi Pico and copy the following code:
-    Be sure to replace 'your_wifi_ssid' and 'your_wifi_password' with your Wi-Fi credentials, and 'SERVER_IP' with the IP address of your server.
-</li>
-<pre>
-<code>
-import network
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)</code></pre>
+                    </div>
+                    <div class="install-hint">
+                        <i class="fas fa-terminal"></i>
+                        <code>pip install Flask</code>
+                    </div>
+                </li>
+
+                <li>
+                    <h3>Install MicroPython on the Pico W</h3>
+                    <p>
+                        Download the latest MicroPython <code>.uf2</code> firmware from 
+                        <a href="https://micropython.org/download/RPI_PICO_W/" target="_blank" rel="noopener">micropython.org</a>,
+                        hold the BOOTSEL button while plugging in the Pico, then drag the file onto the drive that appears.
+                    </p>
+                </li>
+
+                <li>
+                    <h3>Flash the Pico W firmware</h3>
+                    <p>
+                        Create a new file on the Pico W (e.g. using Thonny) and paste the code below.
+                        Replace the Wi-Fi credentials and <code>SERVER_IP</code> with your server's local IP address.
+                    </p>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">MicroPython — main.py</span>
+                            <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+                        </div>
+<pre><code>import network
 import urequests
 import machine
 import time
@@ -91,63 +126,88 @@ import time
 SSID = 'your_wifi_ssid'
 PASSWORD = 'your_wifi_password'
 
-# Button setup
-button = machine.Pin(14, machine.Pin.IN, machine.Pin.PULL_UP)  
+# Button on GPIO 14
+button = machine.Pin(14, machine.Pin.IN, machine.Pin.PULL_UP)
 
 # Connect to Wi-Fi
 wlan = network.WLAN(network.STA_IF)
 wlan.active(True)
 wlan.connect(SSID, PASSWORD)
 
-# Wait for connection
 while not wlan.isconnected():
     time.sleep(1)
 
 print('Connected to Wi-Fi')
 
-# URL of the server endpoint
-url = 'http://SERVER_IP:5000/play_audio' 
+url = 'http://SERVER_IP:5000/play_audio'
 
 def play_audio():
     try:
         response = urequests.post(url)
-        print('Audio play response:', response.text)
+        print('Response:', response.text)
     except Exception as e:
         print('Failed to send request:', e)
 
 while True:
-    if not button.value():  # Button pressed
+    if not button.value():  # Button pressed (active low)
         play_audio()
-        time.sleep(1)  # Debounce delay
-</code>
-<pre>
+        time.sleep(1)  # Debounce delay</code></pre>
+                    </div>
+                </li>
 
-</div>
-"></div>
+            </ol>
+        </section>
 
 
-<script>
-const userSettings = {
-    LD_slider:true,
-    createNav:false,
-    return:{
-        ref:'/app/index.html',
-        label:'Back to Projects'
-    },
+    <section class="section">
+        <h2 class="section-title"><i class="fas fa-tools"></i> Assembly & Enclosure</h2>
+        <p>
+            For the enclosure, I repurposed an old project box and drilled holes for the button and cables. 
+            The Pico W is mounted inside with hot glue, and the button is connected to GPIO 14 and GND using 
+            dupont wires. You can customize the enclosure however you like – 3D printing, laser cutting, or 
+            even a vintage tin box would work great!
+        </p>    
+    </section>
+    <section class="section">
+        <h2 class="section-title"><i class="fas fa-bell"></i> Testing & Usage</h2>
+        <p>
+            With everything set up, press the arcade button and enjoy the dramatic Wilhelm scream echoing through your home! 
+            You can further customize the system by adding more buttons for different sounds, integrating with smart home devices, 
+            or even creating a web interface to trigger the sounds remotely.
+        </p>
 
-    branding:{
-        init:true,
-        position:'top right',
-        foot_note:'Powered by Bloodweb.Net',
-    },
+    </section>
 
-}
-</script>
-<!-- Import Key Functions -->
-<script src="/KeyFunctions.js"></script>
-<!-- Make instructions-->
-<script src="/JS/instructables.js"></script>
-<!-- Create return label and any other Nav items -->
-<script src="https://bloodweb.net/JS/Navigation.js"></script>
+
+    <section class="Section">
+        <h2 class="section-title"><i class="fas fa-wrench"></i> Next Steps & Improvements</h2>
+        <p>
+          If you don't have a spare pico or just want to hear the scream without building the hardware, 
+          Just press the button below... (this used to be wired up to play the sound on my local server, but y'all crazy kids drove me insane with the traffic so I had to disable it 😭)
+        </p>
+        
+        <button class="btn" onclick="document.getElementById('wilhelm').play()">Play Sound</button>
+        
+        <audio id="wilhelm" src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Wilhelm_Scream.ogg"></audio>
+        <p>
+            Future improvements could include adding a camera to capture visitors' reactions, integrating with a smart doorbell system, or even creating a mobile app for remote triggering.
+        </p>
+    </main>
+
+    <footer class="project-footer">
+        <p>Built by <a href="/">Jack Ewers</a> · <a href="/app/">Back to Projects</a></p>
+    </footer>
+
+    <script>
+        function copyCode(btn) {
+            const code = btn.closest('.code-block').querySelector('code').innerText;
+            navigator.clipboard.writeText(code).then(() => {
+                btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                setTimeout(() => btn.innerHTML = '<i class="fas fa-copy"></i> Copy', 2000);
+            });
+        }
+    </script>
+    <script src="/shared/assets/scripts/nav.js"></script>
+
 </body>
-</html> 
+</html>

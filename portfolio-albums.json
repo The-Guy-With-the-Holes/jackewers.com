@@ -65,17 +65,7 @@
                 "https://media.bloodweb.net/jackewers/albums/APP2025/27.webp",
                 "https://media.bloodweb.net/jackewers/albums/APP2025/36.webp"
             ]
-        },
-        {
-            "id": "random-projects",
-            "name": "Random Projects",
-            "description": "Experimental ideas and side quests",
-            "icon": "fas fa-lightbulb",
-            "color": "var(--color-warning)",
-            "link": "/projects/",
-            "weight": 4,
-            "minWidth": 1024,
-            "photos": []
         }
+
     ]
 }

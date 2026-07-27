@@ -267,8 +267,6 @@
     ],
     "website": "https://www.lovesicktattoo.com/",
     "testimonial": "You might be sick of love, but you will never be sick of lovesick tattoo!"
-    
-
   },
   {
     "id":"bambu-labs",
@@ -392,8 +390,24 @@
     ],
     "website": "https://en.fgswa.org.au/",
     "testimonial": "Fo Guang Shan Buddhist Temple is a wonderful place for anyone interested in learning about Buddhism and participating in community activities. The temple offers a peaceful and welcoming environment for all."
-  }
-    
-
-]
+  },
+    {
+      "id":"twilio",
+      "name": "Twilio",
+      "categories": ["Piercing"],
+      "icon": "fas fa-tint",
+      "image": "https://assets.twilio.com/public_assets/ui-assets/0.0.32/img/logos/twilio-login-logo.svg",
+      "isOnlineOnly": true,
+      "isAffiliate": true,
+      "description": "Twilio is a cloud communications platform that enables developers to build and integrate voice, video, and messaging capabilities into their applications.",
+      "features": [
+        "Programmable SMS and MMS",
+        "Voice and video calling APIs",
+        "Two-factor authentication"
+      ],
+      "website": "https://www.twilio.com/",
+      "testimonial": "Twilio has transformed the way we communicate with our customers. Their APIs are easy to use and have allowed us to implement powerful communication features in our app."
+    },
+    {}
+  ]
 }

@@ -58,26 +58,43 @@
     overflow: hidden;
     box-shadow: var(--shadow-xl);
     max-width: 600px;
-    max-height: 500px;
+    height: 500px;
+    perspective: 1200px;
 }
 
 .hero-profile {
     width: 100%;
     height: 100%;
-    max-height: 500px;
     display: block;
     border-radius: var(--radius-2xl);
     object-fit: cover;
     object-position: center 20%;
 }
 
+/* ── Coin-flip animation ──────────────────────────────── */
+@keyframes coin-flip-out {
+    from { transform: rotateY(0deg); }
+    to   { transform: rotateY(90deg); }
+}
+@keyframes coin-flip-in {
+    from { transform: rotateY(-90deg); }
+    to   { transform: rotateY(0deg); }
+}
+
+.hero-profile.flip-out {
+    animation: coin-flip-out 0.18s ease-in forwards;
+}
+.hero-profile.flip-in {
+    animation: coin-flip-in 0.55s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+}
+
 @media (max-width: 968px) {
     .hero-profile-container {
-        max-height: 400px;
+        height: 400px;
     }
     .hero-profile {
-        max-height: 400px;
         object-position: center 5%;
+    }
     }
 }
 
@@ -318,7 +335,7 @@
     }
     
     #portfolio-albums-grid {
-        grid-template-columns: repeat(4, 1fr) !important;
+        grid-template-columns: repeat(3, 1fr) !important;
     }
 }
 

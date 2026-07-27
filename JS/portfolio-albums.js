@@ -1,7 +1,27 @@
 // Load portfolio albums from JSON
+function getProjectBaseUrl() {
+    const currentScript = document.currentScript ||
+        Array.from(document.scripts).find(script =>
+            script.src && script.src.includes('/JS/portfolio-albums.js')
+        );
+
+    if (currentScript && currentScript.src) {
+        return new URL('../', currentScript.src);
+    }
+
+    const baseHref = document.querySelector('base')?.getAttribute('href');
+    if (baseHref) {
+        return new URL(baseHref, window.location.href);
+    }
+
+    return new URL('./', window.location.href);
+}
+
+const PORTFOLIO_ALBUMS_JSON = new URL('portfolio-albums.json', getProjectBaseUrl()).toString();
+
 async function loadPortfolioAlbums() {
     try {
-        const response = await fetch('/portfolio-albums.json');
+        const response = await fetch(PORTFOLIO_ALBUMS_JSON);
         const data = await response.json();
         window.portfolioAlbums = data.albums; // Store globally for modal access
         renderPortfolioAlbums(data.albums);

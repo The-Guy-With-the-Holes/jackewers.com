@@ -6,3 +6,5 @@
 linktree/generator
 cert.perm
 email-signatures/
+# Arduino sketch credentials
+arduino_secrets.h

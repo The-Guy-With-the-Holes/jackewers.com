@@ -2,8 +2,16 @@
 (function() {
     const navPlaceholder = document.getElementById('nav-placeholder');
     if (navPlaceholder) {
-        fetch('/shared/assets/components/navbar.html')
-            .then(response => response.text())
+        const siteBaseUrl = getSiteBaseUrl();
+        const navbarUrl = new URL('shared/assets/components/navbar.html', siteBaseUrl).toString();
+
+        fetch(navbarUrl)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status} while loading navbar`);
+                }
+                return response.text();
+            })
             .then(html => {
                 navPlaceholder.innerHTML = html;
                 
@@ -15,6 +23,25 @@
             });
     }
 })();
+
+function getSiteBaseUrl() {
+    const currentScript = document.currentScript ||
+        Array.from(document.scripts).find(script =>
+            script.src && script.src.includes('/shared/assets/scripts/load-navbar.js')
+        );
+
+    if (currentScript && currentScript.src) {
+        // load-navbar.js lives at shared/assets/scripts/, so 3 levels up is project base.
+        return new URL('../../../', currentScript.src);
+    }
+
+    const baseHref = document.querySelector('base')?.getAttribute('href');
+    if (baseHref) {
+        return new URL(baseHref, window.location.href);
+    }
+
+    return new URL('./', window.location.href);
+}
 
 function initializeNavbar() {
     // Mobile nav toggle
@@ -54,7 +81,7 @@ function initializeNavbar() {
             });
         });
         
-        // Set active page
+        // Set active page on top-level nav links
         const currentPage = window.location.pathname;
         document.querySelectorAll('.nav-link').forEach(link => {
             const page = link.getAttribute('data-page');
@@ -63,6 +90,26 @@ function initializeNavbar() {
                 (page !== 'home' && currentPage.includes(`/${page}`))
             ) {
                 link.classList.add('active');
+            }
+        });
+
+        // Set active state on matching dropdown item
+        document.querySelectorAll('.nav-dropdown-link').forEach(link => {
+            const href = link.getAttribute('href');
+            if (!href || href === '#') return;
+            // Exact match, or current path starts with href (for sub-pages)
+            if (
+                currentPage === href ||
+                (href !== '/' && currentPage.startsWith(href + '/')) ||
+                (href !== '/' && currentPage === href)
+            ) {
+                link.classList.add('active');
+                // Also ensure the parent nav-link shows active
+                const parentNavItem = link.closest('.nav-item');
+                if (parentNavItem) {
+                    const parentLink = parentNavItem.querySelector('.nav-link');
+                    if (parentLink) parentLink.classList.add('active');
+                }
             }
         });
     }
