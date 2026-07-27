@@ -53,7 +53,6 @@
 {
     "name": "Coin Flip Game",
     "description": "A simple coin flip game built with HTML, CSS, and JavaScript. Featuring animations, tracking and simple toast notifications.",
-    "image": "https://bloodweb.net/media/images/bloodweb/coin_flip/coin_flip_icon.png",
     "fallbackIcon": "🪙",
     "link": "/app/projects/games/coin-flip/",
     "tags": ["JavaScript", "HTML", "CSS"],
@@ -87,7 +86,7 @@
     "description": "A WooCommerce plugin that applies regional tariffs to the checkout process.",
     "image": "https://bloodweb.net/media/images/bloodweb/plugins/tarrif-banner.jpg",
     "fallbackIcon": "🛒",
-    "link": "http://bloodweb.net/plugins/tariff-manager/",
+    "link": "https://bloodweb.net/plugins/tariff-manager/",
     "tags": ["PHP", "JavaScript", "WooCommerce", "Plugin"],
     "dateCompleted": "2026-02-16",
     "weight": 10
@@ -121,5 +120,23 @@
     "tags": ["JavaScript", "HTML", "CSS"],
     "dateCompleted": "2026-02-21",
     "weight": 3
+},
+{
+    "name": "Bloodweb Forms",
+    "description": "A free online form builder for Bloodweb: drag-and-drop field editing, shareable public links, and collected responses in one dashboard.",
+    "image": "https://bloodweb.net/shared/og-image.php?title=Free+Online+Form+Builder&kind=default",
+    "fallbackIcon": "📝",
+    "link": "https://bloodweb.net/forms/",
+    "tags": ["PHP", "JavaScript", "SaaS"],
+    "weight": 12
+},
+{
+    "name": "Bloodweb Free Tools",
+    "description": "A growing suite of free browser-based utilities — converters, calculators and generators — built and hosted by Bloodweb. No sign-up, no tracking.",
+    "image": "https://bloodweb.net/shared/og-image.php?title=Free+Online+Tools&kind=default",
+    "fallbackIcon": "🧰",
+    "link": "https://bloodweb.net/tools/",
+    "tags": ["PHP", "JavaScript", "Web Tools"],
+    "weight": 11
 }
 ]
