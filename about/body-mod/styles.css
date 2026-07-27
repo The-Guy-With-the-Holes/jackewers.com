@@ -823,3 +823,50 @@ body:not(.light-mode) .warning-card {
     min-width: 3rem;
     text-align: center;
 }
+
+/* Timeline — ported from the retired /mods/ page */
+.mod-timeline {
+    list-style: none;
+    margin: var(--space-lg) 0 0;
+    padding: 0 0 0 var(--space-lg);
+    border-left: 2px solid var(--color-border);
+}
+
+.mod-timeline > li {
+    position: relative;
+    padding-bottom: var(--space-xl);
+}
+
+.mod-timeline > li:last-child {
+    padding-bottom: 0;
+}
+
+.mod-timeline > li::before {
+    content: '';
+    position: absolute;
+    left: calc(-1 * var(--space-lg) - 7px);
+    top: 0.35rem;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    border: 3px solid var(--color-bg-primary);
+}
+
+.mod-timeline-year {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    margin-bottom: 0.25rem;
+}
+
+.mod-timeline h3 {
+    margin: 0 0 0.5rem;
+    font-size: 1.25rem;
+}
+
+.mod-timeline p {
+    color: var(--color-text-secondary);
+    margin: 0;
+}

@@ -1,239 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Body Modification Journey - Jack Ewers. 20+ years of experience with piercings, scarification, sclera staining, subdermal implants, and more.">
+
+    <!-- This page moved to /about/body-mod/. GitHub Pages cannot serve a 301,
+         so this is the static-host equivalent: an instant meta refresh plus a
+         canonical pointing at the new URL. Google treats a 0-second refresh as
+         a permanent redirect and consolidates the ranking signals.
+         Deliberately NOT noindex — that would contradict the canonical and
+         risk dropping the page before its signals transfer. -->
+    <link rel="canonical" href="https://jackewers.com/about/body-mod/">
+    <meta http-equiv="refresh" content="0; url=https://jackewers.com/about/body-mod/">
+
     <title>Body Modifications | Jack Ewers</title>
-    <meta property="og:title" content="Body Modification Gallery | Jack Ewers">
-    <meta property="og:description" content="20+ years of body modification experience - sclera staining, subdermal implants, bifurcated tongue, and more">
+    <meta name="description"
+        content="Body Modification Journey - Jack Ewers. 20+ years of experience with piercings, scarification, sclera staining, subdermal implants, and more.">
+
+    <meta property="og:title" content="Body Modifications | Jack Ewers">
+    <meta property="og:description"
+        content="20+ years of body modification experience - sclera staining, subdermal implants, bifurcated tongue, and more">
+    <meta property="og:url" content="https://jackewers.com/about/body-mod/">
+
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="/shared/assets/styles/nav.css">
+
     <style>
-        :root{--color-primary:#6366f1;--color-primary-light:#818cf8;--color-primary-dark:#4f46e5;--color-secondary:#06b6d4;--color-accent:#f59e0b;--color-success:#10b981;--color-danger:#ef4444;--color-bg-primary:#fff;--color-bg-secondary:#f8fafc;--color-bg-tertiary:#f1f5f9;--color-bg-dark:#0f172a;--color-text-primary:#0f172a;--color-text-secondary:#475569;--color-text-tertiary:#94a3b8;--color-border:#e2e8f0;--space-xs:.5rem;--space-sm:.75rem;--space-md:1rem;--space-lg:1.5rem;--space-xl:2rem;--space-2xl:3rem;--space-3xl:4rem;--font-size-xs:.75rem;--font-size-sm:.875rem;--font-size-base:1rem;--font-size-lg:1.125rem;--font-size-xl:1.25rem;--font-size-2xl:1.5rem;--font-size-3xl:1.875rem;--font-size-4xl:2.25rem;--font-size-5xl:3rem;--radius-sm:.375rem;--radius-md:.5rem;--radius-lg:.75rem;--radius-xl:1rem;--radius-2xl:1.5rem;--radius-full:9999px;--shadow-sm:0 1px 2px 0 rgb(0 0 0/.05);--shadow-md:0 4px 6px -1px rgb(0 0 0/.1);--shadow-lg:0 10px 15px -3px rgb(0 0 0/.1);--shadow-xl:0 20px 25px -5px rgb(0 0 0/.1);--transition-fast:150ms cubic-bezier(.4,0,.2,1);--transition-base:300ms cubic-bezier(.4,0,.2,1)}@media (prefers-color-scheme:dark){:root{--color-bg-primary:#0f172a;--color-bg-secondary:#1e293b;--color-bg-tertiary:#334155;--color-bg-dark:#020617;--color-text-primary:#f8fafc;--color-text-secondary:#cbd5e1;--color-text-tertiary:#64748b;--color-border:#334155}}*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}body{font-family:Inter,sans-serif;font-size:var(--font-size-base);line-height:1.6;color:var(--color-text-primary);background:var(--color-bg-primary);padding:0 var(--space-xs)}.hero-image-container{position:relative;padding:0;margin:0 auto;border-radius:var(--radius-2xl);overflow:hidden;box-shadow:var(--shadow-xl);max-width:600px;max-height:500px}.hero-image{width:100%;height:100%;max-height:500px;display:block;border-radius:var(--radius-2xl);object-fit:cover;object-position:center}.hero-image-overlay{position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(135deg,rgba(99,102,241,0.3) 0%,rgba(6,182,212,0.3) 100%)}@media (max-width:968px){.hero-image-container{max-height:350px}.hero-image{max-height:350px;object-position:center 20%}}.header{max-width:1280px;margin:0 auto;padding:var(--space-3xl) var(--space-lg);text-align:center}.tag{display:inline-flex;align-items:center;gap:var(--space-xs);padding:var(--space-xs) var(--space-md);background:var(--color-bg-tertiary);border-radius:var(--radius-full);font-size:var(--font-size-sm);font-weight:600;color:var(--color-primary);margin-bottom:var(--space-lg)}.header h1{font-size:var(--font-size-5xl);font-weight:900;margin-bottom:var(--space-md);background:linear-gradient(135deg,var(--color-primary) 0%,var(--color-secondary) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}.header p{font-size:var(--font-size-xl);color:var(--color-text-secondary);max-width:700px;margin:0 auto}.container{max-width:1280px;margin:0 auto;padding:0 var(--space-lg) var(--space-3xl)}.section{margin-bottom:var(--space-3xl)}.section-title{font-size:var(--font-size-3xl);font-weight:800;margin-bottom:var(--space-xl);display:flex;align-items:center;gap:var(--space-md)}.section-title i{color:var(--color-primary)}.timeline{position:relative;padding:var(--space-xl) 0}.timeline::before{content:'';position:absolute;left:50%;top:0;bottom:0;width:2px;background:var(--color-border);transform:translateX(-50%)}.timeline-item{position:relative;margin-bottom:var(--space-3xl);display:grid;grid-template-columns:1fr 1fr;gap:var(--space-xl);align-items:center}.timeline-item:nth-child(even){direction:rtl}.timeline-item:nth-child(even)>*{direction:ltr}.timeline-marker{position:absolute;left:50%;top:50%;width:20px;height:20px;background:var(--color-primary);border:4px solid var(--color-bg-primary);border-radius:50%;transform:translate(-50%,-50%);z-index:1}.timeline-content{background:var(--color-bg-secondary);padding:var(--space-xl);border-radius:var(--radius-xl);box-shadow:var(--shadow-lg)}.timeline-year{font-size:var(--font-size-sm);font-weight:700;color:var(--color-primary);margin-bottom:var(--space-sm)}.timeline-title{font-size:var(--font-size-2xl);font-weight:700;margin-bottom:var(--space-md)}.timeline-description{color:var(--color-text-secondary);line-height:1.7}.mod-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:var(--space-xl)}.mod-card{background:var(--color-bg-secondary);border-radius:var(--radius-xl);overflow:hidden;box-shadow:var(--shadow-lg);transition:transform var(--transition-base),box-shadow var(--transition-base)}.mod-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-xl)}.mod-image{width:100%;height:250px;position:relative;overflow:hidden;background:linear-gradient(135deg,var(--color-primary) 0%,var(--color-secondary) 100%);display:flex;align-items:center;justify-content:center;font-size:var(--font-size-4xl);color:white}.mod-content{padding:var(--space-xl)}.mod-title{font-size:var(--font-size-2xl);font-weight:700;margin-bottom:var(--space-sm)}.mod-description{color:var(--color-text-secondary);margin-bottom:var(--space-lg)}.mod-details{display:flex;flex-wrap:wrap;gap:var(--space-sm)}.mod-badge{padding:var(--space-xs) var(--space-sm);background:var(--color-bg-tertiary);border-radius:var(--radius-md);font-size:var(--font-size-xs);font-weight:600;color:var(--color-text-secondary)}.resources{background:var(--color-bg-secondary);border-radius:var(--radius-2xl);padding:var(--space-2xl);margin-bottom:var(--space-3xl)}.resources h3{font-size:var(--font-size-2xl);font-weight:700;margin-bottom:var(--space-lg)}.resource-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:var(--space-lg)}.resource-link{display:flex;align-items:center;gap:var(--space-md);padding:var(--space-md);background:var(--color-bg-primary);border-radius:var(--radius-lg);text-decoration:none;color:var(--color-text-primary);transition:transform var(--transition-base)}.resource-link:hover{transform:translateX(4px)}.resource-icon{width:50px;height:50px;display:flex;align-items:center;justify-content:center;background:var(--color-primary);color:white;border-radius:var(--radius-lg);font-size:var(--font-size-xl)}.faq{background:var(--color-bg-secondary);border-radius:var(--radius-2xl);padding:var(--space-2xl)}.faq-item{margin-bottom:var(--space-lg);padding-bottom:var(--space-lg);border-bottom:1px solid var(--color-border)}.faq-item:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}.faq-question{font-size:var(--font-size-lg);font-weight:600;margin-bottom:var(--space-sm);display:flex;align-items:center;gap:var(--space-sm)}.faq-question i{color:var(--color-primary)}.faq-answer{color:var(--color-text-secondary);line-height:1.7}@media (max-width:768px){.header h1{font-size:var(--font-size-3xl)}.timeline::before{left:20px}.timeline-item{grid-template-columns:1fr;padding-left:var(--space-2xl)}.timeline-item:nth-child(even){direction:ltr}.timeline-marker{left:20px}.mod-grid{grid-template-columns:1fr}}
+        :root {
+            color-scheme: light dark;
+        }
+
+        body {
+            font-family: Inter, system-ui, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 2rem;
+            text-align: center;
+            line-height: 1.6;
+        }
+
+        a {
+            color: #6366f1;
+            font-weight: 600;
+        }
     </style>
 </head>
+
 <body>
-   
-    <div class="hero-image-container">
-      <img 
-          src="https://media.bloodweb.net/jackewers/branding/banner/banner-img-light.webp"
-          alt="Jack Ewers - Software Developer"
-          class="hero-image"
-          onerror="this.src='https://media.bloodweb.net/jackewers/images/headshot.jpg'"
-      >
-      <div class="hero-image-overlay"></div>
-  </div>
-  
-    <div id="nav-placeholder" class="nav-skeleton"></div>
-    <script src="/shared/assets/scripts/load-navbar.js"></script>
-    <script src="/shared/assets/scripts/theme.js"></script>
-    <header class="header">
-        <div class="tag"><i class="fas fa-star"></i>Body Modification</div>
-        <h1>My Modification Journey</h1>
-        <p>20+ years of self-expression through body art, scarification, implants, and extreme modifications</p>
-    </header>
-    <div class="container">
-        <section class="section">
-            <h2 class="section-title"><i class="fas fa-timeline"></i>Timeline</h2>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-year">Early 2000s</div>
-                        <h3 class="timeline-title">The Beginning</h3>
-                        <p class="timeline-description">Started my journey with traditional piercings—ears, nose, and lip. This was the foundation of what would become a lifelong passion for body modification.</p>
-                    </div>
-                    <div></div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-marker"></div>
-                    <div></div>
-                    <div class="timeline-content">
-                        <div class="timeline-year">2005-2010</div>
-                        <h3 class="timeline-title">Expanding the Collection</h3>
-                        <p class="timeline-description">Added multiple facial piercings, stretched lobes, and began experimenting with dermal anchors. Each modification told a story and became part of my identity.</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-year">2012-2015</div>
-                        <h3 class="timeline-title">Advanced Modifications</h3>
-                        <p class="timeline-description">Transitioned to more extreme modifications including scarification, branding, and my first subdermal implants. This period defined my commitment to body art as a form of self-expression.</p>
-                    </div>
-                    <div></div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-marker"></div>
-                    <div></div>
-                    <div class="timeline-content">
-                        <div class="timeline-year">2018</div>
-                        <h3 class="timeline-title">Tongue Bifurcation</h3>
-                        <p class="timeline-description">One of my most significant modifications—bifurcating my tongue. The healing process was challenging but incredibly rewarding. This mod completely changed how I experience taste and speech.</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-year">2020</div>
-                        <h3 class="timeline-title">Sclera Staining</h3>
-                        <p class="timeline-description">Underwent sclera tattooing (eye tattooing), one of the most extreme and permanent modifications available. This procedure requires an experienced professional and comes with significant risks.</p>
-                    </div>
-                    <div></div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-marker"></div>
-                    <div></div>
-                    <div class="timeline-content">
-                        <div class="timeline-year">2022-Present</div>
-                        <h3 class="timeline-title">Continuous Evolution</h3>
-                        <p class="timeline-description">Continuing to add to my collection with new piercings, expanding subdermal implants, and exploring innovative modification techniques. The journey never truly ends.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="section">
-            <h2 class="section-title"><i class="fas fa-th"></i>Modification Types</h2>
-            <div class="mod-grid">
-                <div class="mod-card">
-                    <div class="mod-image">
-                        <img src="https://via.placeholder.com/400x250/6366f1/ffffff?text=Piercings" alt="Piercings" style="width: 100%; height: 100%; object-fit: cover;">
-                        <i class="fas fa-circle" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 3rem; color: white; text-shadow: 0 2px 4px rgba(0,0,0,0.3);"></i>
-                    </div>
-                    <div class="mod-content">
-                        <h3 class="mod-title">Piercings</h3>
-                        <p class="mod-description">Multiple facial and body piercings including stretched lobes, septum, bridge, and various surface piercings.</p>
-                        <div class="mod-details">
-                            <span class="mod-badge">Facial</span>
-                            <span class="mod-badge">Body</span>
-                            <span class="mod-badge">Stretched</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="mod-card">
-                    <div class="mod-image">
-                        <img src="https://via.placeholder.com/400x250/06b6d4/ffffff?text=Sclera+Staining" alt="Sclera Staining" style="width: 100%; height: 100%; object-fit: cover;">
-                        <i class="fas fa-eye" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 3rem; color: white; text-shadow: 0 2px 4px rgba(0,0,0,0.3);"></i>
-                    </div>
-                    <div class="mod-content">
-                        <h3 class="mod-title">Sclera Staining</h3>
-                        <p class="mod-description">Eye tattooing procedure that permanently alters the white of the eye. Extremely permanent and requires an expert practitioner.</p>
-                        <div class="mod-details">
-                            <span class="mod-badge">Extreme</span>
-                            <span class="mod-badge">Permanent</span>
-                            <span class="mod-badge">Professional Only</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="mod-card">
-                    <div class="mod-image">
-                        <img src="https://via.placeholder.com/400x250/8b5cf6/ffffff?text=Subdermal+Implants" alt="Subdermal Implants" style="width: 100%; height: 100%; object-fit: cover;">
-                        <i class="fas fa-cube" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 3rem; color: white; text-shadow: 0 2px 4px rgba(0,0,0,0.3);"></i>
-                    </div>
-                    <div class="mod-content">
-                        <h3 class="mod-title">Subdermal Implants</h3>
-                        <p class="mod-description">3D implants placed beneath the skin to create raised designs. Creates unique textures and shapes on the body.</p>
-                        <div class="mod-details">
-                            <span class="mod-badge">Surgical</span>
-                            <span class="mod-badge">3D Effect</span>
-                            <span class="mod-badge">Custom Design</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="mod-card">
-                    <div class="mod-image">
-                        <img src="https://via.placeholder.com/400x250/ef4444/ffffff?text=Bifurcated+Tongue" alt="Bifurcated Tongue" style="width: 100%; height: 100%; object-fit: cover;">
-                        <i class="fas fa-cut" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 3rem; color: white; text-shadow: 0 2px 4px rgba(0,0,0,0.3);"></i>
-                    </div>
-                    <div class="mod-content">
-                        <h3 class="mod-title">Bifurcated Tongue</h3>
-                        <p class="mod-description">Tongue splitting procedure that creates a forked tongue appearance. Changes speech patterns and taste perception.</p>
-                        <div class="mod-details">
-                            <span class="mod-badge">Oral</span>
-                            <span class="mod-badge">Functional</span>
-                            <span class="mod-badge">Unique</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="mod-card">
-                    <div class="mod-image">
-                        <img src="https://via.placeholder.com/400x250/f59e0b/ffffff?text=Scarification" alt="Scarification" style="width: 100%; height: 100%; object-fit: cover;">
-                        <i class="fas fa-fire" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 3rem; color: white; text-shadow: 0 2px 4px rgba(0,0,0,0.3);"></i>
-                    </div>
-                    <div class="mod-content">
-                        <h3 class="mod-title">Scarification</h3>
-                        <p class="mod-description">Controlled scarring to create permanent body art patterns. Various techniques including cutting, branding, and chemical scarification.</p>
-                        <div class="mod-details">
-                            <span class="mod-badge">Art</span>
-                            <span class="mod-badge">Texture</span>
-                            <span class="mod-badge">Healing</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="mod-card">
-                    <div class="mod-image">
-                        <img src="https://via.placeholder.com/400x250/10b981/ffffff?text=Dermal+Anchors" alt="Dermal Anchors" style="width: 100%; height: 100%; object-fit: cover;">
-                        <i class="fas fa-gem" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 3rem; color: white; text-shadow: 0 2px 4px rgba(0,0,0,0.3);"></i>
-                    </div>
-                    <div class="mod-content">
-                        <h3 class="mod-title">Dermal Anchors</h3>
-                        <p class="mod-description">Single-point surface piercings that create the appearance of gems or studs embedded in the skin.</p>
-                        <div class="mod-details">
-                            <span class="mod-badge">Surface</span>
-                            <span class="mod-badge">Decorative</span>
-                            <span class="mod-badge">Versatile</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="section resources">
-            <h3><i class="fas fa-store"></i> Trusted Jewelry & Resources</h3>
-            <div class="resource-list">
-                <a href="https://clickerino.com.au" class="resource-link" target="_blank" rel="noopener">
-                    <div class="resource-icon"><i class="fas fa-ring"></i></div>
-                    <div>
-                        <div style="font-weight:600">Clickerino</div>
-                        <div style="font-size:var(--font-size-sm);color:var(--color-text-tertiary)">Premium Body Jewelry</div>
-                    </div>
-                </a>
-                <a href="https://anatometal.com" class="resource-link" target="_blank" rel="noopener">
-                    <div class="resource-icon"><i class="fas fa-gem"></i></div>
-                    <div>
-                        <div style="font-weight:600">Anatometal</div>
-                        <div style="font-size:var(--font-size-sm);color:var(--color-text-tertiary)">High-End Custom Jewelry</div>
-                    </div>
-                </a>
-            </div>
-        </section>
-        <section class="section faq">
-            <h2 class="section-title"><i class="fas fa-question-circle"></i>Frequently Asked Questions</h2>
-            <div class="faq-item">
-                <div class="faq-question"><i class="fas fa-chevron-right"></i>Does it hurt?</div>
-                <p class="faq-answer">Pain levels vary greatly depending on the modification. Piercings are typically brief, sharp pain. Scarification and implants involve longer sessions but are manageable with proper preparation. Sclera staining requires anaesthetic. Everyone's pain tolerance is different.</p>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question"><i class="fas fa-chevron-right"></i>How do you care for modifications?</div>
-                <p class="faq-answer">Each modification has specific aftercare requirements. Generally: keep clean, avoid touching with dirty hands, use saline solution for cleaning, avoid swimming during healing, and follow your artist's specific instructions. Healing times range from weeks to months.</p>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question"><i class="fas fa-chevron-right"></i>Can modifications be reversed?</div>
-                <p class="faq-answer">Some can, some can't. Piercings close (though stretched lobes may not fully recover). Tattoos can be removed with laser treatment. Sclera staining, scarification, and implant removal may leave permanent marks. Always consider permanence before proceeding.</p>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question"><i class="fas fa-chevron-right"></i>How do I find a reputable artist?</div>
-                <p class="faq-answer">Research extensively. Check portfolios, read reviews, visit studios in person. Look for proper licensing, sterile equipment, and artists with specific experience in your desired modification. Don't choose based on price—safety and expertise are paramount.</p>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question"><i class="fas fa-chevron-right"></i>What about employment and social stigma?</div>
-                <p class="faq-answer">This is a real consideration. While attitudes are changing, visible modifications can affect employment prospects in certain industries. I've been fortunate to work in tech where individuality is more accepted. Consider your personal and professional goals before getting visible mods.</p>
-            </div>
-        </section>
-    </div>
+    <main>
+        <h1>This page has moved</h1>
+        <p>
+            My body modification journey now lives at
+            <a href="/about/body-mod/">jackewers.com/about/body-mod/</a>.
+        </p>
+        <p>Redirecting you now&hellip;</p>
+    </main>
+
+    <!-- Fallback for browsers that ignore meta refresh. replace() keeps the
+         retired URL out of the back-button history. -->
+    <script>
+        location.replace('/about/body-mod/');
+    </script>
 </body>
+
 </html>
