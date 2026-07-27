@@ -1,3 +1,30 @@
+function getProjectBaseUrl() {
+    const currentScript = document.currentScript ||
+        Array.from(document.scripts).find(script =>
+            script.src && script.src.includes('/shared/assets/config/projects-config.js')
+        );
+
+    if (currentScript && currentScript.src) {
+        return new URL('../../../', currentScript.src);
+    }
+
+    const baseHref = document.querySelector('base')?.getAttribute('href');
+    if (baseHref) {
+        return new URL(baseHref, window.location.href);
+    }
+
+    return new URL('./', window.location.href);
+}
+
+function resolveProjectUrl(url) {
+    if (!url || typeof url !== 'string') return url;
+    if (/^(https?:)?\/\//i.test(url) || url.startsWith('mailto:') || url.startsWith('tel:') || url.startsWith('#')) {
+        return url;
+    }
+
+    return new URL(url.replace(/^\//, ''), getProjectBaseUrl()).toString();
+}
+
 const placeHolderProjects =
 [
     [
@@ -10,12 +37,28 @@ const placeHolderProjects =
         '/linktree/linktree-banner.png',
     ],
     [
-        'Converter',
-        'https://bloodweb.net/converter',
+        'Convertimatic',
+        'https://bloodweb.net/converter/',
         'The ultimate unit converter',
-        'An `almost` universal unit conversion tool supporting length, weight, temperature, color and more. Features a clean interface and real-time conversion.',
+        'An `almost` universal unit conversion tool supporting length, weight, temperature, color and more. Features a clean interface and real-time conversion. Built for Bloodweb.',
         ['JavaScript', 'Web Tools', 'Calculator'],
-        'https://bloodweb.net/var/www/media/images/bloodweb/convertimatic/convertimatic-banner.png'
+        'https://media.bloodweb.net/images/bloodweb/convertimatic/convertimatic-banner.png'
+    ],
+    [
+        'Bloodweb Forms',
+        'https://bloodweb.net/forms/',
+        'Free drag-and-drop online form builder',
+        'A free online form builder for Bloodweb: drag-and-drop field editing, shareable public links, and collected responses in one dashboard. Built with PHP and vanilla JavaScript.',
+        ['PHP', 'JavaScript', 'Web Tools', 'SaaS', 'web'],
+        'https://bloodweb.net/shared/og-image.php?title=Free+Online+Form+Builder&kind=default'
+    ],
+    [
+        'Bloodweb Free Tools',
+        'https://bloodweb.net/tools/',
+        'Free converters, calculators & generators',
+        'A growing suite of free browser-based utilities — converters, calculators and generators — built and hosted by Bloodweb. No sign-up, no tracking.',
+        ['JavaScript', 'Web Tools', 'PHP', 'web'],
+        'https://bloodweb.net/shared/og-image.php?title=Free+Online+Tools&kind=default'
     ],
     [
         'Be My Valentine',
@@ -27,7 +70,7 @@ const placeHolderProjects =
     ],
     [
         'WordPress Plugin: Tariff Manager',
-        'https://bloodweb.net/plugins/tariff-manager',
+        'https://bloodweb.net/plugins/tariff-manager/',
         'WordPress plugin for shipping tariffs',
         'A comprehensive WordPress plugin designed to help e-commerce businesses manage complex shipping tariffs and rates across different regions.',
         ['WordPress', 'PHP', 'E-commerce', 'Plugins','web'],
@@ -59,7 +102,7 @@ const placeHolderProjects =
     // ],
     [
         'WASAP',
-        '/app/doorbell/index.html',
+        '/app/projects/doorbell/index.html',
         'Python Powered Smart Doorbell',
         'An intelligent doorbell system powered by Python, featuring remote notifications, video recording, and smart home integration capabilities.',
         ['Python', 'IoT', 'Hardware', 'Automation','web'],
@@ -75,11 +118,21 @@ const placeHolderProjects =
     // ],
     [
         'Regional Coupons',
-        'https://bloodweb.net/plugins/regional-coupon',
+        'https://bloodweb.net/plugins/regional-coupon/',
         'WordPress regional coupon system',
         'A sophisticated WordPress plugin enabling businesses to create location-based promotional campaigns with region-specific discount codes.',
         ['WordPress', 'PHP', 'E-commerce', 'Marketing','web'],
         'https://bloodweb.net/plugins/regional-coupon/regional-coupon.jpeg'
     ]   
 ]
-window.placeHolderProjects = placeHolderProjects;
+
+window.placeHolderProjects = placeHolderProjects.map(item => {
+    const normalized = [...item];
+
+    // [Title, href, Short desc, Long desc, tags, square image Src, banner image src (optional)]
+    normalized[1] = resolveProjectUrl(normalized[1]);
+    normalized[5] = resolveProjectUrl(normalized[5]);
+    if (normalized[6]) normalized[6] = resolveProjectUrl(normalized[6]);
+
+    return normalized;
+});

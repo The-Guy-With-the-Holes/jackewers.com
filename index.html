@@ -1,61 +1,139 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Jack Ewers - Software Developer, Builder, Body Mod Enthusiast & Distro-Dude. Creating tools that matter and advocating for mental health. 20+ years of body modification experience.">
+    <meta name="description"
+        content="Jack Ewers - Software Developer, Builder, Body Mod Enthusiast & Distro-Dude. Creating tools that matter and advocating for mental health. 20+ years of body modification experience.">
     <title>Jack Ewers | Software Developer & Body Mod Enthusiast</title>
-    
+
     <!-- SEO & Social -->
     <meta name="author" content="Jack Ewers">
-    <meta name="keywords" content="Jack Ewers, Software Developer, Full Stack, Mental Health Advocate, Builder, Creator">
+    <meta name="keywords"
+        content="Jack Ewers, Software Developer, Full Stack, Mental Health Advocate, Builder, Creator">
     <meta name="theme-color" content="#6366f1">
-    
+
     <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://jackewers.com/">
     <meta property="og:title" content="Jack Ewers | Software Developer & Builder">
-    <meta property="og:description" content="Creating tools that matter. Building for impact. Advocating for mental health.">
+    <meta property="og:description"
+        content="Creating tools that matter. Building for impact. Advocating for mental health.">
     <meta property="og:image" content="https://media.bloodweb.net/jackewers/branding/banner/banner-img-light.webp">
-    
+
+    <link rel="canonical" href="https://jackewers.com/">
+
+    <!-- Structured data: links the Jack Ewers person entity to the Bloodweb organisation -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Person",
+          "@id": "https://jackewers.com/#person",
+          "name": "Jack Ewers",
+          "url": "https://jackewers.com/",
+          "image": "https://media.bloodweb.net/jackewers/images/headshot.jpg",
+          "jobTitle": "Software Developer",
+          "worksFor": { "@id": "https://bloodweb.net/#organization" },
+          "sameAs": [
+            "https://github.com/The-Guy-With-the-Holes",
+            "https://www.linkedin.com/in/jack-ewers-14a155212/",
+            "https://www.instagram.com/the_guy_with_the_holes/",
+            "https://www.facebook.com/jack.ewers.2025/"
+          ]
+        },
+        {
+          "@type": "Organization",
+          "@id": "https://bloodweb.net/#organization",
+          "name": "Bloodweb",
+          "alternateName": "Bloodweb.net",
+          "url": "https://bloodweb.net/",
+          "logo": "https://media.bloodweb.net/jackewers/branding/icon/BloodWeb.png",
+          "description": "Web development studio building websites, web applications, custom tools, progressive web apps and hosting.",
+          "areaServed": "AU",
+          "employee": { "@id": "https://jackewers.com/#person" },
+          "identifier": {
+            "@type": "PropertyValue",
+            "propertyID": "ABN",
+            "value": "65 757 166 166"
+          },
+          "makesOffer": [
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Web design & development",
+                "url": "https://bloodweb.net/hire-us/"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Web application development",
+                "url": "https://bloodweb.net/hire-us/"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Hosting & maintenance",
+                "url": "https://bloodweb.net/pricing/"
+              }
+            }
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://jackewers.com/#website",
+          "url": "https://jackewers.com/",
+          "name": "Jack Ewers",
+          "publisher": { "@id": "https://bloodweb.net/#organization" }
+        }
+      ]
+    }
+    </script>
+
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="favicon.ico">
-    
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
+
     <!-- Shared Styles -->
-    <link rel="stylesheet" href="/shared/assets/styles/design-system.css">
-    <link rel="stylesheet" href="/shared/assets/styles/components.css">
-    <link rel="stylesheet" href="/shared/assets/styles/utilities.css">
-    <link rel="stylesheet" href="/shared/assets/styles/animations.css">
-    <link rel="stylesheet" href="/shared/assets/styles/nav.css">
-    
+    <link rel="stylesheet" href="shared/assets/styles/design-system.css">
+    <link rel="stylesheet" href="shared/assets/styles/components.css">
+    <link rel="stylesheet" href="shared/assets/styles/utilities.css">
+    <link rel="stylesheet" href="shared/assets/styles/animations.css">
+    <link rel="stylesheet" href="shared/assets/styles/nav.css">
+
     <!-- Homepage Styles -->
-    <link rel="stylesheet" href="/home.css">
+    <link rel="stylesheet" href="home.css">
 </head>
+
 <body>
- 
+
     <div class="hero-image-container">
-      <img 
-          src="https://media.bloodweb.net/jackewers/branding/banner/banner-img-light.webp"
-          alt="Jack Ewers - Software Developer"
-          class="hero-image"
-          onerror="this.src='https://media.bloodweb.net/jackewers/images/headshot.jpg'"
-      >
+        <img src="https://media.bloodweb.net/jackewers/branding/banner/banner-img-light.webp"
+            alt="Jack Ewers - Software Developer" class="hero-image"
+            onerror="this.src='https://media.bloodweb.net/jackewers/images/headshot.jpg'">
     </div>
-  
- 
-  
+
+
+
     <!-- Navigation Component -->
     <div id="nav-placeholder" class="nav-skeleton"></div>
-    <script src="/shared/assets/scripts/load-navbar.js"></script>
-    <script src="/shared/assets/scripts/theme.js"></script>
+    <script src="shared/assets/scripts/load-navbar.js"></script>
+    <script src="shared/assets/scripts/theme.js"></script>
 
     <!-- Hero Section -->
     <section class="hero" id="home">
@@ -69,7 +147,7 @@
                     Building Tools<br>That Matter
                 </h1>
                 <p class="hero-description">
-                    Software developer, builder, mental health advocate, body mod enthusiast, and distro-dude creating 
+                    Software developer, builder, mental health advocate, body mod enthusiast, and distro-dude creating
                     meaningful solutions that make a difference.
                 </p>
                 <div class="hero-badges">
@@ -81,11 +159,11 @@
                     <span class="badge"><i class="fas fa-map-marker-alt"></i> Aussie</span>
                 </div>
                 <div class="hero-actions">
-                    <a href="/app" class="btn btn-primary">
+                    <a href="app" class="btn btn-primary">
                         View My Work
                         <i class="fas fa-arrow-right"></i>
                     </a>
-                    <a href="/contact" class="btn btn-secondary">
+                    <a href="contact" class="btn btn-secondary">
                         <i class="fas fa-envelope"></i>
                         Get In Touch
                     </a>
@@ -93,11 +171,8 @@
             </div>
             <div class="hero-visual">
                 <div class="hero-profile-container">
-                    <img 
-                        src="https://media.bloodweb.net/jackewers/images/headshot.jpg"
-                        alt="Jack Ewers"
-                        class="hero-profile"
-                    >
+                    <img src="https://media.bloodweb.net/jackewers/images/headshot.jpg" alt="Jack Ewers"
+                        class="hero-profile">
                 </div>
             </div>
         </div>
@@ -108,7 +183,7 @@
         <div class="stats-container">
             <div class="stats-grid">
                 <div class="stat-card">
-                    <span class="stat-value">5+</span>
+                    <span class="stat-value"><noscript>5</noscript><span class="currentYearMinus" data-start-year="2020"></span>+</span>
                     <span class="stat-label">Years Experience</span>
                 </div>
                 <div class="stat-card">
@@ -116,12 +191,12 @@
                     <span class="stat-label">Projects Built</span>
                 </div>
                 <div class="stat-card">
-                    <span class="stat-value">100%</span>
-                    <span class="stat-label">Committed</span>
+                    <span class="stat-value">1M+</span>
+                    <span class="stat-label">Lines of Code</span>
                 </div>
                 <div class="stat-card">
-                    <span class="stat-value">24/7</span>
-                    <span class="stat-label">Available</span>
+                    <span class="stat-value">100%</span>
+                    <span class="stat-label">Committed</span>
                 </div>
             </div>
         </div>
@@ -137,9 +212,10 @@
                     A collection of projects, events, and creative endeavors.
                 </p>
             </div>
-            
+
             <!-- Album Grid -->
-            <div id="portfolio-albums-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-lg);">
+            <div id="portfolio-albums-grid"
+                style="display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-lg);">
                 <!-- Albums will be loaded from JSON -->
             </div>
         </div>
@@ -150,85 +226,64 @@
         <div class="section-container">
             <div class="section-header">
                 <span class="section-tag">About Me</span>
-                <h2 class="section-title">Hi, I'm Jack Ewers <i class="fas fa-hand-wave" style="color: var(--color-accent);"></i></h2>
+                <h2 class="section-title">Hi, I'm Jack Ewers <i class="fas fa-hand-wave"
+                        style="color: var(--color-accent);"></i></h2>
                 <p class="section-description">
-                    Also known as Spike or "the guy with the holes." I'm passionate about 
+                    Also known as "the guy with the holes" or Spike. I'm passionate about
                     creating tools that make people happy and advocating for mental health awareness.
                 </p>
             </div>
-            
+
             <div class="about-grid">
                 <div class="about-card">
                     <span class="about-card-icon"><i class="fas fa-laptop-code"></i></span>
                     <h3 class="about-card-title">Software Developer</h3>
                     <p class="about-card-text">
-                        Building full-stack applications with modern technologies. 
+                        Building full-stack applications with modern technologies.
                         Focused on clean code, user experience, and scalable solutions.
                     </p>
                 </div>
-                
+
                 <div class="about-card">
                     <span class="about-card-icon"><i class="fas fa-tools"></i></span>
                     <h3 class="about-card-title">Builder & Creator</h3>
                     <p class="about-card-text">
-                        From business management to construction, then into software. 
-                        I love making things and pushing projects to see how far they can go.
+                        3D printing, CAD design, large scale projects, and creative problem-solving. <br>
+                        If it can be built, I want to build it.
                     </p>
                 </div>
-                
+
                 <div class="about-card">
                     <span class="about-card-icon"><i class="fas fa-skull"></i></span>
                     <h3 class="about-card-title">Body Mod Enthusiast</h3>
                     <p class="about-card-text">
-                        20+ years modifying my body—from sclera staining to subdermal implants and even a bifurcated tongue. 
-                        Modification is life! I love body jewelry so much I want everyone to have some. 
-                        Check out <a href="https://clickerino.com" target="_blank" style="color: var(--color-primary);">Clickerino clickers</a> 
-                        or <a href="https://anatometal.com" target="_blank" style="color: var(--color-primary);">Anatometal</a> custom pieces.
+                        20+ years modifying my body, from sclera staining to subdermal implants and even a bifurcated
+                        tongue.
+                        Modification is life! I love body jewelry so much I want everyone to have some. <br>
+                        Check out <a href="https://clickerino.com" target="_blank"
+                            style="color: var(--color-primary);">Clickerino clickers</a>
+                        or <a href="https://anatometal.com.au" target="_blank"
+                            style="color: var(--color-primary);">Anatometal</a> custom pieces.
                     </p>
                 </div>
-                
-                <div class="about-card">
-                    <span class="about-card-icon"><i class="fab fa-linux"></i></span>
-                    <h3 class="about-card-title">Distro-Dude</h3>
-                    <p class="about-card-text">
-                        Linux enthusiast who loves tinkering with different distributions. 
-                        From Arch to Ubuntu, I'm always exploring and optimizing my dev environment.
-                    </p>
-                </div>
-                
+
+
                 <div class="about-card">
                     <span class="about-card-icon"><i class="fas fa-users"></i></span>
                     <h3 class="about-card-title">Proud Dad</h3>
                     <p class="about-card-text">
-                        Family comes first. When I'm not coding, I'm spending quality time 
+                        Family comes first. When I'm not coding, I'm spending quality time
                         with my loved ones and being the best dad I can be.
                     </p>
                 </div>
-                
-                <div class="about-card">
-                    <span class="about-card-icon"><i class="fas fa-brain"></i></span>
-                    <h3 class="about-card-title">Mental Health Advocate</h3>
-                    <p class="about-card-text">
-                        Passionate supporter of mental health awareness and various charity 
-                        events. Creating tools and raising awareness to help others.
-                    </p>
-                </div>
-                
-                <div class="about-card">
-                    <span class="about-card-icon"><i class="fas fa-palette"></i></span>
-                    <h3 class="about-card-title">Creative Thinker</h3>
-                    <p class="about-card-text">
-                        Love exploring 3D modeling, design, and creative problem-solving. 
-                        Always looking for new challenges and opportunities to grow.
-                    </p>
-                </div>
-                
+          
                 <div class="about-card">
                     <span class="about-card-icon"><i class="fas fa-map-marker-alt"></i></span>
                     <h3 class="about-card-title">Aussie Spirit</h3>
                     <p class="about-card-text">
-                        Based in Australia, bringing that characteristic laid-back yet 
-                        determined approach to everything I do. G'day!
+                        I'm not going to bore you with the details of my location, as any true Aussie would do,<br>
+                        but let's just say I know how to throw a <s>shrimp</s> <b>prawn</b> <s>on the barbie</s> in a <b>frying pan</b>,<br> 
+                        and I can teach you how to say "G'day mate"  with the perfect Aussie accent.
                     </p>
                 </div>
             </div>
@@ -242,78 +297,17 @@
                 <span class="section-tag">Portfolio</span>
                 <h2 class="section-title">Featured Projects</h2>
                 <p class="section-description">
-                    A selection of projects I've built, from web applications to 
+                    A selection of projects I've built, from web applications to
                     creative experiments. Each one designed with purpose and passion.
                 </p>
             </div>
-            
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; position: relative;">
-                        <i class="fas fa-code" style="font-size: 4rem; color: rgba(255,255,255,0.9);"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Social Links API</h3>
-                        <p class="project-description">
-                            Modular JavaScript API for creating customizable social media link displays 
-                            with support for custom styling and multiple layouts.
-                        </p>
-                        <div class="project-tags">
-                            <span class="tag">JavaScript</span>
-                            <span class="tag">API</span>
-                            <span class="tag">Modular</span>
-                        </div>
-                        <a href="/app" class="project-link">
-                            View Project <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-                
-                <div class="project-card">
-                    <div class="project-image" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); display: flex; align-items: center; justify-content: center;">
-                        <i class="fas fa-laptop" style="font-size: 4rem; color: rgba(255,255,255,0.9);"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Portfolio Website</h3>
-                        <p class="project-description">
-                            Modern, accessible portfolio showcasing my work with interactive 
-                            features and responsive design.
-                        </p>
-                        <div class="project-tags">
-                            <span class="tag">HTML</span>
-                            <span class="tag">CSS</span>
-                            <span class="tag">JavaScript</span>
-                        </div>
-                        <a href="/app" class="project-link">
-                            View Project <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-                
-                <div class="project-card">
-                    <div class="project-image" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); display: flex; align-items: center; justify-content: center;">
-                        <i class="fas fa-wrench" style="font-size: 4rem; color: rgba(255,255,255,0.9);"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Web Tools & Utilities</h3>
-                        <p class="project-description">
-                            Collection of helpful web tools and utilities designed to make 
-                            developers' lives easier and more productive.
-                        </p>
-                        <div class="project-tags">
-                            <span class="tag">Tools</span>
-                            <span class="tag">Utilities</span>
-                            <span class="tag">Productivity</span>
-                        </div>
-                        <a href="/app" class="project-link">
-                            View Project <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
+
+            <div class="projects-grid" id="projects-grid">
+                <!-- Loaded dynamically from projects.json -->
             </div>
-            
+
             <div style="text-align: center; margin-top: var(--space-3xl);">
-                <a href="/app" class="btn btn-primary">
+                <a href="app" class="btn btn-primary">
                     View All Projects
                     <i class="fas fa-arrow-right"></i>
                 </a>
@@ -328,11 +322,11 @@
                 <span class="section-tag">Get In Touch</span>
                 <h2 class="section-title">Let's Work Together</h2>
                 <p class="section-description">
-                    Have a project in mind? Want to collaborate? Or just want to say hi? 
+                    Have a project in mind? Want to collaborate? Or just want to say hi?
                     I'd love to hear from you!
                 </p>
             </div>
-            
+
             <div class="contact-grid">
                 <div class="contact-info">
                     <div class="contact-item">
@@ -342,7 +336,7 @@
                             <p><a href="mailto:webmaster@jackewers.com">webmaster@jackewers.com</a></p>
                         </div>
                     </div>
-                    
+
                     <div class="contact-item">
                         <span class="contact-icon"><i class="fas fa-phone"></i></span>
                         <div class="contact-details">
@@ -350,7 +344,7 @@
                             <p><a href="tel:+61479000429">+61 479 000 429</a></p>
                         </div>
                     </div>
-                    
+
                     <div class="contact-item">
                         <span class="contact-icon"><i class="fas fa-globe"></i></span>
                         <div class="contact-details">
@@ -358,42 +352,60 @@
                             <p><a href="https://jackewers.com">jackewers.com</a></p>
                         </div>
                     </div>
-                    
+
                     <div class="contact-item">
                         <span class="contact-icon"><i class="fas fa-globe"></i></span>
                         <div class="contact-details">
-                            <h3>Website</h3>
-                            <p><a href="https://bloodweb.net">bloodweb.net</a></p>
+                            <h3>Studio</h3>
+                            <p><a href="https://bloodweb.net/">Bloodweb — web design &amp; development</a></p>
                         </div>
                     </div>
 
                     <div class="social-links">
                         <a href="https://github.com/The-Guy-With-the-Holes" class="social-link" title="GitHub">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                                <path
+                                    d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
                             </svg>
                         </a>
-                        <a href="https://www.linkedin.com/in/jack-ewers-14a155212/" class="social-link" title="LinkedIn">
+                        <a href="https://www.linkedin.com/in/jack-ewers-14a155212/" class="social-link"
+                            title="LinkedIn">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                                <path
+                                    d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                            </svg>
+                        </a>
+                        <a href="https://www.facebook.com/jack.ewers.2025" class="social-link" title="Facebook">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M22.675 0h-21.35c-.733 0-1.325.593-1.325 1.326v21.348c0 .733.593 1.326 1.325 1.326h11.495v-9.294h-3.128v-3.622h3.128v-2.672c0-3.1 1.894-4.788 4.659-4.788 1.325 0 2.464.099 2.794.143v3.24l-1.918.001c-1.504 0-1.796.715-1.796 1.763v2.312h3.591l-.467 3.622h-3.124v9.294h6.116c.73 0 1.323-.593 1.323-1.326v-21.348c0-.733-.593-1.326-1.324-1.326z" />
+                            </svg>
+                        </a>
+                        <a href="https://www.instagram.com/the_guy_with_the_holes/" class="social-link" title="Instagram">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.35 3.608 1.325.975.975 1.264 2.243 1.325 3.608.058 1.266.069 1.645.069 4.85s-.012 3.584-.07 4.85c-.062 1.366-.35 2.633-1.325 3.608-.975.975-2.243 1.264-3.608 1.325-1.266.058-1.645.069-4.85.069s-3.584-.012-4.85-.07c-1.366-.062-2.633-.35-3.608-1.325-.975-.975-1.264-2.243-1.325-3.608C2.175 15.747 2.163 15.368 2.163 12s0-3.584.012-4.85c0-1 .288-2 .863-2zM12 0C8.741 0 83325-.0137 7 .072c-2 .086-3 .35-4 .713C2 .9875 .9875 2 .0725 3c-.3625 1-.6275 2-.7135 4C-.0137 8 .0005 8 .0005 12s-.0137 3 .0725 4c0 .3625-.2885 2-.8635 2-.3625-.3625-1-.6275-4-.713C8 .9875 .9875 .9875 .0725 -.713C-.0137 -2 -.0005 -2 -.0005 -6s-.0137 -3 .0725 -4c0 -.3625-.2885 -2 -.8635 -2C8 -.0137 8 -.0005 12 -.0005s3 -.0137 4 -.072c0 -2 -.35 -3 -713 -4C16 .9875 15 .987514 .987513 .9875zM12 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162S15.403 5.838 12 5.838zm0 10.164c-2.209 0-4-1.791-4-4s1.791-4 4-4 4 1.791 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441-.645-1.441-1.441s645-1.441 1.441-1.441 1.441 .645 1.441 1.441-.645 1.441-1.441 1.441z" />
+                
                             </svg>
                         </a>
                     </div>
                 </div>
-                
-                <div style="background: var(--color-bg-secondary); border: 1px solid var(--color-border); border-radius: var(--radius-xl); padding: var(--space-3xl); text-align: center;">
+
+                <div
+                    style="background: var(--color-bg-secondary); border: 1px solid var(--color-border); border-radius: var(--radius-xl); padding: var(--space-3xl); text-align: center;">
                     <h3 style="font-size: var(--font-size-2xl); font-weight: 700; margin-bottom: var(--space-md);">
                         Ready to start a conversation?
                     </h3>
                     <p style="color: var(--color-text-secondary); margin-bottom: var(--space-xl); line-height: 1.7;">
-                        Whether you have a project in mind, want to collaborate, or just 
+                        Whether you have a project in mind, want to collaborate, or just
                         want to chat about tech and mental health advocacy, I'm here.
                     </p>
                     <a href="mailto:webmaster@jackewers.com" class="btn btn-primary" style="display: inline-flex;">
                         Send me an email
                         <i class="fas fa-paper-plane"></i>
                     </a>
-                    <p style="margin-top: var(--space-lg); color: var(--color-text-tertiary); font-size: var(--font-size-sm);">
+                    <p
+                        style="margin-top: var(--space-lg); color: var(--color-text-tertiary); font-size: var(--font-size-sm);">
                         <i class="fas fa-heart" style="color: var(--color-primary);"></i> I appreciate you infinitely
                     </p>
                 </div>
@@ -403,31 +415,41 @@
 
     <!-- Fullscreen Album Modal -->
     <!-- Album Grid Modal -->
-    <div id="albumModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.95); z-index: 9999; overflow-y: auto; padding: 2rem;">
-        <button onclick="closeAlbumModal()" style="position: fixed; top: 20px; right: 20px; background: rgba(255, 255, 255, 0.1); border: none; color: white; font-size: 2rem; width: 50px; height: 50px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.3s; z-index: 10000;">
+    <div id="albumModal"
+        style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.95); z-index: 9999; overflow-y: auto; padding: 2rem;">
+        <button onclick="closeAlbumModal()"
+            style="position: fixed; top: 20px; right: 20px; background: rgba(255, 255, 255, 0.1); border: none; color: white; font-size: 2rem; width: 50px; height: 50px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.3s; z-index: 10000;">
             <i class="fas fa-times"></i>
         </button>
         <div style="max-width: 1200px; margin: 0 auto; position: relative; z-index: 9999;">
-            <h2 id="modalAlbumTitle" style="color: white; font-size: 2rem; margin-bottom: 2rem; text-align: center;"></h2>
-            <div id="modalImageGrid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1rem;">
+            <h2 id="modalAlbumTitle" style="color: white; font-size: 2rem; margin-bottom: 2rem; text-align: center;">
+            </h2>
+            <div id="modalImageGrid"
+                style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1rem;">
                 <!-- Photos will be loaded here -->
             </div>
         </div>
     </div>
 
     <!-- Image Lightbox -->
-    <div id="imageLightbox" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.98); z-index: 10000; justify-content: center; align-items: center;">
-        <button onclick="closeLightbox()" style="position: absolute; top: 20px; right: 20px; background: rgba(255, 255, 255, 0.1); border: none; color: white; font-size: 2rem; width: 50px; height: 50px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.3s;">
+    <div id="imageLightbox"
+        style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.98); z-index: 10000; justify-content: center; align-items: center;">
+        <button onclick="closeLightbox()"
+            style="position: absolute; top: 20px; right: 20px; background: rgba(255, 255, 255, 0.1); border: none; color: white; font-size: 2rem; width: 50px; height: 50px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.3s;">
             <i class="fas fa-times"></i>
         </button>
-        <button onclick="navigateLightbox(-1)" style="position: absolute; left: 20px; top: 50%; transform: translateY(-50%); background: rgba(255, 255, 255, 0.1); border: none; color: white; font-size: 2rem; width: 50px; height: 50px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.3s;">
+        <button onclick="navigateLightbox(-1)"
+            style="position: absolute; left: 20px; top: 50%; transform: translateY(-50%); background: rgba(255, 255, 255, 0.1); border: none; color: white; font-size: 2rem; width: 50px; height: 50px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.3s;">
             <i class="fas fa-chevron-left"></i>
         </button>
-        <button onclick="navigateLightbox(1)" style="position: absolute; right: 20px; top: 50%; transform: translateY(-50%); background: rgba(255, 255, 255, 0.1); border: none; color: white; font-size: 2rem; width: 50px; height: 50px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.3s;">
+        <button onclick="navigateLightbox(1)"
+            style="position: absolute; right: 20px; top: 50%; transform: translateY(-50%); background: rgba(255, 255, 255, 0.1); border: none; color: white; font-size: 2rem; width: 50px; height: 50px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.3s;">
             <i class="fas fa-chevron-right"></i>
         </button>
-        <div style="position: relative; max-width: 90%; max-height: 90%; display: flex; flex-direction: column; align-items: center;">
-            <img id="lightboxImage" src="" alt="Lightbox Image" style="max-width: 100%; max-height: 85vh; object-fit: contain; border-radius: var(--radius-lg);">
+        <div
+            style="position: relative; max-width: 90%; max-height: 90%; display: flex; flex-direction: column; align-items: center;">
+            <img id="lightboxImage" src="" alt="Lightbox Image"
+                style="max-width: 100%; max-height: 85vh; object-fit: contain; border-radius: var(--radius-lg);">
             <p id="lightboxCounter" style="margin-top: 1rem; color: white; font-size: 1rem;"></p>
         </div>
     </div>
@@ -436,8 +458,18 @@
     <footer class="footer">
         <div class="footer-container">
             <p class="footer-text">
-                © 2026 Jack Ewers. Built with <span class="footer-heart"><i class="fas fa-heart"></i></span> and lots of coffee.
+                © <span class="currentYear">2026</span> Jack Ewers. Built with <span class="footer-heart"><i class="fas fa-heart"></i></span> and lots of
+                coffee.
+                <br>
+                Designed, built and hosted by <a href="https://bloodweb.net/" class="footer-brand">Bloodweb</a> — a web development studio in Australia.
             </p>
+            <nav class="footer-links" aria-label="Bloodweb services">
+                <a href="https://bloodweb.net/hire-us/">Web design &amp; development</a>
+                <a href="https://bloodweb.net/tools/">Free online tools</a>
+                <a href="https://bloodweb.net/forms/">Online form builder</a>
+                <a href="https://bloodweb.net/pricing/">Pricing</a>
+                <a href="https://bloodweb.net/blog/">Blog</a>
+            </nav>
             <p class="footer-text" style="margin-top: var(--space-sm);">
                 Creating tools that make people happy.
             </p>
@@ -446,12 +478,31 @@
 
     <!-- JavaScript -->
     <script>
+        // Inject Dates into DOM
+        //
+        document.addEventListener('DOMContentLoaded', () => {
+            const currentYear = new Date().getFullYear();
+            
+            // Set current year in relevant elements (CC - FOOTER.. ECT)
+            document.querySelectorAll('.currentYear').forEach(el => el.textContent = currentYear);
+            
+            // Set current year minus start year for experience calculations (eg: "Years Experience")
+            document.querySelectorAll('.currentYearMinus').forEach(el => {
+                const startYear = parseInt(el.getAttribute('data-start-year'), 10);
+                el.textContent = currentYear - startYear;
+            });
+        });
+
+     
+
+
+
         // Intersection Observer for animations
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -100px 0px'
         };
-        
+
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -460,129 +511,246 @@
                 }
             });
         }, observerOptions);
-        
+
         // Observe cards for animation
         document.querySelectorAll('.about-card, .project-card, .contact-item').forEach(el => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(20px)';
             el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+
             observer.observe(el);
         });
-        
+
         console.log('🚀 New homepage loaded! Built with love by Jack Ewers.');
-        
-        // ===================================
-        // Album Carousel Functionality
-        // ===================================
-        
-        const albumData = {
-            'album-fam': { current: 0, total: 5 },
-            'album-homies': { current: 0, total: 6 },
-            'album-seb': { current: 0, total: 5 },
-            'album-love': { current: 0, total: 5 }
-        };
-        
-        function changeAlbumImage(albumId, direction) {
-            const album = albumData[albumId];
-            const images = document.querySelectorAll(`#${albumId} .album-image`);
-            
-            // Remove active class from current image
-            images[album.current].classList.remove('active');
-            
-            // Calculate new index
-            album.current = (album.current + direction + album.total) % album.total;
-            
-            // Add active class to new image
-            images[album.current].classList.add('active');
-            
-            // Update indicators
-            updateIndicators(albumId);
-        }
-        
-        function updateIndicators(albumId) {
-            const indicatorsId = albumId.replace('album-', 'indicators-');
-            const indicatorsContainer = document.getElementById(indicatorsId);
-            const album = albumData[albumId];
-            
-            // Check if container exists (album might not be on this page)
-            if (!indicatorsContainer) {
-                return;
-            }
-            
-            // Clear existing indicators
-            indicatorsContainer.innerHTML = '';
-            
-            // Create new indicators
-            for (let i = 0; i < album.total; i++) {
-                const indicator = document.createElement('div');
-                indicator.className = 'album-indicator' + (i === album.current ? ' active' : '');
-                indicator.onclick = () => goToImage(albumId, i);
-                indicatorsContainer.appendChild(indicator);
-            }
-        }
-        
-        function goToImage(albumId, index) {
-            const album = albumData[albumId];
-            const images = document.querySelectorAll(`#${albumId} .album-image`);
-            
-            images[album.current].classList.remove('active');
-            album.current = index;
-            images[album.current].classList.add('active');
-            updateIndicators(albumId);
-        }
-        
-        // Initialize indicators on page load
-        document.addEventListener('DOMContentLoaded', () => {
-            Object.keys(albumData).forEach(albumId => {
-                updateIndicators(albumId);
-            });
-        });
-        
-        // Auto-initialize if DOM is already loaded
-        if (document.readyState === 'complete' || document.readyState === 'interactive') {
-            Object.keys(albumData).forEach(albumId => {
-                updateIndicators(albumId);
-            });
-        }
-        
-        // Touch support for albums
-        document.querySelectorAll('.album-images').forEach(album => {
-            let touchStartX = 0;
-            let touchEndX = 0;
-            
-            album.addEventListener('touchstart', (e) => {
-                touchStartX = e.changedTouches[0].screenX;
-            });
-            
-            album.addEventListener('touchend', (e) => {
-                touchEndX = e.changedTouches[0].screenX;
-                handleSwipe(album.id);
-            });
-            
-            function handleSwipe(albumId) {
-                if (touchEndX < touchStartX - 50) {
-                    changeAlbumImage(albumId, 1); // Swipe left
-                }
-                if (touchEndX > touchStartX + 50) {
-                    changeAlbumImage(albumId, -1); // Swipe right
-                }
-            }
-        });
-        
+
         // Fullscreen Album Modal Functionality (Legacy - kept for compatibility)
         function closeAlbumModal() {
             const modal = document.getElementById('albumModal');
             modal.style.display = 'none';
             document.body.style.overflow = 'auto';
         }
-        
-        // Close modal on background click
-        document.getElementById('albumModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeAlbumModal();
-            }
-        });
+
     </script>
-    <script src="/JS/portfolio-albums.js"></script>
+    <script src="JS/portfolio-albums.js"></script>
+    <script src="JS/projects.js"></script>
+    <script>renderProjects('projects-grid', 'homepage');</script>
+    <script>
+        (function () {
+            const img = document.querySelector('.hero-profile');
+            if (!img) return;
+
+            let flipping = false;
+            let flipCount = 0;
+
+        
+            // ── Confetti ────────────────────────────────────────────────
+            const COLORS_NORMAL = ['#f94144','#f3722c','#f8961e','#f9c74f','#90be6d','#43aa8b','#577590','#c77dff'];
+            const COLORS_MEGA   = ['#ffd700','#ff69b4','#00ffff','#ff4500','#adff2f','#ff1493','#00fa9a','#ff6347'];
+            const COLORS_SPOOKY = ['#ff6600','#9b30ff','#00ff00','#ffffff','#ff0000','#ffcc00','#7b2fff','#ff4500'];
+
+            function spawnConfetti(count, colors, spread) {
+                const container = img.closest('.hero-profile-container') || img.parentElement;
+                const rect = container.getBoundingClientRect();
+                const cx = rect.left + rect.width  / 2 + window.scrollX;
+                const cy = rect.top  + rect.height / 2 + window.scrollY;
+
+                for (let i = 0; i < count; i++) {
+                    const el = document.createElement('div');
+                    const angle  = (Math.random() * spread) - spread / 2 - 90; // mostly upward
+                    const speed  = 120 + Math.random() * 220;
+                    const size   = 7 + Math.random() * 10;
+                    const color  = colors[Math.floor(Math.random() * colors.length)];
+                    const shape  = Math.random() > 0.4 ? 'rect' : 'circle';
+                    const rotate = Math.random() * 720 - 360;
+                    const rad    = angle * Math.PI / 180;
+                    const vx     = Math.cos(rad) * speed;
+                    const vy     = Math.sin(rad) * speed;
+
+                    Object.assign(el.style, {
+                        position:        'fixed',
+                        left:            cx + 'px',
+                        top:             cy + 'px',
+                        width:           size + 'px',
+                        height:          shape === 'rect' ? (size * 0.4) + 'px' : size + 'px',
+                        background:      color,
+                        borderRadius:    shape === 'circle' ? '50%' : '2px',
+                        pointerEvents:   'none',
+                        zIndex:          99999,
+                        transform:       'translate(-50%,-50%)',
+                        opacity:         '1',
+                        transition:      'none',
+                    });
+                    document.body.appendChild(el);
+
+                    const duration = 900 + Math.random() * 700;
+                    const start    = performance.now();
+
+                    (function animate(ts) {
+                        const t  = (ts - start) / duration;
+                        if (t >= 1) { el.remove(); return; }
+                        const x  = cx + vx * t;
+                        const y  = cy + vy * t + 300 * t * t; // gravity
+                        el.style.left      = x + 'px';
+                        el.style.top       = y + 'px';
+                        el.style.opacity   = String(1 - t);
+                        el.style.transform = `translate(-50%,-50%) rotate(${rotate * t}deg)`;
+                        requestAnimationFrame(animate);
+                    })(start);
+                }
+            }
+
+            // ── Spooky birthday party ────────────────────────────────────
+            function spookyBirthdayParty(isActualBirthday) {
+                const now = new Date();
+                const hadBirthday = (now.getMonth() > 9) || (now.getMonth() === 9 && now.getDate() >= 29);
+                const age = (now.getFullYear() - 1995) - (hadBirthday ? 0 : 1);
+
+                // Rain emojis down the screen
+                const SPOOKS = ['🎃','👻','🕷️','🦇','💀','🕸️','🔮','🎂','🕯️','🍬'];
+                for (let i = 0; i < 40; i++) {
+                    setTimeout(() => {
+                        const el = document.createElement('div');
+                        el.textContent = SPOOKS[Math.floor(Math.random() * SPOOKS.length)];
+                        const startX = Math.random() * window.innerWidth;
+                        Object.assign(el.style, {
+                            position:      'fixed',
+                            left:          startX + 'px',
+                            top:           '-3rem',
+                            fontSize:      (1.5 + Math.random() * 2) + 'rem',
+                            pointerEvents: 'none',
+                            zIndex:        99999,
+                            opacity:       '1',
+                            transition:    'none',
+                            userSelect:    'none',
+                        });
+                        document.body.appendChild(el);
+                        const duration = 2200 + Math.random() * 2000;
+                        const drift    = (Math.random() - 0.5) * 120;
+                        const start    = performance.now();
+                        const rot      = (Math.random() - 0.5) * 360;
+                        (function animate(ts) {
+                            const t = (ts - start) / duration;
+                            if (t >= 1) { el.remove(); return; }
+                            el.style.top       = (-48 + t * (window.innerHeight + 100)) + 'px';
+                            el.style.left      = (startX + drift * t) + 'px';
+                            el.style.transform = `rotate(${rot * t}deg)`;
+                            el.style.opacity   = t > 0.8 ? String(1 - (t - 0.8) / 0.2) : '1';
+                            requestAnimationFrame(animate);
+                        })(start);
+                    }, i * 80);
+                }
+
+                // Confetti bursts
+                spawnConfetti(120, COLORS_SPOOKY, 360);
+                setTimeout(() => spawnConfetti(100, COLORS_SPOOKY, 360), 400);
+
+                // Big birthday message — different text depending on context
+                const badge = document.createElement('div');
+                badge.innerHTML = isActualBirthday
+                    ? `👻 Happy Birthday Jack! 🎃<br><span style="font-size:1.1rem;font-weight:600;">Turning ${age} looks good on you</span>`
+                    : `you flipped my age! 🎃<br><span style="font-size:1.1rem;font-weight:600;">F*ck, I'm ${age}...</span>`;
+                Object.assign(badge.style, {
+                    position:   'fixed', top: '50%', left: '50%',
+                    transform:  'translate(-50%,-50%) scale(0)',
+                    background: 'linear-gradient(135deg,#1a0030,#3d0066)',
+                    border:     '3px solid #ff6600',
+                    color:      '#ff6600', fontWeight: '800', fontSize: '1.8rem',
+                    textAlign:  'center', lineHeight: '1.5',
+                    padding:    '1.5rem 3rem', borderRadius: '1rem',
+                    boxShadow:  '0 0 60px #9b30ff, 0 0 120px #ff6600aa',
+                    zIndex:     100000, pointerEvents: 'none',
+                    transition: 'transform 0.35s cubic-bezier(0.34,1.56,0.64,1)',
+                });
+                document.body.appendChild(badge);
+                requestAnimationFrame(() => requestAnimationFrame(() =>
+                    badge.style.transform = 'translate(-50%,-50%) scale(1)'
+                ));
+                setTimeout(() => {
+                    badge.style.transition = 'opacity 0.6s';
+                    badge.style.opacity    = '0';
+                    setTimeout(() => badge.remove(), 600);
+                }, 3500);
+            }
+
+            const _now = new Date();
+            const _hadBirthday = (_now.getMonth() > 9) || (_now.getMonth() === 9 && _now.getDate() >= 29);
+            const AGE = (_now.getFullYear() - 1995) - (_hadBirthday ? 0 : 1);
+
+            function milestone(n) {
+                if (n === 100) {
+                    spawnConfetti(200, COLORS_MEGA, 360);
+                    setTimeout(() => spawnConfetti(150, COLORS_MEGA, 360), 200);
+                    setTimeout(() => spawnConfetti(100, COLORS_MEGA, 360), 450);
+                    const badge = document.createElement('div');
+                    badge.textContent = '100 flips 🤙';
+                    Object.assign(badge.style, {
+                        position: 'fixed', top: '50%', left: '50%',
+                        transform: 'translate(-50%,-50%) scale(0)',
+                        background: 'linear-gradient(135deg,#ffd700,#ff69b4)',
+                        color: '#000', fontWeight: '800', fontSize: '2.5rem',
+                        padding: '1rem 2.5rem', borderRadius: '1rem',
+                        boxShadow: '0 0 60px #ffd700', zIndex: 100000,
+                        pointerEvents: 'none', transition: 'transform 0.3s cubic-bezier(0.34,1.56,0.64,1)',
+                    });
+                    document.body.appendChild(badge);
+                    requestAnimationFrame(() => requestAnimationFrame(() => badge.style.transform = 'translate(-50%,-50%) scale(1)'));
+                    setTimeout(() => {
+                        badge.style.transition = 'opacity 0.5s';
+                        badge.style.opacity = '0';
+                        setTimeout(() => badge.remove(), 500);
+                    }, 2200);
+                } else if (n === AGE) {
+                    // 🎂 age-th flip — spooky birthday party every year
+                    spookyBirthdayParty(false);
+                } else if (n === 10) {
+                    // 🎊 10th flip — moderate pop
+                    spawnConfetti(80, COLORS_NORMAL, 220);
+                }
+            }
+
+            // ── Coin flip ───────────────────────────────────────────────
+            function coinFlip() {
+                if (flipping) return;
+                flipping = true;
+
+                img.classList.remove('flip-in');
+                img.classList.add('flip-out');
+
+                img.addEventListener('animationend', function onOut(e) {
+                    if (e.animationName !== 'coin-flip-out') return;
+                    img.removeEventListener('animationend', onOut);
+
+                    img.classList.remove('flip-out');
+                    img.classList.add('flip-in');
+
+                    img.addEventListener('animationend', function onIn(e) {
+                        if (e.animationName !== 'coin-flip-in') return;
+                        img.removeEventListener('animationend', onIn);
+                        img.classList.remove('flip-in');
+                        flipping = false;
+                        flipCount++;
+                        milestone(flipCount);
+                    });
+                });
+            }
+
+            // Play on load
+            window.addEventListener('load', () => {
+                setTimeout(coinFlip, 600);
+
+                // Birthday time!
+                const now = new Date();
+                if ( now.getDate() === 29 && now.getMonth() === 9) { // 29/10
+                    setTimeout(() => spookyBirthdayParty(true), 1400);
+                }
+            });
+
+            // Replay on click or hover
+            img.addEventListener('click', coinFlip);
+            img.addEventListener('mouseenter', coinFlip);
+            img.style.cursor = 'pointer';
+        })();
+    </script>
 </body>
+
 </html>

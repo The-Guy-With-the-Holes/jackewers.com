@@ -58,7 +58,7 @@
             
 
   <!-- Diploma -->
-            <div class="certificate-card expandable">
+            <div class="certificate-card expandable" data-album="APM College - Diploma">
                 <div class="certificate-icon">
                     <i class="fas fa-certificate"></i>
                 </div>
@@ -84,9 +84,34 @@
                 </div>
             </div>
             
-
+            <!-- W3 Schools -->
+            <div class="certificate-card expandable" data-album="W3">
+                <div class="certificate-icon">
+                    <i class="fas fa-certificate"></i>
+                </div>
+                <div class="certificate-content">
+                    <h3 class="certificate-title">W3 Schools Certificates</h3>
+                    <div class="certificate-org">
+                        <i class="fas fa-building"></i>
+                        W3Schools.com
+                    </div>
+                    <div class="certificate-count">
+                        <i class="fas fa-certificate"></i>
+                        1 Certificate
+                    </div>
+                    <button class="certificate-expand" onclick="openCertAlbum('W3')">
+                        View All <i class="fas fa-chevron-down"></i>
+                    </button>
+                </div>
+                <div class="sub-certificates">
+                    <div class="sub-cert-list">
+                        <div class="sub-cert-item"><i class="fas fa-check-circle"></i> Diploma of marketing</div>
+                     
+                    </div>
+                </div>
+            </div>
             <!-- Program Hub Certificates -->
-            <div class="certificate-card expandable">
+            <div class="certificate-card expandable" data-album="Program Hub Certificates">
                 <div class="certificate-icon">
                     <i class="fas fa-laptop-code"></i>
                 </div>
@@ -128,7 +153,7 @@
             </div>
             
             <!-- Solo Learn Certificates -->
-            <div class="certificate-card expandable">
+            <div class="certificate-card expandable" data-album="Solo Learn Courses">
                 <div class="certificate-icon">
                     <i class="fas fa-code"></i>
                 </div>
@@ -166,7 +191,7 @@
             </div>
             
             <!-- Grasshopper Certificates -->
-            <div class="certificate-card expandable">
+            <div class="certificate-card expandable" data-album="Grasshopper Courses">
                 <div class="certificate-icon">
                     <i class="fab fa-google"></i>
                 </div>
@@ -198,7 +223,7 @@
             </div>
             
             <!-- Ethical Hacker Certificates -->
-            <div class="certificate-card expandable">
+            <div class="certificate-card expandable" data-album="Ethical Hacking">
                 <div class="certificate-icon">
                     <i class="fas fa-shield-alt"></i>
                 </div>
@@ -236,7 +261,7 @@
             </div>
             
             <!-- HackerX Certificates -->
-            <div class="certificate-card expandable">
+            <div class="certificate-card expandable" data-album="HackerX Certifications">
                 <div class="certificate-icon">
                     <i class="fas fa-user-secret"></i>
                 </div>
@@ -331,159 +356,31 @@
         </div>
     </div>
     
+    <script src="/certificates/script.js"></script>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <p class="footer-text">
+                &copy; <span class="currentYear">2026</span> Jack Ewers.
+                Designed, built and hosted by
+                <a href="https://bloodweb.net/" class="footer-brand">Bloodweb</a>
+                &mdash; a web development studio in Australia.
+            </p>
+            <nav class="footer-links" aria-label="Bloodweb services">
+                <a href="https://bloodweb.net/hire-us/">Web design &amp; development</a>
+                <a href="https://bloodweb.net/tools/">Free online tools</a>
+                <a href="https://bloodweb.net/forms/">Online form builder</a>
+                <a href="https://bloodweb.net/pricing/">Pricing</a>
+                <a href="https://bloodweb.net/blog/">Blog</a>
+            </nav>
+        </div>
+    </footer>
     <script>
-        // Toggle certificate group expansion
-        function toggleCerts(button) {
-            const certCard = button.closest('.certificate-card');
-            const subCerts = certCard.querySelector('.sub-certificates');
-            
-            if (subCerts.style.display === 'none' || !subCerts.style.display) {
-                subCerts.style.display = 'block';
-                button.innerHTML = 'Show Less <i class="fas fa-chevron-up"></i>';
-            } else {
-                subCerts.style.display = 'none';
-                button.innerHTML = 'View All <i class="fas fa-chevron-down"></i>';
-            }
-        }
-
-        // Initialize all certificate sub-sections as collapsed
-        document.addEventListener('DOMContentLoaded', function() {
-            const allSubCerts = document.querySelectorAll('.sub-certificates');
-            allSubCerts.forEach(subCert => {
-                subCert.style.display = 'none';
-            });
-        });
-
-        // Certificate album data
-        const certificateAlbums = [
-            {
-                name: 'APM College - Diploma',
-                basePath: 'https://media.bloodweb.net/jackewers/certificates/5Diploma/',
-                files: ['Diploma of marketing.jpg']
-            },
-            {
-                name: 'Program Hub Certificates',
-                basePath: 'https://media.bloodweb.net/jackewers/certificates/0Program Hub/',
-                files: ['HTML.jpg', 'CSS.jpg', 'JavaScript.jpg', 'HTML Advanced.jpg', 'JavaScript Advanced.jpg', 'jQuery.jpg', 'BootStrap.jpg', 'Building a Website.jpg', 'GitHub.jpg', 'Docker.jpg', 'DevOps.jpg', 'Fundamentals.jpg', 'Ethical Hacking.jpg', 'BlockChain.jpg', 'CryptoCurrency.jpg', 'Google Display Ads.jpg', 'Growth Hacking.jpg']
-            },
-            {
-                name: 'Solo Learn Courses',
-                basePath: 'https://media.bloodweb.net/jackewers/certificates/1Solo Learn/',
-                files: ['HTML.jpg', 'CSS.jpg', 'JavaScript.jpg', 'JQUERY.jpg', 'Python for Beginners.jpg', 'Python Core.jpg', 'C.jpg', 'SQL.jpg', 'Coding for Marketers.jpg', 'React+Redux.jpg', 'JS Game Development.jpg', 'Responsive Web-Design.jpg', 'Web-Dev Fundamentals.jpg']
-            },
-            {
-                name: 'Grasshopper Courses',
-                basePath: 'https://media.bloodweb.net/jackewers/certificates/2Grasshopper/',
-                files: ['Coding Fundamentals-I.jpg', 'Coding Fundamentals-II.jpg', 'Animations.jpg', 'Animations II.jpg', 'Array Methods.jpg', 'Debugging.jpg', 'Intro to Interviewing.jpg']
-            },
-            {
-                name: 'Ethical Hacking',
-                basePath: 'https://media.bloodweb.net/jackewers/certificates/3Ethical Hacker/',
-                files: ['Certified Ethical Hacker.jpg', 'Intro.jpg', 'Concepts, Types & Phases.jpg', 'Threats & Attack-Vectors.jpg', 'FootPrinting & Recon.jpg', 'Scanning-Networks & Enumerations.jpg', 'System Hacking.jpg', 'Malware, Trojans, Worms.jpg', 'Network Sniffing.jpg', 'Social Engineering.jpg', 'Denial of Service.jpg', 'Session Hijacking.jpg', 'WebServer Hacking.jpg']
-            },
-            {
-                name: 'HackerX Certifications',
-                basePath: 'https://media.bloodweb.net/jackewers/certificates/4HackerX/',
-                files: ['HackerX Master.jpg', 'Gathering Information.jpg', 'Know the OS.jpg', 'Anonymous Surfing.jpg', 'Hacking Passwords.jpg', 'WEP Cracking.jpg', 'WPA,WPA2-Cracking.jpg', 'Hack the MAC.jpg', 'Network Spying.jpg', 'Keyboard Spying.jpg', 'Hiding Messages.jpg', 'Making Data Safe.jpg', 'Social-Media Hacking.jpg', 'Database Hacking.jpg', 'WordPress Scanning.jpg', 'Vunerability Scanning & Reporting.jpg', 'XSS,Cross-Site-Scripting.jpg', 'Bringing Down a Website.jpg', 'Android Hacking.jpg', 'Credit,Debit-Card Fraud.jpg']
-            }
-        ];
-
-        // Prepare albums for modal (convert to expected format)
-        const allAlbums = certificateAlbums.map(album => {
-            let files = album.files;
-            let certNames = files.map(f => f.replace('.jpg', ''));
-            
-            // Only render first 5 and last 5 images if more than 10 images
-            if (files.length > 10) {
-                files = [...files.slice(0, 5), ...files.slice(-5)];
-                certNames = [...certNames.slice(0, 5), ...certNames.slice(-5)];
-            }
-            
-            return {
-                name: album.name,
-                certs: files.map(file => album.basePath + file),
-                certNames: certNames
-            };
-        });
-
-        // Function to open certificate album in modal
-        function openCertAlbum(albumName) {
-            const albumIndex = allAlbums.findIndex(a => a.name === albumName);
-            if (albumIndex >= 0) {
-                openCertModal(albumName, allAlbums[albumIndex].certs[0], allAlbums);
-            }
-        }
-
-        // Certificate modal functionality
-        let currentCertAlbums = [];
-        let currentAlbumIndex = 0;
-        let currentCertIndex = 0;
-
-        function openCertModal(albumName, certPath, albumCerts) {
-            currentCertAlbums = albumCerts;
-            currentAlbumIndex = albumCerts.findIndex(album => album.name === albumName);
-            currentCertIndex = albumCerts[currentAlbumIndex].certs.findIndex(cert => cert === certPath);
-            
-            updateCertModal();
-            document.getElementById('certModal').style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeCertModal() {
-            document.getElementById('certModal').style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
-
-        function changeCert(direction) {
-            const currentAlbum = currentCertAlbums[currentAlbumIndex];
-            currentCertIndex += direction;
-            
-            if (currentCertIndex < 0) {
-                // Go to previous album
-                currentAlbumIndex--;
-                if (currentAlbumIndex < 0) currentAlbumIndex = currentCertAlbums.length - 1;
-                currentCertIndex = currentCertAlbums[currentAlbumIndex].certs.length - 1;
-            } else if (currentCertIndex >= currentAlbum.certs.length) {
-                // Go to next album
-                currentAlbumIndex++;
-                if (currentAlbumIndex >= currentCertAlbums.length) currentAlbumIndex = 0;
-                currentCertIndex = 0;
-            }
-            
-            updateCertModal();
-        }
-
-        function changeAlbum(direction) {
-            currentAlbumIndex += direction;
-            if (currentAlbumIndex < 0) currentAlbumIndex = currentCertAlbums.length - 1;
-            if (currentAlbumIndex >= currentCertAlbums.length) currentAlbumIndex = 0;
-            currentCertIndex = 0;
-            updateCertModal();
-        }
-
-        function updateCertModal() {
-            const currentAlbum = currentCertAlbums[currentAlbumIndex];
-            const currentCert = currentAlbum.certs[currentCertIndex];
-            
-            document.getElementById('certModalImage').src = currentCert;
-            document.getElementById('certModalTitle').textContent = currentAlbum.certNames ? currentAlbum.certNames[currentCertIndex] : `Certificate ${currentCertIndex + 1}`;
-            document.getElementById('certModalAlbumTitle').textContent = currentAlbum.name;
-            document.getElementById('certModalCounter').textContent = `${currentCertIndex + 1} / ${currentAlbum.certs.length}`;
-        }
-
-        // Close modal on escape key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeCertModal();
-            }
-        });
-
-        // Close modal on background click
-        document.getElementById('certModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeCertModal();
-            }
-        });
+        document.querySelectorAll('.currentYear')
+            .forEach(el => el.textContent = new Date().getFullYear());
     </script>
+
 </body>
 </html>
+

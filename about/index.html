@@ -25,7 +25,51 @@
     <link rel="stylesheet" href="/shared/assets/styles/nav.css">
     <!-- About Page Styles -->
     <link rel="stylesheet" href="/about/styles.css">
-    
+
+    <link rel="canonical" href="https://jackewers.com/about/">
+
+    <!-- Structured data: links the Jack Ewers person entity to the Bloodweb organisation -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "ProfilePage",
+          "@id": "https://jackewers.com/about/#page",
+          "url": "https://jackewers.com/about/",
+          "name": "About | Jack Ewers",
+          "mainEntity": { "@id": "https://jackewers.com/#person" }
+        },
+        {
+          "@type": "Person",
+          "@id": "https://jackewers.com/#person",
+          "name": "Jack Ewers",
+          "url": "https://jackewers.com/",
+          "image": "https://media.bloodweb.net/jackewers/images/headshot.jpg",
+          "jobTitle": "Software Developer",
+          "worksFor": { "@id": "https://bloodweb.net/#organization" },
+          "sameAs": [
+            "https://github.com/The-Guy-With-the-Holes",
+            "https://www.linkedin.com/in/jack-ewers-14a155212/",
+            "https://www.instagram.com/the_guy_with_the_holes/",
+            "https://www.facebook.com/jack.ewers.2025/"
+          ]
+        },
+        {
+          "@type": "Organization",
+          "@id": "https://bloodweb.net/#organization",
+          "name": "Bloodweb",
+          "alternateName": "Bloodweb.net",
+          "url": "https://bloodweb.net/",
+          "logo": "https://media.bloodweb.net/jackewers/branding/icon/BloodWeb.png",
+          "description": "Web development studio building websites, web applications, custom tools, progressive web apps and hosting.",
+          "areaServed": "AU",
+          "employee": { "@id": "https://jackewers.com/#person" }
+        }
+      ]
+    }
+    </script>
+
 </head>
 <body>    <!-- Hero Image Header -->
     <div class="hero-image-container">
@@ -60,6 +104,9 @@
             <p>
                 With 20+ years of body modification experience (from sclera staining to subdermal implants and even a 
                 bifurcated tongue), I've learned that transformation, whether it's code or body, is about pushing boundaries. 
+                <a href="/about/body-mod" style="color: var(--color-primary); font-weight: 600;">Learn more about my body modification journey →</a>
+            </p>
+            <p>
                 I love body jewelry so much that I want everyone to experience it. Check out 
                 <a href="https://clickerino.com" target="_blank" style="color: var(--color-primary);">Clickerino clickers</a> 
                 or <a href="https://anatometal.com" target="_blank" style="color: var(--color-primary);">Anatometal</a> for custom pieces.
@@ -145,5 +192,29 @@
         </div>
     </div>
     
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <p class="footer-text">
+                &copy; <span class="currentYear">2026</span> Jack Ewers.
+                Designed, built and hosted by
+                <a href="https://bloodweb.net/" class="footer-brand">Bloodweb</a>
+                &mdash; a web development studio in Australia.
+            </p>
+            <nav class="footer-links" aria-label="Bloodweb services">
+                <a href="https://bloodweb.net/hire-us/">Web design &amp; development</a>
+                <a href="https://bloodweb.net/tools/">Free online tools</a>
+                <a href="https://bloodweb.net/forms/">Online form builder</a>
+                <a href="https://bloodweb.net/pricing/">Pricing</a>
+                <a href="https://bloodweb.net/blog/">Blog</a>
+            </nav>
+        </div>
+    </footer>
+    <script>
+        document.querySelectorAll('.currentYear')
+            .forEach(el => el.textContent = new Date().getFullYear());
+    </script>
+
 </body>
 </html>

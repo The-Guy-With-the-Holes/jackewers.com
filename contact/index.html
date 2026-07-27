@@ -26,7 +26,49 @@
     
     <!-- Contact Page Styles -->
     <link rel="stylesheet" href="/contact/styles.css">
-     
+
+    <link rel="canonical" href="https://jackewers.com/contact/">
+
+    <!-- Structured data: links the Jack Ewers person entity to the Bloodweb organisation -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "ContactPage",
+          "@id": "https://jackewers.com/contact/#page",
+          "url": "https://jackewers.com/contact/",
+          "name": "Contact | Jack Ewers",
+          "about": { "@id": "https://bloodweb.net/#organization" }
+        },
+        {
+          "@type": "Person",
+          "@id": "https://jackewers.com/#person",
+          "name": "Jack Ewers",
+          "url": "https://jackewers.com/",
+          "jobTitle": "Software Developer",
+          "worksFor": { "@id": "https://bloodweb.net/#organization" }
+        },
+        {
+          "@type": "Organization",
+          "@id": "https://bloodweb.net/#organization",
+          "name": "Bloodweb",
+          "alternateName": "Bloodweb.net",
+          "url": "https://bloodweb.net/",
+          "logo": "https://media.bloodweb.net/jackewers/branding/icon/BloodWeb.png",
+          "description": "Web development studio building websites, web applications, custom tools, progressive web apps and hosting.",
+          "areaServed": "AU",
+          "employee": { "@id": "https://jackewers.com/#person" },
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "contactType": "customer support",
+            "url": "https://bloodweb.net/contact/"
+          }
+        }
+      ]
+    }
+    </script>
+
 </head>
 <body>
    
@@ -273,5 +315,29 @@ ${message}`;
             }
         });
     </script>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <p class="footer-text">
+                &copy; <span class="currentYear">2026</span> Jack Ewers.
+                Designed, built and hosted by
+                <a href="https://bloodweb.net/" class="footer-brand">Bloodweb</a>
+                &mdash; a web development studio in Australia.
+            </p>
+            <nav class="footer-links" aria-label="Bloodweb services">
+                <a href="https://bloodweb.net/hire-us/">Web design &amp; development</a>
+                <a href="https://bloodweb.net/tools/">Free online tools</a>
+                <a href="https://bloodweb.net/forms/">Online form builder</a>
+                <a href="https://bloodweb.net/pricing/">Pricing</a>
+                <a href="https://bloodweb.net/blog/">Blog</a>
+            </nav>
+        </div>
+    </footer>
+    <script>
+        document.querySelectorAll('.currentYear')
+            .forEach(el => el.textContent = new Date().getFullYear());
+    </script>
+
 </body>
 </html>

@@ -114,8 +114,6 @@
         let currentLightboxIndex = 0;
         let currentAlbumPhotos = [];
         let displayedPhotoCount = 0;
-        let interactedAlbums = new Set(); // Track which albums have been interacted with
-        let carouselIntervals = {}; // Track individual album intervals
 
         // Load albums from JSON
         async function loadAlbums() {
@@ -252,10 +250,6 @@
             
             // Click handler
             container.addEventListener('click', (e) => {
-                // Stop carousel when album is interacted with
-                const albumId = `album-${album.id}`;
-                stopCarousel(albumId);
-                
                 if (e.target.closest('.album-nav-btn') || e.target.closest('.indicator')) {
                     return;
                 }
@@ -273,35 +267,24 @@
 
         // Initialize carousel indicators and state
         function initializeCarousels() {
-            albumsData.forEach((album, index) => {
+            albumsData.forEach(album => {
                 const albumId = `album-${album.id}`;
                 currentIndices[albumId] = 0;
-                initializeIndicators(albumId);
-                
-                // Staggered auto-advance - skip locked albums
+                // Only initialize indicators for unlocked albums
                 if (!album.requiresUnlock || isAlbumUnlocked(album.id)) {
-                    const delay = 5000 + (index * 2500); // 5s, 7.5s, 10s, etc.
-                    
-                    carouselIntervals[albumId] = setTimeout(() => {
-                        const intervalId = setInterval(() => {
-                            if (!interactedAlbums.has(albumId)) {
-                                changeAlbumImage(albumId, 1);
-                            } else {
-                                clearInterval(intervalId);
-                            }
-                        }, CAROUSEL_INTERVAL);
-                    }, delay);
+                    initializeIndicators(albumId);
                 }
             });
-        }
-        
-        // Stop carousel for an album when interacted with
-        function stopCarousel(albumId) {
-            interactedAlbums.add(albumId);
-            if (carouselIntervals[albumId]) {
-                clearTimeout(carouselIntervals[albumId]);
-                delete carouselIntervals[albumId];
-            }
+            
+            // Start auto-advance
+            setInterval(() => {
+                albumsData.forEach(album => {
+                    // Only advance images for unlocked albums
+                    if (!album.requiresUnlock || isAlbumUnlocked(album.id)) {
+                        changeAlbumImage(`album-${album.id}`, 1);
+                    }
+                });
+            }, CAROUSEL_INTERVAL);
         }
 
         // Open album dialog with pagination
@@ -452,12 +435,8 @@
             if (!container) return;
             
             const images = container.querySelectorAll('.album-image');
-            if (images.length === 0) return; // No images (e.g., locked album)
-            
-            // Stop carousel when user manually changes
-            if (direction !== 1 || interactedAlbums.has(albumId)) {
-                stopCarousel(albumId);
-            }
+            if (images.length === 0) return; // No images to change (locked album)
+            if (!images[currentIndices[albumId]]) return; // Safety check
             
             images[currentIndices[albumId]].classList.remove('active');
             
@@ -629,5 +608,29 @@
         // Initialize on page load
         document.addEventListener('DOMContentLoaded', loadAlbums);
     </script>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <p class="footer-text">
+                &copy; <span class="currentYear">2026</span> Jack Ewers.
+                Designed, built and hosted by
+                <a href="https://bloodweb.net/" class="footer-brand">Bloodweb</a>
+                &mdash; a web development studio in Australia.
+            </p>
+            <nav class="footer-links" aria-label="Bloodweb services">
+                <a href="https://bloodweb.net/hire-us/">Web design &amp; development</a>
+                <a href="https://bloodweb.net/tools/">Free online tools</a>
+                <a href="https://bloodweb.net/forms/">Online form builder</a>
+                <a href="https://bloodweb.net/pricing/">Pricing</a>
+                <a href="https://bloodweb.net/blog/">Blog</a>
+            </nav>
+        </div>
+    </footer>
+    <script>
+        document.querySelectorAll('.currentYear')
+            .forEach(el => el.textContent = new Date().getFullYear());
+    </script>
+
 </body>
 </html>

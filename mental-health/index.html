@@ -212,5 +212,52 @@
             lastScroll = currentScroll;
         });
     </script>
+
+    <style>
+        .footer {
+            background: var(--color-bg-secondary, #f4f4f5);
+            border-top: 1px solid var(--color-border, #e4e4e7);
+            padding: var(--space-2xl, 3rem) var(--space-lg, 1.5rem);
+        }
+        .footer-container { max-width: 1280px; margin: 0 auto; text-align: center; }
+        .footer-text { color: var(--color-text-secondary, #71717a); font-size: var(--font-size-sm, 0.875rem); }
+        .footer-brand { color: var(--color-primary, #6366f1); text-decoration: none; }
+        .footer-brand:hover { text-decoration: underline; }
+        .footer-links {
+            display: flex; flex-wrap: wrap; justify-content: center;
+            gap: var(--space-xs, 0.5rem) var(--space-md, 1rem);
+            margin-top: var(--space-sm, 0.75rem);
+        }
+        .footer-links a {
+            color: var(--color-text-secondary, #71717a);
+            font-size: var(--font-size-sm, 0.875rem);
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--color-primary, #6366f1); text-decoration: underline; }
+    </style>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <p class="footer-text">
+                &copy; <span class="currentYear">2026</span> Jack Ewers.
+                Designed, built and hosted by
+                <a href="https://bloodweb.net/" class="footer-brand">Bloodweb</a>
+                &mdash; a web development studio in Australia.
+            </p>
+            <nav class="footer-links" aria-label="Bloodweb services">
+                <a href="https://bloodweb.net/hire-us/">Web design &amp; development</a>
+                <a href="https://bloodweb.net/tools/">Free online tools</a>
+                <a href="https://bloodweb.net/forms/">Online form builder</a>
+                <a href="https://bloodweb.net/pricing/">Pricing</a>
+                <a href="https://bloodweb.net/blog/">Blog</a>
+            </nav>
+        </div>
+    </footer>
+    <script>
+        document.querySelectorAll('.currentYear')
+            .forEach(el => el.textContent = new Date().getFullYear());
+    </script>
+
 </body>
 </html>

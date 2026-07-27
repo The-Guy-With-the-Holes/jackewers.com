@@ -32,9 +32,11 @@ Allow:*.ico
 
 ### Directories ###
 Disallow: /shared/assets/images/*
-Disallow: /JS
-Disallow: /css
 Disallow: /Certfificates
+
+# /JS and /css are intentionally crawlable: projects.js and the shared
+# stylesheets are render-critical. Blocking them stops Google rendering the
+# project grid (and the outbound links it contains).
 
 ### Files ###
 Disallow:
