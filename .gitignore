@@ -8,3 +8,10 @@ cert.perm
 email-signatures/
 # Arduino sketch credentials
 arduino_secrets.h
+
+# Local Apache config - GitHub Pages ignores .htaccess anyway
+.htaccess
+
+# HTTrack mirror cache
+test/
+*.tmp
