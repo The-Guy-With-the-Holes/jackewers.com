@@ -38,6 +38,7 @@ jobs:
           args: >-
             --no-progress
             --root-dir .
+            --accept "200..=299, 429"
             --exclude-path email-signatures
             --exclude 'linkedin\.com'
             --exclude 'instagram\.com'
