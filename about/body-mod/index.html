@@ -10,6 +10,8 @@
     
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" href="https://media.bloodweb.net/jackewers/branding/icon/Favicon.png">
+    <link rel="manifest" href="/manifest.json">
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -43,11 +45,12 @@
     </div>
     
     <!-- Navigation Component -->
+    <a href="#main-content" class="skip-link">Skip to content</a>
     <div id="nav-placeholder" class="nav-skeleton"></div>
     <script src="/shared/assets/scripts/load-navbar.js"></script>
     <script src="/shared/assets/scripts/theme.js"></script>
     
-    <div class="container">
+    <div class="container" id="main-content">
         <div class="header">
             <h1><i class="fas fa-skull"></i> Body Modifications</h1>
             <p class="subtitle">20+ Years of Pushing Boundaries & Body Art</p>
@@ -781,7 +784,7 @@
                 </button>
             </div>
             <figure class="dialog-figure">
-                <img id="dialog-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBTAA7" alt="" class="dialog-img">
+                <img id="dialog-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBTAA7" alt="" class="dialog-img" loading="lazy">
                 <figcaption id="dialog-caption"></figcaption>
             </figure>
             <div class="dialog-nav" id="dialog-nav">

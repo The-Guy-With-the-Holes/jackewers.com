@@ -13,7 +13,6 @@ class QRCodeGenerator {
     }
 
     bindEvents() {
-        console.log('Binding events...');
         
         // Input events
         const textInput = document.getElementById('qrText');
@@ -23,7 +22,6 @@ class QRCodeGenerator {
         const backgroundColorInput = document.getElementById('qrBackground');
         const generateBtn = document.getElementById('generateBtn');
         
-        console.log('Generate button found:', !!generateBtn);
 
         // Export events
         const exportPNG = document.getElementById('exportPNG');
@@ -39,7 +37,6 @@ class QRCodeGenerator {
         
         // Manual generation button
         generateBtn.addEventListener('click', () => {
-            console.log('Generate button clicked!');
             this.generateQRCode();
         });
 
@@ -55,11 +52,9 @@ class QRCodeGenerator {
     }
 
     generateQRCode() {
-        console.log('generateQRCode called');
         
         // Check if QRCode library is available
         if (typeof QRCode === 'undefined') {
-            console.log('QRCode library not available');
             this.showError('QR Code library is still loading. Please wait a moment and try again.');
             return;
         }
@@ -406,15 +401,11 @@ class QRCodeGenerator {
 
 // Initialize QR Code Generator when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('DOM loaded, checking for QRCode library...');
     
     // Wait a bit more for QRCode library to be fully loaded
     setTimeout(() => {
-        console.log('QRCode type check:', typeof QRCode);
         if (typeof QRCode !== 'undefined') {
-            console.log('QRCode library found, initializing generator...');
             window.qrGenerator = new QRCodeGenerator();
-            console.log('QR Generator initialized successfully');
         } else {
             console.error('QRCode library failed to load');
             // Show error in preview
@@ -453,9 +444,7 @@ document.addEventListener('DOMContentLoaded', function() {
     setTimeout(() => {
         const generateBtn = document.getElementById('generateBtn');
         if (generateBtn && !window.qrGenerator) {
-            console.log('Adding backup button handler...');
             generateBtn.addEventListener('click', function() {
-                console.log('Backup button clicked');
                 const text = document.getElementById('qrText').value.trim();
                 if (!text) {
                     alert('Please enter some text or URL to generate QR code');

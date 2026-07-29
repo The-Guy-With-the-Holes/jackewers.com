@@ -268,7 +268,6 @@ function addKeywordOverlay(image) {
 
   // Append the container element to the image's parent element
   image.parentNode.appendChild(keywordContainer);
-  console.log('Images have been Tagged');
 }
 /**
  * 3.3 Tag_Images
@@ -299,7 +298,7 @@ function Tag_Images(words){
 
     // Append the container element to the image's parent element
     image.parentNode.appendChild(keywordContainer);
-  } console.log('Images have been Tagged');
+  }
 }
 
 /**
@@ -321,7 +320,7 @@ function isValidImage(url) {
  * 3.4 replace_img_src
  */
 function replace_img_src(target,new_src){ 
-  if(!target||!new_src){return console.log('Provide target / new src')}
+  if(!target||!new_src){return}
   target.setAttribute('src',new_src);
 }
 
@@ -428,7 +427,6 @@ function toggleVerticalNav(type) {
   type = type.toLowerCase();
   let navBar = document.querySelector('#Vertical_NavWrapper');
   let navSwitch = document.querySelector('#Vertical_NavSwitch');
-  console.log(`toggling nav :${type}`);
 //   if (nav) {
     if (navBar.style.display === 'none' || navBar.style.display === '') {
         navBar.style.display = 'block';
@@ -450,7 +448,7 @@ function toggleVnavExpansion(ele){
   const expandedSection = event.target.querySelector('.expandable-content');
   expandedSection.classList.toggle('hidden');
 
-  return console.log('click is expanded');
+  return;
 
 }
 
@@ -460,18 +458,16 @@ function attachNavListener() {
     if (stickyNav) {
         // Horizontal Nav
         if (window === window.top && document.querySelector('nav') !== null) {
-            console.log('Nav listener attached');
             // If timeout is set, end the function
             window.addEventListener('scroll', function () {
                 let header = document.querySelector('header');
-                console.log('scrolling');
                 let nav = document.querySelector('nav');
                 if (this.scrollY > header.clientHeight - header.clientHeight / 2) { nav.classList.add('sticky_nav'); }
                 else { nav.classList.remove('sticky_nav'); }
             });
         } 
     }
-    else { console.log('Sticky Nav is disabled'); }
+    else { /* Sticky Nav disabled */ }
 
   
   // Trigger functions inside the Vertical Nav
@@ -506,7 +502,6 @@ function setCurrentNavigationPage(page=getPagePath()){
     if (pageLink.getAttribute('href') === page || (page === "/" || page === "/index.html") && pageLink.getAttribute('href') === "/index.html") {
       pageLink.classList.add('selected');
       pageLink.href="#"
-      console.log(`Current page set to: ${page}`);
     } else {
       pageLink.classList.remove('selected');
     }
@@ -673,7 +668,6 @@ document.addEventListener('DOMContentLoaded',
 
     if(Settings.returnButton){
       loadHTML('body',toProjectUrl('components/returnButton.html'), true).then(() => {
-        console.log('ccc')
       })
     }
 

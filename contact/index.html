@@ -9,6 +9,8 @@
     
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" href="https://media.bloodweb.net/jackewers/branding/icon/Favicon.png">
+    <link rel="manifest" href="/manifest.json">
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,6 +23,7 @@
     <!-- Shared Styles -->
     <link rel="stylesheet" href="/shared/assets/styles/design-system.css">
     <link rel="stylesheet" href="/shared/assets/styles/components.css">
+    <link rel="stylesheet" href="/shared/assets/styles/footer.css">
     <link rel="stylesheet" href="/shared/assets/styles/utilities.css">
     <link rel="stylesheet" href="/shared/assets/styles/animations.css">
     <link rel="stylesheet" href="/shared/assets/styles/nav.css">
@@ -84,12 +87,13 @@
   </div>
   
     <!-- Navigation Component -->
+    <a href="#main-content" class="skip-link">Skip to content</a>
     <div id="nav-placeholder" class="nav-skeleton"></div>
     <script src="/shared/assets/scripts/load-navbar.js"></script>
     <script src="/shared/assets/scripts/theme.js"></script>
 
     <!-- Contact Container -->
-    <div class="contact-container">
+    <div class="contact-container" id="main-content">
         <!-- Header -->
         <div class="contact-header">
             <div class="contact-tag">
@@ -180,6 +184,12 @@
                         <textarea id="message" name="message" class="form-textarea" required placeholder="Tell me more..."></textarea>
                     </div>
 
+                    <!-- Honeypot: hidden from real users, bots that auto-fill every field will trip it -->
+                    <div style="position:absolute; left:-9999px; top:-9999px;" aria-hidden="true">
+                        <label for="website">Website</label>
+                        <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+                    </div>
+
                     <button type="submit" class="form-button">
                         <i class="fas fa-paper-plane"></i>
                         Send Message
@@ -227,7 +237,14 @@
         // Contact form submission
         document.getElementById('contactForm').addEventListener('submit', async function(e) {
             e.preventDefault();
-            
+
+            // Honeypot: real users never fill this in, bots that auto-fill every
+            // field do. Pretend to succeed so the bot doesn't learn to skip it.
+            if (this.querySelector('#website').value) {
+                this.reset();
+                return;
+            }
+
             // Get form data
             const formData = new FormData(this);
             const name = formData.get('name');

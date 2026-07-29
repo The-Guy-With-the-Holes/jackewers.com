@@ -9,6 +9,8 @@
     
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" href="https://media.bloodweb.net/jackewers/branding/icon/Favicon.png">
+    <link rel="manifest" href="/manifest.json">
     
     <!-- Styles -->
     <link rel="stylesheet" href="styles.css">
@@ -171,16 +173,13 @@
     <script>
         // Define functions before they can be called
         function loadFallbackQR() {
-            console.log('Primary QR library failed, trying fallback...');
             const script = document.createElement('script');
             script.src = 'https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js';
             script.onload = () => {
-                console.log('Fallback QR library loaded');
                 // Create QRCode compatibility layer for QRious
                 window.QRCode = {
                     toCanvas: function(canvas, text, options, callback) {
                         try {
-                            console.log('QRious toCanvas called with:', text, options);
                             const qr = new QRious({
                                 element: canvas,
                                 value: text,
@@ -188,7 +187,6 @@
                                 foreground: options?.color?.dark || '#000000',
                                 background: options?.color?.light || '#ffffff'
                             });
-                            console.log('QRious QR created successfully');
                             callback(null);
                         } catch (error) {
                             console.error('QRious error:', error);
@@ -219,11 +217,9 @@
         
         function initQRGenerator() {
             if (typeof QRCode !== 'undefined') {
-                console.log('QR library loaded successfully');
                 const script = document.createElement('script');
                 script.src = 'qr-generator.js';
                 script.onload = () => {
-                    console.log('qr-generator.js loaded successfully');
                 };
                 script.onerror = () => {
                     console.error('Failed to load qr-generator.js');
@@ -239,9 +235,7 @@
             setTimeout(() => {
                 const btn = document.getElementById('generateBtn');
                 if (btn) {
-                    console.log('Adding direct button test handler...');
                     btn.onclick = function() {
-                        console.log('Direct button clicked!');
                         const text = document.getElementById('qrText').value.trim();
                         if (!text) {
                             alert('Please enter text to generate QR code');
@@ -249,7 +243,6 @@
                         }
                         
                         if (typeof QRCode !== 'undefined') {
-                            console.log('QRCode available, generating...');
                             const canvas = document.createElement('canvas');
                             const options = {
                                 width: 300,
@@ -265,7 +258,6 @@
                                     console.error('QR Error:', error);
                                     alert('Error: ' + error.message);
                                 } else {
-                                    console.log('QR Generated successfully');
                                     const preview = document.getElementById('qrPreview');
                                     preview.innerHTML = '';
                                     canvas.style.maxWidth = '100%';
@@ -284,7 +276,6 @@
                                 }
                             });
                         } else {
-                            console.log('QRCode not available');
                             alert('QR library not loaded');
                         }
                     };
@@ -294,13 +285,11 @@
         
         // Setup export button functionality
         function setupExportButtons(canvas, text) {
-            console.log('Setting up export buttons...');
             
             // PNG Export
             const pngBtn = document.getElementById('exportPNG');
             if (pngBtn) {
                 pngBtn.onclick = function() {
-                    console.log('PNG export clicked');
                     const link = document.createElement('a');
                     link.download = `qr-code-${Date.now()}.png`;
                     link.href = canvas.toDataURL('image/png');
@@ -315,7 +304,6 @@
             const jpgBtn = document.getElementById('exportJPG');
             if (jpgBtn) {
                 jpgBtn.onclick = function() {
-                    console.log('JPG export clicked');
                     // Create canvas with white background for JPG
                     const jpgCanvas = document.createElement('canvas');
                     const ctx = jpgCanvas.getContext('2d');
@@ -341,7 +329,6 @@
             const svgBtn = document.getElementById('exportSVG');
             if (svgBtn) {
                 svgBtn.onclick = function() {
-                    console.log('SVG export clicked');
                     const dataURL = canvas.toDataURL('image/png');
                     const svgTemplate = `<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
@@ -367,7 +354,6 @@
         
         // Show export feedback
         function showExportFeedback(format) {
-            console.log(`${format} export completed`);
             
             // Create feedback notification
             const feedback = document.createElement('div');

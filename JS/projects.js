@@ -101,7 +101,7 @@ function buildHomepageCard(p, i) {
         ? `<span class="tag" style="background:rgba(245,158,11,0.15);color:#f59e0b;border-color:#f59e0b;">🚧 WIP</span>`
         : '';
     const imageInner = p.image
-        ? `<img src="${p.image}" alt="${p.name}" style="width:100%;height:100%;object-fit:contain;border-radius:inherit;"
+        ? `<img src="${p.image}" alt="${p.name}" loading="lazy" style="width:100%;height:100%;object-fit:contain;border-radius:inherit;"
                onerror="this.closest('.project-image').innerHTML='<span style=\\'font-size:3rem;\\'>${p.fallbackIcon || '💻'}</span>'">`
         : `<span style="font-size:3.5rem;">${p.fallbackIcon || '💻'}</span>`;
     const imageStyle = p.image
@@ -136,7 +136,7 @@ function buildProjectsCard(p, i) {
         <div class="project-card" style="animation-delay:${i * 0.1}s">
             <div class="project-icon">
                 ${p.image
-                    ? `<img src="${p.image}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;"
+                    ? `<img src="${p.image}" alt="${p.name}" loading="lazy" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;"
                            onerror="this.outerHTML='<span style=\\'font-size:1.75rem;\\'>${p.fallbackIcon || '💻'}</span>'">`
                     : `<span style="font-size:1.75rem;">${p.fallbackIcon || '💻'}</span>`
                 }

@@ -219,7 +219,6 @@ class LinkDisplay {
         // Update see more button visibility
         this.updateSeeMoreButton(container, allItems.length);
         
-        console.log(`[LinkDisplay] Showing ${this.currentlyShowing} of ${allItems.length} items for ${size} view`);
     }
 
     updateSeeMoreButton(container, totalItems) {
@@ -269,13 +268,9 @@ class LinkDisplay {
             this.adjustItemVisibility(containerSimple, currentSize);
         }
 
-        console.log(`[LinkDisplay] See more toggled: ${this.seeMoreActive}`);
     }
 
     init() {
-        console.log('[LinkDisplay] Initializing with settings:', this.settings);
-        console.log('[LinkDisplay] Sizes config:', this.sizes);
-        console.log('[LinkDisplay] renderFullProjects:', this.renderFullProjects);
         
         // Initialize both containers - full and simple views
         if (this.renderFullProjects) {
@@ -290,14 +285,12 @@ class LinkDisplay {
     }
     
     initFullProjects() {
-        console.log('[LinkDisplay] initFullProjects called');
         const containerFull = document.getElementById('projects-container-full');
         if (!containerFull) {
             console.warn('No container found for full projects');
             return;
         }
         
-        console.log('[LinkDisplay] Container found, creating projects...');
         
         // Clear existing content
         containerFull.innerHTML = '';
@@ -315,18 +308,15 @@ class LinkDisplay {
         const currentSize = this.getRelevantSize();
         this.adjustItemVisibility(containerFull, currentSize);
         
-        console.log(`[LinkDisplay] Full project cards created: ${this.projects.length} total, container has ${containerFull.children.length} children`);
     }
     
     initSimpleProjects() {
-        console.log('[LinkDisplay] initSimpleProjects called');
         const containerSimple = document.getElementById('projects-container-simple');
         if (!containerSimple) {
             console.warn('No container found for simple projects');
             return;
         }
         
-        console.log('[LinkDisplay] Simple container found, creating projects...');
         
         // Clear existing content
         containerSimple.innerHTML = '';
@@ -343,7 +333,6 @@ class LinkDisplay {
         // Apply grid layout and initial visibility rules
         this.adjustGrid(containerSimple, true);
         
-        console.log(`[LinkDisplay] Simple project cards created: ${this.projects.length} total, container has ${containerSimple.children.length} children`);
     }
 
     // Setup filtering and search functionality
@@ -494,11 +483,9 @@ class LinkDisplay {
     }
 }
 
-console.log('[LinkDisplay] Settings available:', typeof Settings !== 'undefined' ? Settings : 'undefined');
 
 const userSettings = (typeof Settings !== 'undefined' && Settings?.linkDisplay) ? Settings.linkDisplay : {};
 
-console.log('[LinkDisplay] Using settings:', userSettings);
 
 const projectDisplay = new LinkDisplay(userSettings);
 
@@ -534,12 +521,10 @@ document.addEventListener('DOMContentLoaded', () => {
             // Adjust visibility for new device size
             if (containerFull && getComputedStyle(containerFull).display !== 'none') {
                 projectDisplay.adjustGrid(containerFull, true);
-                console.log(`[LinkDisplay] Full container adjusted for ${newSize}`);
             }
             
             if (containerSimple && getComputedStyle(containerSimple).display !== 'none') {
                 projectDisplay.adjustGrid(containerSimple, true);
-                console.log(`[LinkDisplay] Simple container adjusted for ${newSize}`);
             }
         }, 150); // 150ms debounce delay
     });

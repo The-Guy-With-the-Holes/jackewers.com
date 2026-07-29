@@ -40,7 +40,6 @@ class ModernNavigation {
         // Listen for window resize
         window.addEventListener('resize', () => this.handleResponsiveLayout());
 
-        console.log('Modern Navigation initialized');
     }
     
     setupEventListeners() {
@@ -56,20 +55,16 @@ class ModernNavigation {
         // Add click handler to entire navigation container on mobile
         const mainNavigation = document.querySelector('.main-navigation');
         if (mainNavigation) {
-            console.log('Main navigation found, adding click handler');
             mainNavigation.addEventListener('click', (e) => {
-                console.log('Navigation clicked, window width:', window.innerWidth);
                 // Only handle clicks on mobile screens
                 if (window.innerWidth <= 767) {
                     // Prevent clicks on desktop menu items from triggering mobile menu
                     if (!e.target.closest('.nav-menu') && !e.target.closest('.nav-actions .theme-toggle')) {
-                        console.log('Triggering mobile menu toggle');
                         this.toggleMobileMenu();
                     }
                 }
             });
         } else {
-            console.log('Main navigation not found');
         }
         
         if (mobileClose) {
@@ -166,20 +161,15 @@ class ModernNavigation {
     }
     
     toggleMobileMenu() {
-        console.log('toggleMobileMenu called, current state:', this.mobileMenuOpen);
         this.mobileMenuOpen = !this.mobileMenuOpen;
         
         const menu = document.getElementById('mobile-menu');
         const overlay = document.getElementById('mobile-menu-overlay');
         
-        console.log('Menu element:', menu);
-        console.log('Overlay element:', overlay);
         
         if (this.mobileMenuOpen) {
-            console.log('Opening mobile menu');
             this.openMobileMenu();
         } else {
-            console.log('Closing mobile menu');
             this.closeMobileMenu();
         }
     }
@@ -355,7 +345,6 @@ class LayoutManager {
         
         window.addEventListener('resize', () => this.handleWindowResize());
         
-        console.log('Layout Manager initialized');
     }
     
     detectLayout() {
@@ -492,11 +481,6 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     }
     
-    // Enhanced console styling for development
-    console.log(
-        '%c🚀 Modern Navigation & Layout System Loaded!', 
-        'color: #00aabb; font-weight: bold; font-size: 14px;'
-    );
 });
 
 // Export for module use

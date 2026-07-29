@@ -9,6 +9,8 @@
     
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" href="https://media.bloodweb.net/jackewers/branding/icon/Favicon.png">
+    <link rel="manifest" href="/manifest.json">
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,6 +23,7 @@
     <!-- Shared Styles -->
     <link rel="stylesheet" href="/shared/assets/styles/design-system.css">
     <link rel="stylesheet" href="/shared/assets/styles/components.css">
+    <link rel="stylesheet" href="/shared/assets/styles/footer.css">
     <link rel="stylesheet" href="/shared/assets/styles/utilities.css">
     <link rel="stylesheet" href="/shared/assets/styles/animations.css">
     <link rel="stylesheet" href="/shared/assets/styles/nav.css">
@@ -84,13 +87,14 @@
     </div>
     
     <!-- Navigation Component -->
+    <a href="#main-content" class="skip-link">Skip to content</a>
     <div id="nav-placeholder" class="nav-skeleton"></div>
     <script src="/shared/assets/scripts/load-navbar.js"></script>
     <script src="/shared/assets/scripts/theme.js"></script>
     
-    <div class="container">
+    <div class="container" id="main-content">
         <div class="header">
-            <img src="https://media.bloodweb.net/jackewers/images/headshot.jpg" alt="Jack Ewers" class="headshot" onerror="this.style.display='none'">
+            <img src="https://media.bloodweb.net/jackewers/images/headshot.jpg" alt="Jack Ewers" class="headshot" loading="lazy" onerror="this.style.display='none'">
             <h1>About Me</h1>
             <p>Developer, Builder & Mental Health Advocate</p>
         </div>

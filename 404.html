@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
+    <meta name="description" content="Page not found - Jack Ewers">
+    <title>Page Not Found | Jack Ewers</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" href="https://media.bloodweb.net/jackewers/branding/icon/Favicon.png">
+    <link rel="manifest" href="/manifest.json">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Shared Styles -->
+    <link rel="stylesheet" href="/shared/assets/styles/design-system.css">
+    <link rel="stylesheet" href="/shared/assets/styles/components.css">
+    <link rel="stylesheet" href="/shared/assets/styles/footer.css">
+    <link rel="stylesheet" href="/shared/assets/styles/utilities.css">
+    <link rel="stylesheet" href="/shared/assets/styles/animations.css">
+    <link rel="stylesheet" href="/shared/assets/styles/nav.css">
+
+    <style>
+        .not-found-section {
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: var(--space-3xl) var(--space-lg);
+        }
+
+        .not-found-code {
+            font-size: clamp(4rem, 15vw, 8rem);
+            font-weight: 900;
+            line-height: 1;
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary, var(--color-primary)) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: var(--space-md);
+        }
+
+        .not-found-title {
+            font-size: var(--font-size-2xl);
+            margin-bottom: var(--space-sm);
+        }
+
+        .not-found-description {
+            color: var(--color-text-secondary);
+            max-width: 32rem;
+            margin: 0 auto var(--space-xl);
+        }
+
+        .not-found-actions {
+            display: flex;
+            gap: var(--space-md);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Component -->
+    <a href="#main-content" class="skip-link">Skip to content</a>
+    <div id="nav-placeholder" class="nav-skeleton"></div>
+    <script src="/shared/assets/scripts/load-navbar.js"></script>
+    <script src="/shared/assets/scripts/theme.js"></script>
+
+    <section class="not-found-section" id="main-content">
+        <div>
+            <div class="not-found-code">404</div>
+            <h1 class="not-found-title">Page not found</h1>
+            <p class="not-found-description">
+                The page you're looking for doesn't exist, moved, or the link's just wrong.
+                Let's get you back on track.
+            </p>
+            <div class="not-found-actions">
+                <a href="/" class="btn btn-primary">
+                    <i class="fas fa-house"></i>
+                    Back to Home
+                </a>
+                <a href="/app/" class="btn btn-secondary">
+                    <i class="fas fa-diagram-project"></i>
+                    View Projects
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <p class="footer-text">
+                © <span class="currentYear">2026</span> Jack Ewers. Built with <span class="footer-heart"><i class="fas fa-heart"></i></span> and lots of
+                coffee.
+                <br>
+                Designed, built and hosted by <a href="https://bloodweb.net/" class="footer-brand">Bloodweb</a> — a web development studio in Australia.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelectorAll('.currentYear')
+            .forEach(el => el.textContent = new Date().getFullYear());
+    </script>
+</body>
+</html>
