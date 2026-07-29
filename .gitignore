@@ -16,6 +16,10 @@ arduino_secrets.h
 test/
 *.tmp
 
+# Node deps - only ever installed ad hoc for linting, never committed
+node_modules/
+package-lock.json
+
 # Claude Code local settings/config (may contain API keys, machine-specific paths)
 .claude/
 .env

@@ -246,7 +246,7 @@ body {
     align-items: center;
 }
 
-.preview-header h3 {
+.preview-header h2 {
     color: white;
     font-size: 1.3rem;
     font-weight: 600;
@@ -295,7 +295,7 @@ body {
     margin-top: 1rem;
 }
 
-.export-section h4 {
+.export-section h3 {
     color: white;
     font-size: 1.1rem;
     margin-bottom: 1rem;
@@ -359,7 +359,7 @@ body {
     max-width: 1200px;
 }
 
-.features-section h3 {
+.features-section h2 {
     font-size: 2rem;
     margin-bottom: 2rem;
     font-weight: 600;
@@ -391,7 +391,7 @@ body {
     margin-bottom: 1rem;
 }
 
-.feature-card h4 {
+.feature-card h3 {
     font-size: 1.2rem;
     margin-bottom: 0.5rem;
     font-weight: 600;

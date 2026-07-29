@@ -82,7 +82,7 @@ function debug(message, level, category) {
 if (typeof debugging !== 'undefined' && debugging  === true 
   && (!window.location.href.includes('jackewers.com') || !window.location.href.includes('bloodweb.net')
   )) {
-  debugging_section = `
+  const debugging_section = `
   <div id="debugging_area" style="font-size:min(.8rem,6vw); padding:1%; background-color:#ffaffa55; display:flex; justify-content:flex-end; overflow:hidden; height:1.5em;">
       <p style="white-space: nowrap;"></p>
       <button onclick="window.location.reload()" style="margin-left:auto;"><p>RELOAD</p></button>
@@ -275,7 +275,9 @@ function addKeywordOverlay(image) {
  */
 function Tag_Images(words){
   function getKeywordsForImage(image) {    // This function returns a static array of keywords
-      return words||KeyWord_Array; //[keywords];
+      // KeyWord_Array is defined nowhere in this codebase; read it off
+      // window so a no-arg call yields [] instead of a ReferenceError.
+      return words || window.KeyWord_Array || [];
   }
   var images = document.getElementsByTagName('img'); // Get all the <img> elements
 
@@ -564,111 +566,10 @@ function toProjectUrl(path) {
   return new URL(path.replace(/^\//, ''), getProjectBaseUrl()).toString();
 }
 
-const headerComponent = toProjectUrl('shared/assets/components/header.html');
-const navComponent = toProjectUrl('shared/assets/components/modern-navbar.html');
-const footerComponent = toProjectUrl('shared/assets/components/footer.html');
-
-// Attach the listener to the nav (open/close vertical nav)
-document.addEventListener('DOMContentLoaded', 
-  initialiseSettings = () => {
-    if (!Settings) return console.warn('No settings to make')
-
-    
-
-
-    if (Settings.createHeader && Settings.createNav !== 'simple'){
-      // Only create separate header if not using simple nav (which includes header)
-      fetch(headerComponent)
-        .then(response => response.text())
-        .then(html => {
-            const headerElements = document.querySelectorAll('header[data-render="component"]');
-            if (!headerElements.length) {
-              const header = createElement('header',{id:'header', 'data-render':'component',innerHTML:html});
-              document.body.prepend(header);
-            }
-            
-            headerElements.forEach(header => {
-                header.innerHTML = html;
-            });
-        })
-        .catch(error => console.error('Error loading header:', error));
-    }
-    if(Settings.createNav){
-      const createNav = Settings.createNav; // Get the nav type from settings
-      
-      // check if the nav.css file is srced in the document head
-   
-      if (Settings.createNav === 'simple'){
-        // Load simple navigation CSS
-        const simpleNavCSS = document.querySelector('link[href*="simple-nav.css"]');
-        if(!simpleNavCSS){
-          const simpleCSS = createElement('link',{rel:'stylesheet', href:toProjectUrl('shared/assets/styles/simple-nav.css')});
-          document.head.appendChild(simpleCSS);
-        }
-        
-        // Load simple navigation component
-        fetch(toProjectUrl('shared/assets/components/simple-navbar.html') + '?v=' + Date.now())
-          .then(response => response.text())
-          .then(html => {
-              domHasNav = document.getElementById('nav');
-              if(!domHasNav){ 
-                navigation = createElement('div',{id:'nav'});
-                //insert after the header (or prepend to the body if no header)
-                // if(dQ('header'))dQ('header').insertAdjacentElement('afterend',navigation);
-                 dQ('body').prepend(navigation);
-              }
-              document.getElementById('nav').innerHTML = html;
-          })
-          .catch(error => console.error('Error loading simple navigation:', error));
-      }
-      else{
-   
-      const domhasNavCSS = document.querySelector('link[href*="shared/assets/styles/nav.css"]');
-      if(!domhasNavCSS){
-        console.warn('Nav CSS not found. Please add it to the head for proper styling.');
-        const navCSS = createElement('link',{rel:'stylesheet', href:toProjectUrl('shared/assets/styles/nav.css')});
-        document.head.appendChild(navCSS);
-      }
-     
-        // Create a more complex navigation structure
-      fetch(navComponent + '?v=' + Date.now())
-        .then(response => response.text())
-        .then(html => {
-            domHasNav = document.getElementById('nav');
-            if(!domHasNav){ 
-              navigation = createElement('div',{id:'nav'});
-              //inset after the header ( or prepend to the body if no header)
-              if(dQ('header'))dQ('header').insertAdjacentElement('afterend',navigation);
-              else dQ('body').prepend(navigation);
-            }
-            document.getElementById('nav').innerHTML = html;
-            // Re-initialize ModernNavigation after nav is loaded
-            if (window.modernNav) {
-                window.modernNav.setupEventListeners();
-                window.modernNav.setActiveNavItem();
-            } else if (window.ModernNavigation) {
-                window.modernNav = new window.ModernNavigation();
-            }
-        })
-        .catch(error => console.error('Error loading navigation:', error));
-    }
-  }
-    if(Settings.createFooter){
-      fetch(footerComponent)
-      .then(response => response.text())
-      .then(html => {
-          if (document.querySelector('footer')){ document.querySelector('footer').innerHTML = html; }
-          else{
-              const footer = createElement('footer',{id:'footer', 'data-render':'component',innerHTML:html});
-              document.body.append(footer);
-          }
-      })
-      .catch(error => console.error('Error loading footer:', error));
-    } 
-
-    if(Settings.returnButton){
-      loadHTML('body',toProjectUrl('components/returnButton.html'), true).then(() => {
-      })
-    }
-
-});
+// NOTE: a Settings-gated component loader used to live here. It fetched
+// shared/assets/components/{header,modern-navbar,simple-navbar}.html and
+// components/returnButton.html - none of which exist - and was reachable
+// only if a page set Settings.createHeader/createNav/createFooter/
+// returnButton. No page ever did (the one page declaring Settings set all
+// of them false), so it was unreachable. Removed rather than repaired;
+// navigation is handled by load-navbar.js and simple-nav.css instead.

@@ -21,16 +21,14 @@
     <meta name="twitter:description" content="P.W.M - a guide to storing and managing passwords on a Raspberry Pi Pico microcontroller using the Thonny IDE.">
     <meta name="twitter:image" content="https://media.bloodweb.net/jackewers/branding/banner/banner-img-light.webp">
         <link rel="stylesheet" href="/shared/assets/styles/projects.css">
+    <link rel="stylesheet" href="/shared/assets/styles/simple-nav.css">
 </head>
 
 <body>
-    <nav class="main-nav">
-        <div class="branding">
-            <img src="/favicon.ico" alt="Favicon Image">
-            <!-- <br><span>by Bloodweb</span> -->
-        </div>
-        <div class="nav-actions">
-            <button onclick="window.location.href='/app/index.html'">Projects</button>
+    <nav class="simple-navigation">
+        <div class="simple-nav-container">
+            <a href="/app/" class="simple-nav-back"><span>Back to Projects</span></a>
+            <a href="/" class="simple-nav-home"><span>Home</span></a>
         </div>
     </nav>
 
@@ -92,20 +90,8 @@
             </div>
         </div>
     </section>
-    <script>
-        const userSettings = {
-            return:{
-                ref:'/app/index.html',
-                label:'Back to Projects'
-            }
-        }
-    </script>
     <!-- Import Key Functions -->
     <script src="/KeyFunctions.js"></script>
-    <!-- Make instructions-->
-    <script src="/JS/instructables.js"></script>
-    <!-- Create return label and any other Nav items -->
-    <script src="/JS/Navigation.js"></script>
 </body>
 
 </html>

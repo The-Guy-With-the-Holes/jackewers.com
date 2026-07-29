@@ -27,6 +27,21 @@ jobs:
             "too few values for the property .linear-gradient."
             ".min-height.: Unknown dimension"
 
+  lint-js:
+    name: JS lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      # No package.json by design - this is a no-build static site, so the
+      # linter is installed ad hoc rather than becoming a project dependency.
+      - name: Install ESLint
+        run: npm install --no-save --no-fund --no-audit eslint@9 globals
+      - name: Lint
+        run: npx eslint .
+
   broken-links:
     name: Broken link check
     runs-on: ubuntu-latest

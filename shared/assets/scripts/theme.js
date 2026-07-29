@@ -40,7 +40,7 @@
             render();
         });
 
-        // Keep in sync if another script (e.g. nav.js) switches the theme.
+        // Keep the icon in sync if anything else switches the theme.
         window.addEventListener('themeChanged', render);
     });
 })();

@@ -70,6 +70,14 @@ body {
     text-align: center;
 }
 
+/* Was an <h3> purely for its size - prose, not a section heading, so it broke
+   the h1->h3 outline. Now a <p> with the UA's default h3 metrics preserved. */
+.header-subtitle {
+    font-size: 1.17em;
+    font-weight: bold;
+    margin: 1em 0;
+}
+
 .header h1 {
     font-size: 3rem;
     font-weight: 900;

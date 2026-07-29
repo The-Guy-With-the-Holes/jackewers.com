@@ -8,8 +8,9 @@
 //   .light-mode class -> design-system.css, nav.css, styles.css
 //   [data-theme] attr -> vars.css, simple-nav.css, projects.css
 // Keeping both in sync is what makes a preference set on one page hold on the
-// next. Likewise two storage keys are written: 'theme' is canonical, but
-// nav.js still reads the older 'user-prefers-colorMode'.
+// next. Two storage keys are still written: 'theme' is canonical, and the
+// older 'user-prefers-colorMode' is kept so visitors who set a preference
+// under the previous scheme don't get reset.
 (function () {
     var STORAGE_KEY = 'theme';
     var LEGACY_KEY = 'user-prefers-colorMode';

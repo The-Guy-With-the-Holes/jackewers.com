@@ -333,7 +333,7 @@ body {
     border: 2px solid var(--border-color);
 }
 
-.examples h4 {
+.examples h2 {
     margin-bottom: 0.5rem;
     color: var(--text-primary);
 }
