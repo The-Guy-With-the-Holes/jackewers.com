@@ -15,3 +15,9 @@ arduino_secrets.h
 # HTTrack mirror cache
 test/
 *.tmp
+
+# Claude Code local settings/config (may contain API keys, machine-specific paths)
+.claude/
+.env
+.env.*
+!.env.example

@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Blog by Jack Ewers - Tech insights, body modification experiences, mental health advocacy, and Linux tutorials">
     <title>Blog | Jack Ewers</title>
@@ -290,7 +291,12 @@
         .post-link:hover {
             gap: var(--space-sm);
         }
-        
+
+        .post-link-disabled {
+            color: var(--color-text-tertiary);
+            cursor: default;
+        }
+
         /* Empty State */
         .empty-state {
             text-align: center;
@@ -428,8 +434,10 @@
             grid.style.display = 'grid';
             emptyState.style.display = 'none';
             
-            grid.innerHTML = posts.map(post => `
-                <article class="post-card" onclick="window.location.href='${post.link}'">
+            grid.innerHTML = posts.map(post => {
+                const isPublished = post.link && post.link !== '#';
+                return `
+                <article class="post-card"${isPublished ? ` onclick="window.location.href='${post.link}'"` : ' style="cursor: default;"'}>
                     ${post.image ? `<img src="${post.image}" alt="${post.title}" class="post-image">` : '<div class="post-image"></div>'}
                     <div class="post-content">
                         <div class="post-meta">
@@ -441,12 +449,13 @@
                         </div>
                         <h2 class="post-title">${post.title}</h2>
                         <p class="post-excerpt">${post.excerpt}</p>
-                        <a href="${post.link}" class="post-link">
-                            Read More <i class="fas fa-arrow-right"></i>
-                        </a>
+                        ${isPublished
+                            ? `<a href="${post.link}" class="post-link">Read More <i class="fas fa-arrow-right"></i></a>`
+                            : `<span class="post-link post-link-disabled"><i class="fas fa-clock"></i> Coming soon</span>`}
                     </div>
                 </article>
-            `).join('');
+            `;
+            }).join('');
         }
         
         // Filter posts by category

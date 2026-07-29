@@ -1,16 +1,12 @@
 <div align="center">
 
-# JackEwers.com - Personal Portfolio & Digital Business Card
+# JackEwers.com — Personal Portfolio & Digital Business Card
 
 [![Live Website](https://img.shields.io/badge/Live_Website-jackewers.com-blue?style=for-the-badge)](https://jackewers.com)
 [![GitHub Pages](https://img.shields.io/badge/Deployed_on-GitHub_Pages-success?style=for-the-badge&logo=github)](https://pages.github.com/)
 [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](#license)
 
-**Modern, responsive personal portfolio showcasing software development projects, professional experience, and creative works.**
-
----
-
-*A full-stack developer's digital presence featuring interactive elements, dynamic content, and modern web technologies.*
+**Personal portfolio and digital business card for Jack Ewers — projects, certifications, a blog, and a link-in-bio hub.**
 
 </div>
 
@@ -20,440 +16,130 @@
 - [Project Structure](#project-structure)
 - [Technologies Used](#technologies-used)
 - [External Resources](#external-resources)
-- [Key Features](#key-features)
 - [Pages & Sections](#pages--sections)
 - [Design System](#design-system)
-- [Performance & SEO](#performance--seo)
+- [SEO](#seo)
 - [Deployment](#deployment)
+- [Versioning](#versioning)
 - [Development Workflow](#development-workflow)
-- [Analytics & Monitoring](#analytics--monitoring)
-- [Contributing](#contributing)
 - [License](#license)
 
 ## Overview
 
-**JackEwers.com** is a comprehensive personal portfolio and digital business card built as a modern, responsive web application. The site serves as a professional showcase for software development work, personal projects, and creative endeavors while maintaining an engaging user experience across all devices.
-
-**Live Site**: [www.jackewers.com](https://jackewers.com)  
-**Domain**: Custom domain hosted on GitHub Pages  
-**Responsive**: Optimized for mobile, tablet, and desktop  
-
-### Interactive Features
-- **Live Camera Integration** - Interactive photo capture with countdown timer
-- **Mini Games** - Collection of browser-based games and interactive experiences  
-- **Slang Generator** - "Am I Old Yet?" generational slang analysis tool
-- **Dynamic Content** - Real-time updates from external APIs
-- **Theme System** - Automatic dark/light mode with CSS custom properties
+**JackEwers.com** is a static personal site hosted on GitHub Pages behind the custom domain `jackewers.com` (see [`CNAME`](CNAME)). It's plain HTML/CSS/JS — no build step, no framework, no server-side rendering in production.
 
 ## Project Structure
 
 ```
 jackewers/
-├──  index.html                    # Main landing page
-├──  about.html                    # About page redirect
-├──  linktree.html                 # Social media hub
-├──  README.md                     # This documentation
-├──  robots.txt                    # SEO crawler instructions
-├──  cert.pem                      # SSL certificate
-├──  CNAME                         # Custom domain configuration
+├── index.html                  # Landing page
+├── CNAME                       # Custom domain for GitHub Pages
+├── robots.txt                  # Crawler rules
+├── favicon.ico
+├── home.css                    # Landing page styles
+├── KeyFunctions.js             # Root-level DOM/date/scroll utility library
+├── version.json                # Version + changelog data
+├── VersionManager.php          # Local CLI helper for editing version.json (not served/deployed)
+├── portfolio-albums.json       # Data for the JS/portfolio-albums.js loader
+├── codenames.json              # Release codename pool used by VersionManager.php
 │
-├── 📁 About/                        # About section pages
-│   ├── index.html                   # Main about page  
-│   ├── Contact.html                 # Contact information
-│   └── Recommendations.html         # Professional recommendations
-│
-├── 📁 CSS/                          # Stylesheets & Design System
-│   ├── styles.css                   # Core site styles
-│   ├── vars.css                     # CSS custom properties
-│   ├── nav.css        # Navigation components
-│   ├── projects.css        # Project grid system
-│   ├── carousel-redesign.css        # Image carousel
-│   ├── home.css                     # Landing page styles
-│   ├── desktop-enhancements.css     # Desktop optimizations
-│   └── overflow-fixes.css           # Layout fixes
-│
-├── 📁 JS/                           # JavaScript Modules
-│   ├── KeyFunctions.js              # Core utilities
-│   ├── projects.js                  # Project grid management
-│   ├── modern-carousel.js           # Carousel functionality
-│   ├── nav.js         # Navigation system
-│   ├── Image_slider.js              # Image gallery
-│   └── social_links.js              # External link management
-│
-├── 📁 shared/                       # Shared Assets & Components
-│   └── assets/
-│       ├── 📁 components/              # Reusable HTML components
-│       ├── 📁 scripts/                 # Shared JavaScript modules
-│       ├── 📁 styles/                  # Shared CSS files
-│       ├── 📁 images/                  # Optimized images
-│       └── 📁 API/                     # API integration files
-│
-├── 📁 projects/                     # Project Portfolio
-│   ├── index.html                   # Projects overview
-│   ├── am-i-old-yet/               # Slang analysis app
-│   ├── doorbell/                   # IoT doorbell project
-│   ├── be-my-valentine/            # Interactive Valentine's app
-│   ├── S.P.I.N/                    # SPIN methodology tool
-│   └── [other projects]/
-│
-├── 📁 poo_games/                    # Interactive Games Collection
-│   ├── index.html                   # Games hub
-│   ├── poo_frogger/                # Frogger-style game
-│   ├── poo_snake/                  # Snake game variant
-│   └── poo_tic-tac-toe/            # Tic-tac-toe implementation
-│
-├── 📁 Certificates/                 # Professional Certifications
-│   ├── Certificates.html           # Certifications gallery
-│   ├── styles.css                  # Certificate grid styles
-│   ├── script.js                   # Dynamic certificate loading
-│   └── [certification folders]/
-│
-├── 📁 blog-posts/                   # Technical Blog Articles
-│   ├── Optimal_IP_Addressing_for_Programmers.html
-│   ├── Securing_Your_Small_Business_with_TOR_and_Kali.html
-│   └── The_Benefits_of_having_ice_baths.html
-│
-├── 📁 i/                           # Image Assets
-│   ├── branding/                   # Brand assets & logos
-│   ├── web-ready/                  # Optimized web images
-│   ├── Icons/                      # UI icons & favicons
-│   ├── Personal/                   # Personal photos
-│   └── [organized image folders]/
-│
-└── 📁 Business/                     # Business & Professional Content
-    └── email_footer.html           # Email signature template
+├── about/                      # About page + body modification history
+│   └── body-mod/
+├── albums/                     # Photo albums (JSON-driven galleries)
+├── app/                        # Projects hub
+│   ├── projects/                 # Individual project pages (am-i-old-yet, doorbell,
+│   │                              #   be-my-valentine, S.P.I.N, P.W.M, smarthome, router,
+│   │                              #   qr, image-crop, games/…)
+│   ├── 100-days-of-code/
+│   ├── calculator/
+│   ├── js/                       # JS playground
+│   └── scripts/
+├── blog/                       # Blog index + posts/ (posts currently placeholder data)
+├── certificates/                # Certifications gallery
+├── contact/
+├── recommendations/             # People/business recommendations
+├── mental-health/                # Mental health resources page
+├── mods/                        # Legacy URL, meta-refreshes to /about/body-mod/
+├── linktree/                    # @the_guy_with_the_holes link-in-bio page
+├── email-signatures/            # HTML email signature templates (gitignored)
+├── certificates/, contact/, ... (see above)
+├── JS/                          # Root-level shared scripts (portfolio-albums.js, projects.js)
+└── shared/assets/               # Cross-page shared code
+    ├── components/                # navbar.html, footer.html (fetched at runtime)
+    ├── config/                     # projects-config.js
+    ├── scripts/                    # theme.js, nav.js, carousel.js, load-navbar.js, ...
+    └── styles/                     # design-system.css, vars.css, nav.css, ...
 ```
 
 ## Technologies Used
 
-### Frontend Technologies
-![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)
-![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
-
-### Web APIs & Features
-- **WebRTC & MediaDevices API** - Camera functionality with getUserMedia
-- **Canvas API** - Image generation and manipulation
-- **Web Share API** - Native mobile sharing capabilities  
-- **Intersection Observer API** - Lazy loading and scroll animations
-- **Service Workers** - Offline functionality and caching
-- **CSS Custom Properties** - Dynamic theming system
-- **CSS Grid & Flexbox** - Modern responsive layouts
-- **CSS Animations** - Smooth transitions and micro-interactions
-
-### Architecture Patterns
-- **Component-Based Architecture** - Reusable HTML/shared/assets/styles/JS components
-- **Progressive Enhancement** - Core functionality works without JavaScript
-- **Mobile-First Responsive Design** - Optimized for all screen sizes
-- **Performance-Focused** - Lazy loading, image optimization, code splitting
-- **Accessibility Standards** - WCAG 2.1 compliant with ARIA labels
+- **HTML5 / CSS3 / vanilla JavaScript** — no framework, no bundler, no `package.json`.
+- **CSS Custom Properties** for theming (`shared/assets/styles/vars.css`), with light/dark mode via `data-theme`.
+- **PHP** — used only by `VersionManager.php`, a local CLI helper for maintaining `version.json`. It is not deployed or executed in production (GitHub Pages doesn't run PHP).
+- **Web APIs used in specific projects**: `getUserMedia`/Canvas (photo capture apps under `app/projects/`), Web Share API, Intersection Observer for lazy loading.
 
 ## External Resources
 
-### Third-Party Services
-
-| Service | Purpose | Implementation | Notes |
-|---------|---------|----------------|--------|
-| Google Fonts | Typography & Font Loading | `fonts.googleapis.com` & `fonts.gstatic.com` | Preconnected for performance |
-| BloodWeb API | Dynamic content & navigation | `https://bloodweb.net/KeyFunctions.js` | Live content updates |
-| Schema.org | Structured data for SEO | JSON-LD implementation | Enhanced search results |
-| GitHub Pages | Static site hosting | Custom domain with CNAME | Free, reliable hosting |
-
-### API Integrations
-
-```javascript
-// BloodWeb Integration - Dynamic Content Loading
-<script src="https://bloodweb.net/KeyFunctions.js"></script>
-
-// Google Fonts - Performance Optimized Loading  
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-```
-
-### Security & Performance
-- **HTTPS Enforcement** - All external resources loaded over HTTPS
-- **Resource Preloading** - Critical resources preloaded for performance
-- **Content Security Policy** - Implemented via meta tags
-- **DNS Prefetching** - External domains prefetched for speed
-
-## Key Features
-
-### Core Functionality
-
-<details>
-<summary><b>Interactive Camera System</b></summary>
-
-- **Live camera feed** with getUserMedia API
-- **Countdown timer** with visual feedback  
-- **Photo capture** with canvas processing
-- **Error handling** for permissions and device compatibility
-- **Responsive design** for all device types
-
-```javascript
-// Camera implementation with fallback constraints
-async function switchToCameraView() {
-    const constraints = [
-        { video: { facingMode: 'user', width: { ideal: 1280 }, height: { ideal: 720 } } },
-        { video: { facingMode: 'user', width: { ideal: 640 }, height: { ideal: 480 } } },
-        { video: true }
-    ];
-    // Implementation details...
-}
-```
-</details>
-
-<details>
-<summary><b>Modern Design System</b></summary>
-
-- **CSS Custom Properties** for consistent theming
-- **Glassmorphism effects** with backdrop-filter
-- **Gradient systems** for visual hierarchy  
-- **Responsive typography** with clamp() functions
-- **Dark/Light mode** automatic detection
-
-```css
-:root {
-    --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    --glass-bg: rgba(255, 255, 255, 0.1);
-    --glass-border: rgba(255, 255, 255, 0.2);
-}
-```
-</details>
-
-<details>
-<summary><b>Responsive Grid System</b></summary>
-
-- **CSS Grid with auto-fit** for dynamic layouts
-- **Device-specific breakpoints** for optimal viewing
-- **Intersection Observer** for lazy loading
-- **Performance optimized** image loading
-
-```css
-.projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: clamp(1rem, 3vw, 2rem);
-}
-```
-</details>
-
-### Interactive Applications
-
-| Application | Technology Stack | Features |
-|-------------|------------------|----------|
-| Slang Generator | Canvas API, JavaScript ES6+ | Age analysis, social sharing, 100+ slang database |
-| Poo Games | HTML5 Canvas, Game Logic | Frogger, Snake, Tic-tac-toe |
-| Valentine's App | CSS Animations, Interactive UI | Dynamic responses, cute animations |
-| IoT Doorbell | Python Flask, IoT Integration | Raspberry Pi integration, API endpoints |
+| Service | Purpose | Notes |
+|---------|---------|-------|
+| Google Fonts | Typography | Preconnected for performance |
+| Font Awesome (cdnjs) | Icons | Loaded via CDN `<link>` |
+| `bloodweb.net` / `media.bloodweb.net` | Shared branding assets, images, `KeyFunctions.js` mirror | Jack's own studio, see structured data on the homepage |
+| Schema.org JSON-LD | Structured data linking the Person (Jack Ewers) to the Bloodweb Organization | On `index.html` |
+| GitHub Pages | Static hosting for the custom domain | No custom HTTP headers available — security headers are set via `<meta>` tags instead of an `.htaccess`/server config |
 
 ## Pages & Sections
 
-### Main Landing Page (`index.html`)
-- **Hero section** with interactive carousel
-- **About preview** with professional summary
-- **Project showcase** with filterable grid
-- **Contact information** and social links
-- **Certificate highlights** and achievements
+| Path | Purpose |
+|------|---------|
+| `/` | Landing page — hero, project highlights, contact |
+| `/about/` | About page |
+| `/about/body-mod/` | Body modification history/timeline |
+| `/app/` | Projects hub (`/app/projects/*`) |
+| `/blog/` | Blog index (posts are placeholder content — see open issue below) |
+| `/certificates/` | Certifications gallery |
+| `/contact/` | Contact page |
+| `/recommendations/` | People/business recommendations |
+| `/mental-health/` | Mental health resources |
+| `/albums/` | Photo albums |
+| `/linktree/` | Link-in-bio page |
+| `/mods/` | Legacy redirect → `/about/body-mod/` |
 
-### Projects Portfolio (`projects/`)
-- **Comprehensive project grid** with filtering
-- **Live project demos** and source code links  
-- **Technology tags** and descriptions
-- **Interactive previews** and screenshots
-- **Detailed case studies** for major projects
-
-### Certifications (`Certificates/`)
-- **Professional certifications** in organized categories
-- **Achievement badges** and skill verification
-- **Timeline view** of professional development
-- **Searchable interface** for quick reference
-
-### Technical Blog (`blog-posts/`)
-- **In-depth technical articles** on programming topics
-- **Best practices** and tutorials
-- **Personal insights** on software development
-- **SEO optimized** content structure
+**Known gap:** `blog/index.html` currently renders hardcoded placeholder posts with `link: "#"`. `blog/posts/` has no real content yet.
 
 ## Design System
 
-### Color Palette
-```css
-/* Primary Brand Colors */
---primary-blue: #667eea;
---primary-purple: #764ba2;
---accent-pink: #f093fb;
---accent-red: #f5576c;
+Design tokens (fonts, spacing, colors, breakpoints) live in `shared/assets/styles/vars.css` and `design-system.css` — read those directly rather than relying on this doc, since they change independently of it.
 
-/* Semantic Colors */
---success: #4ade80;
---warning: #fbbf24;  
---danger: #ef4444;
---info: #3b82f6;
-```
+## SEO
 
-### Responsive Breakpoints
-```css
-/* Mobile First Approach */
---mobile: 320px;      /* Small mobile */
---tablet: 768px;      /* Tablet */
---desktop: 1024px;    /* Desktop */
---wide: 1440px;       /* Wide screen */
-```
-
-### Typography System
-```css
-/* Responsive Typography */
---font-xs: clamp(0.75rem, 2vw, 0.875rem);
---font-sm: clamp(0.875rem, 2.5vw, 1rem);
---font-base: clamp(1rem, 3vw, 1.125rem);
---font-lg: clamp(1.125rem, 4vw, 1.5rem);
---font-xl: clamp(1.5rem, 5vw, 2rem);
-```
-
-## Performance & SEO
-
-### Performance Optimizations
-- **Lazy loading** for images and components
-- **Resource preloading** for critical assets
-- **Code splitting** for JavaScript modules  
-- **Image optimization** with WebP format
-- **CSS minification** and critical CSS inlining
-- **Service worker** for offline functionality
-
-### SEO Implementation
-- **Structured data** with Schema.org markup
-- **Open Graph** tags for social media
-- **Meta descriptions** and keyword optimization
-- **XML sitemap** and robots.txt
-- **Semantic HTML** with proper heading hierarchy
-- **Internal linking** strategy
-
-### Accessibility Features
-- **WCAG 2.1 AA compliance** 
-- **Keyboard navigation** support
-- **Screen reader** optimized ARIA labels
-- **Color contrast** meets accessibility standards
-- **Focus management** for interactive elements
-- **Alternative text** for all images
+- `robots.txt` at the repo root controls crawling.
+- `sitemap.xml` at the repo root lists indexable pages (see [Versioning](#versioning) for how it's kept current — update it when adding/removing top-level pages).
+- Open Graph tags and JSON-LD structured data are set per-page.
 
 ## Deployment
 
-### GitHub Pages Configuration
+- **Host**: GitHub Pages, custom domain via [`CNAME`](CNAME).
+- **`.nojekyll`**: present at the repo root so GitHub Pages serves files/folders as-is without Jekyll processing.
+- Pushing to `main` deploys directly — there is no build step.
+- `.htaccess` in this repo is for **local Apache development only** (it's gitignored); GitHub Pages ignores it entirely and sets no custom HTTP headers, which is why security policy is delivered via `<meta http-equiv>` tags instead.
 
-```yaml
-# Deployment Details
-Platform: GitHub Pages
-Domain: jackewers.com  
-SSL: Enabled (Let's Encrypt)
-CDN: GitHub's global CDN
-Build: Static site generation
-```
+## Versioning
 
-### Deployment Files
-```
-├── CNAME              # Custom domain configuration
-├── robots.txt         # SEO crawler instructions  
-├── .nojekyll         # Bypass Jekyll processing
-└── cert.pem          # SSL certificate backup
-```
-
-### Continuous Deployment
-1. **Push to main branch** triggers automatic deployment
-2. **GitHub Actions** can be configured for build processes
-3. **Custom domain** automatically configured via CNAME
-4. **SSL certificate** auto-renewed by GitHub Pages
+`version.json` holds the version number, build number, and a per-build changelog, edited locally via `VersionManager.php`. `codenames.json` is the pool of release codenames it draws from. See [`CHANGELOG.md`](CHANGELOG.md) for the human-readable log.
 
 ## Development Workflow
 
-### Git Commit Convention
-
-Our project uses a structured commit message system for better tracking:
-
-```bash
-# Commit Message Format
---P(page) Page alteration
---N Additional Notes  
---X Critical Error found/addressing
---MF Minor Fixes
---MJ Major Fixes
---B Bug hunting
-
-# Example Usage
-git commit -m "--P(index.html)/MJ/--N Camera functionality fixes & responsive improvements"
-```
-
-### Development Setup
-
-```bash
-# Local Development
-1. Clone repository
-2. Open in VS Code or preferred editor
-3. Use Live Server extension for local testing
-4. Test responsive design with browser dev tools
-
-# File Structure
-- Edit HTML files directly
-- CSS files organized by component/page
-- JavaScript modules for specific functionality
-- Images optimized and organized in /i/ directory
-```
-
-## Analytics & Monitoring
-
-### Performance Metrics
-- **Lighthouse Score**: 90+ across all categories
-- **Core Web Vitals**: Optimized for Google's standards
-- **Mobile Performance**: 95+ score on mobile devices
-- **Accessibility Score**: 100% WCAG compliance
-
-### SEO Rankings
-- **Google Search Console** integration
-- **Structured data** validation
-- **Mobile-friendly** test passing
-- **Page speed** optimization
-
-## Contributing
-
-### Development Guidelines
-
-1. **Code Style**
-   - Use semantic HTML5 elements
-   - Follow BEM methodology for CSS classes
-   - Write accessible, performant JavaScript
-   - Optimize images before committing
-
-2. **Testing Checklist**
-   - Test on multiple browsers (Chrome, Firefox, Safari, Edge)
-   - Verify mobile responsiveness  
-   - Check accessibility with screen readers
-   - Validate HTML and CSS
-   - Test performance with Lighthouse
-
-3. **Pull Request Process**
-   - Follow git commit conventions
-   - Include screenshots for UI changes
-   - Update documentation if needed
-   - Test thoroughly before submitting
+There's no build tooling, linter, or test suite currently configured — just edit the HTML/CSS/JS directly and test in-browser. Commit messages follow plain, descriptive conventional style (see `git log`), not a fixed prefix scheme.
 
 ## License
 
-This project is licensed under the **MIT License** - see the [LICENSE](license.txt) file for details.
+MIT — see [`LICENSE`](LICENSE).
 
 ---
 
 <div align="center">
 
-### Connect With Me
-
-[![Website](https://img.shields.io/badge/Portfolio-jackewers.com-blue?style=for-the-badge)](https://jackewers.com)
-[![GitHub](https://img.shields.io/badge/GitHub-The--Guy--With--the--Holes-black?style=for-the-badge&logo=github)](https://github.com/The-Guy-With-the-Holes)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?style=for-the-badge&logo=linkedin)](https://linkedin.com/in/the-guy-with-the-holes)
-
-**Built by Jack Ewers**  
-*Software Developer | Creative Problem Solver | Mental Health Advocate*
-
----
-
-**Star this repository if you found it helpful or interesting!**
+**Jack Ewers** — [jackewers.com](https://jackewers.com) · [GitHub](https://github.com/The-Guy-With-the-Holes)
 
 </div>
