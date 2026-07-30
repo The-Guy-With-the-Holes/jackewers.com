@@ -34,6 +34,8 @@ test/
 
 # Development tooling
 dev-tools/
+serve.sh
+eslint.config.js
 .devignore
 package.json
 package-lock.json

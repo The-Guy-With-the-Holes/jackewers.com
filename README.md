@@ -43,6 +43,7 @@ jackewers/
 ├── portfolio-albums.json       # Data for the JS/portfolio-albums.js loader
 ├── codenames.json              # Release codename pool used by VersionManager.php
 ├── eslint.config.js            # Correctness-only lint rules (run in CI)
+├── serve.sh                    # Local dev server (serves this dir as the doc root)
 │
 ├── about/                      # About page + body modification history
 │   └── body-mod/
@@ -125,7 +126,28 @@ Design tokens (fonts, spacing, colors, breakpoints) live in `shared/assets/style
 
 ## Development Workflow
 
-There's no build step — edit the HTML/CSS/JS directly and test in-browser.
+There's no build step — edit the HTML/CSS/JS directly.
+
+### Running it locally
+
+Every link on the site is root-relative (`/about`, `/shared/assets/...`), which
+is what GitHub Pages needs when serving at a domain root. **Opening the folder
+as a subdirectory will break every link** — reaching it at
+`192.168.1.107/jackewers/` makes `/about` resolve to `192.168.1.107/about`,
+which 404s. A `<base href>` does *not* help: per the URL spec, root-relative
+paths discard the base's path entirely, so only genuinely relative hrefs are
+affected.
+
+So serve the project directory *as the document root*:
+
+```bash
+./serve.sh          # defaults to port 8080
+./serve.sh 9000     # or pick a port
+```
+
+Then browse `http://<your-ip>:8080/` — links resolve exactly as they do in
+production. The script is a thin wrapper around `python3 -m http.server`, so
+there's nothing to install and no Apache config to change.
 
 CI (`.github/workflows/site-checks.yml`) runs on every push to `main`: HTML5
 validation, an ESLint correctness pass (`no-undef` and friends — no style
