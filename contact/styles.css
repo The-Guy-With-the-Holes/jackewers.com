@@ -125,6 +125,11 @@ body.light-mode .form-button:hover {
     padding: var(--space-2xl);
     box-shadow: var(--shadow-lg);
     border: 1px solid var(--color-border);
+    /* Grid items are min-width:auto by default, so this card refused to shrink
+       below its min-content width - 423px, set by the unbreakable
+       webmaster@jackewers.com - which forced the whole page to scroll sideways
+       on any viewport under ~420px. */
+    min-width: 0;
 }
 
 .contact-info-title {
@@ -173,6 +178,7 @@ body.light-mode .form-button:hover {
 
 .contact-method-content {
     flex: 1;
+    min-width: 0; /* let the flex item shrink so the text inside can wrap */
 }
 
 .contact-method-content h3 {
@@ -180,6 +186,9 @@ body.light-mode .form-button:hover {
     font-weight: 600;
     margin: 0;
     color: var(--color-text-primary);
+    /* Email addresses and phone numbers are single unbreakable tokens; without
+       this they set the card's minimum width instead of wrapping. */
+    overflow-wrap: anywhere;
 }
 
 .contact-method-content .contact-detail {
@@ -207,6 +216,7 @@ body.light-mode .form-button:hover {
     padding: var(--space-2xl);
     box-shadow: var(--shadow-lg);
     border: 1px solid var(--color-border);
+    min-width: 0; /* see .contact-info-card */
 }
 
 .contact-form-title {
@@ -242,7 +252,16 @@ body.light-mode .form-button:hover {
     margin: 0 auto;
 }
 
+/* NOTE: components.css also defines `.social-link`, but as a fixed 48x48 icon
+   button (used bare on the homepage). This page's `.social-link` is a taller
+   card holding a 56px icon *and* a name label, and it used to inherit that
+   48x48 sizing because it never overrode width/height - so the icon spilled
+   sideways and the label fell out the bottom. Reset both explicitly; they are
+   load-bearing, not redundant. Two different components sharing one class name
+   is the underlying trap here. */
 .social-link {
+    width: auto;
+    height: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -255,6 +274,8 @@ body.light-mode .form-button:hover {
     transition: all var(--transition-base);
     border: 1px solid var(--color-border);
     box-shadow: var(--shadow-sm);
+    /* Long names (e.g. "Instagram") shouldn't widen the grid track. */
+    min-width: 0;
 }
 
 .social-link:hover {
@@ -308,5 +329,9 @@ body.light-mode .form-button:hover {
     .social-link-name {
         text-align: left;
         flex: 1;
+        /* flex:1 alone won't shrink past content width, so "Instagram" spilled
+           out of the card in this narrow row layout. */
+        min-width: 0;
+        overflow-wrap: anywhere;
     }
 }
