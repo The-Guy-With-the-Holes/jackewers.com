@@ -177,6 +177,25 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="contactMethod" class="form-label">Best way to reach you</label>
+                        <!-- No `required`: Email is pre-selected, so a value is always
+                             present and the attribute would never fire. The detail
+                             field below is what's actually required. -->
+                        <select id="contactMethod" name="contactMethod" class="form-select">
+                            <option value="email">Email</option>
+                            <option value="facebook">Facebook</option>
+                            <option value="instagram">Instagram</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contactValue" class="form-label" id="contactValueLabel">Your email</label>
+                        <input type="email" id="contactValue" name="contactValue" class="form-input" required
+                               autocomplete="email" placeholder="you@example.com">
+                        <small class="form-hint" id="contactValueHint">So I can reply to you.</small>
+                    </div>
+
+                    <div class="form-group">
                         <label for="subject" class="form-label">Subject</label>
                         <input type="text" id="subject" name="subject" class="form-input" required placeholder="What's this about?">
                     </div>
@@ -236,6 +255,57 @@
     </div>
 
     <script>
+        // Each contact method wants a different input type, placeholder and
+        // autocomplete hint, so retarget the single field instead of showing
+        // three and hiding two.
+        const CONTACT_METHODS = {
+            email: {
+                label: 'Your email',
+                type: 'email',
+                placeholder: 'you@example.com',
+                autocomplete: 'email',
+                hint: 'So I can reply to you.'
+            },
+            facebook: {
+                label: 'Your Facebook',
+                type: 'text',
+                placeholder: 'facebook.com/yourname',
+                autocomplete: 'off',
+                hint: 'Profile URL or username — whatever you can find you by.'
+            },
+            instagram: {
+                label: 'Your Instagram',
+                type: 'text',
+                placeholder: '@yourhandle',
+                autocomplete: 'off',
+                hint: 'Your handle, with or without the @.'
+            }
+        };
+
+        (function initContactMethod() {
+            const select = document.getElementById('contactMethod');
+            const input  = document.getElementById('contactValue');
+            const label  = document.getElementById('contactValueLabel');
+            const hint   = document.getElementById('contactValueHint');
+            if (!select || !input) return;
+
+            function apply() {
+                const cfg = CONTACT_METHODS[select.value] || CONTACT_METHODS.email;
+                label.textContent = cfg.label;
+                input.type = cfg.type;
+                input.placeholder = cfg.placeholder;
+                input.autocomplete = cfg.autocomplete;
+                hint.textContent = cfg.hint;
+                // A value valid for one method usually isn't for the next, and
+                // leaving it behind trips type=email validation confusingly.
+                input.value = '';
+                input.setCustomValidity('');
+            }
+
+            select.addEventListener('change', apply);
+            apply();
+        })();
+
         // Contact form submission
         document.getElementById('contactForm').addEventListener('submit', async function(e) {
             e.preventDefault();
@@ -252,6 +322,8 @@
             const name = formData.get('name');
             const subject = formData.get('subject');
             const message = formData.get('message');
+            const contactMethod = formData.get('contactMethod');
+            const contactValue = (formData.get('contactValue') || '').trim();
             
             // Get submit button
             const submitBtn = this.querySelector('.form-button');
@@ -262,19 +334,11 @@
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
             
             // Prepare messages
-            const emailMessage = `Contact Form Submission
-
-From: ${name}
-Subject: ${subject}
-
-Message:
-${message}
-
----
-This message was sent via the contact form at jackewers.com`;
+            const methodLabel = (CONTACT_METHODS[contactMethod] || {}).label || 'Contact';
 
             const ntfyMessage = `📬 New Contact Form Message
 From: ${name}
+${methodLabel}: ${contactValue}
 Subject: ${subject}
 
 ${message}`;
@@ -287,10 +351,11 @@ ${message}`;
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
-                        to: 'webmaster@jackewers.com',
-                        subject: `Contact Form: ${subject}`,
-                        message: emailMessage,
-                        from: 'contact@jackewers.com'
+                        name: name,
+                        subject: subject,
+                        message: message,
+                        contactMethod: contactMethod,
+                        contactValue: contactValue
                     })
                 });
 
