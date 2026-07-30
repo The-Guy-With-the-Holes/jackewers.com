@@ -1,45 +1,40 @@
+# robots.txt for jackewers.com
 #
-# v1 robots.txt
+# Structure note: in robots.txt a group starts at a User-agent line and runs
+# until the NEXT User-agent line - blank lines and comments do not end it.
+# This file previously had all of its Allow/Disallow/Crawl-delay directives
+# sitting after "User-agent: christcrawler", which meant they applied only to
+# that one crawler and never to Googlebot or anything else. There was also no
+# "User-agent: *" group at all, so every other crawler had no rules whatsoever.
 #
-# This file is to prevent the crawling and indexing of certain parts
-# of your site by web crawlers and spiders run by sites like Yahoo!
-# and Google. By telling these "robots" where not to go on your site,
-# you save bandwidth and server resources.
-#
-# This file will be ignored unless it is at the root of your host:
-# Used:    http://example.com/robots.txt
-# Ignored: http://example.com/site/robots.txt
-#
-# For more information about the robots.txt standard, see:
-# http://www.robotstxt.org/robotstxt.html
- 
-### Allow Bots (google) ###
-User-agent: Googlebot
+# Everything on this site is public and meant to be indexed, so the wildcard
+# group below is deliberately permissive.
+
+User-agent: *
 Disallow:
 
-### Disallow Bots (christcrawler) ###
+# Blocked by request. Keep this group last-but-one so its rules cannot leak
+# into the wildcard group above.
 User-agent: christcrawler
 Disallow: /
 
-###################
-Crawl-delay: 5
-### Content ###
-Allow:*.css?
-Allow:*.css$
-Allow:*.js?
-Allow:*.js$
-Allow:*.ico
-
-### Directories ###
-Disallow: /shared/assets/images/*
-Disallow: /certificates
-
-# /JS and /css are intentionally crawlable: projects.js and the shared
-# stylesheets are render-critical. Blocking them stops Google rendering the
-# project grid (and the outbound links it contains).
-
-### Files ###
-Disallow:
+# Notes on rules intentionally NOT present:
+#
+# - /certificates was previously disallowed (originally misspelled
+#   "/Certfificates", so the rule never matched anything, and once corrected it
+#   still only applied to christcrawler). The page carries Open Graph tags,
+#   structured data and a canonical URL, is linked from the main nav, and is
+#   listed in sitemap.xml - all of which say "index me" - so the block was
+#   dropped rather than made real. Re-add it under "User-agent: *" if the page
+#   should genuinely be hidden from search.
+#
+# - The old "Allow:*.css?" / "Allow:*.js$" lines were malformed (no space after
+#   the colon) and unnecessary: crawling is permitted by default. The intent
+#   behind them was sound though - the shared stylesheets and JS/projects.js
+#   are render-critical, and blocking them would stop Google rendering the
+#   project grid and the outbound links it contains. Leave them crawlable.
+#
+# - /shared/assets/images/* was disallowed, but no such directory exists.
 
 Sitemap: https://jackewers.com/sitemap.xml
 

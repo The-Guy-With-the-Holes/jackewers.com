@@ -2,6 +2,23 @@
 
 Generated from `version.json` (source of truth — edit that via `VersionManager.php`, not this file directly).
 
+## 2.1.0 — Site Quality Pass
+**Codename:** Signature
+*Correctness, accessibility, SEO and CI*
+
+- **Build 28** (2026-07-30): Remove the placeholder blog, restructure robots.txt so its rules actually apply, add canonicals/JSON-LD/noscript fallbacks, label form controls, and fix white-on-white links in light mode
+- **Build 27** (2026-07-29): Remove dead JS, fix latent ReferenceErrors, add JS linting
+- **Build 26** (2026-07-29): Fix dead-end pages, unify theming, and extract inline CSS
+- **Build 25** (2026-07-29): Site polish: cleanup, PWA basics, accessibility, and spam protection
+- **Build 24** (2026-07-29): Fixes to media URL
+- **Build 23** (2026-07-29): Fix CI workflow config and the real bugs it surfaced
+- **Build 22** (2026-07-29): Site hygiene pass: SEO, docs, and privacy header cleanup
+- **Build 21** (2026-07-28): Remove stray files from the repo
+- **Build 20** (2026-07-27): Fix project data: dead config file, http link, 404 image
+- **Build 19** (2026-07-27): Redirect /mods/ to /about/body-mod/ and port its timeline
+- **Build 18** (2026-07-27): Add Bloodweb cross-linking and structured data for SEO
+- **Build 17** (2026-07-27): Sync unreleased work from the dev working copy
+
 ## 2.0.2 — Portfolio Redesign
 *Modern portfolio website*
 

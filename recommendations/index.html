@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Trusted services and talented professionals recommended by Jack Ewers.">
     <title>Recommendations | Jack Ewers</title>
+    <link rel="canonical" href="https://jackewers.com/recommendations/">
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="apple-touch-icon" href="https://media.bloodweb.net/jackewers/branding/icon/Favicon.png">
     <link rel="manifest" href="/manifest.json">
@@ -26,6 +27,13 @@
     <script src="/shared/assets/scripts/load-navbar.js"></script>
     <script src="/shared/assets/scripts/theme.js"></script>
 
+    <noscript>
+        <p class="noscript-notice">
+            Recommendations on this page are loaded with JavaScript and won't
+            appear with scripting disabled. <a href="/contact/">Get in touch</a>
+            and I'll happily pass on a recommendation directly.
+        </p>
+    </noscript>
     <header class="header" id="main-content">
         <h1>Recommendations</h1>
         <p class="header-subtitle">Discover the best businesses and professionals i have ever had the absolute pleasure of meeting.
@@ -40,11 +48,11 @@
                 </button>
             </div>
             <div class="filters">
-                <input type="text" id="searchFilter" class="filter-input" placeholder="Search...">
-                <select id="categoryFilter" class="filter-select">
+                <input type="text" id="searchFilter" class="filter-input" aria-label="Search recommendations" placeholder="Search...">
+                <select id="categoryFilter" class="filter-select" aria-label="Filter by category">
                     <option value="">All Categories</option>
                 </select>
-                <select id="locationFilter" class="filter-select">
+                <select id="locationFilter" class="filter-select" aria-label="Filter by location">
                     <option value="">All Locations</option>
                 </select>
                 <button id="clearFilters" class="clear-filters-btn" style="display: none;">

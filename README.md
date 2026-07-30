@@ -6,7 +6,7 @@
 [![GitHub Pages](https://img.shields.io/badge/Deployed_on-GitHub_Pages-success?style=for-the-badge&logo=github)](https://pages.github.com/)
 [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](#license)
 
-**Personal portfolio and digital business card for Jack Ewers — projects, certifications, a blog, and a link-in-bio hub.**
+**Personal portfolio and digital business card for Jack Ewers — projects, certifications, and a link-in-bio hub.**
 
 </div>
 
@@ -42,6 +42,7 @@ jackewers/
 ├── VersionManager.php          # Local CLI helper for editing version.json (not served/deployed)
 ├── portfolio-albums.json       # Data for the JS/portfolio-albums.js loader
 ├── codenames.json              # Release codename pool used by VersionManager.php
+├── eslint.config.js            # Correctness-only lint rules (run in CI)
 │
 ├── about/                      # About page + body modification history
 │   └── body-mod/
@@ -54,7 +55,6 @@ jackewers/
 │   ├── calculator/
 │   ├── js/                       # JS playground
 │   └── scripts/
-├── blog/                       # Blog index + posts/ (posts currently placeholder data)
 ├── certificates/                # Certifications gallery
 ├── contact/
 ├── recommendations/             # People/business recommendations
@@ -62,12 +62,10 @@ jackewers/
 ├── mods/                        # Legacy URL, meta-refreshes to /about/body-mod/
 ├── linktree/                    # @the_guy_with_the_holes link-in-bio page
 ├── email-signatures/            # HTML email signature templates (gitignored)
-├── certificates/, contact/, ... (see above)
 ├── JS/                          # Root-level shared scripts (portfolio-albums.js, projects.js)
 └── shared/assets/               # Cross-page shared code
-    ├── components/                # navbar.html, footer.html (fetched at runtime)
-    ├── config/                     # projects-config.js
-    ├── scripts/                    # theme.js, nav.js, carousel.js, load-navbar.js, ...
+    ├── components/                # navbar.html (fetched at runtime)
+    ├── scripts/                    # early-theme.js, theme.js, load-navbar.js
     └── styles/                     # design-system.css, vars.css, nav.css, ...
 ```
 
@@ -85,7 +83,7 @@ jackewers/
 | Google Fonts | Typography | Preconnected for performance |
 | Font Awesome (cdnjs) | Icons | Loaded via CDN `<link>` |
 | `bloodweb.net` / `media.bloodweb.net` | Shared branding assets, images, `KeyFunctions.js` mirror | Jack's own studio, see structured data on the homepage |
-| Schema.org JSON-LD | Structured data linking the Person (Jack Ewers) to the Bloodweb Organization | On `index.html` |
+| Schema.org JSON-LD | Structured data linking the Person (Jack Ewers) to the Bloodweb Organization | On `index.html`, `/about/`, `/contact/`, `/certificates/` |
 | GitHub Pages | Static hosting for the custom domain | No custom HTTP headers available — security headers are set via `<meta>` tags instead of an `.htaccess`/server config |
 
 ## Pages & Sections
@@ -96,7 +94,6 @@ jackewers/
 | `/about/` | About page |
 | `/about/body-mod/` | Body modification history/timeline |
 | `/app/` | Projects hub (`/app/projects/*`) |
-| `/blog/` | Blog index (posts are placeholder content — see open issue below) |
 | `/certificates/` | Certifications gallery |
 | `/contact/` | Contact page |
 | `/recommendations/` | People/business recommendations |
@@ -104,8 +101,6 @@ jackewers/
 | `/albums/` | Photo albums |
 | `/linktree/` | Link-in-bio page |
 | `/mods/` | Legacy redirect → `/about/body-mod/` |
-
-**Known gap:** `blog/index.html` currently renders hardcoded placeholder posts with `link: "#"`. `blog/posts/` has no real content yet.
 
 ## Design System
 
@@ -130,7 +125,18 @@ Design tokens (fonts, spacing, colors, breakpoints) live in `shared/assets/style
 
 ## Development Workflow
 
-There's no build tooling, linter, or test suite currently configured — just edit the HTML/CSS/JS directly and test in-browser. Commit messages follow plain, descriptive conventional style (see `git log`), not a fixed prefix scheme.
+There's no build step — edit the HTML/CSS/JS directly and test in-browser.
+
+CI (`.github/workflows/site-checks.yml`) runs on every push to `main`: HTML5
+validation, an ESLint correctness pass (`no-undef` and friends — no style
+rules), a broken-link check, and a structural check for dead-end pages and
+unreferenced assets. To run the linter locally:
+
+```bash
+npm install --no-save eslint@9 globals && npx eslint .
+```
+
+Commit messages follow plain, descriptive style (see `git log`), not a fixed prefix scheme.
 
 ## License
 

@@ -519,7 +519,6 @@ function getPageIcon(pathname, pageName) {
     '/projects': '💼',
     '/certificates': '🏆',
     '/linktree': '🔗',
-    '/blog': '📝',
     '/contact': '📧',
     'calculator': '🧮',
     'qr': '📱',

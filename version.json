@@ -1,8 +1,76 @@
 {
-    "version": "2.0.2",
-    "build": 16,
-    "codename": "",
+    "version": "2.1.0",
+    "build": 28,
+    "codename": "Signature",
     "changelog": [
+        {
+            "version": "2.1.0",
+            "title": "Site Quality Pass",
+            "subtext": "Correctness, accessibility, SEO and CI",
+            "codename": "Signature",
+            "builds": [
+                {
+                    "build": 28,
+                    "date": "2026-07-30 10:07:04",
+                    "notes": "Remove the placeholder blog, restructure robots.txt so its rules actually apply, add canonicals/JSON-LD/noscript fallbacks, label form controls, and fix white-on-white links in light mode"
+                },
+                {
+                    "build": 27,
+                    "date": "2026-07-29 23:08:50",
+                    "notes": "Remove dead JS, fix latent ReferenceErrors, add JS linting"
+                },
+                {
+                    "build": 26,
+                    "date": "2026-07-29 18:14:54",
+                    "notes": "Fix dead-end pages, unify theming, and extract inline CSS"
+                },
+                {
+                    "build": 25,
+                    "date": "2026-07-29 17:50:27",
+                    "notes": "Site polish: cleanup, PWA basics, accessibility, and spam protection"
+                },
+                {
+                    "build": 24,
+                    "date": "2026-07-29 16:16:08",
+                    "notes": "Fixes to media URL"
+                },
+                {
+                    "build": 23,
+                    "date": "2026-07-29 14:51:21",
+                    "notes": "Fix CI workflow config and the real bugs it surfaced"
+                },
+                {
+                    "build": 22,
+                    "date": "2026-07-29 13:47:17",
+                    "notes": "Site hygiene pass: SEO, docs, and privacy header cleanup"
+                },
+                {
+                    "build": 21,
+                    "date": "2026-07-28 09:46:17",
+                    "notes": "Remove stray files from the repo"
+                },
+                {
+                    "build": 20,
+                    "date": "2026-07-27 18:24:14",
+                    "notes": "Fix project data: dead config file, http link, 404 image"
+                },
+                {
+                    "build": 19,
+                    "date": "2026-07-27 18:21:52",
+                    "notes": "Redirect /mods/ to /about/body-mod/ and port its timeline"
+                },
+                {
+                    "build": 18,
+                    "date": "2026-07-27 18:21:30",
+                    "notes": "Add Bloodweb cross-linking and structured data for SEO"
+                },
+                {
+                    "build": 17,
+                    "date": "2026-07-27 18:21:18",
+                    "notes": "Sync unreleased work from the dev working copy"
+                }
+            ]
+        },
         {
             "version": "2.0.2",
             "title": "Portfolio Redesign",
@@ -73,25 +141,25 @@
                 {
                     "build": 4,
                     "date": "2026-02-05 16:58:34",
-                    "notes": "\u2022 Fixed"
+                    "notes": "• Fixed"
                 },
                 {
                     "build": 3,
                     "date": "2026-02-05 16:49:20",
-                    "notes": "\u2022 Fixed v2"
+                    "notes": "• Fixed v2"
                 },
                 {
                     "build": 2,
                     "date": "2026-02-05 16:08:27",
-                    "notes": "\u2022 V2.0.0.0"
+                    "notes": "• V2.0.0.0"
                 },
                 {
                     "build": 1,
                     "date": "2026-02-05 15:08:31",
-                    "notes": "\u2022 V2.0.0.0"
+                    "notes": "• V2.0.0.0"
                 }
             ]
         }
     ],
-    "release_date": "2026-06-21 00:00:00"
+    "release_date": "2026-07-30 10:07:04"
 }

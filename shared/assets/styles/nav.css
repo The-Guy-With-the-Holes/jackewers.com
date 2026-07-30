@@ -16,6 +16,24 @@ body { background: #0f172a; color: #f1f5f9; }
 .skip-link:focus {
     top: 1rem;
 }
+
+/* Shown only when scripting is unavailable. Several pages build their main
+   content from JSON at runtime and would otherwise render as a blank shell. */
+.noscript-notice {
+    max-width: 40rem;
+    margin: 2rem auto;
+    padding: 1rem 1.25rem;
+    border: 1px solid #818cf8;
+    border-left-width: 4px;
+    border-radius: 0.5rem;
+    background: rgba(129, 140, 248, 0.12);
+    color: inherit;
+    line-height: 1.6;
+}
+/* Specificity has to clear `body.light-mode a { color: white }` further down,
+   which would otherwise render this link white-on-white in light mode. */
+.noscript-notice a { color: #818cf8; }
+body.light-mode .noscript-notice a { color: #4f46e5; }
 nav, .nav, footer { border-top: 1vmin groove gray; border-bottom: 1vmin groove gray; box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23); }
 .nav { position: sticky; top: 0; z-index: 1000; background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(10px); box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); transition: all 0.3s ease; margin-top: 0; }
 .nav-container { max-width: 1280px; margin: 0 auto; padding: 1rem 1.5rem; display: flex; justify-content: center; align-items: center; }
@@ -62,7 +80,10 @@ body.light-mode .values-list li { background: linear-gradient(135deg, #f8fafc, #
 body.light-mode .hero-image-container, body.light-mode .album-container { box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); }
 body.light-mode .footer, body.light-mode .resources, body.light-mode .faq, body.light-mode .story { background: #f8fafc !important; }
 body.light-mode .badge, body.light-mode .tag, body.light-mode .mod-badge, body.light-mode .album-title { background: #e2e8f0; color: #0f172a; }
-body.light-mode a { color: white; }
+/* Was `color: white`, which put white links on light-mode's white background -
+   68 links across 16 pages were invisible. Elements that genuinely need white
+   text in light mode (.btn-primary) set it themselves, more specifically. */
+body.light-mode a { color: #4f46e5; }
 body.light-mode .btn-primary { background: #6366f1 !important; color: #ffffff !important; }
 body.light-mode .btn-secondary { background: #f8fafc; color: #0f172a; border-color: #e2e8f0; }
 body.light-mode input, body.light-mode textarea, body.light-mode select { background: #ffffff; color: #0f172a; border-color: #e2e8f0; }
