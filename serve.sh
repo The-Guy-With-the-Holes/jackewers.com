@@ -24,6 +24,34 @@ cd "$ROOT"
 LAN_IP="$(hostname -I 2>/dev/null | awk '{print $1}')"
 : "${LAN_IP:=localhost}"
 
+# This box runs ufw with a default-DROP input policy. A port that isn't
+# explicitly allowed is dropped silently rather than refused, so a browser on
+# another machine hangs forever with a spinning tab and no error - it looks
+# like the site is broken when in fact the connection never landed. Warn up
+# front, because you cannot detect this by testing from localhost (loopback
+# bypasses the filter).
+# `ufw status` requires root, so try passwordless sudo and skip the check
+# entirely if that isn't available rather than pretending the port is fine.
+ufw_status() {
+    if [[ $EUID -eq 0 ]]; then
+        ufw status 2>/dev/null
+    else
+        sudo -n ufw status 2>/dev/null
+    fi
+}
+if command -v ufw >/dev/null 2>&1 && ufw_status | grep -q '^Status: active'; then
+    if ! ufw_status | grep -qE "(^|[[:space:]])${PORT}/tcp[[:space:]]+ALLOW"; then
+        cat >&2 <<WARN
+WARNING: ufw is active and has no ALLOW rule for port ${PORT}/tcp.
+         Browsing from another machine will hang with no error (packets are
+         DROPped, not refused). Either use localhost on this machine, or:
+
+           sudo ufw allow from 192.168.1.0/24 to any port ${PORT} proto tcp
+
+WARN
+    fi
+fi
+
 cat <<BANNER
 Serving $ROOT at http://0.0.0.0:$PORT
 
