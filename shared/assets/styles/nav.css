@@ -34,7 +34,14 @@ body { background: #0f172a; color: #f1f5f9; }
    which would otherwise render this link white-on-white in light mode. */
 .noscript-notice a { color: #818cf8; }
 body.light-mode .noscript-notice a { color: #4f46e5; }
-nav, .nav, footer { border-top: 1vmin groove gray; border-bottom: 1vmin groove gray; box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23); }
+/* Was `nav, .nav, footer { border: 1vmin groove gray }`, which had three
+   problems: the bare `nav` selector also matched <nav class="footer-links">
+   inside the footer, so the footer link row drew its own pair of lines; a
+   1vmin border is ~7px at desktop widths; and `groove gray` ignored the theme
+   in both light and dark mode. Scoped to the two components that actually want
+   an edge. .footer sets its own top border in footer.css, and .nav keeps the
+   box-shadow it declares on the next line. */
+.nav { border-bottom: 1px solid var(--color-border, #334155); }
 .nav { position: sticky; top: 0; z-index: 1000; background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(10px); box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); transition: all 0.3s ease; margin-top: 0; }
 .nav-container { max-width: 1280px; margin: 0 auto; padding: 1rem 1.5rem; display: flex; justify-content: center; align-items: center; }
 .nav-links { display: flex; gap: 2rem; list-style: none; }
