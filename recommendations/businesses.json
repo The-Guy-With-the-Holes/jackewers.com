@@ -36,7 +36,7 @@
 
       "features": [
         "Custom piercing designs",
-        "Tattoo & Lazer removal services",
+        "Tattoo & Laser removal services",
         "Aftercare support"
       ],
       "website": "https://stoneheart.com.au",
@@ -215,7 +215,7 @@
       "High-quality build materials"
     ],
     "website": "https://zsa.io/",
-    "testimonial": "Joeltron showed me his ergodox easy many moons ago and i fell inlove. Purchased a Moonlander not long after and have never looked back."
+    "testimonial": "Joeltron showed me his ergodox easy many moons ago and I fell in love. Purchased a Moonlander not long after and have never looked back."
   },
   {
     "id":"open-home-foundation",
@@ -252,7 +252,7 @@
   {
     "id":"lovesick",
     "name": "Lovesick tattoo",  
-    "categories": ["Tattoo", "Piercing"],
+    "categories": ["Tattooing", "Piercing"],
     "icon": "fas fa-tint",
     "image": "https://images.squarespace-cdn.com/content/v1/61948aa70eeb460beb131ea1/a97c0044-a56e-4177-b93c-71079ace9d51/image0.png?format=750w",
     "city": "Brisbane",
@@ -287,7 +287,7 @@
 
   { "id":"sacral-body-designs",
     "name": "Sacral Body Designs",
-    "categories": ["Tattoo", "Piercing", "Hairdressing"],
+    "categories": ["Tattooing", "Piercing", "Hairdressing"],
     "icon": "fas fa-tint",
     "image": "https://www.sacralbodydesigns.com.au/cdn/shop/files/Heart_Badge_Full_Colour.png?v=1755486488&width=95",
     "city": "Albury, Wodonga",
@@ -392,9 +392,9 @@
     "testimonial": "Fo Guang Shan Buddhist Temple is a wonderful place for anyone interested in learning about Buddhism and participating in community activities. The temple offers a peaceful and welcoming environment for all."
   },
     {
-      "id":"twilio",
+      "id": "twilio",
       "name": "Twilio",
-      "categories": ["Piercing"],
+      "categories": ["Tech Services"],
       "icon": "fas fa-tint",
       "image": "https://assets.twilio.com/public_assets/ui-assets/0.0.32/img/logos/twilio-login-logo.svg",
       "isOnlineOnly": true,
@@ -408,6 +408,22 @@
       "website": "https://www.twilio.com/",
       "testimonial": "Twilio has transformed the way we communicate with our customers. Their APIs are easy to use and have allowed us to implement powerful communication features in our app."
     },
-    {}
+        {
+      "id": "lobeandbehold",
+      "name": "Lobe & Behold",
+      "categories": ["Art", "Design"],
+      "icon": "fas fa-palette",
+      "image": "https://73df5849eb41c5453c71.cdn6.editmysite.com/uploads/b/73df5849eb41c5453c7143bb0eb484f820f7788c8c9b34d4a510e5626aaab4a6/LobeBehold_LOGO-01_1672586459.png?width=2400&optimize=medium",
+      "isOnlineOnly": true,
+      "isAffiliate": false,
+      "description": "Lobe & Behold is a local design studio that creates unique and visually captivating accessories and small business materials, tailored to the needs of their clients.",
+      "features": [
+        "Unique and visually captivating accessories",
+        "Custom small business materials",
+        "Tailored design solutions"
+      ],
+      "website": "https://www.lobeandbehold.com.au/",
+      "testimonial": "Lobe & Behold consistently delivers stunning and unique designs. Their creativity and attention to detail make them a standout in the local art and design scene."
+    }
   ]
 }

@@ -9,8 +9,12 @@
     --color-bg-tertiary: #f1f5f9;
     --color-text-primary: #0f172a;
     --color-text-secondary: #475569;
-    --color-text-tertiary: #94a3b8;
+    --color-text-tertiary: #64748b;
     --color-border: #e2e8f0;
+    /* Surfaces that carry white text - #6366f1 only reaches 4.47:1. */
+    --color-primary-strong: #4f46e5;
+    /* Primary-coloured *text*; has to invert per theme, unlike the surface. */
+    --color-primary-ink: #4f46e5;
     --space-xs: .5rem;
     --space-sm: .75rem;
     --space-md: 1rem;
@@ -44,8 +48,10 @@ body.light-mode {
         --color-bg-tertiary: #334155;
         --color-text-primary: #f8fafc;
         --color-text-secondary: #cbd5e1;
-        --color-text-tertiary: #64748b;
+        --color-text-tertiary: #94a3b8;
         --color-border: #334155;
+        /* #4f46e5 is only 2.2:1 on the dark card; lighten the ink instead. */
+        --color-primary-ink: #a5b4fc;
     }
 }
 
@@ -73,13 +79,18 @@ body {
 /* Was an <h3> purely for its size - prose, not a section heading, so it broke
    the h1->h3 outline. Now a <p> with the UA's default h3 metrics preserved. */
 .header-subtitle {
+    /* nav.css sets a blanket `p, span, li` colour that beats inheritance
+       here and leaves this paragraph at 1.5:1 on the light background. */
+    color: var(--color-text-secondary);
     font-size: 1.17em;
     font-weight: bold;
     margin: 1em 0;
 }
 
 .header h1 {
-    font-size: 3rem;
+    /* "Recommendations" is one unbreakable word, so a fixed size overflows
+       narrow screens. Scale with the viewport and cap at the desktop size. */
+    font-size: clamp(1.35rem, 7.5vw, 3rem);
     font-weight: 900;
     margin-bottom: var(--space-lg);
     background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
@@ -150,6 +161,7 @@ body.light-mode .clear-filters-btn:hover {
     border-radius: var(--radius-lg);
     font-size: 1rem;
     min-width: 200px;
+    max-width: 100%;
     transition: all var(--transition-base);
 }
 
@@ -175,6 +187,8 @@ body.light-mode .filter-input {
     font-size: 1rem;
     cursor: pointer;
     transition: all var(--transition-base);
+    /* The widest option otherwise sets the box width and overflows small screens. */
+    max-width: 100%;
 }
 
 body.light-mode .filter-select {
@@ -210,16 +224,16 @@ body.light-mode .mode-btn {
 }
 
 .mode-btn.active {
-    background: var(--color-primary);
+    background: var(--color-primary-strong);
     color: white;
-    border-color: var(--color-primary);
+    border-color: var(--color-primary-strong);
     box-shadow: 0 4px 8px rgba(99, 102, 241, 0.3);
 }
 
 body.light-mode .mode-btn.active {
-    background: var(--color-primary);
+    background: var(--color-primary-strong);
     color: white;
-    border-color: var(--color-primary);
+    border-color: var(--color-primary-strong);
     box-shadow: 0 4px 8px rgba(99, 102, 241, 0.3);
 }
 
@@ -240,9 +254,13 @@ body.light-mode .mode-btn:hover:not(.active) {
 
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
     gap: var(--space-lg);
     align-items: start;
+}
+
+.grid > * {
+    min-width: 0;
 }
 
 .card {
@@ -297,6 +315,8 @@ body.light-mode .card {
     align-items: center;
     gap: var(--space-md);
     margin-bottom: var(--space-md);
+    /* Reserve room for the absolutely positioned expand chevron. */
+    padding-right: var(--space-lg);
 }
 
 .card-icon {
@@ -333,6 +353,7 @@ body.light-mode .card-icon {
     font-size: 1.25rem;
     font-weight: 700;
     margin-bottom: var(--space-xs);
+    overflow-wrap: anywhere;
 }
 
 .card-meta {
@@ -343,10 +364,19 @@ body.light-mode .card-icon {
     color: var(--color-text-tertiary);
 }
 
+/* `:not(.affiliate-badge)` keeps this off the badge, which sets its own ink -
+   `.card-meta span` would otherwise out-specify `.affiliate-badge`. */
+.card-meta span:not(.affiliate-badge) {
+    /* Same blanket rule - take the colour .card-meta passes down instead. */
+    color: inherit;
+}
+
 .card-meta span {
     display: flex;
     align-items: center;
     gap: 4px;
+    min-width: 0;
+    overflow-wrap: anywhere;
 }
 
 .affiliate-badge {
@@ -355,7 +385,8 @@ body.light-mode .card-icon {
     gap: 4px;
     padding: 2px 8px;
     background: var(--color-accent);
-    color: white;
+    /* White on amber is 2.2:1; dark ink on the same amber is 7.6:1. */
+    color: #0f172a;
     border-radius: 4px;
     font-size: 0.75rem;
     font-weight: 600;
@@ -366,9 +397,24 @@ body.light-mode .affiliate-badge {
     box-shadow: 0 1px 3px rgba(245, 158, 11, 0.3);
 }
 
+/* Closing note under the grid. The inner <p> needs its own colour because
+   nav.css's blanket `p, span, li` rule outranks inheritance from this div. */
+.page-note {
+    text-align: center;
+    padding: var(--space-3xl) var(--space-lg);
+    font-style: italic;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.page-note p {
+    color: var(--color-text-secondary);
+}
+
 .card-description {
     color: var(--color-text-secondary);
     line-height: 1.6;
+    overflow-wrap: anywhere;
 }
 
 .card-description.collapsed {
@@ -406,7 +452,7 @@ body.light-mode .affiliate-badge {
     font-size: 1.125rem;
     font-weight: 700;
     margin-bottom: var(--space-md);
-    color: var(--color-primary);
+    color: var(--color-primary-ink);
     display: flex;
     align-items: center;
     gap: var(--space-xs);
@@ -458,7 +504,7 @@ body.light-mode .testimonial {
     align-items: center;
     gap: var(--space-sm);
     padding: var(--space-md) var(--space-xl);
-    background: var(--color-primary);
+    background: var(--color-primary-strong);
     color: white;
     text-decoration: none;
     border-radius: var(--radius-lg);
@@ -476,7 +522,8 @@ body.light-mode .testimonial {
     align-items: center;
     gap: var(--space-sm);
     padding: var(--space-md) var(--space-xl);
-    background: var(--color-secondary);
+    /* --color-secondary (#06b6d4) carries white text at only 2.4:1. */
+    background: #0e7490;
     color: white;
     border: none;
     border-radius: var(--radius-lg);
@@ -647,7 +694,7 @@ body.light-mode .form-group textarea {
 
 .submit-btn {
     padding: var(--space-md) var(--space-xl);
-    background: var(--color-primary);
+    background: var(--color-primary-strong);
     color: white;
     border: none;
     border-radius: var(--radius-lg);
@@ -791,10 +838,59 @@ body.light-mode .person-mini:hover {
 }
 
 @media (max-width: 768px) {
-    .header h1 {
-        font-size: 2rem;
+    .header {
+        padding: var(--space-xl) var(--space-md);
+    }
+    .container {
+        padding: 0 var(--space-md) var(--space-3xl);
     }
     .grid {
         grid-template-columns: 1fr;
+    }
+
+    /* Stack the controls full width: the wrapped rows left ragged half-width
+       fields, and each control now clears the 44px touch-target minimum. */
+    .mode-toggle .mode-btn,
+    .filters > * {
+        width: 100%;
+        min-width: 0;
+    }
+    .mode-toggle {
+        gap: var(--space-sm);
+    }
+    .mode-toggle .mode-btn {
+        flex: 1;
+        padding: var(--space-md) var(--space-xs);
+        font-size: 0.9375rem;
+    }
+    .filters {
+        flex-direction: column;
+        gap: var(--space-sm);
+    }
+    .filter-input,
+    .filter-select,
+    .clear-filters-btn {
+        padding: var(--space-md);
+    }
+
+    /* Keep the action button clear of the home indicator / gesture bar. */
+    .feedback-btn {
+        bottom: calc(var(--space-md) + env(safe-area-inset-bottom, 0px));
+        right: var(--space-md);
+    }
+
+    .feedback-modal {
+        padding: var(--space-md);
+        align-items: flex-start;
+    }
+    .feedback-modal-content {
+        padding: var(--space-xl) var(--space-lg);
+    }
+    .feedback-modal-close {
+        top: var(--space-md);
+        right: var(--space-md);
+    }
+    .feedback-modal h2 {
+        padding-right: var(--space-2xl);
     }
 }

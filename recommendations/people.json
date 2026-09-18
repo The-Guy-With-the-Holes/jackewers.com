@@ -14,7 +14,7 @@
         "Custom jewelry consultation"
       ],
       "website": "https://OpalHeart.com.au",
-      "testimonial": "Sarah is one of those people that are just totally indescribable. If i had to try do it justice i would say Sarah is \"Bubble-tastic-awesome-sauce\"."
+      "testimonial": "Sarah is one of those people that are just totally indescribable. If I had to try do it justice I would say Sarah is \"Bubble-tastic-awesome-sauce\"."
     },
     {
       "id": "fabio",
@@ -296,7 +296,7 @@
   {
     "id":"sierra-tine",
     "name":"Sierra Bellum",
-    "category":"counter-staff",
+    "category": "Counter Staff",
     "icon":"fas fa-pen-nib",
     "image": "https://tinepiercing.com/cdn/shop/files/82676_7075_3c07583e-945f-4016-a1ac-0a8251e18850.png?v=1724435949&width=750",
     "businessId":"tine-piercing",

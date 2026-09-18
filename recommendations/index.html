@@ -36,7 +36,7 @@
     </noscript>
     <header class="header" id="main-content">
         <h1>Recommendations</h1>
-        <p class="header-subtitle">Discover the best businesses and professionals i have ever had the absolute pleasure of meeting.
+        <p class="header-subtitle">Discover the best businesses and professionals I have ever had the absolute pleasure of meeting.
             I personally vouch for each and every one of these recommendations. They are my homies, and you won't regret making them yours too. </p>     
         <div class="controls">
             <div class="mode-toggle">
@@ -67,7 +67,7 @@
         <div class="grid" id="recommendationsGrid"></div>
         
         <!-- Bottom Notice -->
-        <div style="text-align: center; padding: var(--space-3xl) var(--space-lg); color: var(--color-text-secondary); font-style: italic; max-width: 800px; margin: 0 auto;">
+        <div class="page-note">
             <p>More recommendations are being added constantly. If you think I've forgotten yours, click the question mark <i class="fas fa-question" style="font-size: 0.9em; opacity: 0.7;"></i> to send a request.</p>
         </div>
     </div>
@@ -128,6 +128,17 @@
         let currentMode = 'businesses';
         let expandedCardId = null;
 
+        // A listing needs an id and a name to be renderable or linkable. Anything
+        // else (a blank object left behind after an edit) would show up as an
+        // "undefined" card, so drop it here rather than halfway through a render.
+        function usableListings(list) {
+            return (Array.isArray(list) ? list : []).filter(item => {
+                const ok = item && typeof item === 'object' && item.id && item.name;
+                if (!ok) console.warn('Skipping incomplete recommendation entry:', item);
+                return ok;
+            });
+        }
+
         // Load JSON data
         async function loadData() {
             try {
@@ -139,8 +150,8 @@
                 const businessesJson = await businessesRes.json();
                 const peopleJson = await peopleRes.json();
                 
-                businessesData = businessesJson.businesses || [];
-                peopleData = peopleJson.people || [];
+                businessesData = usableListings(businessesJson.businesses);
+                peopleData = usableListings(peopleJson.people);
                 
                 populateFilters();
                 renderCards();
@@ -325,23 +336,24 @@
             const locationSelect = document.getElementById('locationFilter');
             const currentLocationValue = locationSelect.value;
             let optionsHTML = '<option value="">All Locations</option>';
-            
-            // Add Australian locations with separator
+
+            // Real optgroups rather than dashed filler rows: screen readers announce
+            // the grouping, and the labels don't stretch the select on narrow screens.
             if (ausLocations.length > 0) {
-                optionsHTML += '<option disabled>━━━ Australia ━━━</option>';
+                optionsHTML += '<optgroup label="Australia">';
                 optionsHTML += ausLocations.map(loc => {
                     // Display just the state name in the dropdown
                     const displayName = loc.replace(', Australia', '');
                     return `<option value="${loc}">${displayName}</option>`;
                 }).join('');
+                optionsHTML += '</optgroup>';
             }
-            
-            // Add rest of world locations with separator
+
             if (otherLocations.length > 0) {
-                if (ausLocations.length > 0) {
-                    optionsHTML += '<option disabled>━━━ Rest of the World ━━━</option>';
-                }
+                const needsGroup = ausLocations.length > 0;
+                if (needsGroup) optionsHTML += '<optgroup label="Rest of the world">';
                 optionsHTML += otherLocations.map(loc => `<option value="${loc}">${loc}</option>`).join('');
+                if (needsGroup) optionsHTML += '</optgroup>';
             }
             
             locationSelect.innerHTML = optionsHTML;
@@ -413,10 +425,10 @@
             return data.filter(item => {
                 // Search filter
                 const categories = item.categories || [item.category]; // Support both formats
-                const categoryText = categories.join(' ').toLowerCase();
-                const matchesSearch = !searchTerm || 
-                    item.name.toLowerCase().includes(searchTerm) ||
-                    item.description.toLowerCase().includes(searchTerm) ||
+                const categoryText = categories.filter(Boolean).join(' ').toLowerCase();
+                const matchesSearch = !searchTerm ||
+                    (item.name || '').toLowerCase().includes(searchTerm) ||
+                    (item.description || '').toLowerCase().includes(searchTerm) ||
                     categoryText.includes(searchTerm);
 
                 // Category filter
@@ -473,7 +485,10 @@
             // Update results info
             const modeLabel = currentMode === 'businesses' ? 'business' : 'person';
             const modeLabelPlural = currentMode === 'businesses' ? 'businesses' : 'people';
-            resultsInfo.textContent = `Showing ${data.length} ${data.length === 1 ? modeLabel : modeLabelPlural} ${data.length !== totalData.length ? `(filtered from ${totalData.length})` : ''}`;
+            resultsInfo.textContent = [
+                `Showing ${data.length} ${data.length === 1 ? modeLabel : modeLabelPlural}`,
+                data.length !== totalData.length ? `(filtered from ${totalData.length})` : ''
+            ].filter(Boolean).join(' ');
             
             if (data.length === 0) {
                 grid.innerHTML = `<p style="text-align: center; color: var(--color-text-secondary); grid-column: 1/-1; padding: var(--space-3xl);">
@@ -518,6 +533,7 @@
                 : `<i class="fas fa-${item.icon || (type === 'businesses' ? 'store' : 'user')}"></i>`;
 
             const isExpanded = expandedCardId === item.id;
+            const primaryCategory = (item.categories || [item.category]).filter(Boolean)[0];
 
             let expandedContent = '';
             
@@ -597,7 +613,8 @@
                                         const personIconHtml = person.image 
                                             ? `<img src="${person.image}" alt="${person.name}" onerror="this.parentElement.innerHTML='<i class=&quot;fas fa-${person.icon || 'user'}&quot;></i>'">` 
                                             : `<i class="fas fa-${person.icon || 'user'}"></i>`;
-                                        const categoryDisplay = person.isOwner ? `Owner / ${person.category}` : person.category;
+                                        const personCategory = (person.categories || [person.category]).filter(Boolean)[0];
+                                        const categoryDisplay = [person.isOwner ? 'Owner' : null, personCategory].filter(Boolean).join(' / ');
                                         const crownIcon = person.isOwner ? '<i class="fas fa-crown" style="color: gold; margin-left: 4px;"></i>' : '';
                                         return `
                                             <div class="person-mini" onclick="event.stopPropagation(); switchToPerson('${person.id}')">
@@ -629,7 +646,7 @@
                 // Share button
                 expandedContent += `
                     <div class="expanded-section">
-                        <button class="share-btn" onclick="event.stopPropagation(); copyShareLink('${item.id}', '${item.name}')">
+                        <button class="share-btn" onclick="event.stopPropagation(); copyShareLink('${item.id}', this)">
                             <i class="fas fa-share-nodes"></i> Share Link
                         </button>
                     </div>
@@ -643,24 +660,23 @@
                         <div class="card-info">
                             <div class="card-name">${item.name}</div>
                             <div class="card-meta">
-                                <span><i class="fas fa-tag"></i>${(item.categories || [item.category])[0]}</span>
+                                ${primaryCategory ? `<span><i class="fas fa-tag"></i>${primaryCategory}</span>` : ''}
                                 <span><i class="fas fa-map-marker-alt"></i>${location}</span>
                                 ${item.isAffiliate ? '<span class="affiliate-badge"><i class="fas fa-handshake"></i>Affiliate</span>' : ''}
                             </div>
                         </div>
                     </div>
-                    <p class="card-description ${isExpanded ? '' : 'collapsed'}">${item.description}</p>
+                    <p class="card-description ${isExpanded ? '' : 'collapsed'}">${item.description || ''}</p>
                     ${isExpanded ? `<div class="card-expanded-content">${expandedContent}</div>` : ''}
                 </div>
             `;
         }
         
         // Copy share link to clipboard
-        function copyShareLink(itemId, itemName) {
-            const url = `${window.location.origin}${window.location.pathname}?id=${itemId}`;
+        function copyShareLink(itemId, btn) {
+            const url = `${window.location.origin}${window.location.pathname}?id=${encodeURIComponent(itemId)}`;
             navigator.clipboard.writeText(url).then(() => {
                 // Show temporary success message
-                const btn = event.target.closest('.share-btn');
                 const originalHtml = btn.innerHTML;
                 btn.innerHTML = '<i class="fas fa-check"></i> Link Copied!';
                 btn.style.background = 'var(--color-success)';
