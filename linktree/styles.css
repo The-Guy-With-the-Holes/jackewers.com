@@ -288,6 +288,14 @@
             border-color: var(--primary-color);
         }
 
+        /* The one paid link: accent border and heavier text at rest, so it
+           reads as the primary action before anyone hovers. */
+        .link-item-featured {
+            border: 2px solid var(--primary-color);
+            font-weight: 700;
+            box-shadow: 0 0 15px rgba(52, 224, 255, 0.35);
+        }
+
         .link-icon {
             width: 24px;
             height: 24px;
