@@ -335,3 +335,18 @@ body.light-mode .form-button:hover {
         overflow-wrap: anywhere;
     }
 }
+
+.form-optional {
+    font-weight: 400;
+    color: var(--color-text-secondary);
+}
+
+.form-status {
+    margin-top: var(--space-md);
+    min-height: 1.5em;
+    color: var(--color-text-secondary);
+}
+
+.form-status:empty {
+    margin-top: 0;
+}
