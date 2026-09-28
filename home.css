@@ -135,6 +135,19 @@
     }
 }
 
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+    margin-top: var(--space-xl);
+}
+
+@media (max-width: 968px) {
+    .hero-actions {
+        justify-content: center;
+    }
+}
+
 .hero .social-links {
     margin-top: var(--space-xl);
 }
@@ -263,6 +276,19 @@
     transform: translateY(-4px);
     border-color: var(--color-primary);
     box-shadow: var(--shadow-lg);
+}
+
+/* The paid-work card leads the grid as a full-width banner (which also keeps
+   the other six in even rows), with the accent border at rest rather than
+   only on hover. */
+.hub-card-featured {
+    grid-column: 1 / -1;
+    border: 2px solid var(--color-primary);
+}
+
+/* nav.css flattens every border in light mode with `body.light-mode *`. */
+body.light-mode .hub-card-featured {
+    border-color: var(--color-primary);
 }
 
 .hub-card-icon {

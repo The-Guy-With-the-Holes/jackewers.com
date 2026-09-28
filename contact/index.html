@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Get in touch with Jack Ewers - Let's build something amazing together">
+    <meta name="description" content="Need a website, web app or custom tool? Get in touch with Jack Ewers at Bloodweb for a quote.">
     <title>Contact | Jack Ewers</title>
     
     <!-- Favicon -->
@@ -102,10 +102,12 @@
                 <i class="fas fa-paper-plane"></i>
                 Let's Connect
             </div>
-            <h1 class="contact-title">Get In Touch</h1>
+            <h1 class="contact-title">Need a website? Tell me about it.</h1>
             <p class="contact-description">
-                Have a project in mind? Want to collaborate? Just want to say hi? 
-                I'd love to hear from you!
+                I build websites, web apps and custom tools for businesses through
+                <a href="https://bloodweb.net/hire-us/?utm_source=jackewers&amp;utm_medium=contact&amp;utm_campaign=hire">Bloodweb</a>.
+                Tell me what you need and I'll get back to you with next steps.
+                Just want to say hi? That works too.
             </p>
         </div>
 
@@ -172,6 +174,25 @@
                 
                 <form id="contactForm">
                     <div class="form-group">
+                        <label for="enquiryType" class="form-label">What are you after?</label>
+                        <select id="enquiryType" name="enquiryType" class="form-select">
+                            <option value="website">A new website</option>
+                            <option value="webapp">A web app or custom tool</option>
+                            <option value="hosting">Hosting or maintenance</option>
+                            <option value="other">Something else / just saying hi</option>
+                        </select>
+                    </div>
+                    <div class="form-group" id="budgetGroup">
+                        <label for="budget" class="form-label">Rough budget <span class="form-optional">(optional)</span></label>
+                        <select id="budget" name="budget" class="form-select">
+                            <option value="">Not sure yet</option>
+                            <option value="Under $1,000">Under $1,000</option>
+                            <option value="$1,000 – $3,000">$1,000 – $3,000</option>
+                            <option value="$3,000 – $10,000">$3,000 – $10,000</option>
+                            <option value="$10,000+">$10,000+</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
                         <label for="name" class="form-label">Name</label>
                         <input type="text" id="name" name="name" class="form-input" required placeholder="Your name">
                     </div>
@@ -215,6 +236,7 @@
                         <i class="fas fa-paper-plane"></i>
                         Send Message
                     </button>
+                    <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
                 </form>
             </div>
         </div>
@@ -306,6 +328,27 @@
             apply();
         })();
 
+        const ENQUIRY_TYPES = {
+            website: 'New website',
+            webapp: 'Web app / custom tool',
+            hosting: 'Hosting / maintenance',
+            other: 'General'
+        };
+
+        // A budget only means something for paid work, so hide it for "just saying hi".
+        (function initEnquiryType() {
+            const select = document.getElementById('enquiryType');
+            const budgetGroup = document.getElementById('budgetGroup');
+            if (!select || !budgetGroup) return;
+            function apply() {
+                const isOther = select.value === 'other';
+                budgetGroup.hidden = isOther;
+                if (isOther) document.getElementById('budget').value = '';
+            }
+            select.addEventListener('change', apply);
+            apply();
+        })();
+
         // Contact form submission
         document.getElementById('contactForm').addEventListener('submit', async function(e) {
             e.preventDefault();
@@ -324,27 +367,29 @@
             const message = formData.get('message');
             const contactMethod = formData.get('contactMethod');
             const contactValue = (formData.get('contactValue') || '').trim();
-            
+            const enquiryLabel = ENQUIRY_TYPES[formData.get('enquiryType')] || ENQUIRY_TYPES.other;
+            const budget = formData.get('budget') || 'Not specified';
+            const status = document.getElementById('formStatus');
+
             // Get submit button
             const submitBtn = this.querySelector('.form-button');
             const originalBtnHtml = submitBtn.innerHTML;
-            
+
             // Disable button and show loading state
             submitBtn.disabled = true;
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-            
-            // Prepare messages
-            const methodLabel = (CONTACT_METHODS[contactMethod] || {}).label || 'Contact';
+            status.textContent = '';
 
-            const ntfyMessage = `📬 New Contact Form Message
-From: ${name}
-${methodLabel}: ${contactValue}
-Subject: ${subject}
+            // The enquiry type and budget ride in the subject and body rather than
+            // new JSON fields, so send-mail.php needs no change to pass them on
+            // and paid work is sortable straight from the inbox.
+            const taggedSubject = `[${enquiryLabel}] ${subject}`;
+            const taggedMessage = `Enquiry: ${enquiryLabel}
+Budget: ${budget}
 
 ${message}`;
-            
+
             try {
-                // Send via email API
                 const emailResponse = await fetch('https://bloodweb.net/api/jackewers/send-mail.php', {
                     method: 'POST',
                     headers: {
@@ -352,47 +397,55 @@ ${message}`;
                     },
                     body: JSON.stringify({
                         name: name,
-                        subject: subject,
-                        message: message,
+                        subject: taggedSubject,
+                        message: taggedMessage,
                         contactMethod: contactMethod,
                         contactValue: contactValue
                     })
                 });
 
-                // Send via ntfy
-                const ntfyResponse = await fetch('https://ntfy.sh/jackewers_notif', {
+                if (!emailResponse.ok) {
+                    throw new Error(`send-mail.php returned HTTP ${emailResponse.status}`);
+                }
+
+                // Push a heads-up to the phone. ntfy.sh topics are public - anyone
+                // who reads this source can subscribe - so this must never carry
+                // the sender's name, contact details or message. Those only go
+                // through send-mail.php. Fire-and-forget: the email is the record.
+                fetch('https://ntfy.sh/jackewers_notif', {
                     method: 'POST',
-                    body: ntfyMessage,
+                    body: `New ${enquiryLabel} enquiry via jackewers.com. Check your inbox.`,
                     headers: {
                         'Content-Type': 'text/plain',
-                        'Title': `Contact: ${subject}`,
+                        'Title': 'New contact form enquiry',
                         'Priority': '4',
                         'Tags': 'email,contact'
                     }
-                });
+                }).catch(() => {});
 
-                if (emailResponse.ok || ntfyResponse.ok) {
-                    // Success!
-                    submitBtn.innerHTML = '<i class="fas fa-check"></i> Message Sent!';
-                    submitBtn.style.background = 'var(--color-success)';
-                    
-                    // Reset form
-                    this.reset();
-                    
-                    setTimeout(() => {
-                        submitBtn.disabled = false;
-                        submitBtn.innerHTML = originalBtnHtml;
-                        submitBtn.style.background = '';
-                    }, 3000);
-                } else {
-                    throw new Error('Both services failed');
-                }
+                // Success!
+                submitBtn.innerHTML = '<i class="fas fa-check"></i> Message Sent!';
+                submitBtn.style.background = 'var(--color-success)';
+                status.textContent = "Thanks! I'll get back to you soon.";
+
+                // Reset form
+                this.reset();
+                document.getElementById('enquiryType').dispatchEvent(new Event('change'));
+                document.getElementById('contactMethod').dispatchEvent(new Event('change'));
+
+                setTimeout(() => {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalBtnHtml;
+                    submitBtn.style.background = '';
+                }, 3000);
             } catch (error) {
                 console.error('Error sending message:', error);
                 submitBtn.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Failed - Try Again';
                 submitBtn.style.background = '#ef4444';
                 submitBtn.disabled = false;
-                
+                // Don't lose the lead: point them at plain email as a fallback.
+                status.innerHTML = 'Something went wrong sending that. Please email <a href="mailto:webmaster@jackewers.com">webmaster@jackewers.com</a> instead.';
+
                 setTimeout(() => {
                     submitBtn.innerHTML = originalBtnHtml;
                     submitBtn.style.background = '';
@@ -407,15 +460,15 @@ ${message}`;
             <p class="footer-text">
                 &copy; <span class="currentYear">2026</span> Jack Ewers.
                 Designed, built and hosted by
-                <a href="https://bloodweb.net/" class="footer-brand">Bloodweb</a>
+                <a href="https://bloodweb.net/?utm_source=jackewers&amp;utm_medium=link&amp;utm_campaign=home&amp;utm_content=contact" class="footer-brand">Bloodweb</a>
                 &mdash; a web development studio in Australia.
             </p>
             <nav class="footer-links" aria-label="Bloodweb services">
-                <a href="https://bloodweb.net/hire-us/">Web design &amp; development</a>
-                <a href="https://bloodweb.net/tools/">Free online tools</a>
-                <a href="https://bloodweb.net/forms/">Online form builder</a>
-                <a href="https://bloodweb.net/pricing/">Pricing</a>
-                <a href="https://bloodweb.net/blog/">Blog</a>
+                <a href="https://bloodweb.net/hire-us/?utm_source=jackewers&amp;utm_medium=footer&amp;utm_campaign=hire&amp;utm_content=contact">Web design &amp; development</a>
+                <a href="https://bloodweb.net/tools/?utm_source=jackewers&amp;utm_medium=footer&amp;utm_campaign=tools&amp;utm_content=contact">Free online tools</a>
+                <a href="https://bloodweb.net/forms/?utm_source=jackewers&amp;utm_medium=footer&amp;utm_campaign=forms&amp;utm_content=contact">Online form builder</a>
+                <a href="https://bloodweb.net/pricing/?utm_source=jackewers&amp;utm_medium=footer&amp;utm_campaign=pricing&amp;utm_content=contact">Pricing</a>
+                <a href="https://bloodweb.net/blog/?utm_source=jackewers&amp;utm_medium=footer&amp;utm_campaign=blog&amp;utm_content=contact">Blog</a>
             </nav>
         </div>
     </footer>
