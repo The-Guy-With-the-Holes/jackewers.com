@@ -68,7 +68,7 @@ body.light-mode { background: #ffffff !important; color: #0f172a !important; }
 body.light-mode nav, body.light-mode .nav, body.light-mode footer { background-color: rgba(250, 250, 250, 0.95); border-color: #e2e8f0; }
 body.light-mode .nav { background: rgba(255, 255, 255, 0.95); }
 body.light-mode .nav-link { color: #475569; }
-body.light-mode .nav-link:hover, body.light-mode .nav-link.active { color: #6366f1; }
+body.light-mode .nav-link:hover, body.light-mode .nav-link.active { color: #4f46e5; }
 body.light-mode .nav-link::after { background: #6366f1; }
 body.light-mode .nav-dropdown { background: white; }
 body.light-mode .nav-dropdown-link { color: #0f172a; }
@@ -91,6 +91,10 @@ body.light-mode .badge, body.light-mode .tag, body.light-mode .mod-badge, body.l
    68 links across 16 pages were invisible. Elements that genuinely need white
    text in light mode (.btn-primary) set it themselves, more specifically. */
 body.light-mode a { color: #4f46e5; }
+/* The rule above also lands on the skip link, painting its ink the same
+   indigo as its own background. It is focus-only, so the clash is easy to
+   miss - keep the dark ink it declares for itself. */
+body.light-mode .skip-link { color: #0f172a; }
 body.light-mode .btn-primary { background: #6366f1 !important; color: #ffffff !important; }
 body.light-mode .btn-secondary { background: #f8fafc; color: #0f172a; border-color: #e2e8f0; }
 body.light-mode input, body.light-mode textarea, body.light-mode select { background: #ffffff; color: #0f172a; border-color: #e2e8f0; }

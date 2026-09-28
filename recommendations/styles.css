@@ -41,18 +41,21 @@ body.light-mode {
     --color-border: #cbd5e1;
 }
 
-@media (prefers-color-scheme:dark) {
-    :root {
-        --color-bg-primary: #0f172a;
-        --color-bg-secondary: #1e293b;
-        --color-bg-tertiary: #334155;
-        --color-text-primary: #f8fafc;
-        --color-text-secondary: #cbd5e1;
-        --color-text-tertiary: #94a3b8;
-        --color-border: #334155;
-        /* #4f46e5 is only 2.2:1 on the dark card; lighten the ink instead. */
-        --color-primary-ink: #a5b4fc;
-    }
+/* Dark is resolved by early-theme.js (the .light-mode class on <html>), not by
+   the OS. Keying this off `prefers-color-scheme` instead made the two disagree
+   wherever no preference is stored - an in-app browser (Facebook, Instagram)
+   blocks localStorage, so the site fell back to its dark default while a
+   light-set phone kept these variables light: dark navbar, light body. */
+:root:not(.light-mode) {
+    --color-bg-primary: #0f172a;
+    --color-bg-secondary: #1e293b;
+    --color-bg-tertiary: #334155;
+    --color-text-primary: #f8fafc;
+    --color-text-secondary: #cbd5e1;
+    --color-text-tertiary: #94a3b8;
+    --color-border: #334155;
+    /* #4f46e5 is only 2.2:1 on the dark card; lighten the ink instead. */
+    --color-primary-ink: #a5b4fc;
 }
 
 * {
@@ -394,6 +397,8 @@ body.light-mode .card-icon {
 
 body.light-mode .affiliate-badge {
     background: #f59e0b;
+    /* nav.css's `body.light-mode span` outranks `.affiliate-badge`, so restate. */
+    color: #0f172a;
     box-shadow: 0 1px 3px rgba(245, 158, 11, 0.3);
 }
 
@@ -510,6 +515,12 @@ body.light-mode .testimonial {
     border-radius: var(--radius-lg);
     font-weight: 600;
     transition: all var(--transition-base);
+}
+
+/* .website-btn is an <a>, so nav.css's `body.light-mode a { color: #4f46e5 }`
+   repaints its label the same indigo as this button's background. */
+body.light-mode .website-btn {
+    color: white;
 }
 
 .website-btn:hover {

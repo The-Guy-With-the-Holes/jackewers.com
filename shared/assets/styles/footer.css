@@ -60,6 +60,12 @@
     font-weight: 600;
 }
 
+/* #6366f1 reaches only 3.3:1 on the dark footer panel. Dark is the site default
+   whenever no preference is stored, so lighten the link when it is active. */
+:root:not(.light-mode) .footer-brand {
+    color: #818cf8;
+}
+
 .footer-brand:hover {
     text-decoration: underline;
 }
